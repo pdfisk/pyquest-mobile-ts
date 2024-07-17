@@ -1,4 +1,6 @@
-import { QxComposite } from '../../qx/ui/container/QxComposite'
+import { ColorConstants } from '../../constants/ColorConstants';
+import { QxComposite } from '../../qx/ui/container/QxComposite';
+import { StyleConstants } from '../../constants/StyleConstants';
 
 export class Viewport extends QxComposite {
 
@@ -19,7 +21,7 @@ export class Viewport extends QxComposite {
 
     initialize() {
         super.initialize();
-        this.setStyle('backgroundColor', 'blue');
+        this.setStyle(StyleConstants.BackgroundColor, ColorConstants.ViewportBackground);
     }
 
 }
