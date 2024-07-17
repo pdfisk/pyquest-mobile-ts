@@ -1,3 +1,3 @@
 export class ColorConstants {
-    static ViewportBackground: string = 'orange';
+    static ViewportBackground: string = '#ccc';
 }
