@@ -19,8 +19,16 @@ export abstract class QxWidget extends QxLayoutItem {
         this.setStyle(StyleConstants.BackgroundColor, color);
     }
 
+    setHeight(height: number) {
+        this.widget.setHeight(height);
+    }
+
     setStyle(key: string, value: any) {
         this.getContentElement().setStyle(key, value);
+    }
+
+    setWidth(width: number) {
+        this.widget.setWidget(width);
     }
 
 }
