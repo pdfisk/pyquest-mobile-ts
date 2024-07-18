@@ -1,10 +1,10 @@
 import { QxFactory } from '../../factory/QxFactory';
 import { QxWidget } from '../core/QxWidget';
 
-export class QxToolBar extends QxWidget {
+export class QxWindowWindow extends QxWidget {
 
     constructor() {
-        super(QxFactory.toolbar());
+        super(QxFactory.windowWindow());
     }
 
 }
