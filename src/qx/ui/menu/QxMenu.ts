@@ -1,6 +1,7 @@
 import { QxFactory } from '../../factory/QxFactory';
 import { QxLayoutItem } from '../core/QxLayoutItem';
 import { QxWidget } from '../core/QxWidget';
+import { QxMenuButton } from './QxMenuButton';
 
 export class QxMenu extends QxWidget {
 
@@ -9,7 +10,11 @@ export class QxMenu extends QxWidget {
     }
 
     add(item: QxLayoutItem) {
-        this.widget.add(item);
+        this.widget.add(item.widget);
+    }
+
+    addButton(label: string) {
+        this.add(QxMenuButton.create(label));
     }
 
 }
