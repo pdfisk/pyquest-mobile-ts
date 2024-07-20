@@ -15,6 +15,10 @@ export abstract class QxWidget extends QxLayoutItem {
         return this.contentElement;
     }
 
+    hide() {
+        this.widget.hide();
+    }
+
     setBackgroundColor(color: string) {
         this.setStyle(StyleConstants.BackgroundColor, color);
     }
@@ -28,7 +32,11 @@ export abstract class QxWidget extends QxLayoutItem {
     }
 
     setWidth(width: number) {
-        this.widget.setWidget(width);
+        this.widget.setWidth(width);
+    }
+
+    show() {
+        this.widget.show();
     }
 
 }

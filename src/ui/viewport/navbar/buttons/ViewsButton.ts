@@ -1,5 +1,6 @@
 import { QxMenu } from "../../../../qx/ui/menu/QxMenu";
 import { QxMenuBarButton } from "../../../../qx/ui/menubar/QxMenuBarButton";
+import { TranscriptWindow } from "../../../windows/transcript/TranscriptWindow";
 
 export class ViewsButton extends QxMenuBarButton {
 
@@ -11,7 +12,9 @@ export class ViewsButton extends QxMenuBarButton {
 
     createMenu(): QxMenu {
         const menu = new QxMenu();
-        menu.addButton('Transcript', () => { console.log('TRANSCRIPT') });
+        menu.addButton('Transcript', () => {
+            TranscriptWindow.getInstance();
+        });
         return menu;
     }
 
