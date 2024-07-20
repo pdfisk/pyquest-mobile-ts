@@ -39,8 +39,6 @@ export class QxComposite extends QxWidget {
     }
 
     setLayout(layout: QxAbstractLayout) {
-        console.log('setLayout', layout);
-        (window as any).X = [this, layout];
         this.widget.setLayout(layout.widget);
     }
 

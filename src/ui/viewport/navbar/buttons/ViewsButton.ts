@@ -11,7 +11,7 @@ export class ViewsButton extends QxMenuBarButton {
 
     createMenu(): QxMenu {
         const menu = new QxMenu();
-        menu.addButton('Transcript');
+        menu.addButton('Transcript', () => { console.log('TRANSCRIPT') });
         return menu;
     }
 

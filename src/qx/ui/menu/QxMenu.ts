@@ -13,8 +13,10 @@ export class QxMenu extends QxWidget {
         this.widget.add(item.widget);
     }
 
-    addButton(label: string) {
-        this.add(QxMenuButton.create(label));
+    addButton(label: string, fn?: Function) {
+        const button: QxMenuButton = QxMenuButton.create(label, fn);
+        (window as any).X = button;
+        this.add(button);
     }
 
 }
