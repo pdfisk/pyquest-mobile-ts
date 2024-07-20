@@ -1,6 +1,6 @@
 import { ColorConstants } from '../../constants/ColorConstants';
 import { QxComposite } from '../../qx/ui/container/QxComposite';
-import { NavBar } from './widgets/NavBar';
+import { NavBar } from './navbar/NavBar';
 
 export class Viewport extends QxComposite {
     navBar: any = undefined;

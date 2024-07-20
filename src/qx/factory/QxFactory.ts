@@ -48,6 +48,18 @@ export class QxFactory {
         return new (window as any).qx.ui.layout.HBox;
     }
 
+    static menuButton(): any {
+        return new (window as any).qx.ui.menu.Button;
+    }
+
+    static menuMenu(): any {
+        return new (window as any).qx.ui.menu.Menu;
+    }
+
+    static menuSeparator(): any {
+        return new (window as any).qx.ui.menu.Separator;
+    }
+
     static menubarButton(): any {
         return new (window as any).qx.ui.menubar.Button;
     }
