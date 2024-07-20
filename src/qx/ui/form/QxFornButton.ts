@@ -8,4 +8,8 @@ export class QxFormButton extends QxBasicAtom {
         super(widget);
     }
 
+    setLabel(label: string) {
+        this.widget.setLabel(label);
+    }
+
 }

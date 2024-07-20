@@ -4,7 +4,7 @@ import { QxFormMenuButton } from '../form/QxFornMenuButton';
 export class QxMenuBarButton extends QxFormMenuButton {
 
     constructor() {
-        super(QxFactory.menubarMenuBar());
+        super(QxFactory.menubarButton());
     }
 
 }
