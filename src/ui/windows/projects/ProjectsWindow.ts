@@ -17,7 +17,11 @@ export class ProjectsWindow extends AbstractWindow {
         this.splitPane.add(this.cout);
         this.add(this.splitPane);
     }
-
+  
+    addButtons() {
+        this.addButton('Refresh');
+    }
+  
     defaultCaption(): string {
         return 'Projects';
     }

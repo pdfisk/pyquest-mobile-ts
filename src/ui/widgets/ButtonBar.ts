@@ -1,3 +1,4 @@
+import { ColorConstants } from '../../constants/ColorConstants';
 import { SizeConstants } from '../../constants/SizeConstants';
 import { QxAbstractLayout } from '../../qx/ui/layout/QxAbstractLayout';
 import { QxHBoxLayout } from '../../qx/ui/layout/QxHBoxLayout';
@@ -8,7 +9,7 @@ export class ButtonBar extends Panel {
   initialize() {
     super.initialize();
     this.setHeight(SizeConstants.DefaultWindowButtonBarHeight);
-    this.setBackgroundColor('red');
+    this.setBackgroundColor(ColorConstants.ButtonBarBackground);
   }
 
   addButton(name: string, fn?: Function) {

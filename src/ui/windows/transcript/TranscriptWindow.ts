@@ -23,6 +23,10 @@ export class TranscriptWindow extends AbstractWindow {
         this.add(this.textArea);
     }
 
+    addButtons() {
+        this.addButton('Clear');
+    }
+
     defaultCaption(): string {
         return 'Transcript';
     }
