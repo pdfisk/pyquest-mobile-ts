@@ -1,5 +1,7 @@
 import { QxMenu } from "../../../../qx/ui/menu/QxMenu";
 import { QxMenuBarButton } from "../../../../qx/ui/menubar/QxMenuBarButton";
+import { ConsoleWindow } from "../../../windows/console/ConsoleWindow";
+import { ProjectsWindow } from "../../../windows/projects/ProjectsWindow";
 import { TranscriptWindow } from "../../../windows/transcript/TranscriptWindow";
 
 export class ViewsButton extends QxMenuBarButton {
@@ -12,10 +14,29 @@ export class ViewsButton extends QxMenuBarButton {
 
     createMenu(): QxMenu {
         const menu = new QxMenu();
+        menu.addButton('Projects', () => {
+            this.openProjects();
+        });
+        menu.addButton('Console', () => {
+            this.openConsole();
+        });
+        menu.addSeparator();
         menu.addButton('Transcript', () => {
-            TranscriptWindow.getInstance();
+            this.openTranscript();
         });
         return menu;
+    }
+
+    openConsole() {
+        new ConsoleWindow();
+    }
+
+    openProjects() {
+        new ProjectsWindow();
+    }
+
+    openTranscript() {
+        TranscriptWindow.getInstance();
     }
 
 }

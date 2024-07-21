@@ -13,7 +13,7 @@ export class TranscriptWindow extends QxWindowWindow {
 
     static instance: TranscriptWindow;
 
-    constructor() {
+    private constructor() {
         super();
     }
 

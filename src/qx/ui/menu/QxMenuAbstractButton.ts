@@ -1,8 +1,8 @@
 import { QxWidget } from '../core/QxWidget';
 
-export class QxMenuAbstractButton extends QxWidget {
+export abstract class QxMenuAbstractButton extends QxWidget {
 
-    constructor(widget:any) {
+    constructor(widget: any) {
         super(widget);
     }
 
