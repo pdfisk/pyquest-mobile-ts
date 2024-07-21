@@ -1,8 +1,8 @@
 import { QxTextArea } from '../../../qx/ui/form/QxTextArea';
 import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
-import { QxWindowWindow } from '../../../qx/ui/window/QxWindowWindow';
+import { AbstractWindow } from '../abstract/AbstractWindow';
 
-export class ProjectsWindow extends QxWindowWindow {
+export class ProjectsWindow extends AbstractWindow {
 
     cin?: QxTextArea;
     cout?: QxTextArea;

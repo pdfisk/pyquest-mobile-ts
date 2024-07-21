@@ -1,7 +1,7 @@
 import { QxTextArea } from '../../../qx/ui/form/QxTextArea';
-import { QxWindowWindow } from '../../../qx/ui/window/QxWindowWindow';
+import { AbstractWindow } from '../abstract/AbstractWindow';
 
-export class TranscriptWindow extends QxWindowWindow {
+export class TranscriptWindow extends AbstractWindow {
 
     textArea?: QxTextArea;
 
