@@ -67,7 +67,11 @@ export class QxFactory {
     static menubarMenuBar(): any {
         return new (window as any).qx.ui.menubar.MenuBar;
     }
-
+  
+    static splitPane(): any {
+        return new (window as any).qx.ui.splitpane.Pane;
+    }
+  
     static textArea(): any {
         return new (window as any).qx.ui.form.TextArea;
     }
