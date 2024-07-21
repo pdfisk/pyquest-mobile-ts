@@ -2,6 +2,7 @@ import { SizeConstants } from '../../../constants/SizeConstants';
 import { QxFactory } from '../../factory/QxFactory';
 import { QxWidget } from '../core/QxWidget';
 import { QxAbstractLayout } from '../layout/QxAbstractLayout';
+import { QxDockLayout } from '../layout/QxDockLayout';
 import { QxGrowLayout } from '../layout/QxGrowLayout';
 
 export class QxWindowWindow extends QxWidget {
@@ -24,7 +25,11 @@ export class QxWindowWindow extends QxWidget {
     }
 
     add(child: QxWidget) {
-        this.widget.add(child.widget);
+        this.widget.add(child.widget, { edge: 'center' });
+    }
+
+    addSouth(child: QxWidget) {
+        this.widget.add(child.widget, { edge: 'south' });
     }
 
     defaultCaption(): string {
@@ -40,7 +45,7 @@ export class QxWindowWindow extends QxWidget {
     }
 
     defaultLayout(): QxAbstractLayout {
-        return new QxGrowLayout();
+        return new QxDockLayout();
     }
 
     defaultShow(): boolean {
