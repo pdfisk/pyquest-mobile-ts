@@ -6,4 +6,7 @@ export abstract class QxAbstractLayout extends QxObject {
         super(widget);
     }
 
+    setSpacing(spacing: number) {
+    }
+
 }

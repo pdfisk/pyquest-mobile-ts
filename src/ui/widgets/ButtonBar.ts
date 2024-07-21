@@ -34,11 +34,13 @@ export class ButtonBar extends Panel {
   }
 
   defaultLayout(): QxAbstractLayout {
-    return new QxHBoxLayout();
+    const layout: QxAbstractLayout = new QxHBoxLayout();
+    layout.setSpacing(SizeConstants.DefaultWindowButtonBarSpacing);
+    return layout;
   }
 
   defaultPadding(): number[] {
-    return [2, 7];
+    return SizeConstants.DefaultWindowButtonBarPadding;
   }
 
 }

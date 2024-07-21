@@ -28,4 +28,58 @@ export class ConsoleWindow extends AbstractWindow {
         return 'Console';
     }
 
+    getCin(): string {
+        if (this.cin)
+            return this.cin.getValue();
+        return '';
+    }
+
+    getCout(): string {
+        if (this.cout)
+            return this.cout.getValue();
+        return '';
+    }
+
+    onButtonClick(tag: string) {
+        switch (tag) {
+            case 'clear_in':
+                this.onClearIn();
+                break;
+            case 'clear_out':
+                this.onClearOut();
+                break;
+            case 'run':
+                this.onRun();
+                break;
+            default:
+                console.log('onButtonClick', tag);
+                break;
+        }
+    }
+
+    onClearIn() {
+        this.cin?.clear();
+    }
+
+    onClearOut() {
+        this.cout?.clear();
+    }
+
+    onRun() {
+        const text: any = this.cin?.getValue();
+        if (typeof (text) !== 'string')
+            return;
+        this.setCout(text);
+    }
+
+    setCin(text: string) {
+        if (this.cin)
+            this.cin.setValue(text);
+    }
+
+    setCout(text: string) {
+        if (this.cout)
+            this.cout.setValue(text);
+    }
+
 }

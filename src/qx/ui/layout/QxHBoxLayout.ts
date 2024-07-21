@@ -7,4 +7,8 @@ export class QxHBoxLayout extends QxAbstractLayout {
         super(QxFactory.hboxLayout());
     }
 
+    setSpacing(spacing: number) {
+        this.widget.setSpacing(spacing);
+    }
+
 }
