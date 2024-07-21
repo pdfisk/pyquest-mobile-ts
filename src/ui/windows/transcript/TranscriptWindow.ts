@@ -1,6 +1,9 @@
+import { QxTextArea } from '../../../qx/ui/form/QxTextArea';
 import { QxWindowWindow } from '../../../qx/ui/window/QxWindowWindow';
 
 export class TranscriptWindow extends QxWindowWindow {
+
+    textArea?: QxTextArea;
 
     static getInstance(): TranscriptWindow {
         if (!this.instance)
@@ -16,7 +19,8 @@ export class TranscriptWindow extends QxWindowWindow {
 
     initialize() {
         super.initialize();
-        (window as any).X = this;
+        this.textArea = new QxTextArea();
+        this.add(this.textArea);
     }
 
     defaultCaption(): string {

@@ -13,6 +13,7 @@ export class QxWindowWindow extends QxWidget {
     initialize() {
         super.initialize();
         this.setCaption(this.defaultCaption());
+        this.setContentPadding(this.defaultContentPadding());
         this.setHeight(this.defaultHeight());
         this.setLayout(this.defaultLayout());
         this.setWidth(this.defaultWidth());
@@ -28,6 +29,10 @@ export class QxWindowWindow extends QxWidget {
 
     defaultCaption(): string {
         return 'a Window';
+    }
+
+    defaultContentPadding(): number {
+        return SizeConstants.DefaultWindowContentPadding;
     }
 
     defaultHeight(): number {
@@ -48,6 +53,10 @@ export class QxWindowWindow extends QxWidget {
 
     setCaption(caption: string) {
         this.widget.setCaption(caption);
+    }
+
+    setContentPadding(padding: number) {
+        this.widget.setContentPadding(padding);
     }
 
     setLayout(layout: QxAbstractLayout) {
