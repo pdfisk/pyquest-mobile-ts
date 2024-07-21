@@ -6,7 +6,7 @@ export class AbstractWindow extends QxWindowWindow {
 
     initialize() {
         super.initialize();
-        this.buttonBar = new ButtonBar();
+        this.buttonBar = new ButtonBar(this);
         this.addSouth(this.buttonBar);
         this.addButtons();
     }
@@ -16,6 +16,10 @@ export class AbstractWindow extends QxWindowWindow {
     }
 
     addButtons() {
+    }
+
+    onButtonClick(tag: string) {
+        console.log('onButtonClick', tag);
     }
 
 }

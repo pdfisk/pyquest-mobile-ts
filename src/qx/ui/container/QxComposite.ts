@@ -12,6 +12,7 @@ export class QxComposite extends QxWidget {
     initialize() {
         super.initialize();
         this.setLayout(this.defaultLayout());
+        this.setPadding(this.defaultPadding());
     }
 
     addCenter(child: QxWidget) {
@@ -38,8 +39,16 @@ export class QxComposite extends QxWidget {
         return new QxDockLayout();
     }
 
+    defaultPadding(): number[] {
+        return [0];
+    }
+
     setLayout(layout: QxAbstractLayout) {
         this.widget.setLayout(layout.widget);
+    }
+
+    setPadding(padding: number[]) {
+        this.widget.setPadding.apply(this.widget, padding);
     }
 
 }

@@ -1,6 +1,6 @@
 import { QxFactory } from '../../factory/QxFactory';
 import { QxMenu } from '../menu/QxMenu';
-import { QxFormButton } from './QxFornButton';
+import { QxFormButton } from './QxFormButton';
 
 export class QxFormMenuButton extends QxFormButton {
 

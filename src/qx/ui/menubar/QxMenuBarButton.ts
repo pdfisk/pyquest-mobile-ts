@@ -1,5 +1,5 @@
 import { QxFactory } from '../../factory/QxFactory';
-import { QxFormMenuButton } from '../form/QxFornMenuButton';
+import { QxFormMenuButton } from '../form/QxFormMenuButton';
 
 export class QxMenuBarButton extends QxFormMenuButton {
 

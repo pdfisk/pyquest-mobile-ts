@@ -6,12 +6,19 @@ export abstract class QxAbstractField extends QxWidget {
         super(widget);
     }
 
+    clear() {
+        this.setValue('');
+    }
+
     getValue(): string {
+        if (!this.widget)
+            return '';
         return this.widget.getValue();
     }
 
     setValue(value: string) {
-        this.widget.setValue(value);
+        if (this.widget)
+            this.widget.setValue(value);
     }
 
 }

@@ -31,4 +31,19 @@ export class TranscriptWindow extends AbstractWindow {
         return 'Transcript';
     }
 
+    onButtonClick(tag: string) {
+        switch (tag) {
+            case 'clear':
+                this.onClear();
+                break;
+            default:
+                console.log('onButtonClick', tag);
+                break;
+        }
+    }
+
+    onClear() {
+        this.textArea?.clear();
+    }
+
 }
