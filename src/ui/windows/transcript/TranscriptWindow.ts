@@ -16,6 +16,7 @@ export class TranscriptWindow extends QxWindowWindow {
 
     initialize() {
         super.initialize();
+        (window as any).X = this;
     }
 
     defaultCaption(): string {

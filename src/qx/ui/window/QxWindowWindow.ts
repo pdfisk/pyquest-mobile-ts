@@ -1,18 +1,29 @@
 import { SizeConstants } from '../../../constants/SizeConstants';
 import { QxFactory } from '../../factory/QxFactory';
 import { QxWidget } from '../core/QxWidget';
+import { QxAbstractLayout } from '../layout/QxAbstractLayout';
+import { QxGrowLayout } from '../layout/QxGrowLayout';
 
 export class QxWindowWindow extends QxWidget {
 
     constructor() {
         super(QxFactory.windowWindow());
+    }
+
+    initialize() {
+        super.initialize();
         this.setCaption(this.defaultCaption());
-        this.setWidth(this.defaultWidth());
         this.setHeight(this.defaultHeight());
+        this.setLayout(this.defaultLayout());
+        this.setWidth(this.defaultWidth());
         if (this.defaultShow())
             this.show();
         else
             this.hide();
+    }
+
+    add(child: QxWidget) {
+        this.widget.add(child.widget);
     }
 
     defaultCaption(): string {
@@ -21,6 +32,10 @@ export class QxWindowWindow extends QxWidget {
 
     defaultHeight(): number {
         return SizeConstants.DefaultWindowHeight;
+    }
+
+    defaultLayout(): QxAbstractLayout {
+        return new QxGrowLayout();
     }
 
     defaultShow(): boolean {
@@ -33,6 +48,10 @@ export class QxWindowWindow extends QxWidget {
 
     setCaption(caption: string) {
         this.widget.setCaption(caption);
+    }
+
+    setLayout(layout: QxAbstractLayout) {
+        this.widget.setLayout(layout.widget);
     }
 
 }

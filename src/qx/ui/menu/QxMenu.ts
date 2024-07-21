@@ -14,9 +14,7 @@ export class QxMenu extends QxWidget {
     }
 
     addButton(label: string, fn?: Function) {
-        const button: QxMenuButton = QxMenuButton.create(label, fn);
-        (window as any).X = button;
-        this.add(button);
+        this.add(QxMenuButton.create(label, fn));
     }
 
 }

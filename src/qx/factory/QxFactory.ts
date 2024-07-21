@@ -68,6 +68,14 @@ export class QxFactory {
         return new (window as any).qx.ui.menubar.MenuBar;
     }
 
+    static textArea(): any {
+        return new (window as any).qx.ui.form.TextArea;
+    }
+
+    static textField(): any {
+        return new (window as any).qx.ui.form.TextField;
+    }
+
     static toolbarButton(): any {
         return new (window as any).qx.ui.toolbar.Button;
     }
@@ -87,7 +95,7 @@ export class QxFactory {
     static vboxLayout(): any {
         return new (window as any).qx.ui.layout.VBox;
     }
-   
+
     static windowWindow(): any {
         return new (window as any).qx.ui.window.Window;
     }
