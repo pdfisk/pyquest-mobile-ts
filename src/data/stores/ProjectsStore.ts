@@ -2,8 +2,17 @@ import { AbstractStore } from "./AbstractStore";
 
 export class ProjectsStore extends AbstractStore {
 
-    constructor() {
+    static instance: ProjectsStore;
+
+    static getInstance() {
+        if (!this.instance)
+            this.instance = new ProjectsStore();
+        return this.instance;
+    }
+
+    private constructor() {
         super();
+        (window as any).X = this;
     }
 
     getProjects() {
@@ -46,6 +55,11 @@ export class ProjectsStore extends AbstractStore {
     loadProjects() {
         const fn = () => { console.log('LOAD FN', arguments) };
         this.server.sendGetRequest(this.getUrl('projects'), fn);
+    }
+
+    setStore() {
+        this.dataStore = ProjectsStore.getInstance();
+        this.dataStore.setUrl(this.getUrl('projects'));
     }
 
 }

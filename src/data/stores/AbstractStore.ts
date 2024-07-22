@@ -32,8 +32,6 @@ export abstract class AbstractStore {
 
     onLoaded() {
         this.dataLoaded = true;
-        console.log('onLoaded');
-        (window as any).X = this.dataStore;
     }
 
     setUrl(url: string) {
