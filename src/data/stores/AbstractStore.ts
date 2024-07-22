@@ -48,9 +48,8 @@ export abstract class AbstractStore {
         this.dataRecords = this.getDataRecords();
         for (let i = 0; i < this.handlerFns.length; i++) {
             const handlerFn: Function = this.handlerFns[i];
-            handlerFn.call(this.dataRecords);
+            handlerFn(this.dataRecords);
         }
-        console.log('handleLoadedData', this.dataRecords);
     }
 
     loadData() {

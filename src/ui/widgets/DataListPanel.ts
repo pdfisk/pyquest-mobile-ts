@@ -7,10 +7,6 @@ export abstract class DataListPanel extends Panel {
     constructor() {
         super();
         this.setStore();
-    }
-
-    initialize() {
-        super.initialize();
         this.addHandlerFns();
     }
 
@@ -18,7 +14,7 @@ export abstract class DataListPanel extends Panel {
         this.dataStore?.addHandlerFn(fn);
     }
 
-    abstract addHandlerFns():void;
+    abstract addHandlerFns(): void;
 
     onAppear() {
         this.dataStore?.loadData();
