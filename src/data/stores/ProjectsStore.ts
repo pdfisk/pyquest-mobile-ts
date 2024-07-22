@@ -12,27 +12,21 @@ export class ProjectsStore extends AbstractStore {
 
     private constructor() {
         super();
-        (window as any).X = this;
     }
 
-    getProjects() {
-        if (!this.dataLoaded)
-            return this.loadProjects();
+    getDataRecords(): any[] {
         const model = this.dataStore.$$user_model;
-        const projectsData = [];
+        const projectsData: any[] = [];
         for (let i = 0; i < model.length; i++) {
             const item = model.getItem(i);
             const id = item.$$user_id;
             const name = item.$$user_name;
             const description = item.$$user_description;
             const code = item.$$user_code;
-            // const code_object_json = item.$$user_code_object;
+            const code_object_json = item.$$user_code_object;
             let code_object = null;
-            // if (typeof (code_object_json) === 'string') {
-            //     const temp = app.api.VmApi.cacheCodeObject(code_object_json);
-            //     if (temp)
-            //         code_object = temp;
-            // }
+            if (typeof (code_object_json) === 'string')
+                code_object = JSON.parse(code_object_json);
             const projectRecord: any = {};
             projectRecord.id = id;
             projectRecord.name = name;
@@ -52,14 +46,20 @@ export class ProjectsStore extends AbstractStore {
         return this.dataStore.$$user_model.length;
     }
 
-    loadProjects() {
-        const fn = () => { console.log('LOAD FN', arguments) };
-        this.server.sendGetRequest(this.getUrl('projects'), fn);
-    }
+    // loadProjects() {
+    //     this.dataStore.la
+    //     const fn = (reply: any) => {
+    //         if (reply && reply._getParsedResponse) {
+    //             this.dataLoaded = true;
+    //             const data = reply._getParsedResponse();
+    //             console.log('DATA', data);
+    //         }
+    //     };
+    //     this.server.sendGetRequest(this.getUrl('projects'), fn);
+    // }
 
-    setStore() {
-        this.dataStore = ProjectsStore.getInstance();
-        this.dataStore.setUrl(this.getUrl('projects'));
+    serviceName(): string {
+        return 'projects';
     }
 
 }

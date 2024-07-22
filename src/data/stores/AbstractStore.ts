@@ -2,14 +2,28 @@ import { Server } from "../Server";
 
 export abstract class AbstractStore {
     dataLoaded: boolean;
+    dataRecords: any[];
     dataStore: any;
+    handlerFns: Function[];
     server: Server;
 
     constructor() {
         this.dataLoaded = false;
+        this.dataRecords = [];
         this.dataStore = new (window.qx as any).data.store.Json;
         this.dataStore.addListener('loaded', this.onLoaded, this);
+        this.handlerFns = [];
         this.server = Server.getInstance();
+    }
+
+    addHandlerFn(handlerFn: Function) {
+        this.handlerFns.push(handlerFn);
+    }
+
+    abstract serviceName(): string
+
+    getDataRecords(): any[] {
+        return [];
     }
 
     getHost() {
@@ -30,12 +44,22 @@ export abstract class AbstractStore {
         return (window.qx as any).lang.String.format('%1/%2', [this.getUrl(service), id]);
     }
 
-    onLoaded() {
-        this.dataLoaded = true;
+    handleLoadedData() {
+        this.dataRecords = this.getDataRecords();
+        for (let i = 0; i < this.handlerFns.length; i++) {
+            const handlerFn: Function = this.handlerFns[i];
+            handlerFn.call(this.dataRecords);
+        }
+        console.log('handleLoadedData', this.dataRecords);
     }
 
-    setUrl(url: string) {
-        this.dataStore.setUrl(url);
+    loadData() {
+        this.dataStore.setUrl(this.getUrl(this.serviceName()));
+    }
+
+    onLoaded() {
+        this.dataLoaded = true;
+        this.handleLoadedData();
     }
 
 }

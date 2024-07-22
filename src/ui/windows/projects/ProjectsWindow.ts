@@ -18,11 +18,20 @@ export class ProjectsWindow extends AbstractWindow {
         this.splitPane.add(this.cout);
         this.add(this.splitPane);
     }
-  
+
     addButtons() {
         this.addButton('Refresh');
     }
-  
+
+    buildProjectsList() {
+        this.projectsList = new ProjectsList();
+        const fn = (data: any[]) => {
+            for (let i = 0; i < data.length; i++) {
+                console.log(i, data[i]);
+            }
+        }
+    }
+
     defaultCaption(): string {
         return 'Projects';
     }

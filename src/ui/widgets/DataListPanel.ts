@@ -9,6 +9,21 @@ export abstract class DataListPanel extends Panel {
         this.setStore();
     }
 
+    initialize() {
+        super.initialize();
+        this.addHandlerFns();
+    }
+
+    addHandlerFn(fn: Function) {
+        this.dataStore?.addHandlerFn(fn);
+    }
+
+    abstract addHandlerFns():void;
+
+    onAppear() {
+        this.dataStore?.loadData();
+    }
+
     abstract setStore(): void;
 
 }
