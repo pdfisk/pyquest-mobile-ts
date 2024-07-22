@@ -1,19 +1,20 @@
 import { QxTextArea } from '../../../qx/ui/form/QxTextArea';
 import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
 import { AbstractWindow } from '../abstract/AbstractWindow';
+import { ProjectsList } from './widgets/ProjectsList';
 
 export class ProjectsWindow extends AbstractWindow {
 
-    cin?: QxTextArea;
     cout?: QxTextArea;
+    projectsList?: ProjectsList;
     splitPane?: QxSplitPane;
 
     initialize() {
         super.initialize();
-        this.cin = new QxTextArea();
+        this.projectsList = new ProjectsList();
         this.cout = new QxTextArea();
         this.splitPane = QxSplitPane.createHorizontal();
-        this.splitPane.add(this.cin);
+        this.splitPane.add(this.projectsList);
         this.splitPane.add(this.cout);
         this.add(this.splitPane);
     }
