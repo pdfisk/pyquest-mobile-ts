@@ -46,18 +46,6 @@ export class ProjectsStore extends AbstractStore {
         return this.dataStore.$$user_model.length;
     }
 
-    // loadProjects() {
-    //     this.dataStore.la
-    //     const fn = (reply: any) => {
-    //         if (reply && reply._getParsedResponse) {
-    //             this.dataLoaded = true;
-    //             const data = reply._getParsedResponse();
-    //             console.log('DATA', data);
-    //         }
-    //     };
-    //     this.server.sendGetRequest(this.getUrl('projects'), fn);
-    // }
-
     serviceName(): string {
         return 'projects';
     }

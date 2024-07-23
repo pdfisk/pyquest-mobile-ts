@@ -19,7 +19,6 @@ export class EditorPanel extends Panel {
     }
 
     setValue(text: string) {
-        console.log('SET VALUE', text);
         this.editor.setValue(text);
     }
 

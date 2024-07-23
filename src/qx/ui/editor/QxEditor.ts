@@ -6,7 +6,7 @@ export class QxEditor extends QxComposite {
     initValue:string ='';
 
     clear() {
-        console.log('QxEditor clear');
+        this.setValue('');
     }
 
     defaultEnableOnAppear(): boolean {
@@ -29,14 +29,17 @@ export class QxEditor extends QxComposite {
         this.initValue = '';
     }
 
+    setRange() {
+        this.editor.selection.setRange(new (window as any).ace.Range(0, 0, 0, 0));       
+    }
+
     setValue(text: string) {
         if (!this.editor){
             this.initValue = text;
             return;
         }
         this.editor.setValue(text);
-        console.log('SET VALUE');
-        (window as any).X = [this, text];
+        this.setRange()
     }
 
 }
