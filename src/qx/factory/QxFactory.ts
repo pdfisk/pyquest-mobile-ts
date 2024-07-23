@@ -47,7 +47,11 @@ export class QxFactory {
     static hboxLayout(): any {
         return new (window as any).qx.ui.layout.HBox;
     }
-
+   
+    static list(): any {
+        return new (window as any).qx.ui.list.List;
+    }
+   
     static menuButton(): any {
         return new (window as any).qx.ui.menu.Button;
     }
