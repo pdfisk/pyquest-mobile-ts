@@ -2,10 +2,11 @@ import { ProjectsStore } from '../../../../data/stores/ProjectsStore';
 import { DataListPanel } from '../../../widgets/DataListPanel';
 
 export class ProjectsList extends DataListPanel {
+    dataMap: Map<string, any> = new Map();
 
     addHandlerFns(): void {
         const updateListFn: Function = (data: any[]) => {
-            this.updateList(data);
+            this.updateListData(data);
         }
         this.addHandlerFn(updateListFn);
     }
@@ -22,8 +23,16 @@ export class ProjectsList extends DataListPanel {
         this.dataStore = ProjectsStore.getInstance();
     }
 
-    updateList(data: any[]) {
-        console.log('updateList', data);
+    updateListData(data: any[]) {
+        this.dataMap.clear();
+        const names: string[] = [];
+        for (let i = 0; i < data.length; i++) {
+            const item: any = data[i];
+            const name: string = item.name;
+            names.push(name);
+            this.dataMap.set(name, item);
+        }
+        this.updateList(names);
     }
 
 }

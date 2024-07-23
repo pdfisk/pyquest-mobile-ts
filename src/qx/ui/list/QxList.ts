@@ -7,4 +7,9 @@ export class QxList extends QxWidget {
         super(QxFactory.list());
     }
 
+    setData(labels: string[]) {
+        const model = (window.qx as any).data.marshal.Json.createModel(labels.sort());
+        this.widget.setModel(model);
+    }
+
 }

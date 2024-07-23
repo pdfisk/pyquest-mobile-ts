@@ -26,4 +26,8 @@ export abstract class DataListPanel extends Panel {
 
     abstract setStore(): void;
 
+    updateList(names: any[]) {
+        this.list.setData(names);
+    }
+
 }
