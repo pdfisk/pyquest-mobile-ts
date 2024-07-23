@@ -11,14 +11,21 @@ export abstract class DataListPanel extends Panel {
         this.list = new QxList();
         this.addCenter(this.list);
         this.setStore();
-        this.addHandlerFns();
+        this.addChangeHandlerFns();
+        this.addLoadHandlerFns();
     }
 
-    addHandlerFn(fn: Function) {
-        this.dataStore?.addHandlerFn(fn);
+    addChangeHandlerFn(fn: Function) {
+        this.list.setChangeHandlerFn(fn);
     }
 
-    abstract addHandlerFns(): void;
+    abstract addChangeHandlerFns(): void;
+
+    addLoadHandlerFn(fn: Function) {
+        this.dataStore?.addLoaderHandlerFn(fn);
+    }
+
+    abstract addLoadHandlerFns(): void;
 
     onAppear() {
         this.dataStore?.loadData();

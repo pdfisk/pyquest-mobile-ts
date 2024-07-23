@@ -4,7 +4,7 @@ export abstract class AbstractStore {
     dataLoaded: boolean;
     dataRecords: any[];
     dataStore: any;
-    handlerFns: Function[];
+    loadHandlerFns: Function[];
     server: Server;
 
     constructor() {
@@ -12,12 +12,12 @@ export abstract class AbstractStore {
         this.dataRecords = [];
         this.dataStore = new (window.qx as any).data.store.Json;
         this.dataStore.addListener('loaded', this.onLoaded, this);
-        this.handlerFns = [];
+        this.loadHandlerFns = [];
         this.server = Server.getInstance();
     }
 
-    addHandlerFn(handlerFn: Function) {
-        this.handlerFns.push(handlerFn);
+    addLoaderHandlerFn(loadHandlerFn: Function) {
+        this.loadHandlerFns.push(loadHandlerFn);
     }
 
     abstract serviceName(): string
@@ -46,8 +46,8 @@ export abstract class AbstractStore {
 
     handleLoadedData() {
         this.dataRecords = this.getDataRecords();
-        for (let i = 0; i < this.handlerFns.length; i++) {
-            const handlerFn: Function = this.handlerFns[i];
+        for (let i = 0; i < this.loadHandlerFns.length; i++) {
+            const handlerFn: Function = this.loadHandlerFns[i];
             handlerFn(this.dataRecords);
         }
     }

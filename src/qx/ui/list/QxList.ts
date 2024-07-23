@@ -2,6 +2,7 @@ import { QxFactory } from '../../factory/QxFactory';
 import { QxWidget } from '../core/QxWidget';
 
 export class QxList extends QxWidget {
+    changeHandlerFn?: Function;
 
     constructor() {
         super(QxFactory.list());
@@ -9,7 +10,16 @@ export class QxList extends QxWidget {
     }
 
     onChange() {
-        console.log('onChange');
+        const selection:any = this.widget.getSelection();
+        if (selection && selection.length) {
+            const name = selection.getItem(0);
+            if (this.changeHandlerFn)
+                this.changeHandlerFn(name);
+        }
+    }
+
+    setChangeHandlerFn(fn: Function) {
+        this.changeHandlerFn = fn;
     }
 
     setData(labels: string[]) {

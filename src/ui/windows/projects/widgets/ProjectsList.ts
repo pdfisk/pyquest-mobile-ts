@@ -4,15 +4,26 @@ import { DataListPanel } from '../../../widgets/DataListPanel';
 export class ProjectsList extends DataListPanel {
     dataMap: Map<string, any> = new Map();
 
-    addHandlerFns(): void {
+    addChangeHandlerFns(): void {
+        const changeSelectionFn: Function = (name: any) => {
+            this.onChangeSelection(name);
+        }
+        this.addChangeHandlerFn(changeSelectionFn);
+    }
+
+    addLoadHandlerFns(): void {
         const updateListFn: Function = (data: any[]) => {
             this.updateListData(data);
         }
-        this.addHandlerFn(updateListFn);
+        this.addLoadHandlerFn(updateListFn);
     }
 
     initialize() {
         super.initialize();
+    }
+
+    onChangeSelection(name: string) {
+        console.log('onChangeSelection', name);
     }
 
     refresh() {
