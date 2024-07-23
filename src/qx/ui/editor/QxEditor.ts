@@ -10,8 +10,11 @@ export class QxEditor extends QxComposite {
 return '';
     }
 
+    onAppear() {
+    }
+
     setValue(text:string) {
-        
+
     }
 
 }

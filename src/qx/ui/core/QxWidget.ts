@@ -7,6 +7,16 @@ export abstract class QxWidget extends QxLayoutItem {
 
     constructor(widget: any) {
         super(widget);
+        if (this.defaultEnableOnAppear())
+            this.enableOnAppear();
+    }
+
+    defaultEnableOnAppear(): boolean {
+        return false;
+    }
+
+    enableOnAppear() {
+        this.widget.addListener('appear', this.onAppear, this);
     }
 
     getContentElement(): QxElement {
@@ -17,6 +27,9 @@ export abstract class QxWidget extends QxLayoutItem {
 
     hide() {
         this.widget.hide();
+    }
+
+    onAppear() {
     }
 
     setBackgroundColor(color: string) {
