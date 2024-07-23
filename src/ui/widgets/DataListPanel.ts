@@ -28,6 +28,11 @@ export abstract class DataListPanel extends Panel {
     abstract addLoadHandlerFns(): void;
 
     onAppear() {
+        this.refresh();
+    }
+
+    refresh() {
+        this.list.refresh();
         this.dataStore?.loadData();
     }
 

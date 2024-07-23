@@ -1,9 +1,9 @@
-import { QxTextArea } from '../../../qx/ui/form/QxTextArea';
+import { TextPanel } from '../../widgets/TextPanel';
 import { AbstractWindow } from '../abstract/AbstractWindow';
 
 export class TranscriptWindow extends AbstractWindow {
 
-    textArea?: QxTextArea;
+    textPanel?: TextPanel;
 
     static getInstance(): TranscriptWindow {
         if (!this.instance)
@@ -19,8 +19,8 @@ export class TranscriptWindow extends AbstractWindow {
 
     initialize() {
         super.initialize();
-        this.textArea = new QxTextArea();
-        this.add(this.textArea);
+        this.textPanel = new TextPanel();
+        this.add(this.textPanel);
     }
 
     addButtons() {
@@ -43,7 +43,7 @@ export class TranscriptWindow extends AbstractWindow {
     }
 
     onClear() {
-        this.textArea?.clear();
+        this.textPanel?.clear();
     }
 
 }

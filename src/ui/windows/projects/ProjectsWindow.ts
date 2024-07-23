@@ -1,5 +1,5 @@
 import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
-import { TextPanel } from '../../widgets/TextPanel';
+import { EditorPanel } from '../../widgets/EditorPanel';
 import { AbstractWindow } from '../abstract/AbstractWindow';
 import { ProjectsList } from './widgets/ProjectsList';
 
@@ -7,15 +7,15 @@ export class ProjectsWindow extends AbstractWindow {
 
     projectsList?: ProjectsList;
     splitPane?: QxSplitPane;
-    textPanel?: TextPanel;
+    editorPanel?: EditorPanel;
 
     initialize() {
         super.initialize();
         this.projectsList = this.buildProjectsList();
-        this.textPanel = new TextPanel();
+        this.editorPanel = new EditorPanel();
         this.splitPane = QxSplitPane.createHorizontal();
         this.splitPane.add(this.projectsList);
-        this.splitPane.add(this.textPanel);
+        this.splitPane.add(this.editorPanel);
         this.add(this.splitPane);
     }
 
@@ -36,9 +36,24 @@ export class ProjectsWindow extends AbstractWindow {
         return 'Projects';
     }
 
+    onButtonClick(tag: string) {
+        switch (tag) {
+            case 'refresh':
+                this.onRefresh();
+                break;
+            default:
+                console.log('ProjectsWindow onButtonClick', tag);
+                break;
+        }
+    }
+
+    onRefresh() {
+        this.editorPanel?.clear();
+    }
+
     onSelectionChange(value: any) {
         const code = value.code;
-        (this.textPanel as TextPanel).setValue(value.code);
+        (this.editorPanel as EditorPanel).setValue(value.code);
     }
 
 }

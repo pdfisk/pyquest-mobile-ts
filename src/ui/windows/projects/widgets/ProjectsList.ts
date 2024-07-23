@@ -30,7 +30,6 @@ export class ProjectsList extends DataListPanel {
     }
 
     onChangeSelection(name: string) {
-        console.log('ProjectsList onChangeSelection', name, this.changeHandler);
         if (this.changeHandler)
             this.changeHandler(this.getSelectionValue(name));
     }

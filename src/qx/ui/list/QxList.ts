@@ -18,6 +18,10 @@ export class QxList extends QxWidget {
         }
     }
 
+    refresh() {
+        this.widget.refresh();
+    }
+
     setChangeHandlerFn(fn: Function) {
         this.changeHandlerFn = fn;
     }
