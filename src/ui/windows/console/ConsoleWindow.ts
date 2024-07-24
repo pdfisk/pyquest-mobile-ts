@@ -13,8 +13,8 @@ export class ConsoleWindow extends AbstractWindow {
         this.cin = new QxTextArea();
         this.cout = new QxTextArea();
         this.splitPane = QxSplitPane.createHorizontal();
-        this.splitPane.add(this.cin);
-        this.splitPane.add(this.cout);
+        this.splitPane.add(this.cin, 1);
+        this.splitPane.add(this.cout, 1);
         this.add(this.splitPane);
     }
 

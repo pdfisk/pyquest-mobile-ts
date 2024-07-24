@@ -14,8 +14,8 @@ export class ProjectsWindow extends AbstractWindow {
         this.projectsList = this.buildProjectsList();
         this.editorPanel = new EditorPanel();
         this.splitPane = QxSplitPane.createHorizontal();
-        this.splitPane.add(this.projectsList);
-        this.splitPane.add(this.editorPanel);
+        this.splitPane.add(this.projectsList, 1);
+        this.splitPane.add(this.editorPanel, 2);
         this.add(this.splitPane);
     }
 

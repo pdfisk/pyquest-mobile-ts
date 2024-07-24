@@ -21,8 +21,8 @@ export class QxSplitPane extends QxWidget {
         super(QxFactory.splitPane());
     }
 
-    add(child: QxWidget) {
-        this.widget.add(child.widget);
+    add(child: QxWidget, flex: number) {
+        this.widget.add(child.widget, flex);
     }
 
     setOrientation(orientation: string) {
