@@ -1,3 +1,4 @@
+import { FontConstants } from '../../../constants/FontConstants';
 import { QxWidget } from '../core/QxWidget';
 
 export abstract class QxAbstractField extends QxWidget {
@@ -14,6 +15,12 @@ export abstract class QxAbstractField extends QxWidget {
         if (!this.widget)
             return '';
         return this.widget.getValue();
+    }
+
+    initialize() {
+        super.initialize();
+        this.setFontFamily(FontConstants.FontFamilyMonospace);
+        this.setFontSize(FontConstants.FontSize24Px);
     }
 
     setValue(value: string) {

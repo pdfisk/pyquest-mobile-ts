@@ -36,6 +36,14 @@ export abstract class QxWidget extends QxLayoutItem {
         this.setStyle(StyleConstants.BackgroundColor, color);
     }
 
+    setFontFamily(fontFamily: string) {
+        this.setStyle('fontFamily', fontFamily);
+    }
+
+    setFontSize(fontSize: string) {
+        this.setStyle('fontSize', fontSize);
+    }
+
     setHeight(height: number) {
         this.widget.setHeight(height);
     }
