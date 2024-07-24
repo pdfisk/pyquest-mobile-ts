@@ -3,6 +3,7 @@ import { ButtonBar } from '../../widgets/ButtonBar';
 
 export class AbstractWindow extends QxWindowWindow {
     buttonBar?: ButtonBar;
+    hasAppeared: boolean = false;
 
     initialize() {
         super.initialize();
@@ -16,6 +17,39 @@ export class AbstractWindow extends QxWindowWindow {
     }
 
     addButtons() {
+    }
+
+    center() {
+        this.widget.center();
+    }
+
+    defaultEnableOnAppear(): boolean {
+        return true;
+    }
+
+    defaultInitialPosition(): number[] {
+        return [];
+    }
+
+    moveTo(left: number, top: number) {
+        this.widget.moveTo(left, top);
+    }
+
+    moveToInitialPosition() {
+        const initialPosition = this.defaultInitialPosition();
+        if (initialPosition.length > 1)
+            this.moveTo(initialPosition[0], initialPosition[1]);
+        else
+            this.center();
+    }
+
+    onAppear() {
+        console.log('onAppear');
+        super.onAppear();
+        if (!this.hasAppeared) {
+            this.hasAppeared = true;
+            this.moveToInitialPosition();
+        }
     }
 
     onButtonClick(tag: string) {

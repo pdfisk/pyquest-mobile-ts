@@ -3,7 +3,6 @@ import { QxFactory } from '../../factory/QxFactory';
 import { QxWidget } from '../core/QxWidget';
 import { QxAbstractLayout } from '../layout/QxAbstractLayout';
 import { QxDockLayout } from '../layout/QxDockLayout';
-import { QxGrowLayout } from '../layout/QxGrowLayout';
 
 export class QxWindowWindow extends QxWidget {
 
@@ -13,15 +12,14 @@ export class QxWindowWindow extends QxWidget {
 
     initialize() {
         super.initialize();
+        this.hide();
         this.setCaption(this.defaultCaption());
         this.setContentPadding(this.defaultContentPadding());
         this.setHeight(this.defaultHeight());
         this.setLayout(this.defaultLayout());
         this.setWidth(this.defaultWidth());
         if (this.defaultShow())
-            this.show();
-        else
-            this.hide();
+            setTimeout(() => { this.show(); }, 100);
     }
 
     add(child: QxWidget) {

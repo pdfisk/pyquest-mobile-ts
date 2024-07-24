@@ -31,6 +31,10 @@ export class TranscriptWindow extends AbstractWindow {
         return 'Transcript';
     }
 
+    defaultInitialPosition(): number[] {
+        return [15, 45];
+    }
+
     onButtonClick(tag: string) {
         switch (tag) {
             case 'clear':
