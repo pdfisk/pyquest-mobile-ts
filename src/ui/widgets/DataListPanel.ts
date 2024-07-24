@@ -27,6 +27,10 @@ export abstract class DataListPanel extends Panel {
 
     abstract addLoadHandlerFns(): void;
 
+    clearSelection() {
+        this.list.initSelection();
+    }
+
     onAppear() {
         this.refresh();
     }
@@ -39,6 +43,7 @@ export abstract class DataListPanel extends Panel {
     abstract setStore(): void;
 
     updateList(names: any[]) {
+        this.list.widget.initSelection();
         this.list.setData(names);
     }
 

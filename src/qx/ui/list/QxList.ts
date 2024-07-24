@@ -9,6 +9,10 @@ export class QxList extends QxWidget {
         this.widget.getSelection().addListener('change', this.onChange, this);
     }
 
+    initSelection() {
+        this.widget.initSelection();
+    }
+
     onChange() {
         const selection:any = this.widget.getSelection();
         if (selection && selection.length) {

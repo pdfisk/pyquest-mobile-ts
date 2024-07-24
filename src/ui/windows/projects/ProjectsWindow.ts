@@ -49,6 +49,7 @@ export class ProjectsWindow extends AbstractWindow {
 
     onRefresh() {
         this.editorPanel?.clear();
+        this.projectsList?.refresh();
     }
 
     onSelectionChange(value: any) {

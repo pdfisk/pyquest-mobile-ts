@@ -35,6 +35,7 @@ export class ProjectsList extends DataListPanel {
     }
 
     refresh() {
+        this.clearSelection();
         this.dataStore?.loadData();
     }
 

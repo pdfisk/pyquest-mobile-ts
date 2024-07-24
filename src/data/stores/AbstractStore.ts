@@ -53,6 +53,7 @@ export abstract class AbstractStore {
     }
 
     loadData() {
+        this.dataLoaded = false;
         this.dataStore.setUrl(this.getUrl(this.serviceName()));
     }
 
