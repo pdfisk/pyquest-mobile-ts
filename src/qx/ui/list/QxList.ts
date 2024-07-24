@@ -14,7 +14,7 @@ export class QxList extends QxWidget {
     }
 
     onChange() {
-        const selection:any = this.widget.getSelection();
+        const selection: any = this.widget.getSelection();
         if (selection && selection.length) {
             const name = selection.getItem(0);
             if (this.changeHandlerFn)
@@ -24,6 +24,15 @@ export class QxList extends QxWidget {
 
     refresh() {
         this.widget.refresh();
+        this.scrollToTop();
+    }
+
+    scrollToTop() {
+        this.scrollToY(0);
+    }
+
+    scrollToY(y: number) {
+        this.widget.scrollToY(y);
     }
 
     setChangeHandlerFn(fn: Function) {
@@ -31,6 +40,7 @@ export class QxList extends QxWidget {
     }
 
     setData(labels: string[]) {
+        console.log('setData', labels.length);
         const model = (window.qx as any).data.marshal.Json.createModel(labels.sort());
         this.widget.setModel(model);
     }
