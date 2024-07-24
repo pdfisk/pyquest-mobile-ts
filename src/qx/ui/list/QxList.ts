@@ -24,7 +24,6 @@ export class QxList extends QxWidget {
 
     refresh() {
         this.widget.refresh();
-        this.scrollToTop();
     }
 
     scrollToTop() {
@@ -40,9 +39,9 @@ export class QxList extends QxWidget {
     }
 
     setData(labels: string[]) {
-        console.log('setData', labels.length);
         const model = (window.qx as any).data.marshal.Json.createModel(labels.sort());
         this.widget.setModel(model);
+        this.scrollToTop();
     }
 
 }
