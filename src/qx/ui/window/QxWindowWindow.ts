@@ -66,4 +66,8 @@ export class QxWindowWindow extends QxWidget {
         this.widget.setLayout(layout.widget);
     }
 
+    setResizable(resizable: boolean) {
+        this.widget.setResizable(resizable);
+    }
+
 }

@@ -44,7 +44,6 @@ export class AbstractWindow extends QxWindowWindow {
     }
 
     onAppear() {
-        console.log('onAppear');
         super.onAppear();
         if (!this.hasAppeared) {
             this.hasAppeared = true;

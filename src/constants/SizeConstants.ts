@@ -1,5 +1,5 @@
 export class SizeConstants {
-    static DefaultWindowButtonBarHeight: number = 26;
+    static DefaultWindowButtonBarHeight: number = 29;
     static DefaultWindowButtonBarPadding: number[] = [0, 10, 3, 10];
     static DefaultWindowButtonBarSpacing: number = 3;
     static DefaultWindowContentPadding: number = 0;

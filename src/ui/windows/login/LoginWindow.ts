@@ -20,11 +20,13 @@ export class LoginWindow extends AbstractWindow {
 
     initialize() {
         super.initialize();
+        this.setResizable(false);
         this.loginPanel = new LoginPanel();
         this.add(this.loginPanel);
     }
 
     addButtons() {
+        this.addButton('Login');
         this.addButton('Clear');
     }
 
@@ -45,6 +47,9 @@ export class LoginWindow extends AbstractWindow {
             case 'clear':
                 this.onClear();
                 break;
+            case 'login':
+                this.onLogin();
+                break;
             default:
                 console.log('onButtonClick', tag);
                 break;
@@ -53,6 +58,13 @@ export class LoginWindow extends AbstractWindow {
 
     onClear() {
         this.loginPanel?.clear();
+    }
+
+    onLogin() {
+        const passwd = this.loginPanel?.passwordField.getValue();
+        if (passwd == 'doorstop') {
+            console.log('LOGGED IN');
+        }
     }
 
 }

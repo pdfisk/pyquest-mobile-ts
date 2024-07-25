@@ -24,11 +24,11 @@ export class LoginButton extends QxMenuBarButton {
     }
 
     openLogin() {
-        LoginWindow.getInstance();
+        LoginWindow.getInstance().show();
     }
 
     openRegister() {
-        RegisterWindow.getInstance();
+        RegisterWindow.getInstance().show();
     }
 
 }

@@ -36,7 +36,7 @@ export class ViewsButton extends QxMenuBarButton {
     }
 
     openTranscript() {
-        TranscriptWindow.getInstance();
+        TranscriptWindow.getInstance().show();
     }
 
 }
