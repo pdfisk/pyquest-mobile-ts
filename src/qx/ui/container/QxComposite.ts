@@ -51,8 +51,4 @@ export class QxComposite extends QxWidget {
         this.widget.setLayout(layout.widget);
     }
 
-    setPadding(padding: number[]) {
-        this.widget.setPadding.apply(this.widget, padding);
-    }
-
 }

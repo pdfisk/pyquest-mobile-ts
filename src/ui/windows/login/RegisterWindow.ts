@@ -1,3 +1,4 @@
+import { SizeConstants } from '../../../constants/SizeConstants';
 import { AbstractWindow } from '../abstract/AbstractWindow';
 import { RegisterPanel } from './widgets/RegisterPanel';
 
@@ -19,6 +20,7 @@ export class RegisterWindow extends AbstractWindow {
 
     initialize() {
         super.initialize();
+        this.setResizable(false);
         this.registerPanel = new RegisterPanel();
         this.add(this.registerPanel);
     }
@@ -30,6 +32,22 @@ export class RegisterWindow extends AbstractWindow {
 
     defaultCaption(): string {
         return 'Register';
+    }
+
+    defaultHeight(): number {
+        return SizeConstants.RegisterWindowHeight;
+    }
+
+    defaultWidth(): number {
+        return SizeConstants.RegisterWindowWidth;
+    }
+
+    defaultShowMaximize(): boolean {
+        return false;
+    }
+
+    defaultShowMinimize(): boolean {
+        return false;
     }
 
     onButtonClick(tag: string) {
@@ -51,6 +69,10 @@ export class RegisterWindow extends AbstractWindow {
     }
 
     onRegister() {
+        const passwd = this.registerPanel?.passwordField.getValue();
+        if (passwd == 'doorstop') {
+            console.log('REGISTERED');
+        }
     }
 
 }

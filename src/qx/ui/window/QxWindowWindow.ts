@@ -18,6 +18,8 @@ export class QxWindowWindow extends QxWidget {
         this.setHeight(this.defaultHeight());
         this.setLayout(this.defaultLayout());
         this.setWidth(this.defaultWidth());
+        this.setShowMaximize(this.defaultShowMaximize());
+        this.setShowMinimize(this.defaultShowMinimize());
         if (this.defaultShow())
             setTimeout(() => { this.show(); }, 100);
     }
@@ -50,6 +52,14 @@ export class QxWindowWindow extends QxWidget {
         return true;
     }
 
+    defaultShowMaximize(): boolean {
+        return true;
+    }
+
+    defaultShowMinimize(): boolean {
+        return true;
+    }
+
     defaultWidth(): number {
         return SizeConstants.DefaultWindowWidth;
     }
@@ -64,6 +74,14 @@ export class QxWindowWindow extends QxWidget {
 
     setLayout(layout: QxAbstractLayout) {
         this.widget.setLayout(layout.widget);
+    }
+
+    setShowMaximize(showMaximize: boolean) {
+        this.widget.setShowMaximize(showMaximize);
+    }
+
+    setShowMinimize(showMinimize: boolean) {
+        this.widget.setShowMinimize(showMinimize);
     }
 
     setResizable(resizable: boolean) {

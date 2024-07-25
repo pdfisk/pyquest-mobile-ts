@@ -41,6 +41,14 @@ export class LoginWindow extends AbstractWindow {
     defaultWidth(): number {
         return SizeConstants.LoginWindowWidth;
     }
+    
+    defaultShowMaximize(): boolean {
+        return false;
+    }
+
+    defaultShowMinimize(): boolean {
+        return false;
+    }
 
     onButtonClick(tag: string) {
         switch (tag) {

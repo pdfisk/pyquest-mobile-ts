@@ -32,6 +32,10 @@ export class QxFactory {
         return new (window as any).qx.ui.layout.Dock;
     }
 
+    static embedHtml(): any {
+        return new (window as any).qx.ui.embed.Html;
+    }
+
     static flowLayout(): any {
         return new (window as any).qx.ui.layout.Flow;
     }

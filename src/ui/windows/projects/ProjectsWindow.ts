@@ -21,6 +21,9 @@ export class ProjectsWindow extends AbstractWindow {
 
     addButtons() {
         this.addButton('Refresh');
+        this.addButton('Save');
+        this.addButton('New');
+        this.addButton('Delete');
     }
 
     buildProjectsList(): ProjectsList {
@@ -38,8 +41,17 @@ export class ProjectsWindow extends AbstractWindow {
 
     onButtonClick(tag: string) {
         switch (tag) {
+            case 'delete':
+                this.onDelete();
+                break;
+            case 'new':
+                this.onNew();
+                break;
             case 'refresh':
                 this.onRefresh();
+                break;
+            case 'save':
+                this.onSave();
                 break;
             default:
                 console.log('ProjectsWindow onButtonClick', tag);
@@ -47,9 +59,21 @@ export class ProjectsWindow extends AbstractWindow {
         }
     }
 
+    onDelete() {
+        console.log('onDelete');
+    }
+
+    onNew() {
+        console.log('onNew');
+    }
+
     onRefresh() {
         this.editorPanel?.clear();
         this.projectsList?.refresh();
+    }
+
+    onSave() {
+        console.log('onSave');
     }
 
     onSelectionChange(value: any) {

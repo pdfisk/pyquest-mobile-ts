@@ -48,6 +48,54 @@ export abstract class QxWidget extends QxLayoutItem {
         this.widget.setHeight(height);
     }
 
+    setMargin(margin: number[]) {
+        this.widget.setMargin.apply(this.widget, margin);
+    }
+
+    setMarginAll(margin: number) {
+        this.widget.setMargin(margin);
+    }
+
+    setMarginBottom(margin: number) {
+        this.widget.setMarginBotton(margin);
+    }
+
+    setMarginLeft(margin: number) {
+        this.widget.setMarginLeft(margin);
+    }
+
+    setMarginRight(margin: number) {
+        this.widget.setMarginRight(margin);
+    }
+
+    setMarginTop(margin: number) {
+        this.widget.setMarginTop(margin);
+    }
+
+    setPadding(padding: number[]) {
+        this.widget.setPadding.apply(this.widget, padding);
+    }
+
+    setPaddingAll(padding: number) {
+        this.widget.setPadding(padding);
+    }
+
+    setPaddingBottom(padding: number) {
+        this.widget.setPaddingBotton(padding);
+    }
+
+    setPaddingLeft(padding: number) {
+        this.widget.setPaddingLeft(padding);
+    }
+
+    setPaddingRight(padding: number) {
+        this.widget.setPaddingRight(padding);
+    }
+
+    setPaddingTop(padding: number) {
+        this.widget.setPaddingTop(padding);
+    }
+
     setStyle(key: string, value: any) {
         this.getContentElement().setStyle(key, value);
     }
