@@ -2,6 +2,7 @@ import { ColorConstants } from '../../../constants/ColorConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
 import { QxMenuBarButton } from '../../../qx/ui/menubar/QxMenuBarButton';
 import { QxToolBarToolBar } from '../../../qx/ui/toolbar/QxToolBarToolBar';
+import { LoginButton } from './buttons/LoginButton';
 import { ViewsButton } from './buttons/ViewsButton';
 
 export class NavBar extends QxToolBarToolBar {
@@ -23,6 +24,7 @@ export class NavBar extends QxToolBarToolBar {
 
     addButtons() {
         this.addButton(new ViewsButton());
+        this.addButton(new LoginButton());
     }
 
 }
