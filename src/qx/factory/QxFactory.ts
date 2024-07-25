@@ -8,6 +8,14 @@ export class QxFactory {
         return new (window as any).qx.ui.basic.Atom;
     }
 
+    static basicImage(): any {
+        return new (window as any).qx.ui.basic.Image;
+    }
+
+    static basicLabel(text: string): any {
+        return new (window as any).qx.ui.basic.Label(text);
+    }
+
     static basicLayout(): any {
         return new (window as any).qx.ui.layout.Basic;
     }
@@ -47,11 +55,11 @@ export class QxFactory {
     static hboxLayout(): any {
         return new (window as any).qx.ui.layout.HBox;
     }
-   
+
     static list(): any {
         return new (window as any).qx.ui.list.List;
     }
-   
+
     static menuButton(): any {
         return new (window as any).qx.ui.menu.Button;
     }
@@ -71,11 +79,11 @@ export class QxFactory {
     static menubarMenuBar(): any {
         return new (window as any).qx.ui.menubar.MenuBar;
     }
-  
+
     static splitPane(): any {
         return new (window as any).qx.ui.splitpane.Pane;
     }
-  
+
     static textArea(): any {
         return new (window as any).qx.ui.form.TextArea;
     }

@@ -27,6 +27,10 @@ export class QxComposite extends QxWidget {
         this.widget.add(child.widget, { edge: 'north' });
     }
 
+    addRowColumn(child: QxWidget, row: number, column: number) {
+        this.widget.add(child.widget, { row: row, column: column });
+    }
+
     addSouth(child: QxWidget) {
         this.widget.add(child.widget, { edge: 'south' });
     }

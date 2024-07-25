@@ -1,9 +1,10 @@
-import { TextPanel } from '../../widgets/TextPanel';
+import { SizeConstants } from '../../../constants/SizeConstants';
 import { AbstractWindow } from '../abstract/AbstractWindow';
+import { LoginPanel } from './widgets/LoginPanel';
 
 export class LoginWindow extends AbstractWindow {
 
-    textPanel?: TextPanel;
+    loginPanel?: LoginPanel;
 
     static getInstance(): LoginWindow {
         if (!this.instance)
@@ -19,8 +20,8 @@ export class LoginWindow extends AbstractWindow {
 
     initialize() {
         super.initialize();
-        this.textPanel = new TextPanel();
-        this.add(this.textPanel);
+        this.loginPanel = new LoginPanel();
+        this.add(this.loginPanel);
     }
 
     addButtons() {
@@ -29,6 +30,14 @@ export class LoginWindow extends AbstractWindow {
 
     defaultCaption(): string {
         return 'Login';
+    }
+
+    defaultHeight(): number {
+        return SizeConstants.LoginWindowHeight;
+    }
+
+    defaultWidth(): number {
+        return SizeConstants.LoginWindowWidth;
     }
 
     onButtonClick(tag: string) {
@@ -43,7 +52,7 @@ export class LoginWindow extends AbstractWindow {
     }
 
     onClear() {
-        this.textPanel?.clear();
+        this.loginPanel?.clear();
     }
 
 }
