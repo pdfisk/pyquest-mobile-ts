@@ -1,9 +1,9 @@
-import { TextPanel } from '../../widgets/TextPanel';
 import { AbstractWindow } from '../abstract/AbstractWindow';
+import { RegisterPanel } from './widgets/RegisterPanel';
 
 export class RegisterWindow extends AbstractWindow {
 
-    textPanel?: TextPanel;
+    registerPanel?: RegisterPanel;
 
     static getInstance(): RegisterWindow {
         if (!this.instance)
@@ -19,11 +19,12 @@ export class RegisterWindow extends AbstractWindow {
 
     initialize() {
         super.initialize();
-        this.textPanel = new TextPanel();
-        this.add(this.textPanel);
+        this.registerPanel = new RegisterPanel();
+        this.add(this.registerPanel);
     }
 
     addButtons() {
+        this.addButton('Register');
         this.addButton('Clear');
     }
 
@@ -36,6 +37,9 @@ export class RegisterWindow extends AbstractWindow {
             case 'clear':
                 this.onClear();
                 break;
+            case 'register':
+                this.onRegister();
+                break;
             default:
                 console.log('onButtonClick', tag);
                 break;
@@ -43,7 +47,10 @@ export class RegisterWindow extends AbstractWindow {
     }
 
     onClear() {
-        this.textPanel?.clear();
+        this.registerPanel?.clear();
+    }
+
+    onRegister() {
     }
 
 }
