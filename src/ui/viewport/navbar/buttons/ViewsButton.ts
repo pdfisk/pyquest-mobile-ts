@@ -1,3 +1,4 @@
+import { LabelConstants } from "../../../../constants/LabelConstants";
 import { QxMenu } from "../../../../qx/ui/menu/QxMenu";
 import { QxMenuBarButton } from "../../../../qx/ui/menubar/QxMenuBarButton";
 import { ConsoleWindow } from "../../../windows/console/ConsoleWindow";
@@ -8,7 +9,7 @@ export class ViewsButton extends QxMenuBarButton {
 
     initialize() {
         super.initialize();
-        this.setLabel('Views');
+        this.setLabel(LabelConstants.ButtonLabelViews);
         this.setMenu(this.createMenu());
     }
 
