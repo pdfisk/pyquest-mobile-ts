@@ -1,5 +1,9 @@
 import { ActionConstants } from '../../../constants/ActionConstants';
+import { EventConstants } from '../../../constants/EventConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
+import { SessionConstants } from '../../../constants/SessionConstants';
+import { EventBus } from '../../../messages/EventBus';
+import { QxFormButton } from '../../../qx/ui/form/QxFormButton';
 import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
 import { EditorPanel } from '../../widgets/EditorPanel';
 import { AbstractWindow } from '../abstract/AbstractWindow';
@@ -7,9 +11,12 @@ import { ProjectsList } from './widgets/ProjectsList';
 
 export class ProjectsWindow extends AbstractWindow {
 
+    editorPanel?: EditorPanel;
     projectsList?: ProjectsList;
     splitPane?: QxSplitPane;
-    editorPanel?: EditorPanel;
+    deleteButton?: QxFormButton;
+    newButton?: QxFormButton;
+    saveButton?: QxFormButton;
 
     initialize() {
         super.initialize();
@@ -19,13 +26,15 @@ export class ProjectsWindow extends AbstractWindow {
         this.splitPane.add(this.projectsList, 1);
         this.splitPane.add(this.editorPanel, 2);
         this.add(this.splitPane);
+        EventBus.subscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this);
     }
 
     addButtons() {
         this.addButton(LabelConstants.ButtonLabelRefresh);
-        this.addButton(LabelConstants.ButtonLabelSave);
-        this.addButton(LabelConstants.ButtonLabelNew);
-        this.addButton(LabelConstants.ButtonLabelDelete);
+        this.saveButton = this.addButton(LabelConstants.ButtonLabelSave);
+        this.newButton = this.addButton(LabelConstants.ButtonLabelNew);
+        this.deleteButton = this.addButton(LabelConstants.ButtonLabelDelete);
+        this.disableButtons();
     }
 
     buildProjectsList(): ProjectsList {
@@ -39,6 +48,24 @@ export class ProjectsWindow extends AbstractWindow {
 
     defaultCaption(): string {
         return LabelConstants.WindowLabelProjects;
+    }
+
+    disableButtons() {
+        if (this.deleteButton)
+            this.deleteButton.setEnabled(false);
+        if (this.newButton)
+            this.newButton.setEnabled(false);
+        if (this.saveButton)
+            this.saveButton.setEnabled(false);
+    }
+
+    enableButtons() {
+        if (this.deleteButton)
+            this.deleteButton.setEnabled(true);
+        if (this.newButton)
+            this.newButton.setEnabled(true);
+        if (this.saveButton)
+            this.saveButton.setEnabled(true);
     }
 
     onButtonClick(tag: string) {
@@ -63,6 +90,14 @@ export class ProjectsWindow extends AbstractWindow {
 
     onDelete() {
         console.log('onDelete');
+    }
+
+    onEventStatusChanged(message: any) {
+        const status = message.getData().status;
+        if (status == SessionConstants.SessionLoggedIn || status == SessionConstants.SessionLoggedInAsAdmin)
+            this.enableButtons();
+        else
+            this.disableButtons();
     }
 
     onNew() {

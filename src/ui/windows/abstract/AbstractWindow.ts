@@ -1,8 +1,9 @@
+import { QxFormButton } from '../../../qx/ui/form/QxFormButton';
 import { QxWindowWindow } from '../../../qx/ui/window/QxWindowWindow';
 import { ButtonBar } from '../../widgets/ButtonBar';
 
 export class AbstractWindow extends QxWindowWindow {
-    buttonBar?: ButtonBar;
+    buttonBar: any;
     hasAppeared: boolean = false;
 
     initialize() {
@@ -12,8 +13,8 @@ export class AbstractWindow extends QxWindowWindow {
         this.addButtons();
     }
 
-    addButton(label: string) {
-        this.buttonBar?.addButton(label);
+    addButton(label: string): QxFormButton {
+        return this.buttonBar.addButton(label);
     }
 
     addButtons() {

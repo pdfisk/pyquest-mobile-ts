@@ -20,13 +20,14 @@ export class ButtonBar extends Panel {
     this.setBackgroundColor(ColorConstants.ButtonBarBackground);
   }
 
-  addButton(name: string) {
+  addButton(name: string): QxFormButton {
     const tag: string = this.createTagName(name);
     const fn: Function = () => {
       this.parentWindow.onButtonClick(tag);
     };
     const btn: QxFormButton = QxFormButton.create(name, fn);
     this.widget.add(btn.widget);
+    return btn;
   }
 
   createTagName(name: string): string {

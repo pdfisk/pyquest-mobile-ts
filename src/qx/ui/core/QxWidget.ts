@@ -1,6 +1,6 @@
+import { StyleConstants } from '../../../constants/StyleConstants';
 import { QxElement } from '../../html/QxElement';
 import { QxLayoutItem } from './QxLayoutItem';
-import { StyleConstants } from '../../../constants/StyleConstants';
 
 export abstract class QxWidget extends QxLayoutItem {
     contentElement: any = undefined;
@@ -25,6 +25,10 @@ export abstract class QxWidget extends QxLayoutItem {
         return this.contentElement;
     }
 
+    getEnabled(): boolean {
+        return this.widget.getEnabled();
+    }
+
     hide() {
         this.widget.hide();
     }
@@ -34,6 +38,11 @@ export abstract class QxWidget extends QxLayoutItem {
 
     setBackgroundColor(color: string) {
         this.setStyle(StyleConstants.BackgroundColor, color);
+    }
+
+    setEnabled(value: boolean): QxWidget {
+        this.widget.setEnabled(value);
+        return this;
     }
 
     setFontFamily(fontFamily: string) {
