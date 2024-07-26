@@ -14,8 +14,10 @@ export class QxMenu extends QxWidget {
         this.widget.add(item.widget);
     }
 
-    addButton(label: string, fn?: Function) {
-        this.add(QxMenuButton.create(label, fn));
+    addButton(label: string, fn?: Function): QxMenuButton {
+        const button: QxMenuButton = QxMenuButton.create(label, fn);
+        this.add(button);
+        return button;
     }
 
     addSeparator() {

@@ -1,4 +1,6 @@
+import { EventConstants } from '../../../constants/EventConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
+import { EventBus } from '../../../messages/EventBus';
 import { AbstractWindow } from '../abstract/AbstractWindow';
 import { LoginPanel } from './widgets/LoginPanel';
 
@@ -41,7 +43,7 @@ export class LoginWindow extends AbstractWindow {
     defaultWidth(): number {
         return SizeConstants.LoginWindowWidth;
     }
-    
+
     defaultShowMaximize(): boolean {
         return false;
     }
@@ -71,7 +73,8 @@ export class LoginWindow extends AbstractWindow {
     onLogin() {
         const passwd = this.loginPanel?.passwordField.getValue();
         if (passwd == 'doorstop') {
-            console.log('LOGGED IN');
+            EventBus.dispatch(EventConstants.LoginStatusChanged, { status: EventConstants.StatusLoggedInAsAdmin });
+            this.close();
         }
     }
 

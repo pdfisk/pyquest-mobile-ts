@@ -23,6 +23,10 @@ export class AbstractWindow extends QxWindowWindow {
         this.widget.center();
     }
 
+    close() {
+        this.widget.close();
+    }
+
     defaultEnableOnAppear(): boolean {
         return true;
     }

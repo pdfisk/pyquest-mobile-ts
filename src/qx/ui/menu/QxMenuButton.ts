@@ -15,6 +15,10 @@ export class QxMenuButton extends QxMenuAbstractButton {
         super(QxFactory.menuButton());
     }
 
+    getLabel(): string {
+        return this.widget.getLabel();
+    }
+
     setClickHandler(fn: Function) {
         this.widget.addListener('execute', fn)
     }
