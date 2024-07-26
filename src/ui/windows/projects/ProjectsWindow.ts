@@ -1,3 +1,4 @@
+import { ActionConstants } from '../../../constants/ActionConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
 import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
 import { EditorPanel } from '../../widgets/EditorPanel';
@@ -21,10 +22,10 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     addButtons() {
-        this.addButton('Refresh');
-        this.addButton('Save');
-        this.addButton('New');
-        this.addButton('Delete');
+        this.addButton(LabelConstants.ButtonLabelRefresh);
+        this.addButton(LabelConstants.ButtonLabelSave);
+        this.addButton(LabelConstants.ButtonLabelNew);
+        this.addButton(LabelConstants.ButtonLabelDelete);
     }
 
     buildProjectsList(): ProjectsList {
@@ -42,16 +43,16 @@ export class ProjectsWindow extends AbstractWindow {
 
     onButtonClick(tag: string) {
         switch (tag) {
-            case 'delete':
+            case ActionConstants.ActionDelete:
                 this.onDelete();
                 break;
-            case 'new':
+            case ActionConstants.ActionNew:
                 this.onNew();
                 break;
-            case 'refresh':
+            case ActionConstants.ActionRefresh:
                 this.onRefresh();
                 break;
-            case 'save':
+            case ActionConstants.ActionSave:
                 this.onSave();
                 break;
             default:

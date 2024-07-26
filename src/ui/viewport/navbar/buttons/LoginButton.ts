@@ -1,5 +1,6 @@
 import { EventConstants } from "../../../../constants/EventConstants";
 import { LabelConstants } from "../../../../constants/LabelConstants";
+import { SessionConstants } from "../../../../constants/SessionConstants";
 import { EventBus } from "../../../../messages/EventBus";
 import { QxMenu } from "../../../../qx/ui/menu/QxMenu";
 import { QxMenuButton } from "../../../../qx/ui/menu/QxMenuButton";
@@ -14,7 +15,7 @@ export class LoginButton extends QxMenuBarButton {
         super.initialize();
         this.setLabel(LabelConstants.ButtonLabelLogin);
         this.setMenu(this.createMenu());
-        EventBus.subscribe(EventConstants.LoginStatusChanged, this.onEventStatusChanged, this)
+        EventBus.subscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this)
     }
 
     createMenu(): QxMenu {
@@ -23,7 +24,7 @@ export class LoginButton extends QxMenuBarButton {
             this.loginOrLogout();
         });
         menu.addSeparator();
-        menu.addButton('Register', () => {
+        menu.addButton(LabelConstants.ButtonLabelRegister, () => {
             this.openRegister();
         });
         return menu;
@@ -39,12 +40,12 @@ export class LoginButton extends QxMenuBarButton {
         if (this.getLoginLabel() == LabelConstants.ButtonLabelLogin)
             LoginWindow.getInstance().show();
         else
-            EventBus.dispatch(EventConstants.LoginStatusChanged, EventConstants.StatusLoggedOut);
+            EventBus.dispatch(EventConstants.EventSessionStatusChanged, SessionConstants.SessionLoggedOut);
     }
 
     onEventStatusChanged(message: any) {
         const status = message.getData().status;
-        if (status == EventConstants.StatusLoggedIn || status == EventConstants.StatusLoggedInAsAdmin)
+        if (status == SessionConstants.SessionLoggedIn || status == SessionConstants.SessionLoggedInAsAdmin)
             this.setLoginLabel(LabelConstants.ButtonLabelLogout);
         else
             this.setLoginLabel(LabelConstants.ButtonLabelLogin);

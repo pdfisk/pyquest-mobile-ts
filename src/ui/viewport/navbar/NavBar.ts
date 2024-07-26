@@ -1,6 +1,7 @@
 import { ColorConstants } from '../../../constants/ColorConstants';
 import { EventConstants } from '../../../constants/EventConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
+import { SessionConstants } from '../../../constants/SessionConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
 import { EventBus } from '../../../messages/EventBus';
 import { QxWidget } from '../../../qx/ui/core/QxWidget';
@@ -23,7 +24,7 @@ export class NavBar extends QxToolBarToolBar {
         this.setHeight(SizeConstants.NavBarHeight);
         this.addLogo();
         this.addButtons();
-        EventBus.subscribe(EventConstants.LoginStatusChanged, this.onEventStatusChanged, this);
+        EventBus.subscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this);
     }
 
     addButtons() {
@@ -41,7 +42,7 @@ export class NavBar extends QxToolBarToolBar {
 
     onEventStatusChanged(message: any) {
         const status = message.getData().status;
-        if (status == EventConstants.StatusLoggedIn || status == EventConstants.StatusLoggedInAsAdmin)
+        if (status == SessionConstants.SessionLoggedIn || status == SessionConstants.SessionLoggedInAsAdmin)
             this.setLoginLabel(LabelConstants.ButtonLabelLogout);
         else
             this.setLoginLabel(LabelConstants.ButtonLabelLogin);

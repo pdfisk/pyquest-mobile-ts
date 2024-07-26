@@ -1,3 +1,4 @@
+import { LabelConstants } from "../../../../constants/LabelConstants";
 import { SizeConstants } from "../../../../constants/SizeConstants";
 import { QxBasicLabel } from "../../../../qx/ui/basic/QxBasicLabel";
 import { QxTextField } from "../../../../qx/ui/form/QxTextField";
@@ -39,8 +40,8 @@ export class LoginPanel extends Panel {
     }
 
     onAppear() {
-        const nameLabel = new QxBasicLabel('Name');
-        const passwordLabel = new QxBasicLabel('Password');
+        const nameLabel = new QxBasicLabel(LabelConstants.FieldLabelName);
+        const passwordLabel = new QxBasicLabel(LabelConstants.FieldLabelPassword);
         this.addRowColumn(nameLabel, 0, 0);
         this.addRowColumn(this.userField, 0, 1);
         this.addRowColumn(passwordLabel, 1, 0);

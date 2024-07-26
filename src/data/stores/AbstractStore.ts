@@ -1,3 +1,5 @@
+import { EventConstants } from "../../constants/EventConstants";
+import { UrlConstants } from "../../constants/UrlConstants";
 import { Server } from "../Server";
 
 export abstract class AbstractStore {
@@ -11,7 +13,7 @@ export abstract class AbstractStore {
         this.dataLoaded = false;
         this.dataRecords = [];
         this.dataStore = new (window.qx as any).data.store.Json;
-        this.dataStore.addListener('loaded', this.onLoaded, this);
+        this.dataStore.addListener(EventConstants.QxEventLoaded, this.onLoaded, this);
         this.loadHandlerFns = [];
         this.server = Server.getInstance();
     }
@@ -27,12 +29,12 @@ export abstract class AbstractStore {
     }
 
     getHost() {
-        if (window.location.host.startsWith('localhost:8082'))
-            return 'http://localhost:9080';
-        else if (window.location.host.startsWith('localhost:8083'))
-            return 'http://localhost:9081';
+        if (window.location.host.startsWith(UrlConstants.local8082))
+            return UrlConstants.local9080;
+        else if (window.location.host.startsWith(UrlConstants.local8083))
+            return UrlConstants.local9081;
         else
-            return 'https://vistapython-7ee93adc9411.herokuapp.com';
+            return UrlConstants.heroku;
     }
 
     getUrl(service: string) {

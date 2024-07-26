@@ -1,3 +1,3 @@
 export class DataConstants {
-    static ProjectsStoreName: string = 'Projects';
+    static ProjectsStoreName: string = 'projects';
 }

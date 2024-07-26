@@ -1,4 +1,4 @@
-import { DataConstants } from "../../constants/DataConstants";
+import { ServerConstants } from "../../constants/ServerConstants";
 import { AbstractStore } from "./AbstractStore";
 
 export class ProjectsStore extends AbstractStore {
@@ -48,7 +48,7 @@ export class ProjectsStore extends AbstractStore {
     }
 
     serviceName(): string {
-        return DataConstants.ProjectsStoreName;
+        return ServerConstants.ServiceProjects;
     }
 
 }

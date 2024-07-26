@@ -1,3 +1,5 @@
+import { ActionConstants } from '../../../constants/ActionConstants';
+import { LabelConstants } from '../../../constants/LabelConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
 import { AbstractWindow } from '../abstract/AbstractWindow';
 import { RegisterPanel } from './widgets/RegisterPanel';
@@ -26,8 +28,8 @@ export class RegisterWindow extends AbstractWindow {
     }
 
     addButtons() {
-        this.addButton('Register');
-        this.addButton('Clear');
+        this.addButton(LabelConstants.ButtonLabelRegister);
+        this.addButton(LabelConstants.ButtonLabelClear);
     }
 
     defaultCaption(): string {
@@ -52,10 +54,10 @@ export class RegisterWindow extends AbstractWindow {
 
     onButtonClick(tag: string) {
         switch (tag) {
-            case 'clear':
+            case ActionConstants.ActionClear:
                 this.onClear();
                 break;
-            case 'register':
+            case ActionConstants.ActionRegister:
                 this.onRegister();
                 break;
             default:

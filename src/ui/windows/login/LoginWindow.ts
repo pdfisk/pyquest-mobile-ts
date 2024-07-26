@@ -1,5 +1,7 @@
+import { ActionConstants } from '../../../constants/ActionConstants';
 import { EventConstants } from '../../../constants/EventConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
+import { SessionConstants } from '../../../constants/SessionConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
 import { EventBus } from '../../../messages/EventBus';
 import { AbstractWindow } from '../abstract/AbstractWindow';
@@ -30,7 +32,7 @@ export class LoginWindow extends AbstractWindow {
 
     addButtons() {
         this.addButton(LabelConstants.ButtonLabelLogin);
-        this.addButton('Clear');
+        this.addButton(LabelConstants.ButtonLabelClear);
     }
 
     defaultCaption(): string {
@@ -58,7 +60,7 @@ export class LoginWindow extends AbstractWindow {
             case 'clear':
                 this.onClear();
                 break;
-            case 'login':
+            case ActionConstants.ActionLogin:
                 this.onLogin();
                 break;
             default:
@@ -74,7 +76,7 @@ export class LoginWindow extends AbstractWindow {
     onLogin() {
         const passwd = this.loginPanel?.passwordField.getValue();
         if (passwd == 'doorstop') {
-            EventBus.dispatch(EventConstants.LoginStatusChanged, { status: EventConstants.StatusLoggedInAsAdmin });
+            EventBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedInAsAdmin });
             this.close();
         }
     }
