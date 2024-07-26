@@ -1,7 +1,7 @@
 import { ProjectsStore } from '../../../../data/stores/ProjectsStore';
 import { DataListPanel } from '../../../widgets/DataListPanel';
 
-export class ProjectsList extends DataListPanel {
+export class ProjectsPanel extends DataListPanel {
     changeHandler?: Function;
     dataMap: Map<string, any> = new Map();
 
@@ -19,6 +19,10 @@ export class ProjectsList extends DataListPanel {
         this.addLoadHandlerFn(updateListFn);
     }
 
+    deleteProject() {
+        console.log('deleteProject');
+    }
+
     getSelectionValue(name: string): any {
         if (this.dataMap.has(name))
             return this.dataMap.get(name);
@@ -27,6 +31,10 @@ export class ProjectsList extends DataListPanel {
 
     initialize() {
         super.initialize();
+    }
+
+    newProject() {
+        console.log('newProject');
     }
 
     onChangeSelection(name: string) {
@@ -41,6 +49,10 @@ export class ProjectsList extends DataListPanel {
 
     setChangeHandler(changeHandler: Function) {
         this.changeHandler = changeHandler;
+    }
+
+    saveProject() {
+        console.log('saveProject');
     }
 
     setStore() {

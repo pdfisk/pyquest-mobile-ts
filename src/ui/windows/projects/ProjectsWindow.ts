@@ -5,14 +5,15 @@ import { SessionConstants } from '../../../constants/SessionConstants';
 import { EventBus } from '../../../messages/EventBus';
 import { QxFormButton } from '../../../qx/ui/form/QxFormButton';
 import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
+import { SessionStatus } from '../../../session/SessionStatus';
 import { EditorPanel } from '../../widgets/EditorPanel';
 import { AbstractWindow } from '../abstract/AbstractWindow';
-import { ProjectsList } from './widgets/ProjectsList';
+import { ProjectsPanel } from './widgets/ProjectsPanel';
 
 export class ProjectsWindow extends AbstractWindow {
 
     editorPanel?: EditorPanel;
-    projectsList?: ProjectsList;
+    projectsPanel?: ProjectsPanel;
     splitPane?: QxSplitPane;
     deleteButton?: QxFormButton;
     newButton?: QxFormButton;
@@ -20,10 +21,10 @@ export class ProjectsWindow extends AbstractWindow {
 
     initialize() {
         super.initialize();
-        this.projectsList = this.buildProjectsList();
+        this.projectsPanel = this.buildProjectsList();
         this.editorPanel = new EditorPanel();
         this.splitPane = QxSplitPane.createHorizontal();
-        this.splitPane.add(this.projectsList, 1);
+        this.splitPane.add(this.projectsPanel, 1);
         this.splitPane.add(this.editorPanel, 2);
         this.add(this.splitPane);
         EventBus.subscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this);
@@ -34,11 +35,14 @@ export class ProjectsWindow extends AbstractWindow {
         this.saveButton = this.addButton(LabelConstants.ButtonLabelSave);
         this.newButton = this.addButton(LabelConstants.ButtonLabelNew);
         this.deleteButton = this.addButton(LabelConstants.ButtonLabelDelete);
-        this.disableButtons();
+        if (SessionStatus.isLoggedIn())
+            this.enableButtons();
+        else
+            this.disableButtons();
     }
 
-    buildProjectsList(): ProjectsList {
-        const projectsList = new ProjectsList();
+    buildProjectsList(): ProjectsPanel {
+        const projectsList = new ProjectsPanel();
         const fn = (value: any) => {
             this.onSelectionChange(value);
         };
@@ -89,28 +93,28 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     onDelete() {
-        console.log('onDelete');
+        this.projectsPanel?.deleteProject();
     }
 
     onEventStatusChanged(message: any) {
         const status = message.getData().status;
-        if (status == SessionConstants.SessionLoggedIn || status == SessionConstants.SessionLoggedInAsAdmin)
+        if (status == SessionConstants.SessionLoggedInAsUser || status == SessionConstants.SessionLoggedInAsAdmin)
             this.enableButtons();
         else
             this.disableButtons();
     }
 
     onNew() {
-        console.log('onNew');
+        this.projectsPanel?.newProject();
     }
 
     onRefresh() {
         this.editorPanel?.clear();
-        this.projectsList?.refresh();
+        this.projectsPanel?.refresh();
     }
 
     onSave() {
-        console.log('onSave');
+        this.projectsPanel?.saveProject();
     }
 
     onSelectionChange(value: any) {

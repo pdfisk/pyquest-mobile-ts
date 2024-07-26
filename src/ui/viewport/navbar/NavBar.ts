@@ -42,7 +42,7 @@ export class NavBar extends QxToolBarToolBar {
 
     onEventStatusChanged(message: any) {
         const status = message.getData().status;
-        if (status == SessionConstants.SessionLoggedIn || status == SessionConstants.SessionLoggedInAsAdmin)
+        if (status == SessionConstants.SessionLoggedInAsUser || status == SessionConstants.SessionLoggedInAsAdmin)
             this.setLoginLabel(LabelConstants.ButtonLabelLogout);
         else
             this.setLoginLabel(LabelConstants.ButtonLabelLogin);
