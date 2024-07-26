@@ -15,7 +15,7 @@ export class ViewsButton extends QxMenuBarButton {
 
     createMenu(): QxMenu {
         const menu = new QxMenu();
-        menu.addButton('Projects', () => {
+        menu.addButton(LabelConstants.ButtonLabelProjects, () => {
             this.openProjects();
         });
         menu.addButton('Console', () => {

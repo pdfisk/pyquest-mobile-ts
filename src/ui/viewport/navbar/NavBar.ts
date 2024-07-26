@@ -1,5 +1,6 @@
 import { ColorConstants } from '../../../constants/ColorConstants';
 import { EventConstants } from '../../../constants/EventConstants';
+import { LabelConstants } from '../../../constants/LabelConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
 import { EventBus } from '../../../messages/EventBus';
 import { QxWidget } from '../../../qx/ui/core/QxWidget';
@@ -41,9 +42,9 @@ export class NavBar extends QxToolBarToolBar {
     onEventStatusChanged(message: any) {
         const status = message.getData().status;
         if (status == EventConstants.StatusLoggedIn || status == EventConstants.StatusLoggedInAsAdmin)
-            this.setLoginLabel('Logout');
+            this.setLoginLabel(LabelConstants.ButtonLabelLogout);
         else
-            this.setLoginLabel('Login');
+            this.setLoginLabel(LabelConstants.ButtonLabelLogin);
     }
 
     setLoginLabel(label: string) {

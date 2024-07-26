@@ -1,3 +1,4 @@
+import { DataConstants } from "../../constants/DataConstants";
 import { AbstractStore } from "./AbstractStore";
 
 export class ProjectsStore extends AbstractStore {
@@ -47,7 +48,7 @@ export class ProjectsStore extends AbstractStore {
     }
 
     serviceName(): string {
-        return 'projects';
+        return DataConstants.ProjectsStoreName;
     }
 
 }

@@ -1,4 +1,5 @@
 import { EventConstants } from '../../../constants/EventConstants';
+import { LabelConstants } from '../../../constants/LabelConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
 import { EventBus } from '../../../messages/EventBus';
 import { AbstractWindow } from '../abstract/AbstractWindow';
@@ -28,12 +29,12 @@ export class LoginWindow extends AbstractWindow {
     }
 
     addButtons() {
-        this.addButton('Login');
+        this.addButton(LabelConstants.ButtonLabelLogin);
         this.addButton('Clear');
     }
 
     defaultCaption(): string {
-        return 'Login';
+        return LabelConstants.ButtonLabelLogin;
     }
 
     defaultHeight(): number {

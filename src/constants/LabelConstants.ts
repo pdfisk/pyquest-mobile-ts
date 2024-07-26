@@ -3,4 +3,6 @@ export class LabelConstants {
     static ButtonLabelLogout: string = 'Logout';
     static ButtonLabelProjects: string = 'Projects';
     static ButtonLabelViews: string = 'Views';
+
+    static WindowLabelProjects: string = 'Projects';
 }

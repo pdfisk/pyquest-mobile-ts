@@ -1,4 +1,5 @@
 import { EventConstants } from "../../../../constants/EventConstants";
+import { LabelConstants } from "../../../../constants/LabelConstants";
 import { EventBus } from "../../../../messages/EventBus";
 import { QxMenu } from "../../../../qx/ui/menu/QxMenu";
 import { QxMenuButton } from "../../../../qx/ui/menu/QxMenuButton";
@@ -11,14 +12,14 @@ export class LoginButton extends QxMenuBarButton {
 
     initialize() {
         super.initialize();
-        this.setLabel('Login');
+        this.setLabel(LabelConstants.ButtonLabelLogin);
         this.setMenu(this.createMenu());
         EventBus.subscribe(EventConstants.LoginStatusChanged, this.onEventStatusChanged, this)
     }
 
     createMenu(): QxMenu {
         const menu = new QxMenu();
-        this.loginMenuButton = menu.addButton('Login', () => {
+        this.loginMenuButton = menu.addButton(LabelConstants.ButtonLabelLogin, () => {
             this.loginOrLogout();
         });
         menu.addSeparator();
@@ -35,7 +36,7 @@ export class LoginButton extends QxMenuBarButton {
     }
 
     loginOrLogout() {
-        if (this.getLoginLabel() == 'Login')
+        if (this.getLoginLabel() == LabelConstants.ButtonLabelLogin)
             LoginWindow.getInstance().show();
         else
             EventBus.dispatch(EventConstants.LoginStatusChanged, EventConstants.StatusLoggedOut);
@@ -44,9 +45,9 @@ export class LoginButton extends QxMenuBarButton {
     onEventStatusChanged(message: any) {
         const status = message.getData().status;
         if (status == EventConstants.StatusLoggedIn || status == EventConstants.StatusLoggedInAsAdmin)
-            this.setLoginLabel('Logout');
+            this.setLoginLabel(LabelConstants.ButtonLabelLogout);
         else
-            this.setLoginLabel('Login');
+            this.setLoginLabel(LabelConstants.ButtonLabelLogin);
     }
 
     openRegister() {

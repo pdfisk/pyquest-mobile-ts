@@ -1,3 +1,4 @@
+import { LabelConstants } from '../../../constants/LabelConstants';
 import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
 import { EditorPanel } from '../../widgets/EditorPanel';
 import { AbstractWindow } from '../abstract/AbstractWindow';
@@ -36,7 +37,7 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     defaultCaption(): string {
-        return 'Projects';
+        return LabelConstants.WindowLabelProjects;
     }
 
     onButtonClick(tag: string) {
