@@ -12,6 +12,8 @@ export class SizeConstants {
     static LoginWindowHeight: number = 135;
     static LoginWindowWidth: number = 235;
     static LogoPanelWidth: number = 125;
+    static MediumWindowHeight: number = 425;
+    static MediumWindowWidth: number = 525;
     static NavBarHeight: number = 35;
     static RegisterPanelColOneWidth: number = 175;
     static RegisterPanelColZeroWidth: number = 60;

@@ -2,6 +2,7 @@ import { ActionConstants } from '../../../constants/ActionConstants';
 import { EventConstants } from '../../../constants/EventConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
 import { SessionConstants } from '../../../constants/SessionConstants';
+import { SizeConstants } from '../../../constants/SizeConstants';
 import { EventBus } from '../../../messages/EventBus';
 import { QxFormButton } from '../../../qx/ui/form/QxFormButton';
 import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
@@ -52,6 +53,14 @@ export class ProjectsWindow extends AbstractWindow {
 
     defaultCaption(): string {
         return LabelConstants.WindowLabelProjects;
+    }
+
+    defaultHeight(): number {
+        return SizeConstants.MediumWindowHeight;
+    }
+
+    defaultWidth(): number {
+        return SizeConstants.MediumWindowWidth;
     }
 
     disableButtons() {
