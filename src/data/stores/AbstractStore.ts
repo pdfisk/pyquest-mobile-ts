@@ -22,7 +22,9 @@ export abstract class AbstractStore {
         this.loadHandlerFns.push(loadHandlerFn);
     }
 
-    abstract serviceName(): string
+    deleteRecord(data: any) {
+        console.log('deleteRecord', data);
+    }
 
     getDataRecords(): any[] {
         return [];
@@ -61,9 +63,19 @@ export abstract class AbstractStore {
             this.dataStore.setUrl(this.getUrl(this.serviceName()));
     }
 
+    newRecord() {
+        console.log('newRecord');
+    }
+
     onLoaded() {
         this.dataLoaded = true;
         this.handleLoadedData();
     }
+
+    saveRecord(data: any) {
+        console.log('dataRecord', data);
+    }
+
+    abstract serviceName(): string
 
 }

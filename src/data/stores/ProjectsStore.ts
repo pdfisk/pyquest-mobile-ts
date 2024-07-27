@@ -46,7 +46,7 @@ export class ProjectsStore extends AbstractStore {
     getProjectsSize(): number {
         return this.dataStore.$$user_model.length;
     }
-
+  
     serviceName(): string {
         return ServerConstants.ServiceProjects;
     }
