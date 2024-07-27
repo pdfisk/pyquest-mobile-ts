@@ -7,6 +7,7 @@ export class LabelConstants {
     static ButtonLabelProjects: string = 'Projects';
     static ButtonLabelRefresh: string = 'Refresh';
     static ButtonLabelRegister: string = 'Register';
+    static ButtonLabelRename: string = 'Rename';
     static ButtonLabelSave: string = 'Save';
     static ButtonLabelViews: string = 'Views';
 

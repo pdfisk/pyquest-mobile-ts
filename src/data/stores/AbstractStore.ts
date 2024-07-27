@@ -24,7 +24,11 @@ export abstract class AbstractStore {
     }
 
     deleteRecord(data: any) {
-        console.log('deleteRecord', data);
+        if (!data) return;
+        const id = data.id;
+        const url = this.getUrlWithId(this.serviceName(), id);
+        const fn = () => { this.reload(); }
+        Server.sendServerRequest(url, ServerConstants.MethodDelete, data, fn);
     }
 
     getDataRecords(): any[] {
@@ -65,7 +69,10 @@ export abstract class AbstractStore {
     }
 
     newRecord() {
-        console.log('newRecord');
+        const data = { name: '-- new project --', description: '', code: '' };
+        const url = this.getUrl(this.serviceName());
+        const fn = () => { this.reload(); }
+        Server.sendServerRequest(url, ServerConstants.MethodPost, data, fn);
     }
 
     onLoaded() {

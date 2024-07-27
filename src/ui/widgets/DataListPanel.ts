@@ -53,6 +53,10 @@ export abstract class DataListPanel extends Panel {
         return this.selectedData;
     }
 
+    hasSelectedData(): boolean {
+        return this.selectedData !== null && this.selectedData !== undefined;
+    }
+
     onAppear() {
         this.refresh();
     }

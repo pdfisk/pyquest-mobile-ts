@@ -5,5 +5,6 @@ export class ActionConstants {
     static ActionNew: string = 'new';
     static ActionRefresh: string = 'refresh';
     static ActionRegister: string = 'register';
+    static ActionRename: string = 'rename';
     static ActionSave: string = 'save';
 }
