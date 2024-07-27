@@ -72,8 +72,18 @@ export abstract class AbstractStore {
         this.handleLoadedData();
     }
 
+    reload() {
+        this.dataLoaded = false;
+        this.loadData();
+    }
+
     saveRecord(data: any) {
-        console.log('dataRecord', data);
+        console.log('saveRecord', data);
+        if (!data) return;
+        const id = data.id;
+        const url = this.getUrlWithId(this.serviceName(), id);
+        const fn = () => { this.reload(); }
+        Server.sendServerRequest(url, 'PUT', data, fn);
     }
 
     abstract serviceName(): string

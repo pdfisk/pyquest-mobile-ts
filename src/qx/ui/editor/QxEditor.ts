@@ -3,7 +3,7 @@ import { QxComposite } from '../container/QxComposite';
 
 export class QxEditor extends QxComposite {
     editor: any = null;
-    initValue:string ='';
+    initValue: string = '';
 
     clear() {
         this.setValue('');
@@ -14,6 +14,8 @@ export class QxEditor extends QxComposite {
     }
 
     getValue(): string {
+        if (this.editor)
+            return this.editor.getValue();
         return '';
     }
 
@@ -30,11 +32,11 @@ export class QxEditor extends QxComposite {
     }
 
     setRange() {
-        this.editor.selection.setRange(new (window as any).ace.Range(0, 0, 0, 0));       
+        this.editor.selection.setRange(new (window as any).ace.Range(0, 0, 0, 0));
     }
 
     setValue(text: string) {
-        if (!this.editor){
+        if (!this.editor) {
             this.initValue = text;
             return;
         }

@@ -1,5 +1,6 @@
 import { ColorConstants } from '../../constants/ColorConstants';
 import { QxComposite } from '../../qx/ui/container/QxComposite';
+import { SessionStatus } from '../../session/SessionStatus';
 import { NavBar } from './navbar/NavBar';
 
 export class Viewport extends QxComposite {
@@ -19,6 +20,7 @@ export class Viewport extends QxComposite {
 
     initialize() {
         super.initialize();
+        SessionStatus.getInstance();
         this.setBackgroundColor(ColorConstants.ViewportBackground);
         this.navBar = new NavBar();
         this.addNorth(this.navBar);

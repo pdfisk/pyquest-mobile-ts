@@ -81,6 +81,12 @@ export class ProjectsWindow extends AbstractWindow {
             this.saveButton.setEnabled(true);
     }
 
+    getCode(): string {
+        if (this.editorPanel)
+            return this.editorPanel.getValue();
+        return '';
+    }
+
     onButtonClick(tag: string) {
         switch (tag) {
             case ActionConstants.ActionDelete:
@@ -123,6 +129,10 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     onSave() {
+        const code:string = this.getCode();
+        console.log('CODE', code);
+        (window as any).X = this;
+        this.projectsPanel?.updateCode(this.getCode());
         this.projectsPanel?.saveProject();
     }
 

@@ -20,6 +20,10 @@ export class Server {
         this.getInstance().saveProject(data);
     }
 
+    static sendServerRequest(url: string, method: string, data: any, fn: Function) {
+        this.getInstance().sendServerRequest(url, method, data, fn);
+    }
+
     deleteProject(data: any) {
         console.log('deleteProject', data);
     }

@@ -19,4 +19,9 @@ export class ProjectsPanel extends DataListPanel {
         this.dataStore = ProjectsStore.getInstance();
     }
 
+    updateCode(code: string) {
+        if (this.selectedData)
+            this.selectedData.code = code;
+    }
+
 }
