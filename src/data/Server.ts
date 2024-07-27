@@ -1,3 +1,5 @@
+import { ServerConstants } from "../constants/ServerConstants";
+
 export class Server {
 
     static instance: Server;
@@ -37,7 +39,7 @@ export class Server {
     }
 
     sendGetRequest(url: string, fn: Function) {
-        this.sendServerRequest(url, 'GET', {}, fn);
+        this.sendServerRequest(url, ServerConstants.MethodGet, {}, fn);
     }
 
     sendServerRequest(url: string, method: string, data: any, fn: Function) {

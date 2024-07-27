@@ -1,4 +1,5 @@
 import { EventConstants } from "../../constants/EventConstants";
+import { ServerConstants } from "../../constants/ServerConstants";
 import { UrlConstants } from "../../constants/UrlConstants";
 import { Server } from "../Server";
 
@@ -78,12 +79,11 @@ export abstract class AbstractStore {
     }
 
     saveRecord(data: any) {
-        console.log('saveRecord', data);
         if (!data) return;
         const id = data.id;
         const url = this.getUrlWithId(this.serviceName(), id);
         const fn = () => { this.reload(); }
-        Server.sendServerRequest(url, 'PUT', data, fn);
+        Server.sendServerRequest(url, ServerConstants.MethodPut, data, fn);
     }
 
     abstract serviceName(): string
