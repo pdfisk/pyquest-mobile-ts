@@ -2,8 +2,6 @@ import { ProjectsStore } from '../../../../data/stores/ProjectsStore';
 import { DataListPanel } from '../../../widgets/DataListPanel';
 
 export class ProjectsPanel extends DataListPanel {
-    changeHandler?: Function;
-    dataMap: Map<string, any> = new Map();
 
     addChangeHandlerFns(): void {
         const changeSelectionFn: Function = (name: any) => {
@@ -27,10 +25,6 @@ export class ProjectsPanel extends DataListPanel {
         if (this.dataMap.has(name))
             return this.dataMap.get(name);
         return null;
-    }
-
-    initialize() {
-        super.initialize();
     }
 
     newProject() {

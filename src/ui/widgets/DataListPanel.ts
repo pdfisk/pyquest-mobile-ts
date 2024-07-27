@@ -3,6 +3,8 @@ import { QxList } from '../../qx/ui/list/QxList';
 import { Panel } from './Panel';
 
 export abstract class DataListPanel extends Panel {
+    changeHandler?: Function;
+    dataMap: Map<string, any> = new Map();
     dataStore?: AbstractStore;
     list: QxList;
 

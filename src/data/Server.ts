@@ -8,6 +8,30 @@ export class Server {
         return this.instance;
     }
 
+    static deleteProject(id: number) {
+        this.getInstance().deleteProject(id);
+    }
+
+    static newProject() {
+        this.getInstance().newProject();
+    }
+
+    static saveProject(id: number, data: any) {
+        this.getInstance().saveProject(id, data);
+    }
+
+    deleteProject(id: number) {
+        console.log('deleteProject', id);
+    }
+
+    newProject() {
+        console.log('newProject');
+    }
+
+    saveProject(id: number, data: any) {
+        console.log('saveProject', id, data);
+    }
+
     sendGetRequest(url: string, fn: Function) {
         this.sendServerRequest(url, 'GET', {}, fn);
     }
