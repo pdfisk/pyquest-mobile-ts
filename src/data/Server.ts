@@ -8,28 +8,28 @@ export class Server {
         return this.instance;
     }
 
-    static deleteProject(id: number) {
-        this.getInstance().deleteProject(id);
+    static deleteProject(data: any) {
+        this.getInstance().deleteProject(data);
     }
 
     static newProject() {
         this.getInstance().newProject();
     }
 
-    static saveProject(id: number, data: any) {
-        this.getInstance().saveProject(id, data);
+    static saveProject(data: any) {
+        this.getInstance().saveProject(data);
     }
 
-    deleteProject(id: number) {
-        console.log('deleteProject', id);
+    deleteProject(data: any) {
+        console.log('deleteProject', data);
     }
 
     newProject() {
         console.log('newProject');
     }
 
-    saveProject(id: number, data: any) {
-        console.log('saveProject', id, data);
+    saveProject(data: any) {
+        console.log('saveProject', data);
     }
 
     sendGetRequest(url: string, fn: Function) {

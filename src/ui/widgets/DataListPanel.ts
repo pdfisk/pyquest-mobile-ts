@@ -7,10 +7,12 @@ export abstract class DataListPanel extends Panel {
     dataMap: Map<string, any> = new Map();
     dataStore?: AbstractStore;
     list: QxList;
+    selectedData: any;
 
     constructor() {
         super();
         this.list = new QxList();
+        this.selectedData = null;
         this.addCenter(this.list);
         this.setStore();
         this.addChangeHandlerFns();
@@ -40,13 +42,15 @@ export abstract class DataListPanel extends Panel {
     }
 
     clearSelection() {
+        this.selectedData = null;
         this.list.initSelection();
     }
 
     getSelectionValue(name: string): any {
+        this.selectedData = null;
         if (this.dataMap.has(name))
-            return this.dataMap.get(name);
-        return null;
+            this.selectedData = this.dataMap.get(name);
+        return this.selectedData;
     }
 
     onAppear() {

@@ -1,18 +1,23 @@
 import { ProjectsStore } from '../../../../data/stores/ProjectsStore';
 import { DataListPanel } from '../../../widgets/DataListPanel';
+import { Server } from './../../../../data/Server';
 
 export class ProjectsPanel extends DataListPanel {
 
     deleteProject() {
-        console.log('deleteProject');
+        if (!this.selectedData)
+            return;
+        Server.deleteProject(this.selectedData);
     }
 
     newProject() {
-        console.log('newProject');
+        Server.newProject();
     }
 
-     saveProject() {
-        console.log('saveProject');
+    saveProject() {
+        if (!this.selectedData)
+            return;
+        Server.saveProject(this.selectedData);
     }
 
     setStore() {
