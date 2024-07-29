@@ -5,6 +5,7 @@ import { SessionConstants } from '../../../constants/SessionConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
 import { EventBus } from '../../../messages/EventBus';
 import { QxFormButton } from '../../../qx/ui/form/QxFormButton';
+import { QxPopup } from '../../../qx/ui/popup/Popup';
 import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
 import { SessionStatus } from '../../../session/SessionStatus';
 import { EditorPanel } from '../../widgets/EditorPanel';
@@ -117,6 +118,7 @@ export class ProjectsWindow extends AbstractWindow {
 
     onDelete() {
         this.projectsPanel?.deleteProject();
+        this.refresh();
     }
 
     onEventStatusChanged(message: any) {
@@ -125,27 +127,44 @@ export class ProjectsWindow extends AbstractWindow {
 
     onNew() {
         this.projectsPanel?.newProject();
+        this.refresh();
     }
 
     onRefresh() {
-        this.editorPanel?.clear();
-        this.projectsPanel?.refresh();
-        this.updateEnabledButtons();
+        this.refresh();
     }
 
     onRename() {
-        console.log('onRename');
+        const selectedData = this.projectsPanel?.getSelectedData();
+        if (!selectedData) return;
+        const oldName = selectedData.name;
+        const newNameFn = (newName:string) => {
+            selectedData.name = newName;
+            this.save();
+        };
+        QxPopup.rename(oldName, newNameFn);
     }
 
     onSave() {
         const code: string = this.getCode();
         this.projectsPanel?.updateCode(this.getCode());
-        this.projectsPanel?.saveProject();
+        this.save();
     }
 
     onSelectionChange(value: any) {
         (this.editorPanel as EditorPanel).setValue(value.code);
         this.updateEnabledButtons();
+    }
+
+    refresh() {
+        this.editorPanel?.clear();
+        this.projectsPanel?.refresh();
+        this.updateEnabledButtons();
+    }
+
+    save() {
+        this.projectsPanel?.saveProject();
+        this.refresh();
     }
 
 }

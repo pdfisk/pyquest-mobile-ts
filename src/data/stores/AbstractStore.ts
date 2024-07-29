@@ -81,7 +81,6 @@ export abstract class AbstractStore {
     }
 
     reload() {
-        this.dataLoaded = false;
         this.loadData();
     }
 

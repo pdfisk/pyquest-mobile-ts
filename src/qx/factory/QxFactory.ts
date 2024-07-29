@@ -28,6 +28,10 @@ export class QxFactory {
         return new (window as any).qx.ui.container.Composite;
     }
 
+    static dialog(): any {
+        return (window as any).qxl.dialog.Dialog;
+    }
+
     static dockLayout(): any {
         return new (window as any).qx.ui.layout.Dock;
     }

@@ -46,6 +46,12 @@ export abstract class DataListPanel extends Panel {
         this.list.initSelection();
     }
 
+    getSelectedData() :any {
+        if (!this.hasSelectedData())
+            return null;
+        return this.selectedData;
+    }
+
     getSelectionValue(name: string): any {
         this.selectedData = null;
         if (this.dataMap.has(name))
