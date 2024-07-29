@@ -92,6 +92,14 @@ export class QxFactory {
         return new (window as any).qx.ui.splitpane.Pane;
     }
 
+    static tabPage(): any {
+        return new (window as any).qx.ui.tabview.Page;
+    }
+
+    static tabView(): any {
+        return new (window as any).qx.ui.tabview.TabView;
+    }
+
     static textArea(): any {
         return new (window as any).qx.ui.form.TextArea;
     }
