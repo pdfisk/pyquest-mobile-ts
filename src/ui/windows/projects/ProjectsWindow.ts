@@ -1,34 +1,33 @@
 import { ActionConstants } from '../../../constants/ActionConstants';
 import { EventConstants } from '../../../constants/EventConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
-import { SessionConstants } from '../../../constants/SessionConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
 import { EventBus } from '../../../messages/EventBus';
 import { QxFormButton } from '../../../qx/ui/form/QxFormButton';
 import { QxPopup } from '../../../qx/ui/popup/Popup';
 import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
 import { SessionStatus } from '../../../session/SessionStatus';
-import { EditorPanel } from '../../widgets/EditorPanel';
 import { AbstractWindow } from '../abstract/AbstractWindow';
 import { ProjectsPanel } from './widgets/ProjectsPanel';
+import { ProjectTabView } from './widgets/ProjectTabView';
 
 export class ProjectsWindow extends AbstractWindow {
 
-    editorPanel?: EditorPanel;
     projectsPanel?: ProjectsPanel;
     splitPane?: QxSplitPane;
     deleteButton?: QxFormButton;
     newButton?: QxFormButton;
     renameButton?: QxFormButton;
     saveButton?: QxFormButton;
+    tabView?: ProjectTabView;
 
     initialize() {
         super.initialize();
         this.projectsPanel = this.buildProjectsList();
-        this.editorPanel = new EditorPanel();
+        this.tabView = new ProjectTabView;
         this.splitPane = QxSplitPane.createHorizontal();
         this.splitPane.add(this.projectsPanel, 1);
-        this.splitPane.add(this.editorPanel, 2);
+        this.splitPane.add(this.tabView, 2);
         this.add(this.splitPane);
         EventBus.subscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this);
     }
@@ -63,25 +62,9 @@ export class ProjectsWindow extends AbstractWindow {
         return SizeConstants.MediumWindowWidth;
     }
 
-    updateEnabledButtons() {
-        const fn = () => {
-            const enabled_1:boolean = this.isLoggedIn();
-            const enabled_2:boolean = enabled_1 && this.hasSelectedData();
-            if (this.deleteButton)
-                this.deleteButton.setEnabled(enabled_2);
-            if (this.newButton)
-                this.newButton.setEnabled(enabled_1);
-            if (this.renameButton)
-                this.renameButton.setEnabled(enabled_2);
-            if (this.saveButton)
-                this.saveButton.setEnabled(enabled_2);
-        };
-        setTimeout(fn, 100);
-    }
-
     getCode(): string {
-        if (this.editorPanel)
-            return this.editorPanel.getValue();
+        if (this.tabView)
+            return this.tabView.getCode();
         return '';
     }
 
@@ -138,7 +121,7 @@ export class ProjectsWindow extends AbstractWindow {
         const selectedData = this.projectsPanel?.getSelectedData();
         if (!selectedData) return;
         const oldName = selectedData.name;
-        const newNameFn = (newName:string) => {
+        const newNameFn = (newName: string) => {
             selectedData.name = newName;
             this.save();
         };
@@ -152,12 +135,12 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     onSelectionChange(value: any) {
-        (this.editorPanel as EditorPanel).setValue(value.code);
+        (this.tabView as ProjectTabView).setCode(value.code);
         this.updateEnabledButtons();
     }
 
     refresh() {
-        this.editorPanel?.clear();
+        (this.tabView as ProjectTabView).clearCode();
         this.projectsPanel?.refresh();
         this.updateEnabledButtons();
     }
@@ -165,6 +148,22 @@ export class ProjectsWindow extends AbstractWindow {
     save() {
         this.projectsPanel?.saveProject();
         this.refresh();
+    }
+
+    updateEnabledButtons() {
+        const fn = () => {
+            const enabled_1: boolean = this.isLoggedIn();
+            const enabled_2: boolean = enabled_1 && this.hasSelectedData();
+            if (this.deleteButton)
+                this.deleteButton.setEnabled(enabled_2);
+            if (this.newButton)
+                this.newButton.setEnabled(enabled_1);
+            if (this.renameButton)
+                this.renameButton.setEnabled(enabled_2);
+            if (this.saveButton)
+                this.saveButton.setEnabled(enabled_2);
+        };
+        setTimeout(fn, 100);
     }
 
 }

@@ -11,6 +11,10 @@ export abstract class QxAbstractField extends QxWidget {
         this.setValue('');
     }
 
+    defaultEnableOnAppear(): boolean {
+        return true;
+    }
+
     getValue(): string {
         if (!this.widget)
             return '';
@@ -21,6 +25,11 @@ export abstract class QxAbstractField extends QxWidget {
         super.initialize();
         this.setFontFamily(FontConstants.FontFamilyMonospace);
         this.setFontSize(FontConstants.FontSize24Px);
+    }
+
+    onAppear() {
+        this.setFontSize(FontConstants.FontSize14Px);
+        this.setFontFamily(FontConstants.FontFamilyMonospace);
     }
 
     setValue(value: string) {
