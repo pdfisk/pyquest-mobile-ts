@@ -1,4 +1,5 @@
 import { AbstractStore } from '../../data/stores/AbstractStore';
+import { QxWidget } from '../../qx/ui/core/QxWidget';
 import { QxList } from '../../qx/ui/list/QxList';
 import { Panel } from './Panel';
 
@@ -9,11 +10,12 @@ export abstract class DataListPanel extends Panel {
     list: QxList;
     selectedData: any;
 
+
     constructor() {
         super();
-        this.list = new QxList();
+        this.list = new QxList;
         this.selectedData = null;
-        this.addCenter(this.list);
+        this.addCenter(this.createCenterWidget());
         this.setStore();
         this.addChangeHandlerFns();
         this.addLoadHandlerFns();
@@ -46,7 +48,11 @@ export abstract class DataListPanel extends Panel {
         this.list.initSelection();
     }
 
-    getSelectedData() :any {
+    createCenterWidget(): QxWidget {
+        return this.list;
+    }
+
+    getSelectedData(): any {
         if (!this.hasSelectedData())
             return null;
         return this.selectedData;
