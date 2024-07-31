@@ -2,16 +2,16 @@ import { QxWidget } from '../../../../qx/ui/core/QxWidget';
 import { QxTabPage } from '../../../../qx/ui/tabview/QxTabPage';
 import { QxTabView } from '../../../../qx/ui/tabview/QxTabView';
 import { EditorPanel } from '../../../widgets/EditorPanel';
-import { HtmlPanel } from '../../../widgets/HtmlPanel';
+import { TextPanel } from '../../../widgets/TextPanel';
 
 export class ProjectTabView extends QxTabView {
     codePanel: EditorPanel;
-    descriptionPanel: HtmlPanel;
+    descriptionPanel: TextPanel;
 
     constructor() {
         super();
         this.codePanel = new EditorPanel;
-        this.descriptionPanel = new HtmlPanel;
+        this.descriptionPanel = new TextPanel;
         this.addPage('Code', this.codePanel);
         this.addPage('Description', this.descriptionPanel);
     }
