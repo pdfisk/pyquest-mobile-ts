@@ -10,7 +10,6 @@ export class LogoPanel extends QxHtml {
 
     initialize() {
         super.initialize();
-        (window as any).X = this;
         this.setPaddingTop(5);
         this.setMarginLeft(10);
         this.setMarginRight(15);

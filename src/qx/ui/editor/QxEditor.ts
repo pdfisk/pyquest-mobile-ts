@@ -3,6 +3,7 @@ import { QxComposite } from '../container/QxComposite';
 
 export class QxEditor extends QxComposite {
     editor: any = null;
+    hasRendered: boolean = false;
     initValue: string = '';
 
     clear() {
@@ -27,8 +28,13 @@ export class QxEditor extends QxComposite {
         const ace: any = (window as any).ace;
         this.editor = ace.edit(domNode, config);
         this.editor.setTheme('ace/theme/dreamweaver');
-        this.editor.setValue(this.initValue);
-        this.initValue = '';
+        this.editor.renderer.on('afterRender', () => {
+            this.onRender();
+        });
+    }
+
+    onRender() {
+        this.hasRendered = true;
     }
 
     setRange() {
@@ -36,12 +42,10 @@ export class QxEditor extends QxComposite {
     }
 
     setValue(text: string) {
-        if (!this.editor) {
-            this.initValue = text;
-            return;
+        if (this.hasRendered) {
+            this.editor.setValue(text);
+            this.setRange();
         }
-        this.editor.setValue(text);
-        this.setRange()
     }
 
 }
