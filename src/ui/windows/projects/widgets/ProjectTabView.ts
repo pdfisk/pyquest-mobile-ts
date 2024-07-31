@@ -2,25 +2,29 @@ import { QxWidget } from '../../../../qx/ui/core/QxWidget';
 import { QxTabPage } from '../../../../qx/ui/tabview/QxTabPage';
 import { QxTabView } from '../../../../qx/ui/tabview/QxTabView';
 import { EditorPanel } from '../../../widgets/EditorPanel';
+import { HtmlPanel } from '../../../widgets/HtmlPanel';
 
 export class ProjectTabView extends QxTabView {
-    editorPanel: EditorPanel;
+    codePanel: EditorPanel;
+    descriptionPanel: HtmlPanel;
 
     constructor() {
         super();
-        this.editorPanel = new EditorPanel;
-        this.addPage('Code', this.editorPanel);
+        this.codePanel = new EditorPanel;
+        this.descriptionPanel = new HtmlPanel;
+        this.addPage('Code', this.codePanel);
+        this.addPage('Description', this.descriptionPanel);
     }
 
     addPage(label: string, widget: QxWidget): QxWidget {
         const page = new QxTabPage(label);
-        page.addCenter(this.editorPanel);
+        page.addCenter(widget);
         this.add(page);
         return page;
     }
 
     clearCode() {
-        this.editorPanel.clear();
+        this.codePanel.clear();
     }
 
     defaultEnableOnAppear(): boolean {
@@ -28,15 +32,15 @@ export class ProjectTabView extends QxTabView {
     }
 
     getCode(): string {
-        return this.editorPanel.getValue();
+        return this.codePanel.getValue();
     }
 
     onAppear() {
-        this.editorPanel.widget.getLayoutParent().getLayoutParent().setPadding(0);
+        this.codePanel.widget.getLayoutParent().getLayoutParent().setPadding(0);
     }
 
     setCode(code: string) {
-        this.editorPanel.setValue(code);
+        this.codePanel.setValue(code);
     }
 
 }

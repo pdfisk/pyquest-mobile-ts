@@ -8,8 +8,16 @@ export class QxHtml extends QxWidget {
         super(QxFactory.embedHtml());
     }
 
+    clear() {
+        this.setHtml('');
+    }
+
     defaultEnableOnAppear(): boolean {
         return true;
+    }
+
+    getHtml(): string {
+        return this.widget.getHtml();
     }
 
     onAppear() {
