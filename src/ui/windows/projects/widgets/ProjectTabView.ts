@@ -23,8 +23,17 @@ export class ProjectTabView extends QxTabView {
         return page;
     }
 
+    clear() {
+        this.clearCode();
+        this.clearDescription();
+    }
+
     clearCode() {
         this.codePanel.clear();
+    }
+
+    clearDescription() {
+        this.descriptionPanel.clear();
     }
 
     defaultEnableOnAppear(): boolean {

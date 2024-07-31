@@ -148,7 +148,7 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     refresh() {
-        (this.tabView as ProjectTabView).clearCode();
+        (this.tabView as ProjectTabView).clear();
         this.projectsPanel?.refresh();
         this.updateEnabledButtons();
     }
