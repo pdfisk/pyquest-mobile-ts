@@ -34,13 +34,21 @@ export class ProjectTabView extends QxTabView {
     getCode(): string {
         return this.codePanel.getValue();
     }
-
+    
+    getDescription(): string {
+        return this.descriptionPanel.getValue();
+    }
+    
     onAppear() {
         this.codePanel.widget.getLayoutParent().getLayoutParent().setPadding(0);
     }
 
     setCode(code: string) {
         this.codePanel.setValue(code);
+    }
+
+    setDescription(text: string) {
+        this.descriptionPanel.setValue(text);
     }
 
 }

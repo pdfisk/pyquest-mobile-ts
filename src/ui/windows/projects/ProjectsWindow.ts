@@ -68,6 +68,12 @@ export class ProjectsWindow extends AbstractWindow {
         return '';
     }
 
+    getDescription(): string {
+        if (this.tabView)
+            return this.tabView.getDescription();
+        return '';
+    }
+
     hasSelectedData(): boolean {
         return this.projectsPanel ? this.projectsPanel.hasSelectedData() : false;
     }
@@ -129,13 +135,15 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     onSave() {
-        const code: string = this.getCode();
         this.projectsPanel?.updateCode(this.getCode());
+        this.projectsPanel?.updateDescription(this.getDescription());
         this.save();
     }
 
     onSelectionChange(value: any) {
-        (this.tabView as ProjectTabView).setCode(value.code);
+        const tabView: ProjectTabView = this.tabView as ProjectTabView;
+        tabView.setCode(value.code);
+        tabView.setDescription(value.description);
         this.updateEnabledButtons();
     }
 

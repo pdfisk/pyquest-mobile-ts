@@ -19,6 +19,8 @@ export class TextPanel extends Panel {
     }
 
     setValue(text: string) {
+        console.log('TextPanel setValue', text);
+        (window as any).X = this;
         this.textArea.setValue(text);
     }
 
