@@ -11,8 +11,9 @@ export class LabelConstants {
     static ButtonLabelSave: string = 'Save';
     static ButtonLabelViews: string = 'Views';
 
-    static FieldLabelName:string = 'Name';
-    static FieldLabelPassword:string = 'Password';
+    static FieldLabelCategory: string = 'Category';
+    static FieldLabelName: string = 'Name';
+    static FieldLabelPassword: string = 'Password';
 
     static WindowLabelProjects: string = 'Projects';
 }
