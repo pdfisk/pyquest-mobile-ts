@@ -7,13 +7,16 @@ import { TextPanel } from '../../../widgets/TextPanel';
 export class ProjectTabView extends QxTabView {
     codePanel: EditorPanel;
     descriptionPanel: TextPanel;
+    detailsPanel: TextPanel;
 
     constructor() {
         super();
         this.codePanel = new EditorPanel;
         this.descriptionPanel = new TextPanel;
+        this.detailsPanel = new TextPanel;
         this.addPage('Code', this.codePanel);
         this.addPage('Description', this.descriptionPanel);
+        this.addPage('Details', this.detailsPanel);
     }
 
     addPage(label: string, widget: QxWidget): QxWidget {
