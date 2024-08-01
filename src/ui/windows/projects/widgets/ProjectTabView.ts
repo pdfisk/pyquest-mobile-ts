@@ -30,6 +30,7 @@ export class ProjectTabView extends QxTabView {
     clear() {
         this.clearCode();
         this.clearDescription();
+        this.clearDetails();
     }
 
     clearCode() {
@@ -38,6 +39,10 @@ export class ProjectTabView extends QxTabView {
 
     clearDescription() {
         this.descriptionPanel.clear();
+    }
+
+    clearDetails() {
+        this.detailsPanel.clear();
     }
 
     defaultEnableOnAppear(): boolean {
@@ -52,6 +57,10 @@ export class ProjectTabView extends QxTabView {
         return this.descriptionPanel.getValue();
     }
 
+    getDetails(): string {
+        return this.detailsPanel.getValue();
+    }
+
     onAppear() {
         this.codePanel.widget.getLayoutParent().getLayoutParent().setPadding(0);
     }
@@ -62,6 +71,10 @@ export class ProjectTabView extends QxTabView {
 
     setDescription(text: string) {
         this.descriptionPanel.setValue(text);
+    }
+
+    setDetails(text: string) {
+        this.detailsPanel.setValue(text);
     }
 
 }

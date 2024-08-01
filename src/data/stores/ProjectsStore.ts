@@ -23,6 +23,7 @@ export class ProjectsStore extends AbstractStore {
             const id = item.$$user_id;
             const name = item.$$user_name;
             const description = item.$$user_description;
+            const details = item.$$user_details;
             const code = item.$$user_code;
             const code_object_json = item.$$user_code_object;
             let code_object = null;
@@ -32,6 +33,7 @@ export class ProjectsStore extends AbstractStore {
             projectRecord.id = id;
             projectRecord.name = name;
             projectRecord.description = description;
+            projectRecord.details = details;
             projectRecord.code = code;
             projectRecord.code_object = code_object;
             projectsData.push(projectRecord);

@@ -29,4 +29,9 @@ export class ProjectsPanel extends DataListPanel {
             this.selectedData.description = text;
     }
 
+    updateDetails(text: string) {
+        if (this.selectedData)
+            this.selectedData.details = text;
+    }
+
 }
