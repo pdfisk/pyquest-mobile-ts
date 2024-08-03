@@ -9,7 +9,7 @@ export class ButtonBarRight extends AbstractButtonBar {
   }
 
   defaultAlignment(): string {
-    return LayoutConstants.AlignLeft;
+    return LayoutConstants.AlignRight;
   }
 
 }
