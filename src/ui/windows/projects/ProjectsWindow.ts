@@ -18,6 +18,7 @@ export class ProjectsWindow extends AbstractWindow {
     deleteButton?: QxFormButton;
     newButton?: QxFormButton;
     renameButton?: QxFormButton;
+    runButton?: QxFormButton;
     saveButton?: QxFormButton;
     tabView?: ProjectTabView;
 
@@ -39,6 +40,10 @@ export class ProjectsWindow extends AbstractWindow {
         this.newButton = this.addButtonLeft(LabelConstants.ButtonLabelNew);
         this.deleteButton = this.addButtonLeft(LabelConstants.ButtonLabelDelete);
         this.updateEnabledButtons();
+    }
+
+    addButtonsRight() {
+        this.runButton = this.addButtonRight(LabelConstants.ButtonLabelRun);
     }
 
     buildProjectsList(): ProjectsPanel {
@@ -140,6 +145,10 @@ export class ProjectsWindow extends AbstractWindow {
         QxPopup.rename(oldName, newNameFn);
     }
 
+    onRun() {
+        console.log('onRun');
+    }
+
     onSave() {
         this.projectsPanel?.updateCode(this.getCode());
         this.projectsPanel?.updateDescription(this.getDescription());
@@ -170,15 +179,18 @@ export class ProjectsWindow extends AbstractWindow {
     updateEnabledButtons() {
         const fn = () => {
             const enabled_1: boolean = this.isLoggedIn();
-            const enabled_2: boolean = enabled_1 && this.hasSelectedData();
+            const enabled_2: boolean = this.hasSelectedData();
+            const enabled_3: boolean = enabled_1 && enabled_2;
             if (this.deleteButton)
-                this.deleteButton.setEnabled(enabled_2);
+                this.deleteButton.setEnabled(enabled_3);
             if (this.newButton)
                 this.newButton.setEnabled(enabled_1);
             if (this.renameButton)
-                this.renameButton.setEnabled(enabled_2);
+                this.renameButton.setEnabled(enabled_3);
+            if (this.runButton)
+                this.runButton.setEnabled(enabled_2);
             if (this.saveButton)
-                this.saveButton.setEnabled(enabled_2);
+                this.saveButton.setEnabled(enabled_3);
         };
         setTimeout(fn, 100);
     }
