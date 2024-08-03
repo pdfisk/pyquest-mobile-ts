@@ -7,7 +7,8 @@ export class ProjectsButtonBar extends ButtonBar {
     }
 
     updateCategories(categories: string[]) {
-        console.log('ProjectsButtonBar', categories);
+        categories.unshift('--- all ---');
+        this.selectBox?.setItems(categories);
     }
 
 }

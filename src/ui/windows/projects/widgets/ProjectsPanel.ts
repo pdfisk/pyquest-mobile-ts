@@ -36,6 +36,7 @@ export class ProjectsPanel extends DataListPanel {
                 }
             }
         }
+        categories.sort();
         return categories;
     }
 
