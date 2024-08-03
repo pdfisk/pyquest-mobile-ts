@@ -1,5 +1,6 @@
-import { QxAbstractLayout } from './QxAbstractLayout';
+import { LayoutConstants } from '../../../constants/LayoutConstants';
 import { QxFactory } from '../../factory/QxFactory';
+import { QxAbstractLayout } from './QxAbstractLayout';
 
 export class QxHBoxLayout extends QxAbstractLayout {
 
@@ -7,8 +8,13 @@ export class QxHBoxLayout extends QxAbstractLayout {
         super(QxFactory.hboxLayout());
     }
 
-    setSpacing(spacing: number) {
-        this.widget.setSpacing(spacing);
+    initialize() {
+        super.initialize();
+        this.setAlignX(this.defaultAlignX());
+    }
+
+    defaultAlignX(): string {
+        return LayoutConstants.AlignLeft;
     }
 
 }

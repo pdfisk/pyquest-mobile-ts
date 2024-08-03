@@ -6,7 +6,16 @@ export abstract class QxAbstractLayout extends QxObject {
         super(widget);
     }
 
+    setAlignX(alignment: string) {
+        this.widget.setAlignX(alignment);
+    }
+
+    setAlignY(alignment: string) {
+        this.widget.setAlignY(alignment);
+    }
+
     setSpacing(spacing: number) {
+        this.widget.setSpacing(spacing);
     }
 
 }

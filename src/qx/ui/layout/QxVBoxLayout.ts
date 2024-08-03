@@ -7,8 +7,4 @@ export class QxVBoxLayout extends QxAbstractLayout {
         super(QxFactory.vboxLayout());
     }
 
-    setSpacing(spacing: number) {
-        this.widget.setSpacing(spacing);
-    }
-
 }
