@@ -8,7 +8,7 @@ export class AbstractWindow extends QxWindowWindow {
 
     initialize() {
         super.initialize();
-        this.buttonBar = new ButtonBar(this);
+        this.buttonBar = this.defaultButtonBar();
         this.addSouth(this.buttonBar);
         this.addButtonsLeft();
         this.addButtonsRight();
@@ -24,16 +24,23 @@ export class AbstractWindow extends QxWindowWindow {
 
     addButtonsLeft() {
     }
-  
+
     addButtonsRight() {
     }
-  
+
+    addComboBox() {
+    }
+
     center() {
         this.widget.center();
     }
 
     close() {
         this.widget.close();
+    }
+
+    defaultButtonBar(): ButtonBar {
+        return new ButtonBar(this);
     }
 
     defaultEnableOnAppear(): boolean {

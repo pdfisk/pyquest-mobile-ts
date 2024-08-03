@@ -1,5 +1,6 @@
 import { SizeConstants } from '../../constants/SizeConstants';
 import { QxFormButton } from '../../qx/ui/form/QxFormButton';
+import { QxSelectBox } from '../../qx/ui/form/QxSelectBox';
 import { AbstractWindow } from '../windows/abstract/AbstractWindow';
 import { ButtonBarLeft } from './ButtonBarLeft';
 import { ButtonBarRight } from './ButtonBarRight';
@@ -8,6 +9,7 @@ import { DockPanel } from './DockPanel';
 export class ButtonBar extends DockPanel {
   buttonBarLeft: ButtonBarLeft;
   buttonBarRight: ButtonBarRight;
+  selectBox?: QxSelectBox;
 
   constructor(parentWindow: AbstractWindow) {
     super();
@@ -15,6 +17,8 @@ export class ButtonBar extends DockPanel {
     this.buttonBarRight = new ButtonBarRight(parentWindow);
     this.addWest(this.buttonBarLeft);
     this.addEast(this.buttonBarRight);
+    if (this.defaultHasSelectBox())
+      this.addSelectBox();
   }
 
   initialize() {
@@ -28,6 +32,15 @@ export class ButtonBar extends DockPanel {
 
   addButtonRight(name: string): QxFormButton {
     return this.buttonBarRight.addButton(name);
+  }
+
+  addSelectBox() {
+    this.selectBox = new QxSelectBox;
+    this.addCenter(this.selectBox);
+  }
+
+  defaultHasSelectBox(): boolean {
+    return false;
   }
 
 }

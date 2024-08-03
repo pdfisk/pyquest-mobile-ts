@@ -24,6 +24,10 @@ export class QxFactory {
         return new (window as any).qx.ui.layout.Canvas;
     }
 
+    static comboBox(): any {
+        return new (window as any).qx.ui.form.ComboBox;
+    }
+
     static compositeContainer(): any {
         return new (window as any).qx.ui.container.Composite;
     }
@@ -86,6 +90,10 @@ export class QxFactory {
 
     static menubarMenuBar(): any {
         return new (window as any).qx.ui.menubar.MenuBar;
+    }
+
+    static selectBox(): any {
+        return new (window as any).qx.ui.form.SelectBox;
     }
 
     static splitPane(): any {

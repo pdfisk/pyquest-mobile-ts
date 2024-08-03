@@ -7,7 +7,9 @@ import { QxFormButton } from '../../../qx/ui/form/QxFormButton';
 import { QxPopup } from '../../../qx/ui/popup/Popup';
 import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
 import { SessionStatus } from '../../../session/SessionStatus';
+import { ButtonBar } from '../../widgets/ButtonBar';
 import { AbstractWindow } from '../abstract/AbstractWindow';
+import { ProjectsButtonBar } from './widgets/ProjectsButtonBar';
 import { ProjectsPanel } from './widgets/ProjectsPanel';
 import { ProjectTabView } from './widgets/ProjectTabView';
 
@@ -53,6 +55,10 @@ export class ProjectsWindow extends AbstractWindow {
         };
         projectsList.setChangeHandler(fn);
         return projectsList;
+    }
+
+    defaultButtonBar(): ButtonBar {
+        return new ProjectsButtonBar(this);
     }
 
     defaultCaption(): string {
@@ -157,7 +163,6 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     onSelectionChange(value: any) {
-        console.log('onSelectionChange', value);
         const tabView: ProjectTabView = this.tabView as ProjectTabView;
         tabView.setCode(value.code);
         tabView.setDescription(value.description);
