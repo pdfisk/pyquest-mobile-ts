@@ -1,15 +1,16 @@
-import { LayoutConstants } from '../../constants/LayoutConstants';
+import { SizeConstants } from '../../constants/SizeConstants';
 import { QxFormButton } from '../../qx/ui/form/QxFormButton';
-import { AbstractButtonBar } from './AbstractButtonBar';
+import { ButtonBarLeft } from './ButtonBarLeft';
 
-export class ButtonBar extends AbstractButtonBar {
+export class ButtonBar extends ButtonBarLeft {
+
+  initialize() {
+    super.initialize();
+    this.setHeight(SizeConstants.DefaultWindowButtonBarHeight);
+  }
 
   addButtonLeft(name: string): QxFormButton {
     return this.addButton(name);
-  }
-
-  defaultAlignment(): string {
-    return LayoutConstants.AlignLeft;
   }
 
 }
