@@ -6,4 +6,8 @@ export class ProjectsButtonBar extends ButtonBar {
         return true;
     }
 
+    updateCategories(categories: string[]) {
+        console.log('ProjectsButtonBar', categories);
+    }
+
 }

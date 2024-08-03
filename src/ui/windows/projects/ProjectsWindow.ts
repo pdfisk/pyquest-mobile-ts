@@ -2,6 +2,7 @@ import { ActionConstants } from '../../../constants/ActionConstants';
 import { EventConstants } from '../../../constants/EventConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
+import { ProjectsStore } from '../../../data/stores/ProjectsStore';
 import { EventBus } from '../../../messages/EventBus';
 import { QxFormButton } from '../../../qx/ui/form/QxFormButton';
 import { QxPopup } from '../../../qx/ui/popup/Popup';
@@ -49,7 +50,7 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     buildProjectsList(): ProjectsPanel {
-        const projectsList = new ProjectsPanel();
+        const projectsList = new ProjectsPanel(this);
         const fn = (value: any) => {
             this.onSelectionChange(value);
         };
@@ -179,6 +180,10 @@ export class ProjectsWindow extends AbstractWindow {
     save() {
         this.projectsPanel?.saveProject();
         this.refresh();
+    }
+
+    updateCategories(categories: string[]) {
+        (this.buttonBar as ProjectsButtonBar).updateCategories(categories);
     }
 
     updateEnabledButtons() {

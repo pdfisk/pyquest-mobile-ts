@@ -72,6 +72,10 @@ export class QxFactory {
         return new (window as any).qx.ui.list.List;
     }
 
+    static listItem(): any {
+        return new (window as any).qx.ui.form.ListItem;
+    }
+
     static menuButton(): any {
         return new (window as any).qx.ui.menu.Button;
     }
