@@ -14,7 +14,7 @@ export class AbstractWindow extends QxWindowWindow {
     }
 
     addButton(label: string): QxFormButton {
-        return this.buttonBar.addButton(label);
+        return this.buttonBar.addButtonLeft(label);
     }
 
     addButtons() {

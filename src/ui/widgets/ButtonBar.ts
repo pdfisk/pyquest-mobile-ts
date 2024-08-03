@@ -21,7 +21,7 @@ export class ButtonBar extends HPanel {
     this.setBackgroundColor(ColorConstants.ButtonBarBackground);
   }
 
-  addButton(name: string): QxFormButton {
+  addButtonLeft(name: string): QxFormButton {
     const tag: string = this.createTagName(name);
     const fn: Function = () => {
       this.parentWindow.onButtonClick(tag);
