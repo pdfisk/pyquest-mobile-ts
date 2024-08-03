@@ -18,10 +18,10 @@ export class ConsoleWindow extends AbstractWindow {
         this.add(this.splitPane);
     }
 
-    addButtons() {
-        this.addButton('Run');
-        this.addButton('Clear Out');
-        this.addButton('Clear In');
+    addButtonsLeft() {
+        this.addButtonLeft('Run');
+        this.addButtonLeft('Clear Out');
+        this.addButtonLeft('Clear In');
     }
 
     defaultCaption(): string {

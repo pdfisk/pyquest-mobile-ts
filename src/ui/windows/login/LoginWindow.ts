@@ -30,9 +30,9 @@ export class LoginWindow extends AbstractWindow {
         this.add(this.loginPanel);
     }
 
-    addButtons() {
-        this.addButton(LabelConstants.ButtonLabelLogin);
-        this.addButton(LabelConstants.ButtonLabelClear);
+    addButtonsLeft() {
+        this.addButtonLeft(LabelConstants.ButtonLabelLogin);
+        this.addButtonLeft(LabelConstants.ButtonLabelClear);
     }
 
     defaultCaption(): string {

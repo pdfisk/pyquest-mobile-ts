@@ -10,16 +10,23 @@ export class AbstractWindow extends QxWindowWindow {
         super.initialize();
         this.buttonBar = new ButtonBar(this);
         this.addSouth(this.buttonBar);
-        this.addButtons();
+        this.addButtonsLeft();
     }
 
-    addButton(label: string): QxFormButton {
+    addButtonLeft(label: string): QxFormButton {
         return this.buttonBar.addButtonLeft(label);
     }
 
-    addButtons() {
+    addButtonRight(label: string): QxFormButton {
+        return this.buttonBar.addButtonRight(label);
     }
 
+    addButtonsLeft() {
+    }
+  
+    addButtonsRight() {
+    }
+  
     center() {
         this.widget.center();
     }

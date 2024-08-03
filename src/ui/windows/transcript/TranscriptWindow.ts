@@ -23,8 +23,8 @@ export class TranscriptWindow extends AbstractWindow {
         this.add(this.textPanel);
     }
 
-    addButtons() {
-        this.addButton('Clear');
+    addButtonsLeft() {
+        this.addButtonLeft('Clear');
     }
 
     defaultCaption(): string {

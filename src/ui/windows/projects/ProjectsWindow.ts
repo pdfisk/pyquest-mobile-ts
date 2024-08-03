@@ -32,12 +32,12 @@ export class ProjectsWindow extends AbstractWindow {
         EventBus.subscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this);
     }
 
-    addButtons() {
-        this.addButton(LabelConstants.ButtonLabelRefresh);
-        this.saveButton = this.addButton(LabelConstants.ButtonLabelSave);
-        this.renameButton = this.addButton(LabelConstants.ButtonLabelRename);
-        this.newButton = this.addButton(LabelConstants.ButtonLabelNew);
-        this.deleteButton = this.addButton(LabelConstants.ButtonLabelDelete);
+    addButtonsLeft() {
+        this.addButtonLeft(LabelConstants.ButtonLabelRefresh);
+        this.saveButton = this.addButtonLeft(LabelConstants.ButtonLabelSave);
+        this.renameButton = this.addButtonLeft(LabelConstants.ButtonLabelRename);
+        this.newButton = this.addButtonLeft(LabelConstants.ButtonLabelNew);
+        this.deleteButton = this.addButtonLeft(LabelConstants.ButtonLabelDelete);
         this.updateEnabledButtons();
     }
 

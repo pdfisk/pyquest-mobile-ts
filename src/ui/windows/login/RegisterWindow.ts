@@ -27,9 +27,9 @@ export class RegisterWindow extends AbstractWindow {
         this.add(this.registerPanel);
     }
 
-    addButtons() {
-        this.addButton(LabelConstants.ButtonLabelRegister);
-        this.addButton(LabelConstants.ButtonLabelClear);
+    addButtonsLeft() {
+        this.addButtonLeft(LabelConstants.ButtonLabelRegister);
+        this.addButtonLeft(LabelConstants.ButtonLabelClear);
     }
 
     defaultCaption(): string {
