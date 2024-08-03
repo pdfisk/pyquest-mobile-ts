@@ -1,7 +1,7 @@
 import { QxTextArea } from '../../qx/ui/form/QxTextArea';
-import { Panel } from './Panel';
+import { AbstractPanel } from './AbstractPanel';
 
-export class TextPanel extends Panel {
+export class TextPanel extends AbstractPanel {
     textArea: QxTextArea;
 
     constructor() {

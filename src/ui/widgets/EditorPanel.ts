@@ -1,7 +1,7 @@
 import { QxEditor } from '../../qx/ui/editor/QxEditor';
-import { Panel } from './Panel';
+import { AbstractPanel } from './AbstractPanel';
 
-export class EditorPanel extends Panel {
+export class EditorPanel extends AbstractPanel {
     editor: QxEditor;
 
     constructor() {

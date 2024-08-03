@@ -1,6 +1,6 @@
 import { QxComposite } from '../../qx/ui/container/QxComposite';
 
-export class Panel extends QxComposite {
+export abstract class AbstractPanel extends QxComposite {
 
     defaultEnableOnAppear(): boolean {
         return true;

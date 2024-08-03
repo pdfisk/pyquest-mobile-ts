@@ -1,7 +1,7 @@
 import { QxHtml } from '../../qx/embed/QxHtml';
-import { Panel } from './Panel';
+import { AbstractPanel } from './AbstractPanel';
 
-export class HtmlPanel extends Panel {
+export class HtmlPanel extends AbstractPanel {
     html: QxHtml;
 
     constructor() {

@@ -4,9 +4,9 @@ import { QxFormButton } from '../../qx/ui/form/QxFormButton';
 import { QxAbstractLayout } from '../../qx/ui/layout/QxAbstractLayout';
 import { QxHBoxLayout } from '../../qx/ui/layout/QxHBoxLayout';
 import { AbstractWindow } from '../windows/abstract/AbstractWindow';
-import { Panel } from './Panel';
+import { AbstractPanel } from './AbstractPanel';
 
-export class ButtonBar extends Panel {
+export class ButtonBar extends AbstractPanel {
   parentWindow: AbstractWindow
 
   constructor(parentWindow: AbstractWindow) {

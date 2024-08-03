@@ -1,8 +1,8 @@
 import { AbstractStore } from '../../data/stores/AbstractStore';
 import { QxList } from '../../qx/ui/list/QxList';
-import { Panel } from './Panel';
+import { AbstractPanel } from './AbstractPanel';
 
-export abstract class DataListPanel extends Panel {
+export abstract class DataListPanel extends AbstractPanel {
     changeHandler?: Function;
     dataMap: Map<string, any> = new Map();
     dataStore?: AbstractStore;

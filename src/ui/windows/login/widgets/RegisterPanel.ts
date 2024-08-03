@@ -3,9 +3,9 @@ import { QxBasicLabel } from "../../../../qx/ui/basic/QxBasicLabel";
 import { QxTextField } from "../../../../qx/ui/form/QxTextField";
 import { QxAbstractLayout } from "../../../../qx/ui/layout/QxAbstractLayout";
 import { QxGridLayout } from "../../../../qx/ui/layout/QxGridLayout";
-import { Panel } from "../../../widgets/Panel";
+import { AbstractPanel } from "../../../widgets/AbstractPanel";
 
-export class RegisterPanel extends Panel {
+export class RegisterPanel extends AbstractPanel {
     passwordField: QxTextField;
     userField: QxTextField;
 
