@@ -36,7 +36,7 @@ export abstract class DataListPanel extends AbstractPanel {
 
     addLoadHandlerFns(): void {
         const updateListFn: Function = (data: any[]) => {
-            this.updateListData(data);
+            this.updateMapData(data);
         }
         this.addLoadHandlerFn(updateListFn);
     }
@@ -83,12 +83,19 @@ export abstract class DataListPanel extends AbstractPanel {
 
     abstract setStore(): void;
 
-    updateList(names: any[]) {
+    updateList() {
+        const names: string[] = [];
+        (this.dataMap.keys() as any).forEach((key:string)=>{
+            names.push(key);
+        });
+        names.sort();
+        console.log('updateList', names);
+        (window as any).X = this;
         this.list.widget.initSelection();
         this.list.setData(names);
     }
 
-    updateListData(data: any[]) {
+    updateMapData(data: any[]) {
         this.dataMap.clear();
         const names: string[] = [];
         for (let i = 0; i < data.length; i++) {
@@ -97,7 +104,7 @@ export abstract class DataListPanel extends AbstractPanel {
             names.push(name);
             this.dataMap.set(name, item);
         }
-        this.updateList(names);
+        this.updateList();
     }
 
 }
