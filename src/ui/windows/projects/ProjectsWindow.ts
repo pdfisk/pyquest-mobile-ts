@@ -2,7 +2,6 @@ import { ActionConstants } from '../../../constants/ActionConstants';
 import { EventConstants } from '../../../constants/EventConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
-import { ProjectsStore } from '../../../data/stores/ProjectsStore';
 import { EventBus } from '../../../messages/EventBus';
 import { QxFormButton } from '../../../qx/ui/form/QxFormButton';
 import { QxPopup } from '../../../qx/ui/popup/Popup';
@@ -15,7 +14,6 @@ import { ProjectsPanel } from './widgets/ProjectsPanel';
 import { ProjectTabView } from './widgets/ProjectTabView';
 
 export class ProjectsWindow extends AbstractWindow {
-
     projectsPanel?: ProjectsPanel;
     splitPane?: QxSplitPane;
     deleteButton?: QxFormButton;
@@ -42,11 +40,19 @@ export class ProjectsWindow extends AbstractWindow {
         this.renameButton = this.addButtonLeft(LabelConstants.ButtonLabelRename);
         this.newButton = this.addButtonLeft(LabelConstants.ButtonLabelNew);
         this.deleteButton = this.addButtonLeft(LabelConstants.ButtonLabelDelete);
+        this.addHandlers();
         this.updateEnabledButtons();
     }
 
     addButtonsRight() {
         this.runButton = this.addButtonRight(LabelConstants.ButtonLabelRun);
+    }
+
+    addHandlers() {
+        const projectsButtonBar = this.buttonBar as ProjectsButtonBar;
+        projectsButtonBar.setSelectionHandlerFn(() => {
+            this.projectsPanel?.showSelectedCategory(projectsButtonBar.getSelectedCategory())
+        });
     }
 
     buildProjectsList(): ProjectsPanel {
@@ -90,6 +96,10 @@ export class ProjectsWindow extends AbstractWindow {
         if (this.tabView)
             return this.tabView.getDetails();
         return '';
+    }
+
+    getSelectedCategory(): string {
+        return (this.buttonBar as ProjectsButtonBar).getSelectedCategory();
     }
 
     hasSelectedData(): boolean {

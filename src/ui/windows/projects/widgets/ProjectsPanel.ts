@@ -1,3 +1,4 @@
+import { LabelConstants } from '../../../../constants/LabelConstants';
 import { ProjectsStore } from '../../../../data/stores/ProjectsStore';
 import { DataListPanel } from '../../../widgets/DataListPanel';
 import { ProjectsWindow } from '../ProjectsWindow';
@@ -40,12 +41,33 @@ export class ProjectsPanel extends DataListPanel {
         return categories;
     }
 
+    getDetailsCategory(details: any): any {
+        if (typeof (details) !== 'string')
+            return null;
+        const data = JSON.parse(details);
+        return data.category;
+    }
+
+    isCategorySelected(item: any): boolean {
+        const selectedCategory: string = this.projectsWindow.getSelectedCategory();
+        if (selectedCategory == LabelConstants.SelectionLabelAll)
+            return true;
+        const itemCategory = this.getDetailsCategory(item.details);
+        if (!itemCategory) return false;
+        return itemCategory == selectedCategory;
+    }
+
     newProject() {
         this.dataStore?.newRecord();
     }
 
     saveProject() {
         this.dataStore?.saveRecord(this.selectedData);
+    }
+
+    showSelectedCategory(category: string) {
+        console.log('showSelectedCategory', category, this.dataMap.size);
+        this.updateList();
     }
 
     setStore() {

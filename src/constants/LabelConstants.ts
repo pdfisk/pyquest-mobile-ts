@@ -16,5 +16,7 @@ export class LabelConstants {
     static FieldLabelName: string = 'Name';
     static FieldLabelPassword: string = 'Password';
 
+    static SelectionLabelAll: string = '-- all --';
+
     static WindowLabelProjects: string = 'Projects';
 }

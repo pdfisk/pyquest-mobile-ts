@@ -46,6 +46,10 @@ export abstract class DataListPanel extends AbstractPanel {
         this.list.initSelection();
     }
 
+    isCategorySelected(item: any): boolean {
+        return true;
+    }
+
     getSelectedData(): any {
         if (!this.hasSelectedData())
             return null;
@@ -85,12 +89,11 @@ export abstract class DataListPanel extends AbstractPanel {
 
     updateList() {
         const names: string[] = [];
-        (this.dataMap.keys() as any).forEach((key:string)=>{
-            names.push(key);
+        (this.dataMap as any).forEach((item: any) => {
+            if (this.isCategorySelected(item))
+                names.push(item.name);
         });
         names.sort();
-        console.log('updateList', names);
-        (window as any).X = this;
         this.list.widget.initSelection();
         this.list.setData(names);
     }
