@@ -32,7 +32,7 @@ export class ProjectsPanel extends DataListPanel {
                 const data: any = JSON.parse(record.details);
                 if (typeof (data.category) === 'string') {
                     const category: string = data.category;
-                    if (!categories.includes(category))
+                    if (category.length > 0 && !categories.includes(category))
                         categories.push(category);
                 }
             }

@@ -9,7 +9,7 @@ export class ProjectsButtonBar extends ButtonBar {
     }
 
     getSelectedCategory(): string {
-        return (this.selectBox as QxSelectBox).getSelectedLabel()
+        return (this.selectBox as QxSelectBox).getSelectedLabel().trim();
     }
 
     setSelectionHandlerFn(handlerFn: Function) {

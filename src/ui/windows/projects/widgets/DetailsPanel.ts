@@ -52,6 +52,8 @@ export class DetailsPanel extends AbstractPanel {
         if (typeof (jsonStr) !== 'string')
             return;
         const data = JSON.parse(jsonStr);
+        if (typeof (data.category) !== 'string')
+            data.category = '';
         this.categoryField.setValue(data.category);
     }
 
