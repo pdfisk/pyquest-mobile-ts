@@ -31,6 +31,7 @@ export class ProjectTabView extends QxTabView {
         this.clearCode();
         this.clearDescription();
         this.clearDetails();
+        this.setSelection(this.codePanel);
     }
 
     clearCode() {
@@ -75,6 +76,10 @@ export class ProjectTabView extends QxTabView {
 
     setDetails(text: string) {
         this.detailsPanel.setValue(text);
+    }
+
+    setSelection(child: QxWidget) {
+        this.widget.setSelection([child.widget.getLayoutParent()]);
     }
 
 }

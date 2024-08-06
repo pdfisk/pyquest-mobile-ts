@@ -66,7 +66,6 @@ export class ProjectsPanel extends DataListPanel {
     }
 
     showSelectedCategory(category: string) {
-        console.log('showSelectedCategory', category, this.dataMap.size);
         this.updateList();
     }
 

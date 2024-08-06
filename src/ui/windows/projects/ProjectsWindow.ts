@@ -51,7 +51,8 @@ export class ProjectsWindow extends AbstractWindow {
     addHandlers() {
         const projectsButtonBar = this.buttonBar as ProjectsButtonBar;
         projectsButtonBar.setSelectionHandlerFn(() => {
-            this.projectsPanel?.showSelectedCategory(projectsButtonBar.getSelectedCategory())
+            this.projectsPanel?.showSelectedCategory(projectsButtonBar.getSelectedCategory());
+            this.tabView?.clear();
         });
     }
 
