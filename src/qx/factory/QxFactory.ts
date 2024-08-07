@@ -76,8 +76,8 @@ export class QxFactory {
         return new (window as any).qx.ui.form.ListItem;
     }
 
-    static menuButton(): any {
-        return new (window as any).qx.ui.menu.Button;
+    static menuButton(text: string = ''): any {
+        return new (window as any).qx.ui.menu.Button(text);
     }
 
     static menuMenu(): any {
@@ -94,6 +94,10 @@ export class QxFactory {
 
     static menubarMenuBar(): any {
         return new (window as any).qx.ui.menubar.MenuBar;
+    }
+
+    static menuSplitButton(text: string = ''): any {
+        return new (window as any).qx.ui.menu.SplitButton(text);
     }
 
     static selectBox(): any {
