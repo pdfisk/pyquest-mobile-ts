@@ -1,3 +1,4 @@
+import { Version } from '../../../constants/Version';
 import { TextPanel } from '../../widgets/TextPanel';
 import { AbstractWindow } from '../abstract/AbstractWindow';
 
@@ -25,6 +26,7 @@ export class TranscriptWindow extends AbstractWindow {
 
     addButtonsLeft() {
         this.addButtonLeft('Clear');
+        this.addButtonLeft('Status');
     }
 
     defaultCaption(): string {
@@ -40,6 +42,9 @@ export class TranscriptWindow extends AbstractWindow {
             case 'clear':
                 this.onClear();
                 break;
+            case 'status':
+                this.onStatus();
+                break;
             default:
                 console.log('onButtonClick', tag);
                 break;
@@ -48,6 +53,13 @@ export class TranscriptWindow extends AbstractWindow {
 
     onClear() {
         this.textPanel?.clear();
+    }
+
+    onStatus() {
+        const str1 = `  Version: ${Version.version}`;
+        const str2 = `Timestamp: ${Version.timestamp}`;
+        const str = `${str1}\n${str2}`;
+        this.textPanel?.setValue(str);
     }
 
 }
