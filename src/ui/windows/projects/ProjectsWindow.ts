@@ -4,6 +4,7 @@ import { LabelConstants } from '../../../constants/LabelConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
 import { EventBus } from '../../../messages/EventBus';
 import { QxFormButton } from '../../../qx/ui/form/QxFormButton';
+import { QxSplitButton } from '../../../qx/ui/form/QxSplitButton';
 import { QxPopup } from '../../../qx/ui/popup/Popup';
 import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
 import { SessionStatus } from '../../../session/SessionStatus';
@@ -17,6 +18,7 @@ export class ProjectsWindow extends AbstractWindow {
     projectsPanel?: ProjectsPanel;
     splitPane?: QxSplitPane;
     deleteButton?: QxFormButton;
+    moreButton?: QxSplitButton;
     newButton?: QxFormButton;
     renameButton?: QxFormButton;
     runButton?: QxFormButton;
@@ -37,6 +39,12 @@ export class ProjectsWindow extends AbstractWindow {
     addButtonsLeft() {
         this.addButtonLeft(LabelConstants.ButtonLabelRefresh);
         this.saveButton = this.addButtonLeft(LabelConstants.ButtonLabelSave);
+        const moreMenuButtons: string[] = [
+            LabelConstants.ButtonLabelRename,
+            LabelConstants.ButtonLabelNew,
+            LabelConstants.ButtonLabelDelete
+        ];
+        this.moreButton = this.addSplitButtonLeft(LabelConstants.ButtonLabelMore, moreMenuButtons);
         this.renameButton = this.addButtonLeft(LabelConstants.ButtonLabelRename);
         this.newButton = this.addButtonLeft(LabelConstants.ButtonLabelNew);
         this.deleteButton = this.addButtonLeft(LabelConstants.ButtonLabelDelete);
@@ -204,6 +212,8 @@ export class ProjectsWindow extends AbstractWindow {
             const enabled_3: boolean = enabled_1 && enabled_2;
             if (this.deleteButton)
                 this.deleteButton.setEnabled(enabled_3);
+            if (this.moreButton)
+                this.moreButton.setEnabled(enabled_1);
             if (this.newButton)
                 this.newButton.setEnabled(enabled_1);
             if (this.renameButton)

@@ -97,7 +97,7 @@ export class QxFactory {
     }
 
     static menuSplitButton(text: string = ''): any {
-        return new (window as any).qx.ui.menu.SplitButton(text);
+        return new (window as any).qx.ui.form.SplitButton(text);
     }
 
     static selectBox(): any {

@@ -39,6 +39,14 @@ export class ButtonBar extends DockPanel {
     this.addCenter(this.selectBox);
   }
 
+  addSplitButtonLeft(label: string, items: string[]) {
+    return this.buttonBarLeft.addSplitButton(label, items);
+  }
+
+  addSplitButtonRight(label: string, items: string[]) {
+    return this.buttonBarRight.addSplitButton(label, items);
+  }
+
   defaultHasSelectBox(): boolean {
     return false;
   }

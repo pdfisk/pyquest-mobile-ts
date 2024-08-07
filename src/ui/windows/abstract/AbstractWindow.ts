@@ -1,4 +1,5 @@
 import { QxFormButton } from '../../../qx/ui/form/QxFormButton';
+import { QxSplitButton } from '../../../qx/ui/form/QxSplitButton';
 import { QxWindowWindow } from '../../../qx/ui/window/QxWindowWindow';
 import { ButtonBar } from '../../widgets/ButtonBar';
 
@@ -29,6 +30,14 @@ export class AbstractWindow extends QxWindowWindow {
     }
 
     addComboBox() {
+    }
+
+    addSplitButtonLeft(label: string, items: string[] = []): QxSplitButton {
+        return this.buttonBar.addSplitButtonLeft(label, items);
+    }
+
+    addSplitButtonRight(label: string, items: string[]): QxSplitButton {
+        return this.buttonBar.addSplitButtonRight(label, items);
     }
 
     center() {

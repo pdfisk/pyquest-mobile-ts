@@ -3,6 +3,7 @@ import { SizeConstants } from '../../constants/SizeConstants';
 import { TextConstants } from '../../constants/TextConstants';
 import { QxFactory } from '../../qx/factory/QxFactory';
 import { QxFormButton } from '../../qx/ui/form/QxFormButton';
+import { QxSplitButton } from '../../qx/ui/form/QxSplitButton';
 import { QxAbstractLayout } from '../../qx/ui/layout/QxAbstractLayout';
 import { QxHBoxLayout } from '../../qx/ui/layout/QxHBoxLayout';
 import { AbstractWindow } from '../windows/abstract/AbstractWindow';
@@ -26,7 +27,7 @@ export abstract class AbstractButtonBar extends HPanel {
         return btn;
     }
 
-    addMenuButton(label: string, items: string[]) {
+    addSplitButton(label: string, items: string[]): QxSplitButton {
         const menu = QxFactory.menuMenu();
         for (let i = 0; i < items.length; i++) {
             const menuLabel: string = items[i];
@@ -45,6 +46,7 @@ export abstract class AbstractButtonBar extends HPanel {
         const button = QxFactory.menuSplitButton(label);
         button.setMenu(menu);
         this.widget.add(button);
+        return button;
     }
 
     createTagName(name: string): string {
