@@ -27,7 +27,15 @@ export abstract class AbstractButtonBar extends HPanel {
         return btn;
     }
 
-    addSplitButton(label: string, items: string[]): QxSplitButton {
+    addButtonListener(btn:any, label:string) {
+        const selector = this.createTagName(label);
+        btn.addListener('execute', () => {
+            this.parentWindow.onButtonClick(selector);
+        });
+    }
+
+    addSplitButton(label: string, items: string[]): any[] {
+        const btns: any = {};
         const menu = QxFactory.menuMenu();
         for (let i = 0; i < items.length; i++) {
             const menuLabel: string = items[i];
@@ -36,17 +44,16 @@ export abstract class AbstractButtonBar extends HPanel {
                 menuItem = QxFactory.menuSeparator();
             else {
                 menuItem = QxFactory.menuButton(menuLabel);
-                const selector = 'mi_' + this.createTagName(menuLabel);
-                menuItem.addListener('execute', () => {
-                    this.parentWindow.onButtonClick(selector);
-                });
+                this.addButtonListener(menuItem, menuLabel);
+                btns[menuLabel] = menuItem;
             }
             menu.add(menuItem);
         }
         const button = QxFactory.menuSplitButton(label);
+        this.addButtonListener(button, label);
         button.setMenu(menu);
         this.widget.add(button);
-        return button;
+        return [button, btns];
     }
 
     createTagName(name: string): string {

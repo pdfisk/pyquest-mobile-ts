@@ -3,7 +3,6 @@ export class LabelConstants {
     static ButtonLabelDelete: string = 'Delete';
     static ButtonLabelLogin: string = 'Login';
     static ButtonLabelLogout: string = 'Logout';
-    static ButtonLabelMore: string = 'More';
     static ButtonLabelNew: string = 'New';
     static ButtonLabelProjects: string = 'Projects';
     static ButtonLabelRefresh: string = 'Refresh';

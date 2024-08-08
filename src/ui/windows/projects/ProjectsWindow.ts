@@ -38,16 +38,17 @@ export class ProjectsWindow extends AbstractWindow {
 
     addButtonsLeft() {
         this.addButtonLeft(LabelConstants.ButtonLabelRefresh);
-        this.saveButton = this.addButtonLeft(LabelConstants.ButtonLabelSave);
-        const moreMenuButtons: string[] = [
+        const saveMenuButtons: string[] = [
             LabelConstants.ButtonLabelRename,
             LabelConstants.ButtonLabelNew,
             LabelConstants.ButtonLabelDelete
         ];
-        this.moreButton = this.addSplitButtonLeft(LabelConstants.ButtonLabelMore, moreMenuButtons);
-        this.renameButton = this.addButtonLeft(LabelConstants.ButtonLabelRename);
-        this.newButton = this.addButtonLeft(LabelConstants.ButtonLabelNew);
-        this.deleteButton = this.addButtonLeft(LabelConstants.ButtonLabelDelete);
+        const saveSplitBtns = this.addSplitButtonLeft(LabelConstants.ButtonLabelSave, saveMenuButtons);
+        this.saveButton = saveSplitBtns[0];
+        const moreMenuButtonMap: any = saveSplitBtns[1];
+        this.renameButton = moreMenuButtonMap[LabelConstants.ButtonLabelRename];
+        this.newButton = moreMenuButtonMap[LabelConstants.ButtonLabelNew];
+        this.deleteButton = moreMenuButtonMap[LabelConstants.ButtonLabelDelete];
         this.addHandlers();
         this.updateEnabledButtons();
     }

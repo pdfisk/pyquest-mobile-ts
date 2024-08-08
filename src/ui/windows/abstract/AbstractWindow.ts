@@ -32,11 +32,11 @@ export class AbstractWindow extends QxWindowWindow {
     addComboBox() {
     }
 
-    addSplitButtonLeft(label: string, items: string[] = []): QxSplitButton {
+    addSplitButtonLeft(label: string, items: string[] = []): any[] {
         return this.buttonBar.addSplitButtonLeft(label, items);
     }
 
-    addSplitButtonRight(label: string, items: string[]): QxSplitButton {
+    addSplitButtonRight(label: string, items: string[]): any[] {
         return this.buttonBar.addSplitButtonRight(label, items);
     }
 
