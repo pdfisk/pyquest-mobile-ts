@@ -22,6 +22,9 @@ export class ProjectsWindow extends AbstractWindow {
     newButton?: QxFormButton;
     renameButton?: QxFormButton;
     runButton?: QxFormButton;
+    runContinouslyButton?: QxFormButton;
+    runSingleStepButton?: QxFormButton;
+    runSteppingButton?: QxFormButton;
     saveButton?: QxFormButton;
     tabView?: ProjectTabView;
 
@@ -54,7 +57,17 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     addButtonsRight() {
-        this.runButton = this.addButtonRight(LabelConstants.ButtonLabelRun);
+        const runMenuButtons: string[] = [
+            LabelConstants.ButtonLabelRunContinuously,
+            LabelConstants.ButtonLabelRunSingleStep,
+            LabelConstants.ButtonLabelRunStepping
+        ];
+        const runSplitBtns = this.addSplitButtonRight(LabelConstants.ButtonLabelRun, runMenuButtons);
+        this.runButton = runSplitBtns[0];
+        const runMenuButtonMap: any = runSplitBtns[1];
+        this.runContinouslyButton = runMenuButtonMap[LabelConstants.ButtonLabelRunContinuously];
+        this.runSingleStepButton = runMenuButtonMap[LabelConstants.ButtonLabelRunSingleStep];
+        this.runSteppingButton = runMenuButtonMap[LabelConstants.ButtonLabelRunStepping];
     }
 
     addHandlers() {
@@ -134,6 +147,18 @@ export class ProjectsWindow extends AbstractWindow {
             case ActionConstants.ActionRename:
                 this.onRename();
                 break;
+            case ActionConstants.ActionRun:
+                this.onRun();
+                break;
+            case ActionConstants.ActionRunContinuously:
+                this.onRunContinuously();
+                break;
+            case ActionConstants.ActionRunSingleStep:
+                this.onRunSingleStep();
+                break;
+            case ActionConstants.ActionRunStepping:
+                this.onRunStepping();
+                break;
             case ActionConstants.ActionSave:
                 this.onSave();
                 break;
@@ -174,6 +199,18 @@ export class ProjectsWindow extends AbstractWindow {
 
     onRun() {
         console.log('onRun');
+    }
+
+    onRunContinuously() {
+        console.log('onRunContinuously');
+    }
+
+    onRunSingleStep() {
+        console.log('onRunSingleStep');
+    }
+
+    onRunStepping() {
+        console.log('onRunStepping');
     }
 
     onSave() {

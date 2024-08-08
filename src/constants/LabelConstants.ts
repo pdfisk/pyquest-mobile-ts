@@ -9,6 +9,9 @@ export class LabelConstants {
     static ButtonLabelRegister: string = 'Register';
     static ButtonLabelRename: string = 'Rename';
     static ButtonLabelRun: string = 'Run';
+    static ButtonLabelRunContinuously: string = 'Run Continuously';
+    static ButtonLabelRunSingleStep: string = 'Run Single Step';
+    static ButtonLabelRunStepping: string = 'Run Stepping';
     static ButtonLabelSave: string = 'Save';
     static ButtonLabelViews: string = 'Views';
 
