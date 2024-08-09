@@ -39,6 +39,7 @@ export class RegisterPanel extends AbstractPanel {
     }
 
     onAppear() {
+        super.onAppear();
         const nameLabel = new QxBasicLabel('Name');
         const passwordLabel = new QxBasicLabel('Password');
         this.addRowColumn(nameLabel, 0, 0);

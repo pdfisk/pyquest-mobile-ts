@@ -4,6 +4,7 @@ import { QxLayoutItem } from './QxLayoutItem';
 
 export abstract class QxWidget extends QxLayoutItem {
     contentElement: any = undefined;
+    hasAppeared:boolean = false;
 
     constructor(widget: any) {
         super(widget);
@@ -34,6 +35,7 @@ export abstract class QxWidget extends QxLayoutItem {
     }
 
     onAppear() {
+        this.hasAppeared = true;
     }
 
     setAlignX(align: string) {

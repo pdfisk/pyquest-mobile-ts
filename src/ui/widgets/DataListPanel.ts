@@ -68,6 +68,7 @@ export abstract class DataListPanel extends AbstractPanel {
     }
 
     onAppear() {
+        super.onAppear();
         this.refresh();
     }
 

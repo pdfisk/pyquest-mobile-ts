@@ -2,7 +2,6 @@ import { FontConstants } from '../../../constants/FontConstants';
 import { QxWidget } from '../core/QxWidget';
 
 export abstract class QxAbstractField extends QxWidget {
-    hasAppeared: boolean = false;
     hasTextAppeared: boolean = false;
     initValue: string = '';
 
@@ -33,7 +32,7 @@ export abstract class QxAbstractField extends QxWidget {
 
     onAppear() {
         if (!this.hasAppeared) {
-            this.hasAppeared = true;
+            super.onAppear();
             this.setFontSize(FontConstants.FontSize14Px);
             this.setFontFamily(FontConstants.FontFamilyMonospace);
         }

@@ -77,6 +77,7 @@ export class ProjectTabView extends QxTabView {
     }
 
     onAppear() {
+        super.onAppear();
         this.codePanel.widget.getLayoutParent().getLayoutParent().setPadding(0);
     }
 

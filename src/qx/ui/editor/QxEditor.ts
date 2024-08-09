@@ -21,6 +21,7 @@ export class QxEditor extends QxComposite {
     }
 
     onAppear() {
+        super.onAppear();
         const elem: QxElement = this.getContentElement();
         const domNode = elem.widget._domNode;
         const mode = (window as any).qx.lang.String.format('ace/mode/%1', ['python']);

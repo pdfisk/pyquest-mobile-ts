@@ -43,6 +43,7 @@ export class DetailsPanel extends AbstractPanel {
     }
 
     onAppear() {
+        super.onAppear();
         const categoryLabel = new QxBasicLabel(LabelConstants.FieldLabelCategory);
         this.addRowColumn(categoryLabel, 0, 0);
         this.addRowColumn(this.categoryField, 0, 1);

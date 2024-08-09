@@ -12,11 +12,20 @@ export class BoardTile extends CenteredPanel {
         this.label.setFontFamily(FontConstants.FontFamilyMonospace);
         this.label.setFontSize(FontConstants.FontSize24Px);
         this.setChild(this.label);
+        this.setValue('X');
+    }
+
+    getValue(): string {
+        return this.label.getValue();
     }
 
     initialize() {
         super.initialize();
         this.setBackgroundColor(ColorConstants.BoardTileBackground);
+    }
+
+    setValue(value: string) {
+        this.label.setValue(value);
     }
 
 }

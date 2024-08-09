@@ -40,6 +40,7 @@ export class LoginPanel extends AbstractPanel {
     }
 
     onAppear() {
+        super.onAppear();
         const nameLabel = new QxBasicLabel(LabelConstants.FieldLabelName);
         const passwordLabel = new QxBasicLabel(LabelConstants.FieldLabelPassword);
         this.addRowColumn(nameLabel, 0, 0);
