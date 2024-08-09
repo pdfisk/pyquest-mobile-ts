@@ -1,5 +1,7 @@
 export class ActionConstants {
     static ActionClear: string = 'clear';
+    static ActionClearIn: string = 'clear_in';
+    static ActionClearOut: string = 'clear_out';
     static ActionDelete: string = 'delete';
     static ActionLogin: string = 'login';
     static ActionLogout: string = 'logout';
@@ -12,4 +14,5 @@ export class ActionConstants {
     static ActionRunSingleStep: string = 'run_single_step';
     static ActionRunStepping: string = 'run_stepping';
     static ActionSave: string = 'save';
+    static ActionStatus: string = 'status';
 }

@@ -33,7 +33,7 @@ export class RegisterWindow extends AbstractWindow {
     }
 
     defaultCaption(): string {
-        return 'Register';
+        return LabelConstants.WindowLabelRegister;
     }
 
     defaultHeight(): number {

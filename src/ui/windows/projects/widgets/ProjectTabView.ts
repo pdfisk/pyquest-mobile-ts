@@ -1,12 +1,15 @@
+import { LabelConstants } from '../../../../constants/LabelConstants';
 import { QxWidget } from '../../../../qx/ui/core/QxWidget';
 import { QxTabPage } from '../../../../qx/ui/tabview/QxTabPage';
 import { QxTabView } from '../../../../qx/ui/tabview/QxTabView';
+import { BoardPanel } from '../../../widgets/BoardPanel';
 import { EditorPanel } from '../../../widgets/EditorPanel';
 import { TextPanel } from '../../../widgets/TextPanel';
 import { TranscriptPanel } from '../../../widgets/TranscriptPanel';
 import { DetailsPanel } from './DetailsPanel';
 
 export class ProjectTabView extends QxTabView {
+    boardPanel: BoardPanel;
     codePanel: EditorPanel;
     descriptionPanel: TextPanel;
     detailsPanel: DetailsPanel;
@@ -14,14 +17,16 @@ export class ProjectTabView extends QxTabView {
 
     constructor() {
         super();
+        this.boardPanel = new BoardPanel;
         this.codePanel = new EditorPanel;
         this.descriptionPanel = new TextPanel;
         this.detailsPanel = new DetailsPanel;
         this.transcriptPanel = new TranscriptPanel;
-        this.addPage('Code', this.codePanel);
-        this.addPage('Description', this.descriptionPanel);
-        this.addPage('Details', this.detailsPanel);
-        this.addPage('Transcript', this.transcriptPanel);
+        this.addPage(LabelConstants.TabPageCode, this.codePanel);
+        this.addPage(LabelConstants.TabPageDescription, this.descriptionPanel);
+        this.addPage(LabelConstants.TabPageDetails, this.detailsPanel);
+        this.addPage(LabelConstants.TabPageTranscript, this.transcriptPanel);
+        this.addPage(LabelConstants.TabPageBoard, this.boardPanel);
     }
 
     addPage(label: string, widget: QxWidget): QxWidget {
@@ -32,10 +37,15 @@ export class ProjectTabView extends QxTabView {
     }
 
     clear() {
+        this.clearBoard();
         this.clearCode();
         this.clearDescription();
         this.clearDetails();
         this.setSelection(this.codePanel);
+    }
+
+    clearBoard() {
+        this.boardPanel.clear();
     }
 
     clearCode() {

@@ -96,11 +96,11 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     defaultHeight(): number {
-        return SizeConstants.MediumWindowHeight;
+        return SizeConstants.ProjectsWindowHeight;
     }
 
     defaultWidth(): number {
-        return SizeConstants.MediumWindowWidth;
+        return SizeConstants.ProjectsWindowWidth;
     }
 
     getCode(): string {

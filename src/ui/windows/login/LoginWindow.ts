@@ -36,7 +36,7 @@ export class LoginWindow extends AbstractWindow {
     }
 
     defaultCaption(): string {
-        return LabelConstants.ButtonLabelLogin;
+        return LabelConstants.WindowLabelLogin;
     }
 
     defaultHeight(): number {

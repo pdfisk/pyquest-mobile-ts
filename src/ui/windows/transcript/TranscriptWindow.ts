@@ -1,3 +1,5 @@
+import { ActionConstants } from '../../../constants/ActionConstants';
+import { LabelConstants } from '../../../constants/LabelConstants';
 import { Version } from '../../../constants/Version';
 import { TextPanel } from '../../widgets/TextPanel';
 import { AbstractWindow } from '../abstract/AbstractWindow';
@@ -25,12 +27,12 @@ export class TranscriptWindow extends AbstractWindow {
     }
 
     addButtonsLeft() {
-        this.addButtonLeft('Clear');
-        this.addButtonLeft('Status');
+        this.addButtonLeft(LabelConstants.ButtonLabelClear);
+        this.addButtonLeft(LabelConstants.ButtonLabelStatus);
     }
 
     defaultCaption(): string {
-        return 'Transcript';
+        return LabelConstants.WindowLabelTranscript;
     }
 
     defaultInitialPosition(): number[] {
@@ -39,10 +41,10 @@ export class TranscriptWindow extends AbstractWindow {
 
     onButtonClick(tag: string) {
         switch (tag) {
-            case 'clear':
+            case ActionConstants.ActionClear:
                 this.onClear();
                 break;
-            case 'status':
+            case ActionConstants.ActionStatus:
                 this.onStatus();
                 break;
             default:

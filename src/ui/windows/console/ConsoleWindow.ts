@@ -1,3 +1,5 @@
+import { ActionConstants } from '../../../constants/ActionConstants';
+import { LabelConstants } from '../../../constants/LabelConstants';
 import { QxTextArea } from '../../../qx/ui/form/QxTextArea';
 import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
 import { AbstractWindow } from '../abstract/AbstractWindow';
@@ -19,13 +21,13 @@ export class ConsoleWindow extends AbstractWindow {
     }
 
     addButtonsLeft() {
-        this.addButtonLeft('Run');
-        this.addButtonLeft('Clear Out');
-        this.addButtonLeft('Clear In');
+        this.addButtonLeft(LabelConstants.ButtonLabelRun);
+        this.addButtonLeft(LabelConstants.ButtonLabelClearOut);
+        this.addButtonLeft(LabelConstants.ButtonLabelClearIn);
     }
 
     defaultCaption(): string {
-        return 'Console';
+        return LabelConstants.WindowLabelConsole;
     }
 
     getCin(): string {
@@ -42,13 +44,13 @@ export class ConsoleWindow extends AbstractWindow {
 
     onButtonClick(tag: string) {
         switch (tag) {
-            case 'clear_in':
+            case ActionConstants.ActionClearIn:
                 this.onClearIn();
                 break;
-            case 'clear_out':
+            case ActionConstants.ActionClearOut:
                 this.onClearOut();
                 break;
-            case 'run':
+            case ActionConstants.ActionRun:
                 this.onRun();
                 break;
             default:
