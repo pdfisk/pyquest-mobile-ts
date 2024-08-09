@@ -15,6 +15,10 @@ export class QxComposite extends QxWidget {
         this.setPadding(this.defaultPadding());
     }
 
+    add(child: QxWidget, options: any = {}) {
+        this.widget.add(child.widget, options);
+    }
+
     addCenter(child: QxWidget) {
         this.widget.add(child.widget, { edge: 'center' });
     }
