@@ -51,6 +51,10 @@ export class QxComposite extends QxWidget {
         return [0];
     }
 
+    removeAll() {
+        this.widget.removeAll();
+    }
+
     setLayout(layout: QxAbstractLayout) {
         this.widget.setLayout(layout.widget);
     }

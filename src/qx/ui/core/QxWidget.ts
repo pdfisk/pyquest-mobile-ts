@@ -36,6 +36,14 @@ export abstract class QxWidget extends QxLayoutItem {
     onAppear() {
     }
 
+    setAlignX(align: string) {
+        this.widget.setAlignX(align);
+    }
+
+    setAlignY(align: string) {
+        this.widget.setAlignY(align);
+    }
+
     setBackgroundColor(color: string) {
         this.setStyle(StyleConstants.BackgroundColor, color);
     }
