@@ -6,4 +6,9 @@ export abstract class AbstractPanel extends QxComposite {
         return true;
     }
 
+    defaultEnableOnResize(): boolean {
+        return true;
+    }
+
+
 }

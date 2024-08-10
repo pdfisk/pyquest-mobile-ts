@@ -1,3 +1,4 @@
+import { EventConstants } from '../../../constants/EventConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
 import { QxFactory } from '../../factory/QxFactory';
 import { QxWidget } from '../core/QxWidget';
@@ -26,6 +27,13 @@ export class QxWindowWindow extends QxWidget {
 
     add(child: QxWidget) {
         this.widget.add(child.widget, { edge: 'center' });
+    }
+
+    addHandlers() {
+        this.widget.addListener(EventConstants.WindowEventClose, this.onClose, this);
+        this.widget.addListener(EventConstants.WindowEventMaximize, this.onMaximize, this);
+        this.widget.addListener(EventConstants.WindowEventMinimize, this.onMinimize, this);
+        this.widget.addListener(EventConstants.WindowEventRestore, this.onRestore, this);
     }
 
     addSouth(child: QxWidget) {
@@ -62,6 +70,22 @@ export class QxWindowWindow extends QxWidget {
 
     defaultWidth(): number {
         return SizeConstants.DefaultWindowWidth;
+    }
+
+    onClose() {
+    }
+
+    onMaximize() {
+    }
+
+    onMinimize() {
+    }
+
+    onRestore() {
+    }
+
+    setAutoDestroy(value: boolean) {
+        this.widget.setAutoDestroy(value);
     }
 
     setCaption(caption: string) {

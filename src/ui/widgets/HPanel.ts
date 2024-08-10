@@ -8,6 +8,7 @@ export class HPanel extends AbstractPanel {
 
     addAlignCenter(child: QxWidget) {
         child.setAlignY(LayoutConstants.AlignCenter);
+        this.add(child);
     }
 
     defaultLayout(): QxAbstractLayout {

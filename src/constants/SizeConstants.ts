@@ -5,6 +5,7 @@ export class SizeConstants {
     static DefaultWindowContentPadding: number = 0;
     static DefaultWindowHeight: number = 275;
     static DefaultWindowWidth: number = 325;
+    static LabelSize24: number = 24;
     static LoginPanelColOneWidth: number = 175;
     static LoginPanelColZeroWidth: number = 60;
     static LoginPanelSpacingX: number = 2;

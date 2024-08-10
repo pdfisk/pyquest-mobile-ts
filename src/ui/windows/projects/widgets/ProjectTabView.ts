@@ -64,6 +64,10 @@ export class ProjectTabView extends QxTabView {
         return true;
     }
 
+    defaultEnableOnResize(): boolean {
+        return true;
+    }
+
     getCode(): string {
         return this.codePanel.getValue();
     }
@@ -79,6 +83,11 @@ export class ProjectTabView extends QxTabView {
     onAppear() {
         super.onAppear();
         this.codePanel.widget.getLayoutParent().getLayoutParent().setPadding(0);
+    }
+
+    onResize() {
+        super.onResize();
+        this.boardPanel.centerLabels();
     }
 
     setCode(code: string) {

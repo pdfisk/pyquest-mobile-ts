@@ -7,14 +7,15 @@ import { BoardTile } from './BoardTile';
 export class BoardPanel extends AbstractPanel {
     layout?: QxGridLayout;
     size: number = 0;
+    tileMap: Map<string, BoardTile> = new Map;
 
     constructor(size: number = 3) {
         super();
         this.setSize(size);
-        (window as any).X = this;
     }
 
     addTiles() {
+        this.tileMap.clear();
         for (let i = 0; i < this.size; i++)
             this.layout?.setRowFlex(i, 1);
         for (let j = 0; j < this.size; j++)
@@ -22,12 +23,20 @@ export class BoardPanel extends AbstractPanel {
         for (let i = 0; i < this.size; i++) {
             for (let j = 0; j < this.size; j++) {
                 const tile = new BoardTile;
+                this.tileMap.set(`row:${i}column:${j}`, tile);
                 this.widget.add(tile.widget, { row: i, column: j });
             }
         }
     }
 
+    centerLabels() {
+        for (let tile of this.tileMap.values())
+            tile.centerLabel();
+    }
+
     clear() {
+        this.widget.removeAll();
+        this.tileMap.clear();
     }
 
     defaultLayout(): QxGridLayout {
@@ -48,6 +57,10 @@ export class BoardPanel extends AbstractPanel {
     onAppear() {
         super.onAppear();
         this.addTiles();
+    }
+
+    onResize() {
+        this.centerLabels();
     }
 
     setSize(size: number) {

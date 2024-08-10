@@ -21,6 +21,7 @@ export class CenteredPanel extends VPanel {
 
     addAlignMiddle(child: QxWidget) {
         child.setAlignY(LayoutConstants.AlignMiddle);
+        this.add(this.middlePanel);
     }
 
     defaultLayout(): QxAbstractLayout {

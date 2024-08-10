@@ -4,20 +4,34 @@ import { QxLayoutItem } from './QxLayoutItem';
 
 export abstract class QxWidget extends QxLayoutItem {
     contentElement: any = undefined;
-    hasAppeared:boolean = false;
+    hasAppeared: boolean = false;
 
     constructor(widget: any) {
         super(widget);
         if (this.defaultEnableOnAppear())
             this.enableOnAppear();
+        if (this.defaultEnableOnResize())
+            this.enableOnResize();
     }
 
     defaultEnableOnAppear(): boolean {
         return false;
     }
 
+    defaultEnableOnResize(): boolean {
+        return false;
+    }
+
     enableOnAppear() {
         this.widget.addListener('appear', this.onAppear, this);
+    }
+
+    enableOnResize() {
+        this.widget.addListener('resize', this.onResize, this);
+    }
+
+    getBounds(): any {
+        return this.widget.getBounds();
     }
 
     getContentElement(): QxElement {
@@ -36,6 +50,9 @@ export abstract class QxWidget extends QxLayoutItem {
 
     onAppear() {
         this.hasAppeared = true;
+    }
+
+    onResize() {
     }
 
     setAlignX(align: string) {
@@ -65,6 +82,10 @@ export abstract class QxWidget extends QxLayoutItem {
 
     setHeight(height: number) {
         this.widget.setHeight(height);
+    }
+
+    setLeft(left: number) {
+        this.widget.setDomLeft(left);
     }
 
     setMargin(margin: number[]) {
@@ -117,6 +138,10 @@ export abstract class QxWidget extends QxLayoutItem {
 
     setStyle(key: string, value: any) {
         this.getContentElement().setStyle(key, value);
+    }
+
+    setTop(top: number) {
+        this.widget.setDomTop(top);
     }
 
     setWidth(width: number) {

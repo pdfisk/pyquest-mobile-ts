@@ -13,6 +13,8 @@ export class AbstractWindow extends QxWindowWindow {
         this.addSouth(this.buttonBar);
         this.addButtonsLeft();
         this.addButtonsRight();
+        if (this.defaultAutoDestroy())
+            this.setAutoDestroy(true);
     }
 
     addButtonLeft(label: string): QxFormButton {
@@ -48,11 +50,19 @@ export class AbstractWindow extends QxWindowWindow {
         this.widget.close();
     }
 
+    defaultAutoDestroy():boolean {
+        return true;
+    }
+
     defaultButtonBar(): ButtonBar {
         return new ButtonBar(this);
     }
 
     defaultEnableOnAppear(): boolean {
+        return true;
+    }
+
+    defaultEnableOnResize() : boolean {
         return true;
     }
 
@@ -73,15 +83,17 @@ export class AbstractWindow extends QxWindowWindow {
     }
 
     onAppear() {
-        super.onAppear();
         if (!this.hasAppeared) {
-            this.hasAppeared = true;
+            super.onAppear();
             this.moveToInitialPosition();
         }
     }
 
     onButtonClick(tag: string) {
         console.log('onButtonClick', tag);
+    }
+
+    onResize() {
     }
 
 }

@@ -176,6 +176,14 @@ export class ProjectsWindow extends AbstractWindow {
     onEventStatusChanged(message: any) {
         this.updateEnabledButtons();
     }
+ 
+    onMaximize() {
+        this.onResize();
+    }
+
+    onMinimize() {
+        this.onResize();
+    }
 
     onNew() {
         this.projectsPanel?.newProject();
@@ -195,6 +203,14 @@ export class ProjectsWindow extends AbstractWindow {
             this.save();
         };
         QxPopup.rename(oldName, newNameFn);
+    }
+
+    onResize() {
+        this.tabView?.boardPanel.centerLabels();
+    }
+
+    onRestore() {
+        this.onResize();
     }
 
     onRun() {

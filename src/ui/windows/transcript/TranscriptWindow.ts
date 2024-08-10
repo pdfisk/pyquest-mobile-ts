@@ -31,6 +31,10 @@ export class TranscriptWindow extends AbstractWindow {
         this.addButtonLeft(LabelConstants.ButtonLabelStatus);
     }
 
+    defaultAutoDestroy():boolean {
+        return false;
+    }
+
     defaultCaption(): string {
         return LabelConstants.WindowLabelTranscript;
     }
