@@ -2,17 +2,14 @@ import { ColorConstants } from "../../constants/ColorConstants";
 import { FontConstants } from "../../constants/FontConstants";
 import { SizeConstants } from "../../constants/SizeConstants";
 import { QxBasicLabel } from '../../qx/ui/basic/QxBasicLabel';
-import { QxWidget } from '../../qx/ui/core/QxWidget';
 import { CenteredPanel } from "./CenteredPanel";
 
 export class BoardTile extends CenteredPanel {
-    child: QxWidget;
 
     constructor() {
-        super();
-        this.child = new QxBasicLabel;
-        this.add(this.child);
+        super(new QxBasicLabel);
         this.setValue('X');
+        (window as any).X = this;
     }
 
     centerLabel() {
@@ -40,8 +37,8 @@ export class BoardTile extends CenteredPanel {
         super.onAppear();
         this.child.setFontFamily(FontConstants.FontFamilyMonospace);
         this.child.setFontSize(FontConstants.FontSize24Px);
-        this.child.setWidth(24);
-        this.child.setHeight(24);
+        this.child.setWidth(SizeConstants.LabelSize24);
+        this.child.setHeight(SizeConstants.LabelSize24);
         this.centerLabel();
     }
 
