@@ -1,31 +1,6 @@
-import { LayoutConstants } from '../../constants/LayoutConstants';
-import { QxWidget } from '../../qx/ui/core/QxWidget';
-import { QxAbstractLayout } from '../../qx/ui/layout/QxAbstractLayout';
-import { QxVBoxLayout } from '../../qx/ui/layout/QxVBoxLayout';
-import { VPanel } from "./VPanel";
-import { HPanel } from "./HPanel";
+import { BasicPanel } from './BasicPanel';
 
-export class CenteredPanel extends VPanel {
-    middlePanel: HPanel;
+export class CenteredPanel extends BasicPanel {
 
-    constructor() {
-        super();
-        this.middlePanel = new HPanel;
-        this.addAlignMiddle(this.middlePanel);
-    }
-
-    setChild(child: QxWidget) {
-        this.middlePanel.removeAll();
-        this.middlePanel.addAlignCenter(child);
-    }
-
-    addAlignMiddle(child: QxWidget) {
-        child.setAlignY(LayoutConstants.AlignMiddle);
-        this.add(this.middlePanel);
-    }
-
-    defaultLayout(): QxAbstractLayout {
-        return new QxVBoxLayout();
-    }
 
 }

@@ -2,9 +2,9 @@ import { ColorConstants } from "../../constants/ColorConstants";
 import { FontConstants } from "../../constants/FontConstants";
 import { SizeConstants } from "../../constants/SizeConstants";
 import { QxBasicLabel } from '../../qx/ui/basic/QxBasicLabel';
-import { BasicPanel } from "./BasicPanel";
+import { CenteredPanel } from "./CenteredPanel";
 
-export class BoardTile extends BasicPanel {
+export class BoardTile extends CenteredPanel {
     label: QxBasicLabel;
 
     constructor() {
