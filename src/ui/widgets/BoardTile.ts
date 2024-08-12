@@ -2,15 +2,16 @@ import { ColorConstants } from "../../constants/ColorConstants";
 import { FontConstants } from "../../constants/FontConstants";
 import { SizeConstants } from "../../constants/SizeConstants";
 import { QxBasicLabel } from '../../qx/ui/basic/QxBasicLabel';
+import { QxWidget } from '../../qx/ui/core/QxWidget';
 import { CenteredPanel } from "./CenteredPanel";
 
 export class BoardTile extends CenteredPanel {
-    label: QxBasicLabel;
+    child: QxWidget;
 
     constructor() {
         super();
-        this.label = new QxBasicLabel;
-        this.add(this.label);
+        this.child = new QxBasicLabel;
+        this.add(this.child);
         this.setValue('X');
     }
 
@@ -22,12 +23,12 @@ export class BoardTile extends CenteredPanel {
         const labelHeight = SizeConstants.LabelSize24;
         const labelLeft = (tileWidth - labelWidth) / 2;
         const labelTop = (tileHeight - labelHeight) / 2;
-        this.label.setLeft(labelLeft);
-        this.label.setTop(labelTop);
+        this.child.setLeft(labelLeft);
+        this.child.setTop(labelTop);
     }
 
     getValue(): string {
-        return this.label.getValue();
+        return (this.child as QxBasicLabel).getValue();
     }
 
     initialize() {
@@ -37,10 +38,10 @@ export class BoardTile extends CenteredPanel {
 
     onAppear() {
         super.onAppear();
-        this.label.setFontFamily(FontConstants.FontFamilyMonospace);
-        this.label.setFontSize(FontConstants.FontSize24Px);
-        this.label.setWidth(24);
-        this.label.setHeight(24);
+        this.child.setFontFamily(FontConstants.FontFamilyMonospace);
+        this.child.setFontSize(FontConstants.FontSize24Px);
+        this.child.setWidth(24);
+        this.child.setHeight(24);
         this.centerLabel();
     }
 
@@ -49,7 +50,7 @@ export class BoardTile extends CenteredPanel {
     }
 
     setValue(value: string) {
-        this.label.setValue(value);
+        (this.child as QxBasicLabel).setValue(value);
     }
 
 }
