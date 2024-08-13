@@ -13,6 +13,7 @@ export class BoardTile extends CenteredPanel {
     }
 
     centerLabel() {
+        console.log('centerLabel');
         const tileBounds = this.getBounds();
         const tileWidth = tileBounds.width;
         const tileHeight = tileBounds.height;
@@ -37,8 +38,7 @@ export class BoardTile extends CenteredPanel {
         super.onAppear();
         this.child.setFontFamily(FontConstants.FontFamilyMonospace);
         this.child.setFontSize(FontConstants.FontSize24Px);
-        this.child.setWidth(SizeConstants.LabelSize24);
-        this.child.setHeight(SizeConstants.LabelSize24);
+        this.setSize(SizeConstants.LabelSize24, SizeConstants.LabelSize24);
         this.centerLabel();
     }
 
