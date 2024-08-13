@@ -4,6 +4,7 @@ import { QxMenuBarButton } from "../../../../qx/ui/menubar/QxMenuBarButton";
 import { ConsoleWindow } from "../../../windows/console/ConsoleWindow";
 import { ProjectsWindow } from "../../../windows/projects/ProjectsWindow";
 import { TranscriptWindow } from "../../../windows/transcript/TranscriptWindow";
+import { UsersWindow } from "../../../windows/users/UsersWindow";
 
 export class ViewsButton extends QxMenuBarButton {
 
@@ -17,6 +18,9 @@ export class ViewsButton extends QxMenuBarButton {
         const menu = new QxMenu();
         menu.addButton(LabelConstants.ButtonLabelProjects, () => {
             this.openProjects();
+        });
+        menu.addButton(LabelConstants.ButtonLabelUsers, () => {
+            this.openUsers();
         });
         menu.addButton('Console', () => {
             this.openConsole();
@@ -38,6 +42,10 @@ export class ViewsButton extends QxMenuBarButton {
 
     openTranscript() {
         TranscriptWindow.getInstance().show();
+    }
+
+    openUsers() {
+        new UsersWindow();
     }
 
 }

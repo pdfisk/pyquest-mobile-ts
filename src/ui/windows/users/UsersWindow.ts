@@ -10,31 +10,27 @@ import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
 import { SessionStatus } from '../../../session/SessionStatus';
 import { ButtonBar } from '../../widgets/ButtonBar';
 import { AbstractWindow } from '../abstract/AbstractWindow';
-import { ProjectsButtonBar } from './widgets/ProjectsButtonBar';
-import { ProjectsPanel } from './widgets/ProjectsPanel';
-import { ProjectTabView } from './widgets/ProjectTabView';
+import { DetailsPanel } from './widgets/DetailsPanel';
+import { UsersButtonBar } from './widgets/UsersButtonBar';
+import { UsersPanel } from './widgets/UsersPanel';
 
-export class ProjectsWindow extends AbstractWindow {
+export class UsersWindow extends AbstractWindow {
     deleteButton?: QxFormButton;
+    detailsPanel?: DetailsPanel;
     moreButton?: QxSplitButton;
     newButton?: QxFormButton;
-    projectsPanel?: ProjectsPanel;
     renameButton?: QxFormButton;
-    runButton?: QxFormButton;
-    runContinouslyButton?: QxFormButton;
-    runSingleStepButton?: QxFormButton;
-    runSteppingButton?: QxFormButton;
     saveButton?: QxFormButton;
     splitPane?: QxSplitPane;
-    tabView?: ProjectTabView;
+    usersPanel?: UsersPanel;
 
     initialize() {
         super.initialize();
-        this.projectsPanel = this.buildProjectsList();
-        this.tabView = new ProjectTabView;
+        this.usersPanel = this.buildUsersList();
+        this.detailsPanel = new DetailsPanel(this);
         this.splitPane = QxSplitPane.createHorizontal();
-        this.splitPane.add(this.projectsPanel, 1);
-        this.splitPane.add(this.tabView, 2);
+        this.splitPane.add(this.usersPanel, 1);
+        this.splitPane.add(this.detailsPanel, 2);
         this.add(this.splitPane);
         EventBus.subscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this);
     }
@@ -52,81 +48,44 @@ export class ProjectsWindow extends AbstractWindow {
         this.renameButton = moreMenuButtonMap[LabelConstants.ButtonLabelRename];
         this.newButton = moreMenuButtonMap[LabelConstants.ButtonLabelNew];
         this.deleteButton = moreMenuButtonMap[LabelConstants.ButtonLabelDelete];
-        this.addHandlers();
         this.updateEnabledButtons();
     }
 
-    addButtonsRight() {
-        const runMenuButtons: string[] = [
-            LabelConstants.ButtonLabelRunContinuously,
-            LabelConstants.ButtonLabelRunSingleStep,
-            LabelConstants.ButtonLabelRunStepping
-        ];
-        const runSplitBtns = this.addSplitButtonRight(LabelConstants.ButtonLabelRun, runMenuButtons);
-        this.runButton = runSplitBtns[0];
-        const runMenuButtonMap: any = runSplitBtns[1];
-        this.runContinouslyButton = runMenuButtonMap[LabelConstants.ButtonLabelRunContinuously];
-        this.runSingleStepButton = runMenuButtonMap[LabelConstants.ButtonLabelRunSingleStep];
-        this.runSteppingButton = runMenuButtonMap[LabelConstants.ButtonLabelRunStepping];
-    }
-
-    addHandlers() {
-        const projectsButtonBar = this.buttonBar as ProjectsButtonBar;
-        projectsButtonBar.setSelectionHandlerFn(() => {
-            this.projectsPanel?.showSelectedCategory(projectsButtonBar.getSelectedCategory());
-            this.tabView?.clear();
-        });
-    }
-
-    buildProjectsList(): ProjectsPanel {
-        const projectsList = new ProjectsPanel(this);
+    buildUsersList(): UsersPanel {
+        const usersList = new UsersPanel(this);
         const fn = (value: any) => {
             this.onSelectionChange(value);
         };
-        projectsList.setChangeHandler(fn);
-        return projectsList;
+        usersList.setChangeHandler(fn);
+        return usersList;
     }
 
     defaultButtonBar(): ButtonBar {
-        return new ProjectsButtonBar(this);
+        return new UsersButtonBar(this);
     }
 
     defaultCaption(): string {
-        return LabelConstants.WindowLabelProjects;
+        return LabelConstants.WindowLabelUsers;
     }
 
     defaultHeight(): number {
-        return SizeConstants.ProjectsWindowHeight;
+        return SizeConstants.UsersWindowHeight;
     }
 
     defaultWidth(): number {
-        return SizeConstants.ProjectsWindowWidth;
+        return SizeConstants.UsersWindowWidth;
     }
 
-    getCode(): string {
-        if (this.tabView)
-            return this.tabView.getCode();
-        return '';
+    getName(): string {
+        return (this.detailsPanel as DetailsPanel).getName();
     }
 
-    getDescription(): string {
-        if (this.tabView)
-            return this.tabView.getDescription();
-        return '';
-    }
-
-    getDetails(): string {
-        if (this.tabView)
-            return this.tabView.getDetails();
-        return '';
-    }
-
-    getSelectedCategory(): string {
-        return (this.buttonBar as ProjectsButtonBar).getSelectedCategory();
+    getPassword(): string {
+        return (this.detailsPanel as DetailsPanel).getPassword();
     }
 
     hasSelectedData(): boolean {
-        return this.projectsPanel ? this.projectsPanel.hasSelectedData() : false;
+        return this.usersPanel ? this.usersPanel.hasSelectedData() : false;
     }
 
     isLoggedIn(): boolean {
@@ -147,33 +106,21 @@ export class ProjectsWindow extends AbstractWindow {
             case ActionConstants.ActionRename:
                 this.onRename();
                 break;
-            case ActionConstants.ActionRun:
-                this.onRun();
-                break;
-            case ActionConstants.ActionRunContinuously:
-                this.onRunContinuously();
-                break;
-            case ActionConstants.ActionRunSingleStep:
-                this.onRunSingleStep();
-                break;
-            case ActionConstants.ActionRunStepping:
-                this.onRunStepping();
-                break;
             case ActionConstants.ActionSave:
                 this.onSave();
                 break;
             default:
-                console.log('ProjectsWindow onButtonClick', tag);
+                console.log('UsersWindow onButtonClick', tag);
                 break;
         }
     }
 
     onDelete() {
-        this.projectsPanel?.deleteProject();
+        this.usersPanel?.deleteUser();
         this.refresh();
     }
 
-    onEventStatusChanged(message: any) {
+    onEventStatusChanged(_message: any) {
         this.updateEnabledButtons();
     }
 
@@ -186,7 +133,7 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     onNew() {
-        this.projectsPanel?.newProject();
+        this.usersPanel?.newUser();
         this.refresh();
     }
 
@@ -195,7 +142,7 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     onRename() {
-        const selectedData = this.projectsPanel?.getSelectedData();
+        const selectedData = this.usersPanel?.getSelectedData();
         if (!selectedData) return;
         const oldName = selectedData.name;
         const newNameFn = (newName: string) => {
@@ -205,58 +152,31 @@ export class ProjectsWindow extends AbstractWindow {
         QxPopup.rename(oldName, newNameFn);
     }
 
-    onResize() {
-        this.tabView?.boardPanel.centerLabels();
-    }
-
     onRestore() {
         this.onResize();
     }
 
-    onRun() {
-        console.log('onRun');
-    }
-
-    onRunContinuously() {
-        console.log('onRunContinuously');
-    }
-
-    onRunSingleStep() {
-        console.log('onRunSingleStep');
-    }
-
-    onRunStepping() {
-        console.log('onRunStepping');
-    }
-
     onSave() {
-        this.projectsPanel?.updateCode(this.getCode());
-        this.projectsPanel?.updateDescription(this.getDescription());
-        this.projectsPanel?.updateDetails(this.getDetails());
+        this.usersPanel?.updateName(this.getName());
+        this.usersPanel?.updatePassword(this.getPassword());
         this.save();
     }
 
     onSelectionChange(value: any) {
-        const tabView: ProjectTabView = this.tabView as ProjectTabView;
-        tabView.setCode(value.code);
-        tabView.setDescription(value.description);
-        tabView.setDetails(value.details);
+        this.detailsPanel?.setName(value.name);
+        this.detailsPanel?.setPassword(value.password);
         this.updateEnabledButtons();
     }
 
     refresh() {
-        (this.tabView as ProjectTabView).clear();
-        this.projectsPanel?.refresh();
+        this.usersPanel?.refresh();
+        this.detailsPanel?.clear();
         this.updateEnabledButtons();
     }
 
     save() {
-        this.projectsPanel?.saveProject();
+        this.usersPanel?.saveUser();
         this.refresh();
-    }
-
-    updateCategories(categories: string[]) {
-        (this.buttonBar as ProjectsButtonBar).updateCategories(categories);
     }
 
     updateEnabledButtons() {
@@ -272,8 +192,6 @@ export class ProjectsWindow extends AbstractWindow {
                 this.newButton.setEnabled(enabled_1);
             if (this.renameButton)
                 this.renameButton.setEnabled(enabled_3);
-            if (this.runButton)
-                this.runButton.setEnabled(enabled_2);
             if (this.saveButton)
                 this.saveButton.setEnabled(enabled_3);
         };

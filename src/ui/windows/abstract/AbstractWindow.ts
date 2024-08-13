@@ -1,5 +1,4 @@
 import { QxFormButton } from '../../../qx/ui/form/QxFormButton';
-import { QxSplitButton } from '../../../qx/ui/form/QxSplitButton';
 import { QxWindowWindow } from '../../../qx/ui/window/QxWindowWindow';
 import { ButtonBar } from '../../widgets/ButtonBar';
 

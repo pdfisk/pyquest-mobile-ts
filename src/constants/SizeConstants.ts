@@ -24,4 +24,10 @@ export class SizeConstants {
     static RegisterPanelSpacingY: number = 2;
     static RegisterWindowHeight: number = 135;
     static RegisterWindowWidth: number = 235;
+    static UsersPanelColOneWidth: number = 175;
+    static UsersPanelColZeroWidth: number = 60;
+    static UsersPanelSpacingX: number = 2;
+    static UsersPanelSpacingY: number = 2;
+    static UsersWindowHeight: number = 435;
+    static UsersWindowWidth: number = 575;
 }

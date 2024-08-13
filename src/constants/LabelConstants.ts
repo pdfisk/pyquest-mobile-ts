@@ -16,6 +16,7 @@ export class LabelConstants {
     static ButtonLabelRunStepping: string = 'Run Stepping';
     static ButtonLabelSave: string = 'Save';
     static ButtonLabelStatus: string = 'Status';
+    static ButtonLabelUsers: string = 'Users';
     static ButtonLabelViews: string = 'Views';
 
     static FieldLabelCategory: string = 'Category';
@@ -35,4 +36,5 @@ export class LabelConstants {
     static WindowLabelProjects: string = 'Projects';
     static WindowLabelRegister: string = 'Register';
     static WindowLabelTranscript: string = 'Transcript';
+    static WindowLabelUsers: string = 'Users';
 }

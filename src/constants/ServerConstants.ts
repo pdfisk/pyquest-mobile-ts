@@ -4,4 +4,5 @@ export class ServerConstants {
     static MethodPost: string = 'POST';
     static MethodPut: string = 'PUT';
     static ServiceProjects: string = 'projects';
+    static ServiceUsers: string = 'users';
 }
