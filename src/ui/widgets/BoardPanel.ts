@@ -31,7 +31,7 @@ export class BoardPanel extends AbstractPanel {
 
     centerLabels() {
         for (let tile of this.tileMap.values())
-            tile.centerLabel();
+            tile.centerChild();
     }
 
     clear() {

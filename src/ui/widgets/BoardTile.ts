@@ -12,19 +12,6 @@ export class BoardTile extends CenteredPanel {
         (window as any).X = this;
     }
 
-    centerLabel() {
-        console.log('centerLabel');
-        const tileBounds = this.getBounds();
-        const tileWidth = tileBounds.width;
-        const tileHeight = tileBounds.height;
-        const labelWidth = SizeConstants.LabelSize24;
-        const labelHeight = SizeConstants.LabelSize24;
-        const labelLeft = (tileWidth - labelWidth) / 2;
-        const labelTop = (tileHeight - labelHeight) / 2;
-        this.child.setLeft(labelLeft);
-        this.child.setTop(labelTop);
-    }
-
     getValue(): string {
         return (this.child as QxBasicLabel).getValue();
     }
@@ -35,15 +22,10 @@ export class BoardTile extends CenteredPanel {
     }
 
     onAppear() {
-        super.onAppear();
         this.child.setFontFamily(FontConstants.FontFamilyMonospace);
         this.child.setFontSize(FontConstants.FontSize24Px);
         this.setSize(SizeConstants.LabelSize24, SizeConstants.LabelSize24);
-        this.centerLabel();
-    }
-
-    onResize() {
-        this.centerLabel();
+        super.onAppear();
     }
 
     setValue(value: string) {

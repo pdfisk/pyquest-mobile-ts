@@ -3,8 +3,8 @@ import { BasicPanel } from './BasicPanel';
 
 export class CenteredPanel extends BasicPanel {
     child: QxWidget;
-    childHeight: number = 0;
-    childWidth: number = 0;
+    childHeight: number = -1;
+    childWidth: number = -1;
 
     constructor(child: QxWidget) {
         super();
@@ -12,14 +12,34 @@ export class CenteredPanel extends BasicPanel {
         this.add(this.child);
     }
 
+    centerChild() {
+        const tileBounds = this.getBounds();
+        const tileWidth = tileBounds.width;
+        const tileHeight = tileBounds.height;
+        const labelLeft = (tileWidth - this.childWidth) / 2;
+        const labelTop = (tileHeight - this.childHeight) / 2;
+        this.child.setLeft(labelLeft);
+        this.child.setTop(labelTop);
+    }
+
+    onAppear() {
+        super.onAppear();
+        this.centerChild();
+    }
+
+    onResize() {
+        this.centerChild();
+    }
+
     setSize(width: number, height: number) {
-        console.log('setSize');
         this.childWidth = width;
         this.childHeight = height;
         this.setChildSize();
     }
 
     setChildSize() {
+        if (this.childWidth < 0 || this.childHeight < 0)
+            return;
         this.child.setWidth(this.childWidth);
         this.child.setHeight(this.childHeight);
     }
