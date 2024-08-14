@@ -1,3 +1,4 @@
+import { SizeConstants } from '../../constants/SizeConstants';
 import { QxForm } from '../../qx/ui/form/QxForm';
 import { QxFormRendererSingle } from '../../qx/ui/form/QxFormRendererSingle';
 
@@ -16,6 +17,11 @@ export abstract class AbstractForm extends QxFormRendererSingle {
 
     defaultEnableOnResize(): boolean {
         return true;
+    }
+
+    initialize() {
+        super.initialize();
+        this.setPadding([SizeConstants.PanelPadding]);
     }
 
 }

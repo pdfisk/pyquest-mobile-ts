@@ -1,5 +1,4 @@
 import { LabelConstants } from "../../../../constants/LabelConstants";
-import { SizeConstants } from "../../../../constants/SizeConstants";
 import { QxTextField } from "../../../../qx/ui/form/QxTextField";
 import { AbstractForm } from "../../../widgets/AbstractForm";
 import { UsersWindow } from "../UsersWindow";
@@ -25,11 +24,6 @@ export class DetailsPanel extends AbstractForm {
         return true;
     }
 
-    initialize() {
-        super.initialize();
-        this.setPadding([SizeConstants.PanelPadding]);
-    }
-
     getName(): string {
         return this.userField.getValue();
     }
@@ -39,9 +33,11 @@ export class DetailsPanel extends AbstractForm {
     }
 
     onAppear() {
-        super.onAppear();
-        this.form.add(this.userField, LabelConstants.FieldLabelName);
-        this.form.add(this.passwordField, LabelConstants.FieldLabelPassword);
+        if (!this.hasAppeared) {
+            super.onAppear();
+            this.form.add(this.userField, LabelConstants.FieldLabelName);
+            this.form.add(this.passwordField, LabelConstants.FieldLabelPassword);
+        }
     }
 
     setName(value: string) {

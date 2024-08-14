@@ -1,12 +1,8 @@
 import { LabelConstants } from "../../../../constants/LabelConstants";
-import { SizeConstants } from "../../../../constants/SizeConstants";
-import { QxBasicLabel } from "../../../../qx/ui/basic/QxBasicLabel";
 import { QxTextField } from "../../../../qx/ui/form/QxTextField";
-import { QxAbstractLayout } from "../../../../qx/ui/layout/QxAbstractLayout";
-import { QxGridLayout } from "../../../../qx/ui/layout/QxGridLayout";
-import { AbstractPanel } from "../../../widgets/AbstractPanel";
+import { AbstractForm } from "../../../widgets/AbstractForm";
 
-export class LoginPanel extends AbstractPanel {
+export class LoginPanel extends AbstractForm {
     passwordField: QxTextField;
     userField: QxTextField;
 
@@ -14,11 +10,6 @@ export class LoginPanel extends AbstractPanel {
         super();
         this.passwordField = new QxTextField();
         this.userField = new QxTextField();
-    }
-
-    initialize() {
-        super.initialize();
-        this.setPadding([15]);
     }
 
     clear() {
@@ -30,23 +21,12 @@ export class LoginPanel extends AbstractPanel {
         return true;
     }
 
-    defaultLayout(): QxAbstractLayout {
-        const layout = new QxGridLayout();
-        layout.setColumnWidth(0, SizeConstants.LoginPanelColZeroWidth);
-        layout.setColumnWidth(1, SizeConstants.LoginPanelColOneWidth);
-        layout.setSpacingX(SizeConstants.LoginPanelSpacingX);
-        layout.setSpacingY(SizeConstants.LoginPanelSpacingY);
-        return layout;
-    }
-
     onAppear() {
-        super.onAppear();
-        const nameLabel = new QxBasicLabel(LabelConstants.FieldLabelName);
-        const passwordLabel = new QxBasicLabel(LabelConstants.FieldLabelPassword);
-        this.addRowColumn(nameLabel, 0, 0);
-        this.addRowColumn(this.userField, 0, 1);
-        this.addRowColumn(passwordLabel, 1, 0);
-        this.addRowColumn(this.passwordField, 1, 1);
+        if (!this.hasAppeared) {
+            super.onAppear();
+            this.form.add(this.userField, LabelConstants.FieldLabelName);
+            this.form.add(this.passwordField, LabelConstants.FieldLabelPassword);
+        }
     }
 
 }

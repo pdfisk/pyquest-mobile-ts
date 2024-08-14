@@ -1,12 +1,8 @@
 import { LabelConstants } from "../../../../constants/LabelConstants";
-import { SizeConstants } from "../../../../constants/SizeConstants";
-import { QxBasicLabel } from "../../../../qx/ui/basic/QxBasicLabel";
 import { QxTextField } from "../../../../qx/ui/form/QxTextField";
-import { QxAbstractLayout } from "../../../../qx/ui/layout/QxAbstractLayout";
-import { QxGridLayout } from "../../../../qx/ui/layout/QxGridLayout";
-import { AbstractPanel } from "../../../widgets/AbstractPanel";
+import { AbstractForm } from "../../../widgets/AbstractForm";
 
-export class DetailsPanel extends AbstractPanel {
+export class DetailsPanel extends AbstractForm {
     categoryField: QxTextField;
 
     constructor() {
@@ -14,26 +10,8 @@ export class DetailsPanel extends AbstractPanel {
         this.categoryField = new QxTextField();
     }
 
-    initialize() {
-        super.initialize();
-        this.setPadding([SizeConstants.PanelPadding]);
-    }
-
     clear() {
         this.categoryField.clear();
-    }
-
-    defaultEnableOnAppear(): boolean {
-        return true;
-    }
-
-    defaultLayout(): QxAbstractLayout {
-        const layout = new QxGridLayout();
-        layout.setColumnWidth(0, SizeConstants.LoginPanelColZeroWidth);
-        layout.setColumnWidth(1, SizeConstants.LoginPanelColOneWidth);
-        layout.setSpacingX(SizeConstants.LoginPanelSpacingX);
-        layout.setSpacingY(SizeConstants.LoginPanelSpacingY);
-        return layout;
     }
 
     getValue(): string {
@@ -43,10 +21,10 @@ export class DetailsPanel extends AbstractPanel {
     }
 
     onAppear() {
-        super.onAppear();
-        const categoryLabel = new QxBasicLabel(LabelConstants.FieldLabelCategory);
-        this.addRowColumn(categoryLabel, 0, 0);
-        this.addRowColumn(this.categoryField, 0, 1);
+        if (!this.hasAppeared) {
+            super.onAppear();
+            this.form.add(this.categoryField, LabelConstants.FieldLabelCategory);
+        }
     }
 
     setValue(jsonStr: string) {

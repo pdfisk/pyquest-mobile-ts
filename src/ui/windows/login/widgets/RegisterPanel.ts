@@ -1,11 +1,8 @@
-import { SizeConstants } from "../../../../constants/SizeConstants";
-import { QxBasicLabel } from "../../../../qx/ui/basic/QxBasicLabel";
+import { LabelConstants } from "../../../../constants/LabelConstants";
 import { QxTextField } from "../../../../qx/ui/form/QxTextField";
-import { QxAbstractLayout } from "../../../../qx/ui/layout/QxAbstractLayout";
-import { QxGridLayout } from "../../../../qx/ui/layout/QxGridLayout";
-import { AbstractPanel } from "../../../widgets/AbstractPanel";
+import { AbstractForm } from "../../../widgets/AbstractForm";
 
-export class RegisterPanel extends AbstractPanel {
+export class RegisterPanel extends AbstractForm {
     passwordField: QxTextField;
     userField: QxTextField;
 
@@ -15,37 +12,17 @@ export class RegisterPanel extends AbstractPanel {
         this.userField = new QxTextField();
     }
 
-    initialize() {
-        super.initialize();
-        this.setPadding([15]);
-    }
-
     clear() {
         this.passwordField.clear();
         this.userField.clear();
     }
 
-    defaultEnableOnAppear(): boolean {
-        return true;
-    }
-
-    defaultLayout(): QxAbstractLayout {
-        const layout = new QxGridLayout();
-        layout.setColumnWidth(0, SizeConstants.LoginPanelColZeroWidth);
-        layout.setColumnWidth(1, SizeConstants.LoginPanelColOneWidth);
-        layout.setSpacingX(SizeConstants.LoginPanelSpacingX);
-        layout.setSpacingY(SizeConstants.LoginPanelSpacingY);
-        return layout;
-    }
-
     onAppear() {
-        super.onAppear();
-        const nameLabel = new QxBasicLabel('Name');
-        const passwordLabel = new QxBasicLabel('Password');
-        this.addRowColumn(nameLabel, 0, 0);
-        this.addRowColumn(this.userField, 0, 1);
-        this.addRowColumn(passwordLabel, 1, 0);
-        this.addRowColumn(this.passwordField, 1, 1);
+        if (!this.hasAppeared) {
+            super.onAppear();
+            this.form.add(this.userField, LabelConstants.FieldLabelName);
+            this.form.add(this.passwordField, LabelConstants.FieldLabelPassword);
+        }
     }
 
 }
