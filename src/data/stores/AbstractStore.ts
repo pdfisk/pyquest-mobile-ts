@@ -1,7 +1,7 @@
 import { EventConstants } from "../../constants/EventConstants";
 import { ServerConstants } from "../../constants/ServerConstants";
 import { UrlConstants } from "../../constants/UrlConstants";
-import { Server } from "../Server";
+import { Server } from "../../server/Server";
 
 export abstract class AbstractStore {
     dataLoaded: boolean;

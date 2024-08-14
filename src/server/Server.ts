@@ -14,6 +14,10 @@ export class Server {
         this.getInstance().deleteProject(data);
     }
 
+    static login(name: string, password: string, fn: any) {
+        this.getInstance().login(name, password, fn);
+    }
+
     static newProject() {
         this.getInstance().newProject();
     }
@@ -28,6 +32,10 @@ export class Server {
 
     deleteProject(data: any) {
         console.log('deleteProject', data);
+    }
+
+    login(name: string, password: string, fn: any) {
+
     }
 
     newProject() {
