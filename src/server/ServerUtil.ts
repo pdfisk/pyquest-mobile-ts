@@ -2,7 +2,7 @@ import { UrlConstants } from "../constants/UrlConstants";
 
 export class ServerUtil {
 
-  static  getHost() {
+    static getHost() {
         if (window.location.host.startsWith(UrlConstants.local8082))
             return UrlConstants.local9080;
         else if (window.location.host.startsWith(UrlConstants.local8083))
@@ -11,13 +11,13 @@ export class ServerUtil {
             return UrlConstants.heroku;
     }
 
-   static getUrl(service: string) {
+    static getUrl(service: string) {
         const host = this.getHost();
-        return (window.qx as any).lang.String.format('%1/%2', [host, service]);
+        return `${host}/${service}`;
     }
 
-   static getUrlWithId(service: string, id: number) {
-        return (window.qx as any).lang.String.format('%1/%2', [this.getUrl(service), id]);
+    static getUrlWithId(service: string, id: number) {
+        return `${this.getUrl(service)}/${id}`;
     }
 
 }
