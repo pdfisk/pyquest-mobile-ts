@@ -1,3 +1,5 @@
+import { QxForm } from "../ui/form/QxForm";
+
 export class QxFactory {
 
     static atomLayout(): any {
@@ -58,6 +60,10 @@ export class QxFactory {
 
     static formMenuButton(): any {
         return new (window as any).qx.ui.form.MenuButton;
+    }
+
+    static formRendererSingle(form: any): any {
+        return new (window as any).qx.ui.form.renderer.Single(form);
     }
 
     static gridLayout(): any {

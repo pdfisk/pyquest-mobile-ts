@@ -16,6 +16,7 @@ export class SizeConstants {
     static MediumWindowHeight: number = 425;
     static MediumWindowWidth: number = 525;
     static NavBarHeight: number = 35;
+    static PanelPadding: number = 15;
     static ProjectsWindowHeight: number = 435;
     static ProjectsWindowWidth: number = 575;
     static RegisterPanelColOneWidth: number = 175;

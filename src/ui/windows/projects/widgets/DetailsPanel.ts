@@ -16,7 +16,7 @@ export class DetailsPanel extends AbstractPanel {
 
     initialize() {
         super.initialize();
-        this.setPadding([15]);
+        this.setPadding([SizeConstants.PanelPadding]);
     }
 
     clear() {

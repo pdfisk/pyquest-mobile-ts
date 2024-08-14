@@ -1,17 +1,22 @@
 import { LabelConstants } from "../../../../constants/LabelConstants";
+import { SizeConstants } from "../../../../constants/SizeConstants";
+import { QxForm } from "../../../../qx/ui/form/QxForm";
+import { QxFormRendererSingle } from "../../../../qx/ui/form/QxFormRendererSingle";
 import { QxTextField } from "../../../../qx/ui/form/QxTextField";
-import { AbstractPanel } from "../../../widgets/AbstractPanel";
 import { UsersWindow } from "../UsersWindow";
 
-export class DetailsPanel extends AbstractPanel {
+export class DetailsPanel extends QxFormRendererSingle {
+    form: QxForm;
     passwordField: QxTextField;
     userField: QxTextField;
     usersWindow: UsersWindow;
 
     constructor(usersWindow: UsersWindow) {
-        super();
-        this.passwordField = new QxTextField();
-        this.userField = new QxTextField();
+        const form = new QxForm;
+        super(form);
+        this.form = form;
+        this.passwordField = new QxTextField;
+        this.userField = new QxTextField;
         this.usersWindow = usersWindow;
     }
 
@@ -24,6 +29,11 @@ export class DetailsPanel extends AbstractPanel {
         return true;
     }
 
+    initialize() {
+        super.initialize();
+        this.setPadding([SizeConstants.PanelPadding]);
+    }
+
     getName(): string {
         return this.userField.getValue();
     }
@@ -32,11 +42,11 @@ export class DetailsPanel extends AbstractPanel {
         return this.passwordField.getValue();
     }
 
-    // onAppear() {
-    //     super.onAppear();
-    //     this.add(this.userField, LabelConstants.FieldLabelName);
-    //     this.add(this.passwordField, LabelConstants.FieldLabelPassword);
-    // }
+    onAppear() {
+        super.onAppear();
+        this.form.add(this.userField, LabelConstants.FieldLabelName);
+        this.form.add(this.passwordField, LabelConstants.FieldLabelPassword);
+    }
 
     setName(value: string) {
         this.userField.setValue(value);
