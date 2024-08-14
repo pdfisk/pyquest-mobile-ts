@@ -1,9 +1,5 @@
 import { LabelConstants } from "../../../../constants/LabelConstants";
-import { SizeConstants } from "../../../../constants/SizeConstants";
-import { QxBasicLabel } from "../../../../qx/ui/basic/QxBasicLabel";
 import { QxTextField } from "../../../../qx/ui/form/QxTextField";
-import { QxAbstractLayout } from "../../../../qx/ui/layout/QxAbstractLayout";
-import { QxGridLayout } from "../../../../qx/ui/layout/QxGridLayout";
 import { AbstractPanel } from "../../../widgets/AbstractPanel";
 import { UsersWindow } from "../UsersWindow";
 
@@ -19,11 +15,6 @@ export class DetailsPanel extends AbstractPanel {
         this.usersWindow = usersWindow;
     }
 
-    initialize() {
-        super.initialize();
-        this.setPadding([15]);
-    }
-
     clear() {
         this.passwordField.clear();
         this.userField.clear();
@@ -31,15 +22,6 @@ export class DetailsPanel extends AbstractPanel {
 
     defaultEnableOnAppear(): boolean {
         return true;
-    }
-
-    defaultLayout(): QxAbstractLayout {
-        const layout = new QxGridLayout();
-        layout.setColumnWidth(0, SizeConstants.LoginPanelColZeroWidth);
-        layout.setColumnWidth(1, SizeConstants.LoginPanelColOneWidth);
-        layout.setSpacingX(SizeConstants.LoginPanelSpacingX);
-        layout.setSpacingY(SizeConstants.LoginPanelSpacingY);
-        return layout;
     }
 
     getName(): string {
@@ -50,15 +32,11 @@ export class DetailsPanel extends AbstractPanel {
         return this.passwordField.getValue();
     }
 
-    onAppear() {
-        super.onAppear();
-        const nameLabel = new QxBasicLabel(LabelConstants.FieldLabelName);
-        const passwordLabel = new QxBasicLabel(LabelConstants.FieldLabelPassword);
-        this.addRowColumn(nameLabel, 0, 0);
-        this.addRowColumn(this.userField, 0, 1);
-        this.addRowColumn(passwordLabel, 1, 0);
-        this.addRowColumn(this.passwordField, 1, 1);
-    }
+    // onAppear() {
+    //     super.onAppear();
+    //     this.add(this.userField, LabelConstants.FieldLabelName);
+    //     this.add(this.passwordField, LabelConstants.FieldLabelPassword);
+    // }
 
     setName(value: string) {
         this.userField.setValue(value);

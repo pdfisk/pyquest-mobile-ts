@@ -48,6 +48,10 @@ export class QxFactory {
         return new (window as any).qx.ui.layout.Flow;
     }
 
+    static form(): any {
+        return new (window as any).qx.ui.form.Form;
+    }
+
     static formButton(): any {
         return new (window as any).qx.ui.form.Button;
     }

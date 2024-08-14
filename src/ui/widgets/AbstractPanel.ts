@@ -10,5 +10,4 @@ export abstract class AbstractPanel extends QxComposite {
         return true;
     }
 
-
 }
