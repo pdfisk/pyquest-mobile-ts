@@ -1,20 +1,16 @@
 import { LabelConstants } from "../../../../constants/LabelConstants";
 import { SizeConstants } from "../../../../constants/SizeConstants";
-import { QxForm } from "../../../../qx/ui/form/QxForm";
-import { QxFormRendererSingle } from "../../../../qx/ui/form/QxFormRendererSingle";
 import { QxTextField } from "../../../../qx/ui/form/QxTextField";
+import { AbstractForm } from "../../../widgets/AbstractForm";
 import { UsersWindow } from "../UsersWindow";
 
-export class DetailsPanel extends QxFormRendererSingle {
-    form: QxForm;
+export class DetailsPanel extends AbstractForm {
     passwordField: QxTextField;
     userField: QxTextField;
     usersWindow: UsersWindow;
 
     constructor(usersWindow: UsersWindow) {
-        const form = new QxForm;
-        super(form);
-        this.form = form;
+        super();
         this.passwordField = new QxTextField;
         this.userField = new QxTextField;
         this.usersWindow = usersWindow;
