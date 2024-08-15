@@ -14,7 +14,7 @@ export class Server {
         this.getInstance().deleteProject(data);
     }
 
-    static login(name: string, password: string, fn: any) {
+    static login(name: string, password: string, fn: Function) {
         this.getInstance().login(name, password, fn);
     }
 
@@ -22,8 +22,28 @@ export class Server {
         this.getInstance().newProject();
     }
 
+    static register(name: string, password: string, fn: Function) {
+        this.getInstance().register(name, password, fn);
+    }
+
     static saveProject(data: any) {
         this.getInstance().saveProject(data);
+    }
+
+    static sendDeleteRequest(url: string, data: any, fn: Function) {
+        this.getInstance().sendDeleteRequest(url, data, fn);
+    }
+
+    static sendGetRequest(url: string, data: any, fn: Function) {
+        this.getInstance().sendGetRequest(url, data, fn);
+    }
+
+    static sendPostRequest(url: string, data: any, fn: Function) {
+        this.getInstance().sendPostRequest(url, data, fn);
+    }
+
+    static sendPutRequest(url: string, data: any, fn: Function) {
+        this.getInstance().sendPutRequest(url, data, fn);
     }
 
     static sendServerRequest(url: string, method: string, data: any, fn: Function) {
@@ -34,20 +54,36 @@ export class Server {
         console.log('deleteProject', data);
     }
 
-    login(name: string, password: string, fn: any) {
-
+    login(name: string, password: string, fn: Function) {
+        console.log('LOGIN', name, password);
     }
 
     newProject() {
         console.log('newProject');
     }
 
+    register(name: string, password: string, fn: Function) {
+        console.log('REGISTER', name, password);
+    }
+
     saveProject(data: any) {
         console.log('saveProject', data);
     }
 
-    sendGetRequest(url: string, fn: Function) {
-        this.sendServerRequest(url, ServerConstants.MethodGet, {}, fn);
+    sendDeleteRequest(url: string, data: any, fn: Function) {
+        this.sendServerRequest(url, ServerConstants.MethodDelete, data, fn);
+    }
+
+    sendGetRequest(url: string, data: any, fn: Function) {
+        this.sendServerRequest(url, ServerConstants.MethodGet, data, fn);
+    }
+
+    sendPostRequest(url: string, data: any, fn: Function) {
+        this.sendServerRequest(url, ServerConstants.MethodPost, data, fn);
+    }
+
+    sendPutRequest(url: string, data: any, fn: Function) {
+        this.sendServerRequest(url, ServerConstants.MethodPut, data, fn);
     }
 
     sendServerRequest(url: string, method: string, data: any, fn: Function) {

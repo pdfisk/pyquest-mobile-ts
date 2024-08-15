@@ -28,7 +28,7 @@ export abstract class AbstractStore {
         const id = data.id;
         const url = ServerUtil.getUrlWithId(this.serviceName(), id);
         const fn = () => { this.reload(); }
-        Server.sendServerRequest(url, ServerConstants.MethodDelete, data, fn);
+        Server.sendDeleteRequest(url,  data, fn);
     }
 
     getDataRecords(): any[] {
@@ -54,7 +54,7 @@ export abstract class AbstractStore {
         const data = { name: '-- new project --', description: '', code: '' };
         const url = ServerUtil.getUrl(this.serviceName());
         const fn = () => { this.reload(); }
-        Server.sendServerRequest(url, ServerConstants.MethodPost, data, fn);
+        Server.sendPostRequest(url,  data, fn);
     }
 
     onLoaded() {
@@ -71,7 +71,7 @@ export abstract class AbstractStore {
         const id = data.id;
         const url = ServerUtil.getUrlWithId(this.serviceName(), id);
         const fn = () => { this.reload(); }
-        Server.sendServerRequest(url, ServerConstants.MethodPut, data, fn);
+        Server.sendPutRequest(url,  data, fn);
     }
 
     abstract serviceName(): string
