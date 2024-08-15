@@ -4,6 +4,7 @@ import { LabelConstants } from '../../../constants/LabelConstants';
 import { SessionConstants } from '../../../constants/SessionConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
 import { EventBus } from '../../../messages/EventBus';
+import { Server } from '../../../server/Server';
 import { AbstractWindow } from '../abstract/AbstractWindow';
 import { LoginPanel } from './widgets/LoginPanel';
 
@@ -57,7 +58,7 @@ export class LoginWindow extends AbstractWindow {
 
     onButtonClick(tag: string) {
         switch (tag) {
-            case 'clear':
+            case ActionConstants.ActionClear:
                 this.onClear();
                 break;
             case ActionConstants.ActionLogin:
@@ -74,11 +75,16 @@ export class LoginWindow extends AbstractWindow {
     }
 
     onLogin() {
-        const passwd = this.loginPanel?.passwordField.getValue();
-        if (passwd == 'doorstop') {
-            EventBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedInAsAdmin });
-            this.close();
+        const name: string = (this.loginPanel as LoginPanel).getName();
+        const passwd: string = (this.loginPanel as LoginPanel).getPassword();
+        const fn: Function = (data: any) => {
+            console.log('LOGIN', data);
+            if (passwd == 'doorstop') {
+                EventBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedInAsAdmin });
+                this.close();
+            };
         }
+        Server.login(name, passwd, fn);
     }
 
 }

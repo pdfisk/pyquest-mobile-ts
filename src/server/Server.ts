@@ -27,10 +27,6 @@ export class Server {
         this.getInstance().register(name, password, fn);
     }
 
-    static saveProject(data: any) {
-        this.getInstance().saveProject(data);
-    }
-
     static sendDeleteRequest(service: string, id: number, data: any, fn: Function) {
         this.getInstance().sendDeleteRequest(service, id, data, fn);
     }
@@ -56,7 +52,7 @@ export class Server {
     }
 
     login(name: string, password: string, fn: Function) {
-        console.log('LOGIN', name, password);
+        fn.call(null, { status: 'ok' });
     }
 
     newProject() {
@@ -64,11 +60,7 @@ export class Server {
     }
 
     register(name: string, password: string, fn: Function) {
-        console.log('REGISTER', name, password);
-    }
-
-    saveProject(data: any) {
-        console.log('saveProject', data);
+        fn.call(null, { status: 'ok' });
     }
 
     sendDeleteRequest(service: string, id: number, data: any, fn: Function) {

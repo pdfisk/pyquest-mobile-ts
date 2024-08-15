@@ -1,6 +1,7 @@
 import { ActionConstants } from '../../../constants/ActionConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
+import { Server } from '../../../server/Server';
 import { AbstractWindow } from '../abstract/AbstractWindow';
 import { RegisterPanel } from './widgets/RegisterPanel';
 
@@ -71,10 +72,13 @@ export class RegisterWindow extends AbstractWindow {
     }
 
     onRegister() {
-        const passwd = this.registerPanel?.passwordField.getValue();
-        if (passwd == 'doorstop') {
-            console.log('REGISTERED');
-        }
+        const name: string = (this.registerPanel as RegisterPanel).getName();
+        const passwd: string = (this.registerPanel as RegisterPanel).getPassword();
+        const fn: Function = (data: any) => {
+            console.log('REGISTER', data);
+            this.close();
+        };
+        Server.register(name, passwd, fn);
     }
 
 }
