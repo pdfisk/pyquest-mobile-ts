@@ -51,9 +51,10 @@ export class Server {
         console.log('deleteProject', data);
     }
 
-    login(name: string, password: string, fn: Function) {
-        fn.call(null, { status: 'ok' });
-    }
+    login(name: string, passwd: string, fn: Function) {
+        const payload = {name: name ,passwd: passwd};
+        this.sendGetRequest(ServerConstants.ServiceLogin, payload, fn);
+     }
 
     newProject() {
         console.log('newProject');
