@@ -1,5 +1,4 @@
 import { EventConstants } from "../../constants/EventConstants";
-import { ServerConstants } from "../../constants/ServerConstants";
 import { Server } from "../../server/Server";
 import { ServerUtil } from "../../server/ServerUtil";
 
@@ -26,9 +25,8 @@ export abstract class AbstractStore {
     deleteRecord(data: any) {
         if (!data) return;
         const id = data.id;
-        const url = ServerUtil.getUrlWithId(this.serviceName(), id);
         const fn = () => { this.reload(); }
-        Server.sendDeleteRequest(url,  data, fn);
+        Server.sendDeleteRequest(this.serviceName(), id, data, fn);
     }
 
     getDataRecords(): any[] {
@@ -52,9 +50,8 @@ export abstract class AbstractStore {
 
     newRecord() {
         const data = { name: '-- new project --', description: '', code: '' };
-        const url = ServerUtil.getUrl(this.serviceName());
         const fn = () => { this.reload(); }
-        Server.sendPostRequest(url,  data, fn);
+        Server.sendPostRequest(this.serviceName(), data, fn);
     }
 
     onLoaded() {
@@ -69,9 +66,8 @@ export abstract class AbstractStore {
     saveRecord(data: any) {
         if (!data) return;
         const id = data.id;
-        const url = ServerUtil.getUrlWithId(this.serviceName(), id);
         const fn = () => { this.reload(); }
-        Server.sendPutRequest(url,  data, fn);
+        Server.sendPutRequest(this.serviceName(), id, data, fn);
     }
 
     abstract serviceName(): string

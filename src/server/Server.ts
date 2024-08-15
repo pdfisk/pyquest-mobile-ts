@@ -1,4 +1,5 @@
 import { ServerConstants } from "../constants/ServerConstants";
+import { ServerUtil } from "./ServerUtil";
 
 export class Server {
 
@@ -30,20 +31,20 @@ export class Server {
         this.getInstance().saveProject(data);
     }
 
-    static sendDeleteRequest(url: string, data: any, fn: Function) {
-        this.getInstance().sendDeleteRequest(url, data, fn);
+    static sendDeleteRequest(service: string, id: number, data: any, fn: Function) {
+        this.getInstance().sendDeleteRequest(service, id, data, fn);
     }
 
-    static sendGetRequest(url: string, data: any, fn: Function) {
-        this.getInstance().sendGetRequest(url, data, fn);
+    static sendGetRequest(service: string, data: any, fn: Function) {
+        this.getInstance().sendGetRequest(service, data, fn);
     }
 
-    static sendPostRequest(url: string, data: any, fn: Function) {
-        this.getInstance().sendPostRequest(url, data, fn);
+    static sendPostRequest(service: string, data: any, fn: Function) {
+        this.getInstance().sendPostRequest(service, data, fn);
     }
 
-    static sendPutRequest(url: string, data: any, fn: Function) {
-        this.getInstance().sendPutRequest(url, data, fn);
+    static sendPutRequest(service: string, id: number, data: any, fn: Function) {
+        this.getInstance().sendPutRequest(service, id, data, fn);
     }
 
     static sendServerRequest(url: string, method: string, data: any, fn: Function) {
@@ -70,20 +71,20 @@ export class Server {
         console.log('saveProject', data);
     }
 
-    sendDeleteRequest(url: string, data: any, fn: Function) {
-        this.sendServerRequest(url, ServerConstants.MethodDelete, data, fn);
+    sendDeleteRequest(service: string, id: number, data: any, fn: Function) {
+        this.sendServerRequest(ServerUtil.getUrlWithId(service, id), ServerConstants.MethodDelete, data, fn);
     }
 
-    sendGetRequest(url: string, data: any, fn: Function) {
-        this.sendServerRequest(url, ServerConstants.MethodGet, data, fn);
+    sendGetRequest(service: string, data: any, fn: Function) {
+        this.sendServerRequest(ServerUtil.getUrl(service), ServerConstants.MethodGet, data, fn);
     }
 
-    sendPostRequest(url: string, data: any, fn: Function) {
-        this.sendServerRequest(url, ServerConstants.MethodPost, data, fn);
+    sendPostRequest(service: string, data: any, fn: Function) {
+        this.sendServerRequest(service, ServerConstants.MethodPost, data, fn);
     }
 
-    sendPutRequest(url: string, data: any, fn: Function) {
-        this.sendServerRequest(url, ServerConstants.MethodPut, data, fn);
+    sendPutRequest(service: string, id: number, data: any, fn: Function) {
+        this.sendServerRequest(ServerUtil.getUrlWithId(service, id), ServerConstants.MethodPut, data, fn);
     }
 
     sendServerRequest(url: string, method: string, data: any, fn: Function) {
