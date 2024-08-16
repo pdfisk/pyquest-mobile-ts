@@ -52,9 +52,9 @@ export class Server {
     }
 
     login(name: string, passwd: string, fn: Function) {
-        const payload = {name: name ,passwd: passwd};
-        this.sendGetRequest(ServerConstants.ServiceLogin, payload, fn);
-     }
+        const data = { name: name, passwd: passwd };
+        this.sendGetRequest(ServerConstants.ServiceLogin, data, fn);
+    }
 
     newProject() {
         console.log('newProject');
@@ -82,10 +82,13 @@ export class Server {
 
     sendServerRequest(url: string, method: string, data: any, fn: Function) {
         const req = new (window.qx as any).io.request.Xhr;
+        if (ServerUtil.methodHasBody(method))
+            req.setRequestData(data);
+        else
+            url = `${url}?${ServerUtil.serializeData(req, data)}`;
         req.setUrl(url);
         req.setMethod(method);
         req.setRequestHeader('Content-Type', 'application/json');
-        req.setRequestData(window.JSON.stringify(data));
         req.addListener("success", (e: any) => {
             var req = e.getTarget();
             if (fn)

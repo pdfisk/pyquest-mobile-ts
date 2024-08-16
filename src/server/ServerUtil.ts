@@ -20,4 +20,12 @@ export class ServerUtil {
         return `${this.getUrl(service)}/${id}`;
     }
 
+    static methodHasBody(method: string): boolean {
+        return (window as any).qx.util.Request.methodAllowsRequestBody(method);
+    }
+
+    static serializeData(req: any, data: any): string {
+        return req._serializeData(data);
+    }
+
 }
