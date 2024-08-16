@@ -1,6 +1,7 @@
 import { ActionConstants } from '../../../constants/ActionConstants';
 import { EventConstants } from '../../../constants/EventConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
+import { ServerConstants } from '../../../constants/ServerConstants';
 import { SessionConstants } from '../../../constants/SessionConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
 import { EventBus } from '../../../messages/EventBus';
@@ -40,7 +41,7 @@ export class LoginWindow extends AbstractWindow {
         return LabelConstants.WindowLabelLogin;
     }
 
-    defaultAutoDestroy():boolean {
+    defaultAutoDestroy(): boolean {
         return false;
     }
 
@@ -83,10 +84,19 @@ export class LoginWindow extends AbstractWindow {
         const passwd: string = (this.loginPanel as LoginPanel).getPassword();
         const fn: Function = (reply: any) => {
             const response = reply.getResponse();
-            const valid = response['valid'];
-            if (valid) {
-                EventBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedInAsAdmin });
-                this.close();
+            const level = response['level'];
+            switch (level) {
+                case ServerConstants.LevelAdmin:
+                    EventBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedInAsAdmin });
+                    this.close();
+                    break;
+                case ServerConstants.LevelUser:
+                    EventBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedInAsUser });
+                    this.close();
+                    break;
+                default:
+                    EventBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedOut });
+                    break;
             };
         }
         Server.login(name, passwd, fn);
