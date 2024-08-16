@@ -37,6 +37,10 @@ export class RegisterWindow extends AbstractWindow {
         return LabelConstants.WindowLabelRegister;
     }
 
+    defaultAutoDestroy():boolean {
+        return false;
+    }
+
     defaultHeight(): number {
         return SizeConstants.RegisterWindowHeight;
     }

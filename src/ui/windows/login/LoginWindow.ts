@@ -40,6 +40,10 @@ export class LoginWindow extends AbstractWindow {
         return LabelConstants.WindowLabelLogin;
     }
 
+    defaultAutoDestroy():boolean {
+        return false;
+    }
+
     defaultHeight(): number {
         return SizeConstants.LoginWindowHeight;
     }
@@ -77,9 +81,10 @@ export class LoginWindow extends AbstractWindow {
     onLogin() {
         const name: string = (this.loginPanel as LoginPanel).getName();
         const passwd: string = (this.loginPanel as LoginPanel).getPassword();
-        const fn: Function = (data: any) => {
-            console.log('LOGIN', data);
-            if (passwd == 'doorstop') {
+        const fn: Function = (reply: any) => {
+            const response = reply.getResponse();
+            const valid = response['valid'];
+            if (valid) {
                 EventBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedInAsAdmin });
                 this.close();
             };
