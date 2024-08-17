@@ -115,6 +115,11 @@ export class UsersWindow extends AbstractWindow {
         }
     }
 
+    onClose() {
+        super.onClose();
+        EventBus.unsubscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this);
+    }
+
     onDelete() {
         this.usersPanel?.deleteUser();
         this.refresh();

@@ -95,7 +95,9 @@ export abstract class DataListPanel extends AbstractPanel {
                 names.push(item.name);
         });
         names.sort();
+        (window as any).X = this;
         this.list.widget.initSelection();
+        console.log('DetailsPanel updateList', this.getId());
         this.list.setData(names);
     }
 

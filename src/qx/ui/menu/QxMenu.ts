@@ -11,7 +11,8 @@ export class QxMenu extends QxWidget {
     }
 
     add(item: QxLayoutItem) {
-        this.widget.add(item.widget);
+        if (!this.hasItem(item))
+            this.widget.add(item.widget);
     }
 
     addButton(label: string, fn?: Function): QxMenuButton {
@@ -20,8 +21,19 @@ export class QxMenu extends QxWidget {
         return button;
     }
 
-    addSeparator() {
-        this.add(new QxMenuSeparator());
+    addSeparator(): QxMenuSeparator {
+        const separator: QxMenuSeparator = new QxMenuSeparator;
+        this.add(separator);
+        return separator;
+    }
+
+    hasItem(item: QxLayoutItem): boolean {
+        return this.widget.getChildren().indexOf(item.widget) >= 0;
+    }
+
+    remove(item: QxLayoutItem) {
+        if (this.hasItem(item))
+            this.widget.remove(item.widget);
     }
 
 }

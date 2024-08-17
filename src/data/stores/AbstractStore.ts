@@ -6,20 +6,22 @@ export abstract class AbstractStore {
     dataLoaded: boolean;
     dataRecords: any[];
     dataStore: any;
-    loadHandlerFns: Function[];
+    loadHandlerFns: Map<number, Function>;
     server: Server;
+    static fnCounter: number = 0;
 
     constructor() {
         this.dataLoaded = false;
         this.dataRecords = [];
         this.dataStore = new (window.qx as any).data.store.Json;
         this.dataStore.addListener(EventConstants.QxEventLoaded, this.onLoaded, this);
-        this.loadHandlerFns = [];
+        this.loadHandlerFns = new Map<number, Function>;
         this.server = Server.getInstance();
     }
 
     addLoaderHandlerFn(loadHandlerFn: Function) {
-        this.loadHandlerFns.push(loadHandlerFn);
+        const n = AbstractStore.fnCounter++;
+        this.loadHandlerFns.set(n, loadHandlerFn);
     }
 
     deleteRecord(data: any) {
@@ -35,10 +37,8 @@ export abstract class AbstractStore {
 
     handleLoadedData() {
         this.dataRecords = this.getDataRecords();
-        for (let i = 0; i < this.loadHandlerFns.length; i++) {
-            const handlerFn: Function = this.loadHandlerFns[i];
+        for (let handlerFn of this.loadHandlerFns.values())
             handlerFn(this.dataRecords);
-        }
     }
 
     loadData() {

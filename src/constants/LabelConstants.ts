@@ -2,6 +2,7 @@ export class LabelConstants {
     static ButtonLabelClear: string = 'Clear';
     static ButtonLabelClearIn: string = 'Clear In';
     static ButtonLabelClearOut: string = 'Clear Out';
+    static ButtonLabelConsole: string = 'Console';
     static ButtonLabelDelete: string = 'Delete';
     static ButtonLabelLogin: string = 'Login';
     static ButtonLabelLogout: string = 'Logout';
@@ -16,6 +17,7 @@ export class LabelConstants {
     static ButtonLabelRunStepping: string = 'Run Stepping';
     static ButtonLabelSave: string = 'Save';
     static ButtonLabelStatus: string = 'Status';
+    static ButtonLabelTranscript: string = 'Transcript';
     static ButtonLabelUsers: string = 'Users';
     static ButtonLabelViews: string = 'Views';
 

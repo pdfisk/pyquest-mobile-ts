@@ -51,22 +51,22 @@ export class NavBar extends QxToolBarToolBar {
     }
 
     onEventStatusChanged(message: any) {
-        const status:string = message.getData().status;
+        const status: string = message.getData().status;
         this.setLoginLabel(status);
         this.setViewsMenu(status);
     }
 
-    setLoginLabel(status:string) {
-        let label:string;
+    setLoginLabel(status: string) {
+        let label: string;
         if (status == SessionConstants.SessionLoggedInAsUser || status == SessionConstants.SessionLoggedInAsAdmin)
-            label=LabelConstants.ButtonLabelLogout;
+            label = LabelConstants.ButtonLabelLogout;
         else
-            label=LabelConstants.ButtonLabelLogin;
+            label = LabelConstants.ButtonLabelLogin;
         this.loginButton?.setLabel(label);
     }
 
-    setViewsMenu(status:string) {
-
+    setViewsMenu(status: string) {
+        this.viewsButton?.updateMenu(status);
     }
 
 }
