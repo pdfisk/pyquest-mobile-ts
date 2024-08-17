@@ -22,11 +22,11 @@ export class UsersStore extends AbstractStore {
             const item = model.getItem(i);
             const id = item.$$user_id;
             const name = item.$$user_name;
-            const password = item.$$user_password;
+            const passwd = item.$$user_passwd;
             const userRecord: any = {};
             userRecord.id = id;
             userRecord.name = name;
-            userRecord.password = password;
+            userRecord.passwd = passwd;
             usersData.push(userRecord);
         }
         return usersData;

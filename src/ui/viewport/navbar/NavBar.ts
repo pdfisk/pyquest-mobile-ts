@@ -11,7 +11,8 @@ import { ViewsButton } from './buttons/ViewsButton';
 import { LogoPanel } from './logo/LogoPanel';
 
 export class NavBar extends QxToolBarToolBar {
-    loginButton: any;
+    loginButton?: LoginButton;
+    viewsButton?: ViewsButton;
 
     constructor() {
         super();
@@ -19,17 +20,17 @@ export class NavBar extends QxToolBarToolBar {
 
     initialize() {
         super.initialize();
-        this.loginButton = new LoginButton;
         this.setBackgroundColor(ColorConstants.NavBarBackground);
         this.setHeight(SizeConstants.NavBarHeight);
         this.addLogo();
-        this.addButtons();
+        this.loginButton = new LoginButton;
+        this.viewsButton = new ViewsButton;
         EventBus.subscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this);
     }
 
     addButtons() {
-        this.addWidget(new ViewsButton());
-        this.addWidget(this.loginButton);
+        this.addWidget(this.viewsButton as ViewsButton);
+        this.addWidget(this.loginButton as LoginButton);
     }
 
     addLogo() {
@@ -40,16 +41,32 @@ export class NavBar extends QxToolBarToolBar {
         this.widget.add(childWidget.widget);
     }
 
-    onEventStatusChanged(message: any) {
-        const status = message.getData().status;
-        if (status == SessionConstants.SessionLoggedInAsUser || status == SessionConstants.SessionLoggedInAsAdmin)
-            this.setLoginLabel(LabelConstants.ButtonLabelLogout);
-        else
-            this.setLoginLabel(LabelConstants.ButtonLabelLogin);
+    defaultEnableOnAppear(): boolean {
+        return true;
     }
 
-    setLoginLabel(label: string) {
-        this.loginButton.setLabel(label);
+    onAppear() {
+        super.onAppear();
+        this.addButtons();
+    }
+
+    onEventStatusChanged(message: any) {
+        const status:string = message.getData().status;
+        this.setLoginLabel(status);
+        this.setViewsMenu(status);
+    }
+
+    setLoginLabel(status:string) {
+        let label:string;
+        if (status == SessionConstants.SessionLoggedInAsUser || status == SessionConstants.SessionLoggedInAsAdmin)
+            label=LabelConstants.ButtonLabelLogout;
+        else
+            label=LabelConstants.ButtonLabelLogin;
+        this.loginButton?.setLabel(label);
+    }
+
+    setViewsMenu(status:string) {
+
     }
 
 }

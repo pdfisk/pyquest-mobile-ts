@@ -164,7 +164,7 @@ export class UsersWindow extends AbstractWindow {
 
     onSelectionChange(value: any) {
         this.detailsPanel?.setName(value.name);
-        this.detailsPanel?.setPassword(value.password);
+        this.detailsPanel?.setPassword(value.passwd);
         this.updateEnabledButtons();
     }
 
