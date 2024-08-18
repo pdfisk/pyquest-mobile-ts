@@ -57,7 +57,6 @@ export class ViewsButton extends QxMenuBarButton {
     }
 
     updateMenu(status: string) {
-        console.log('updateMenu', status);
         if (status == SessionConstants.SessionLoggedInAsAdmin) {
             this.menu?.add(this.usersSeparator);
             this.menu?.add(this.usersButton);
@@ -66,7 +65,6 @@ export class ViewsButton extends QxMenuBarButton {
             this.menu?.remove(this.usersSeparator);
             this.menu?.remove(this.usersButton);
         }
-        console.log('updateMenu2', status);
     }
 
 }

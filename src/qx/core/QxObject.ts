@@ -9,11 +9,15 @@ export abstract class QxObject {
     }
 
     generateId(): string {
-        return `${this.idClassName()}-${QxObject.idCounter++}`;
+        return `${this.getClassName()}-${QxObject.idCounter++}`;
     }
 
     getId(): string {
         return this.widget.getQxObjectId();
+    }
+
+    getClassName(): string {
+        return this.widget ? this.widget.classname : this.idClassName();
     }
 
     idClassName(): string {

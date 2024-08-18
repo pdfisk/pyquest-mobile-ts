@@ -21,6 +21,7 @@ export class QxWindowWindow extends QxWidget {
         this.setWidth(this.defaultWidth());
         this.setShowMaximize(this.defaultShowMaximize());
         this.setShowMinimize(this.defaultShowMinimize());
+        this.addWindowHandlers();
         if (this.defaultShow())
             setTimeout(() => { this.show(); }, 100);
     }
@@ -29,15 +30,15 @@ export class QxWindowWindow extends QxWidget {
         this.widget.add(child.widget, { edge: 'center' });
     }
 
-    addHandlers() {
+    addSouth(child: QxWidget) {
+        this.widget.add(child.widget, { edge: 'south' });
+    }
+
+    addWindowHandlers() {
         this.widget.addListener(EventConstants.WindowEventClose, this.onClose, this);
         this.widget.addListener(EventConstants.WindowEventMaximize, this.onMaximize, this);
         this.widget.addListener(EventConstants.WindowEventMinimize, this.onMinimize, this);
         this.widget.addListener(EventConstants.WindowEventRestore, this.onRestore, this);
-    }
-
-    addSouth(child: QxWidget) {
-        this.widget.add(child.widget, { edge: 'south' });
     }
 
     defaultCaption(): string {

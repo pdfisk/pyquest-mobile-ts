@@ -13,7 +13,6 @@ export class DetailsPanel extends AbstractForm {
         this.passwordField = new QxTextField;
         this.userField = new QxTextField;
         this.usersWindow = usersWindow;
-        console.log('DetailsPanel constructor', this.getId());
     }
 
     clear() {

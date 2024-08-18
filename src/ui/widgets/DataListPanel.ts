@@ -6,6 +6,7 @@ export abstract class DataListPanel extends AbstractPanel {
     changeHandler?: Function;
     dataMap: Map<string, any> = new Map();
     dataStore?: AbstractStore;
+    loadHandlerKeys: number[] = [];
     list: QxList;
     selectedData: any;
 
@@ -31,7 +32,9 @@ export abstract class DataListPanel extends AbstractPanel {
     }
 
     addLoadHandlerFn(fn: Function) {
-        this.dataStore?.addLoaderHandlerFn(fn);
+        const key = this.dataStore?.addLoaderHandlerFn(fn);
+        if (typeof (key) === 'number')
+            this.loadHandlerKeys.push(key);
     }
 
     addLoadHandlerFns(): void {
@@ -82,6 +85,11 @@ export abstract class DataListPanel extends AbstractPanel {
         this.dataStore?.loadData();
     }
 
+    releaseHandlers() {
+        for (let key of this.loadHandlerKeys)
+            this.dataStore?.removeLoadHandlerFn(key);
+    }
+
     setChangeHandler(changeHandler: Function) {
         this.changeHandler = changeHandler;
     }
@@ -95,9 +103,7 @@ export abstract class DataListPanel extends AbstractPanel {
                 names.push(item.name);
         });
         names.sort();
-        (window as any).X = this;
         this.list.widget.initSelection();
-        console.log('DetailsPanel updateList', this.getId());
         this.list.setData(names);
     }
 

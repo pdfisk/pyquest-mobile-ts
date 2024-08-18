@@ -35,12 +35,10 @@ export class EventBus {
 
     subscribe(name: string, fn: Function, context: any) {
         this.messageBus.subscribe(name, fn, context);
-        this.show('subscribe');
     }
 
     unsubscribe(name: string, fn: Function, context: any) {
         this.messageBus.unsubscribe(name, fn, context);
-        this.show('unsubscribe');
     }
 
 }

@@ -19,9 +19,10 @@ export abstract class AbstractStore {
         this.server = Server.getInstance();
     }
 
-    addLoaderHandlerFn(loadHandlerFn: Function) {
-        const n = AbstractStore.fnCounter++;
-        this.loadHandlerFns.set(n, loadHandlerFn);
+    addLoaderHandlerFn(loadHandlerFn: Function): number {
+        const key = AbstractStore.fnCounter++;
+        this.loadHandlerFns.set(key, loadHandlerFn);
+        return key;
     }
 
     deleteRecord(data: any) {
@@ -61,6 +62,10 @@ export abstract class AbstractStore {
 
     reload() {
         this.loadData();
+    }
+
+    removeLoadHandlerFn(key:number) {
+        this.loadHandlerFns.delete(key);
     }
 
     saveRecord(data: any) {

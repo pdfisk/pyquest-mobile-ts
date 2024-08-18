@@ -39,7 +39,6 @@ export class QxList extends QxWidget {
     }
 
     setData(labels: string[]) {
-        console.log('setData', labels, this.widget ? 'YES' : 'NO');
         const model = (window.qx as any).data.marshal.Json.createModel(labels.sort());
         this.widget.setModel(model);
         this.scrollToTop();
