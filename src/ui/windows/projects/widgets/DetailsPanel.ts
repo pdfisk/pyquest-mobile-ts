@@ -3,19 +3,23 @@ import { QxTextField } from "../../../../qx/ui/form/QxTextField";
 import { AbstractForm } from "../../../widgets/AbstractForm";
 
 export class DetailsPanel extends AbstractForm {
+    authorField: QxTextField;
     categoryField: QxTextField;
 
     constructor() {
         super();
-        this.categoryField = new QxTextField();
+        this.authorField  = new QxTextField;
+        this.categoryField = new QxTextField;
     }
 
     clear() {
+        this.authorField.clear();
         this.categoryField.clear();
     }
 
     getValue(): string {
         const data: any = {};
+        data.author = this.authorField.getValue();
         data.category = this.categoryField.getValue();
         return JSON.stringify(data);
     }
@@ -23,6 +27,7 @@ export class DetailsPanel extends AbstractForm {
     onAppear() {
         if (!this.hasAppeared) {
             super.onAppear();
+            this.form.add(this.authorField, LabelConstants.FieldLabelAuthor);
             this.form.add(this.categoryField, LabelConstants.FieldLabelCategory);
         }
     }
@@ -31,8 +36,11 @@ export class DetailsPanel extends AbstractForm {
         if (typeof (jsonStr) !== 'string')
             return;
         const data = JSON.parse(jsonStr);
+        if (typeof (data.author) !== 'string')
+            data.author = '';
         if (typeof (data.category) !== 'string')
             data.category = '';
+        this.authorField.setValue(data.author);
         this.categoryField.setValue(data.category);
     }
 

@@ -21,6 +21,7 @@ export class LabelConstants {
     static ButtonLabelUsers: string = 'Users';
     static ButtonLabelViews: string = 'Views';
 
+    static FieldLabelAuthor: string = 'Author';
     static FieldLabelCategory: string = 'Category';
     static FieldLabelName: string = 'Name';
     static FieldLabelPassword: string = 'Password';
