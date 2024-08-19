@@ -1,6 +1,8 @@
 import { ActionConstants } from '../../../constants/ActionConstants';
+import { ErrorConstants } from '../../../constants/ErrorConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
 import { Version } from '../../../constants/Version';
+import { ErrorManager } from '../../../errors/ErrorManager';
 import { TextPanel } from '../../widgets/TextPanel';
 import { AbstractWindow } from '../abstract/AbstractWindow';
 
@@ -52,7 +54,7 @@ export class TranscriptWindow extends AbstractWindow {
                 this.onStatus();
                 break;
             default:
-                console.log('onButtonClick', tag);
+                ErrorManager.logError(ErrorConstants.TranscriptWindowOnButtonClick, tag);
                 break;
         }
     }

@@ -1,7 +1,9 @@
 import { ActionConstants } from '../../../constants/ActionConstants';
+import { ErrorConstants } from '../../../constants/ErrorConstants';
 import { EventConstants } from '../../../constants/EventConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
+import { ErrorManager } from '../../../errors/ErrorManager';
 import { EventBus } from '../../../messages/EventBus';
 import { QxFormButton } from '../../../qx/ui/form/QxFormButton';
 import { QxSplitButton } from '../../../qx/ui/form/QxSplitButton';
@@ -163,7 +165,7 @@ export class ProjectsWindow extends AbstractWindow {
                 this.onSave();
                 break;
             default:
-                console.log('ProjectsWindow onButtonClick', tag);
+                ErrorManager.logError(ErrorConstants.ProjectsWindowOnButtonClick, tag);
                 break;
         }
     }

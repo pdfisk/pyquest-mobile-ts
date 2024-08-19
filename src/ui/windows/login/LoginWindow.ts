@@ -1,9 +1,11 @@
 import { ActionConstants } from '../../../constants/ActionConstants';
+import { ErrorConstants } from '../../../constants/ErrorConstants';
 import { EventConstants } from '../../../constants/EventConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
 import { ServerConstants } from '../../../constants/ServerConstants';
 import { SessionConstants } from '../../../constants/SessionConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
+import { ErrorManager } from '../../../errors/ErrorManager';
 import { EventBus } from '../../../messages/EventBus';
 import { Server } from '../../../server/Server';
 import { AbstractWindow } from '../abstract/AbstractWindow';
@@ -70,7 +72,7 @@ export class LoginWindow extends AbstractWindow {
                 this.onLogin();
                 break;
             default:
-                console.log('onButtonClick', tag);
+                ErrorManager.logError(ErrorConstants.LoginWindowOnButtonClick, tag);
                 break;
         }
     }
@@ -84,7 +86,7 @@ export class LoginWindow extends AbstractWindow {
         const passwd: string = (this.loginPanel as LoginPanel).getPassword();
         const fn: Function = (reply: any) => {
             const response = reply.getResponse();
-            const level = response['level'];
+            const level = response[SessionConstants.ServerResponseLevel];
             switch (level) {
                 case ServerConstants.LevelAdmin:
                     EventBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedInAsAdmin });

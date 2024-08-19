@@ -1,6 +1,12 @@
 import { ActionConstants } from '../../../constants/ActionConstants';
+import { ErrorConstants } from '../../../constants/ErrorConstants';
+import { EventConstants } from '../../../constants/EventConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
+import { ServerConstants } from '../../../constants/ServerConstants';
+import { SessionConstants } from '../../../constants/SessionConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
+import { ErrorManager } from '../../../errors/ErrorManager';
+import { EventBus } from '../../../messages/EventBus';
 import { Server } from '../../../server/Server';
 import { AbstractWindow } from '../abstract/AbstractWindow';
 import { RegisterPanel } from './widgets/RegisterPanel';
@@ -37,7 +43,7 @@ export class RegisterWindow extends AbstractWindow {
         return LabelConstants.WindowLabelRegister;
     }
 
-    defaultAutoDestroy():boolean {
+    defaultAutoDestroy(): boolean {
         return false;
     }
 
@@ -66,7 +72,7 @@ export class RegisterWindow extends AbstractWindow {
                 this.onRegister();
                 break;
             default:
-                console.log('onButtonClick', tag);
+                ErrorManager.logError(ErrorConstants.RegisterWindowOnButtonClick, tag);
                 break;
         }
     }
@@ -78,10 +84,23 @@ export class RegisterWindow extends AbstractWindow {
     onRegister() {
         const name: string = (this.registerPanel as RegisterPanel).getName();
         const passwd: string = (this.registerPanel as RegisterPanel).getPassword();
-        const fn: Function = (data: any) => {
-            console.log('REGISTER', data);
-            this.close();
-        };
+        const fn: Function = (reply: any) => {
+            const response = reply.getResponse();
+            const level = response[SessionConstants.ServerResponseLevel];
+            switch (level) {
+                case ServerConstants.LevelAdmin:
+                    EventBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedInAsAdmin });
+                    this.close();
+                    break;
+                case ServerConstants.LevelUser:
+                    EventBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedInAsUser });
+                    this.close();
+                    break;
+                default:
+                    EventBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedOut });
+                    break;
+            };
+        }
         Server.register(name, passwd, fn);
     }
 

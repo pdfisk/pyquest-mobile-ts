@@ -60,8 +60,9 @@ export class Server {
         console.log('newProject');
     }
 
-    register(name: string, password: string, fn: Function) {
-        fn.call(null, { status: 'ok' });
+    register(name: string, passwd: string, fn: Function) {
+        const data = { name: name, passwd: passwd };
+        this.sendGetRequest(ServerConstants.ServiceRegister, data, fn);
     }
 
     sendDeleteRequest(service: string, id: number, data: any, fn: Function) {
