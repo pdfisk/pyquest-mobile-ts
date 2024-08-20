@@ -1,3 +1,4 @@
+import { VmApi } from '../../../api/VmApi';
 import { ActionConstants } from '../../../constants/ActionConstants';
 import { ErrorConstants } from '../../../constants/ErrorConstants';
 import { EventConstants } from '../../../constants/EventConstants';
@@ -216,7 +217,8 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     onRun() {
-        console.log('onRun');
+        const src: string = this.getCode();
+        VmApi.run(src, 123, 456);
     }
 
     onRunContinuously() {
