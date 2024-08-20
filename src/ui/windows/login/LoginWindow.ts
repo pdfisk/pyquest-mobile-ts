@@ -5,7 +5,7 @@ import { LabelConstants } from '../../../constants/LabelConstants';
 import { ServerConstants } from '../../../constants/ServerConstants';
 import { SessionConstants } from '../../../constants/SessionConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
-import { ErrorManager } from '../../../errors/ErrorManager';
+import { ErrorHandler } from '../../../handlers/ErrorHandler';
 import { EventBus } from '../../../messages/EventBus';
 import { Server } from '../../../server/Server';
 import { AbstractWindow } from '../abstract/AbstractWindow';
@@ -72,7 +72,7 @@ export class LoginWindow extends AbstractWindow {
                 this.onLogin();
                 break;
             default:
-                ErrorManager.logError(ErrorConstants.LoginWindowOnButtonClick, tag);
+                ErrorHandler.logError(ErrorConstants.LoginWindowOnButtonClick, tag);
                 break;
         }
     }

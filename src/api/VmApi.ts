@@ -1,4 +1,5 @@
 import { VmApiConstants } from "../constants/VmApiConstants";
+import { ResultHandler } from "../handlers/ResultHandler";
 
 export class VmApi {
 
@@ -11,7 +12,14 @@ export class VmApi {
     }
 
     static run(src: string, inputId: number, outputId: number) {
-        this.getInstance().runSrc(src, inputId, outputId);
+        this.getInstance().run(src, inputId, outputId);
+    }
+
+    constructor() {
+        // const setActionHandlerFn: Function = this.getVmApiSetActionHandlerFn();
+        const setResultHandlerFn: Function = this.getVmApiSetResultHandlerFn();
+        // this.callVmApiFn(setActionHandlerFn, this.handleAction);
+        this.callVmApiFn(setResultHandlerFn, this.handleResult);
     }
 
     callVmApiFn(fn: Function, ...args: any[]) {
@@ -27,7 +35,31 @@ export class VmApi {
         return vmApi ? vmApi[VmApiConstants.RUN] : null;
     }
 
-    runSrc(src: string, inputId: number, outputId: number) {
+    getVmApiSetActionHandlerFn(): Function {
+        const vmApi: any = this.getOpalVmApi();
+        return vmApi ? vmApi[VmApiConstants.SET_ACTION_HANDLER_FN] : null;
+    }
+
+    getVmApiSetResultHandlerFn(): Function {
+        const vmApi: any = this.getOpalVmApi();
+        return vmApi ? vmApi[VmApiConstants.SET_RESULT_HANDLER_FN] : null;
+    }
+
+    handleAction(...args: any[]) {
+
+    }
+
+    handleResult(...args: any[]) {
+        ResultHandler.handleResult(...args);
+    }
+
+    run(src: string, inputId: number, outputId: number) {
+        const runFn: Function = this.getVmApiRunFn();
+        if (runFn)
+            this.callVmApiFn(runFn, src, inputId, outputId);
+    }
+
+    setActiom(src: string, inputId: number, outputId: number) {
         const runFn: Function = this.getVmApiRunFn();
         if (runFn)
             this.callVmApiFn(runFn, src, inputId, outputId);

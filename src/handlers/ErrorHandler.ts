@@ -1,4 +1,4 @@
-export class ErrorManager {
+export class ErrorHandler {
 
     static logError(...msgs: string[]) {
         msgs.unshift('*** error ***');

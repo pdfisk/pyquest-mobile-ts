@@ -2,18 +2,22 @@ import { ActionConstants } from '../../../constants/ActionConstants';
 import { ErrorConstants } from '../../../constants/ErrorConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
 import { Version } from '../../../constants/Version';
-import { ErrorManager } from '../../../errors/ErrorManager';
-import { TextPanel } from '../../widgets/TextPanel';
+import { ErrorHandler } from '../../../handlers/ErrorHandler';
+import { TranscriptPanel } from '../../widgets/TranscriptPanel';
 import { AbstractWindow } from '../abstract/AbstractWindow';
 
 export class TranscriptWindow extends AbstractWindow {
 
-    textPanel?: TextPanel;
+    transcriptPanel?: TranscriptPanel;
 
     static getInstance(): TranscriptWindow {
         if (!this.instance)
-            this.instance = new TranscriptWindow();
+            this.instance = new TranscriptWindow;
         return this.instance;
+    }
+
+    static pr(text: string) {
+        this.getInstance().pr(text);
     }
 
     static instance: TranscriptWindow;
@@ -24,8 +28,8 @@ export class TranscriptWindow extends AbstractWindow {
 
     initialize() {
         super.initialize();
-        this.textPanel = new TextPanel();
-        this.add(this.textPanel);
+        this.transcriptPanel = new TranscriptPanel;
+        this.add(this.transcriptPanel);
     }
 
     addButtonsLeft() {
@@ -33,7 +37,7 @@ export class TranscriptWindow extends AbstractWindow {
         this.addButtonLeft(LabelConstants.ButtonLabelStatus);
     }
 
-    defaultAutoDestroy():boolean {
+    defaultAutoDestroy(): boolean {
         return false;
     }
 
@@ -54,20 +58,24 @@ export class TranscriptWindow extends AbstractWindow {
                 this.onStatus();
                 break;
             default:
-                ErrorManager.logError(ErrorConstants.TranscriptWindowOnButtonClick, tag);
+                ErrorHandler.logError(ErrorConstants.TranscriptWindowOnButtonClick, tag);
                 break;
         }
     }
 
     onClear() {
-        this.textPanel?.clear();
+        this.transcriptPanel?.clear();
     }
 
     onStatus() {
         const str1 = `  Version: ${Version.version}`;
         const str2 = `Timestamp: ${Version.timestamp}`;
         const str = `${str1}\n${str2}`;
-        this.textPanel?.setValue(str);
+        this.transcriptPanel?.setValue(str);
+    }
+
+    pr(text: string) {
+        this.transcriptPanel?.pr(text);
     }
 
 }

@@ -3,7 +3,7 @@ import { ErrorConstants } from '../../../constants/ErrorConstants';
 import { EventConstants } from '../../../constants/EventConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
-import { ErrorManager } from '../../../errors/ErrorManager';
+import { ErrorHandler } from '../../../handlers/ErrorHandler';
 import { EventBus } from '../../../messages/EventBus';
 import { QxFormButton } from '../../../qx/ui/form/QxFormButton';
 import { QxSplitButton } from '../../../qx/ui/form/QxSplitButton';
@@ -112,7 +112,7 @@ export class UsersWindow extends AbstractWindow {
                 this.onSave();
                 break;
             default:
-                ErrorManager.logError(ErrorConstants.UsersWindowOnButtonClick, tag);
+                ErrorHandler.logError(ErrorConstants.UsersWindowOnButtonClick, tag);
                 break;
         }
     }
