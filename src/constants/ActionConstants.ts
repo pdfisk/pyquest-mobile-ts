@@ -1,4 +1,5 @@
 export class ActionConstants {
+    static ActionAutotab: string = 'autotab';
     static ActionClear: string = 'clear';
     static ActionClearIn: string = 'clear_in';
     static ActionClearOut: string = 'clear_out';
@@ -16,5 +17,5 @@ export class ActionConstants {
     static ActionSave: string = 'save';
     static ActionStatus: string = 'status';
 
-    static ServiceWorkspace:string = 'workspace';
+    static ServiceWorkbench:string = 'workbench';
 }

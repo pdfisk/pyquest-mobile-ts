@@ -9,7 +9,7 @@ export class ActionHandler {
         const service: string = data.service;
         const args: any[] = data.args;
         switch (service) {
-            case ActionConstants.ServiceWorkspace:
+            case ActionConstants.ServiceWorkbench:
                 WorkbenchHandler.handleAction(args);
                 break;
             default:
