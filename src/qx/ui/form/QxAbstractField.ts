@@ -48,7 +48,7 @@ export abstract class QxAbstractField extends QxWidget {
         if (this.hasAppeared)
             this.widget.setValue(value);
         else
-            this.initValue = value;
+            this.initValue += value;
     }
 
 }
