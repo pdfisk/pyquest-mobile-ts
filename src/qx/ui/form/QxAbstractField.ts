@@ -21,7 +21,10 @@ export abstract class QxAbstractField extends QxWidget {
     getValue(): string {
         if (!this.widget)
             return '';
-        return this.widget.getValue();
+        let value = this.widget.getValue();
+        if (typeof(value) !== 'string')
+            value = '';
+        return value;
     }
 
     initialize() {

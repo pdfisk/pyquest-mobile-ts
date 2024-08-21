@@ -5,10 +5,7 @@ import { TextPanel } from "./TextPanel";
 export class TranscriptPanel extends TextPanel implements IStdOut {
 
     append(text: string): void {
-        let oldText = this.getValue();
-        if (typeof (oldText) !== 'string')
-            oldText = '';
-        this.setValue(oldText + text);
+        this.setValue(this.getValue() + text);
     }
 
     newline(): void {
