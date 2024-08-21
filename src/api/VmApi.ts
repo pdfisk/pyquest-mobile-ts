@@ -1,4 +1,5 @@
 import { VmApiConstants } from "../constants/VmApiConstants";
+import { ActionHandler } from "../handlers/ActionHandler";
 import { ResultHandler } from "../handlers/ResultHandler";
 
 export class VmApi {
@@ -16,9 +17,9 @@ export class VmApi {
     }
 
     constructor() {
-        // const setActionHandlerFn: Function = this.getVmApiSetActionHandlerFn();
+        const setActionHandlerFn: Function = this.getVmApiSetActionHandlerFn();
         const setResultHandlerFn: Function = this.getVmApiSetResultHandlerFn();
-        // this.callVmApiFn(setActionHandlerFn, this.handleAction);
+        this.callVmApiFn(setActionHandlerFn, this.handleAction);
         this.callVmApiFn(setResultHandlerFn, this.handleResult);
     }
 
@@ -46,7 +47,7 @@ export class VmApi {
     }
 
     handleAction(...args: any[]) {
-
+        ActionHandler.handleAction(...args);
     }
 
     handleResult(...args: any[]) {
@@ -59,8 +60,8 @@ export class VmApi {
             this.callVmApiFn(runFn, src, inputId, outputId);
     }
 
-    setActiom(src: string, inputId: number, outputId: number) {
-        const runFn: Function = this.getVmApiRunFn();
+    setAction(src: string, inputId: number, outputId: number) {
+        const runFn: Function = this.getVmApiSetActionHandlerFn();
         if (runFn)
             this.callVmApiFn(runFn, src, inputId, outputId);
     }
