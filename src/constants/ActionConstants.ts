@@ -15,4 +15,6 @@ export class ActionConstants {
     static ActionRunStepping: string = 'run_stepping';
     static ActionSave: string = 'save';
     static ActionStatus: string = 'status';
+
+    static ServiceWorkspace:string = 'workspace';
 }

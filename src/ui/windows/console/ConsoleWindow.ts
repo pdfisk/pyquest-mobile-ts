@@ -1,5 +1,7 @@
 import { ActionConstants } from '../../../constants/ActionConstants';
+import { ErrorConstants } from '../../../constants/ErrorConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
+import { ErrorHandler } from '../../../handlers/ErrorHandler';
 import { QxTextArea } from '../../../qx/ui/form/QxTextArea';
 import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
 import { AbstractWindow } from '../abstract/AbstractWindow';
@@ -54,7 +56,7 @@ export class ConsoleWindow extends AbstractWindow {
                 this.onRun();
                 break;
             default:
-                console.log('onButtonClick', tag);
+                ErrorHandler.logError(ErrorConstants.ConsoleWindowOnButtonClick, tag);
                 break;
         }
     }

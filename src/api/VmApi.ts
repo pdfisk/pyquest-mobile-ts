@@ -46,8 +46,11 @@ export class VmApi {
         return vmApi ? vmApi[VmApiConstants.SET_RESULT_HANDLER_FN] : null;
     }
 
-    handleAction(...args: any[]) {
-        ActionHandler.handleAction(...args);
+    handleAction(jsonStr: string) {
+        if (typeof (jsonStr) === 'string') {
+            const data = JSON.parse(jsonStr);
+            ActionHandler.handleAction(data);
+        }
     }
 
     handleResult(...args: any[]) {
