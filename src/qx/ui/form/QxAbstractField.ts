@@ -3,11 +3,11 @@ import { QxWidget } from '../core/QxWidget';
 
 export abstract class QxAbstractField extends QxWidget {
     hasTextAppeared: boolean = false;
-    initValue: string = '';
+    initValue: string;
 
     constructor(widget: any) {
         super(widget);
-        widget.addListener('appear', this.onTextFieldAppear, this);
+        this.initValue = '';
     }
 
     clear() {
@@ -26,6 +26,7 @@ export abstract class QxAbstractField extends QxWidget {
 
     initialize() {
         super.initialize();
+        this.clear();
         this.setFontFamily(FontConstants.FontFamilyMonospace);
         this.setFontSize(FontConstants.FontSize24Px);
     }
@@ -35,19 +36,13 @@ export abstract class QxAbstractField extends QxWidget {
             super.onAppear();
             this.setFontSize(FontConstants.FontSize14Px);
             this.setFontFamily(FontConstants.FontFamilyMonospace);
-        }
-    }
-
-    onTextFieldAppear() {
-        if (!this.hasTextAppeared) {
-            this.hasTextAppeared = true;
             this.setValue(this.initValue);
             this.initValue = '';
         }
     }
 
     setValue(value: string) {
-        if (this.hasTextAppeared)
+        if (this.hasAppeared)
             this.widget.setValue(value);
         else
             this.initValue = value;

@@ -6,7 +6,7 @@ export class TextPanel extends AbstractPanel {
 
     constructor() {
         super();
-        this.textArea = new QxTextArea();
+        this.textArea = new QxTextArea;
         this.addCenter(this.textArea);
     }
 
