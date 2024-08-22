@@ -7,8 +7,8 @@ export class ResultHandler {
     static handleResult(...args: any[]) {
         if (args.length !== 2) return;
         const result: string = args[0];
-        const id: number = args[1];
-        const stdOut: any = ObjectRegistry.getId(id);
+        const stdOutId: number = args[1];
+        const stdOut: any = ObjectRegistry.getId(stdOutId);
         if (stdOut instanceof TranscriptPanel)
             stdOut.pr(result);
         else

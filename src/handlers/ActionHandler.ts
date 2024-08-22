@@ -7,10 +7,12 @@ export class ActionHandler {
 
     static handleAction(data: any) {
         const service: string = data.service;
+        const ownerId: number = data.input_id;
         const args: any[] = data.args;
+        console.log('handleAction', data);
         switch (service) {
             case ActionConstants.ServiceWorkbench:
-                WorkbenchHandler.handleAction(args);
+                WorkbenchHandler.handleAction(ownerId, args);
                 break;
             default:
                 ErrorHandler.logError(ErrorConstants.ActionHandlerMissingService, service);

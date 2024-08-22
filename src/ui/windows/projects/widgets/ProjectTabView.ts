@@ -1,4 +1,6 @@
+import { ErrorConstants } from '../../../../constants/ErrorConstants';
 import { LabelConstants } from '../../../../constants/LabelConstants';
+import { ErrorHandler } from '../../../../handlers/ErrorHandler';
 import { QxWidget } from '../../../../qx/ui/core/QxWidget';
 import { QxTabPage } from '../../../../qx/ui/tabview/QxTabPage';
 import { QxTabView } from '../../../../qx/ui/tabview/QxTabView';
@@ -10,10 +12,15 @@ import { DetailsPanel } from './DetailsPanel';
 
 export class ProjectTabView extends QxTabView {
     boardPanel: BoardPanel;
+    boardPage: QxTabPage;
     codePanel: EditorPanel;
+    codePage: QxTabPage;
     descriptionPanel: TextPanel;
+    descriptionPage: QxTabPage;
     detailsPanel: DetailsPanel;
+    detailsPage: QxTabPage;
     transcriptPanel: TranscriptPanel;
+    transcriptPage: QxTabPage;
 
     constructor() {
         super();
@@ -22,14 +29,14 @@ export class ProjectTabView extends QxTabView {
         this.descriptionPanel = new TextPanel;
         this.detailsPanel = new DetailsPanel;
         this.transcriptPanel = new TranscriptPanel;
-        this.addPage(LabelConstants.TabPageCode, this.codePanel);
-        this.addPage(LabelConstants.TabPageDescription, this.descriptionPanel);
-        this.addPage(LabelConstants.TabPageDetails, this.detailsPanel);
-        this.addPage(LabelConstants.TabPageTranscript, this.transcriptPanel);
-        this.addPage(LabelConstants.TabPageBoard, this.boardPanel);
+        this.codePage = this.addPage(LabelConstants.TabPageCode, this.codePanel);
+        this.descriptionPage = this.addPage(LabelConstants.TabPageDescription, this.descriptionPanel);
+        this.detailsPage = this.addPage(LabelConstants.TabPageDetails, this.detailsPanel);
+        this.transcriptPage = this.addPage(LabelConstants.TabPageTranscript, this.transcriptPanel);
+        this.boardPage = this.addPage(LabelConstants.TabPageBoard, this.boardPanel);
     }
 
-    addPage(label: string, widget: QxWidget): QxWidget {
+    addPage(label: string, widget: QxWidget): QxTabPage {
         const page = new QxTabPage(label);
         page.addCenter(widget);
         this.add(page);
@@ -41,7 +48,7 @@ export class ProjectTabView extends QxTabView {
         this.clearCode();
         this.clearDescription();
         this.clearDetails();
-        this.setSelection(this.codePanel);
+        this.setSelection(this.codePage);
     }
 
     clearBoard() {
@@ -80,7 +87,7 @@ export class ProjectTabView extends QxTabView {
         return this.detailsPanel.getValue();
     }
 
-    getTranscriptPanel():TranscriptPanel {
+    getTranscriptPanel(): TranscriptPanel {
         return this.transcriptPanel;
     }
 
@@ -92,6 +99,17 @@ export class ProjectTabView extends QxTabView {
     onResize() {
         super.onResize();
         this.boardPanel.centerLabels();
+    }
+
+    setActiveTab(tab: string) {
+        switch (tab) {
+            case 'transcript':
+                this.setSelection(this.transcriptPage);
+                break;
+            default:
+                ErrorHandler.logError(ErrorConstants.ProjectsTabsUnknownTab, tab);
+                break;
+        }
     }
 
     setCode(code: string) {
@@ -106,8 +124,8 @@ export class ProjectTabView extends QxTabView {
         this.detailsPanel.setValue(text);
     }
 
-    setSelection(child: QxWidget) {
-        this.widget.setSelection([child.widget.getLayoutParent()]);
-    }
+    // setSelection(child: QxWidget) {
+    //     this.widget.setSelection([child.widget.getLayoutParent()]);
+    // }
 
 }

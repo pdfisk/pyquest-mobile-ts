@@ -1,5 +1,6 @@
+import { QxWidget } from "../qx/ui/core/QxWidget";
+
 export class ObjectRegistry {
-    idCounter: number;
     objectMap: Map<number, any>;
     static instance: ObjectRegistry;
 
@@ -13,7 +14,7 @@ export class ObjectRegistry {
         return this.instance;
     }
 
-    static registerObject(obj: any): number {
+    static registerObject(obj: QxWidget): number {
         return this.getInstance().registerObject(obj);
     }
 
@@ -22,7 +23,6 @@ export class ObjectRegistry {
     }
 
     constructor() {
-        this.idCounter = 0;
         this.objectMap = new Map<number, any>;
     }
 
@@ -30,8 +30,8 @@ export class ObjectRegistry {
         return this.objectMap.get(id);
     }
 
-    registerObject(obj: any): number {
-        const index = this.idCounter++;
+    registerObject(obj: QxWidget): number {
+        const index = obj.getId();
         this.objectMap.set(index, obj);
         return index;
     }

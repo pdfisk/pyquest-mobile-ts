@@ -12,4 +12,8 @@ export class QxTabView extends QxWidget {
         this.widget.add(page.widget);
     }
 
+    setSelection(page: QxTabPage) {
+        this.widget.setSelection([page.widget]);
+    }
+
 }

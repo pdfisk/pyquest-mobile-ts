@@ -128,6 +128,10 @@ export class ProjectsWindow extends AbstractWindow {
         return (this.buttonBar as ProjectsButtonBar).getSelectedCategory();
     }
 
+    getTabViewId(): number {
+        return this.tabView ? this.tabView?.getId() : -1;
+    }
+
     hasSelectedData(): boolean {
         return this.projectsPanel ? this.projectsPanel.hasSelectedData() : false;
     }
@@ -225,7 +229,8 @@ export class ProjectsWindow extends AbstractWindow {
     onRun() {
         const src: string = this.getCode();
         const stdOutId: number = this.getStdOutId();
-        VmApi.run(src, -1, stdOutId);
+        const processId: number = VmApi.run(src, this.getId(), stdOutId);
+        console.log('RUN processId', processId);
     }
 
     onRunContinuously() {
@@ -268,6 +273,10 @@ export class ProjectsWindow extends AbstractWindow {
     save() {
         this.projectsPanel?.saveProject();
         this.refresh();
+    }
+
+    setActiveTab(tab: string) {
+        this.tabView?.setActiveTab(tab);
     }
 
     unregisterObjects() {

@@ -1,4 +1,5 @@
 import { IStdOut } from '../../../interfaces/IStdOut';
+import { QxWidget } from '../../../qx/ui/core/QxWidget';
 import { QxFormButton } from '../../../qx/ui/form/QxFormButton';
 import { QxWindowWindow } from '../../../qx/ui/window/QxWindowWindow';
 import { ObjectRegistry } from '../../../util/ObjectRegistry';
@@ -118,12 +119,14 @@ export class AbstractWindow extends QxWindowWindow {
     }
 
     registerObjects() {
+        ObjectRegistry.registerObject(this);
         if (this.stdOut)
             this.registerStdOut();
     }
 
     registerStdOut() {
-        this.stdOutId = ObjectRegistry.registerObject(this.stdOut);
+        if (this.stdOut instanceof QxWidget)
+            this.stdOutId = ObjectRegistry.registerObject(this.stdOut);
     }
 
     setStdOut(stdOut: IStdOut) {
@@ -131,6 +134,7 @@ export class AbstractWindow extends QxWindowWindow {
     }
 
     unregisterObjects() {
+        ObjectRegistry.removeId(this.getId());
         if (this.stdOut)
             this.unregisterStdOut();
     }

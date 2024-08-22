@@ -1,14 +1,16 @@
 import { ActionConstants } from "../../constants/ActionConstants";
 import { ErrorConstants } from "../../constants/ErrorConstants";
+import { QxWidget } from "../../qx/ui/core/QxWidget";
+import { ObjectRegistry } from "../../util/ObjectRegistry";
 import { ErrorHandler } from "../ErrorHandler";
 
 export class WorkbenchHandler {
 
-    static handleAction(args: any[]) {
+    static handleAction(ownerId: number, args: any[]) {
         const action: string = args.shift();
         switch (action) {
             case ActionConstants.ActionAutotab:
-                this.actionAutotab(args);
+                this.actionAutotab(ownerId, args);
                 break;
             default:
                 ErrorHandler.logError(ErrorConstants.WorkbenchHandlerMissingAction, action);
@@ -16,9 +18,12 @@ export class WorkbenchHandler {
         }
     }
 
-    static actionAutotab(args: any[]) {
+    static actionAutotab(ownerId: number, args: any[]) {
+        const owner: QxWidget = ObjectRegistry.getId(ownerId);
         const tab: string = args.shift();
-        console.log('actionAutotab', tab);
+        if ('setActiveTab' in owner)
+            (owner as any).setActiveTab(tab);
+        console.log('actionAutotab', tab, owner);
     }
 
 }

@@ -12,8 +12,8 @@ export class VmApi {
         return this.instance;
     }
 
-    static run(src: string, inputId: number, outputId: number) {
-        this.getInstance().run(src, inputId, outputId);
+    static run(src: string, inputId: number, outputId: number): number {
+        return this.getInstance().run(src, inputId, outputId);
     }
 
     constructor() {
@@ -23,8 +23,8 @@ export class VmApi {
         this.callVmApiFn(setResultHandlerFn, this.handleResult);
     }
 
-    callVmApiFn(fn: Function, ...args: any[]) {
-        fn.call(this.getOpalVmApi(), ...args);
+    callVmApiFn(fn: Function, ...args: any[]): any {
+        return fn.call(this.getOpalVmApi(), ...args);
     }
 
     getOpalVmApi(): any {
@@ -57,10 +57,15 @@ export class VmApi {
         ResultHandler.handleResult(...args);
     }
 
-    run(src: string, inputId: number, outputId: number) {
+    run(src: string, inputId: number, outputId: number): number {
         const runFn: Function = this.getVmApiRunFn();
-        if (runFn)
-            this.callVmApiFn(runFn, src, inputId, outputId);
+        if (runFn) {
+            const jsonStr: string = this.callVmApiFn(runFn, src, inputId, outputId);
+            const data: any = JSON.parse(jsonStr);
+            return data.id;
+        }
+        else
+            return -1;
     }
 
     setAction(src: string, inputId: number, outputId: number) {
