@@ -34,7 +34,6 @@ export class UsersWindow extends AbstractWindow {
         this.splitPane.add(this.usersPanel, 1);
         this.splitPane.add(this.detailsPanel, 2);
         this.add(this.splitPane);
-        EventBus.subscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this);
     }
 
     addButtonsLeft() {
@@ -117,13 +116,6 @@ export class UsersWindow extends AbstractWindow {
         }
     }
 
-    onClose() {
-        super.onClose();
-        EventBus.unsubscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this);
-        this.usersPanel?.releaseHandlers();
-        super.onClose();
-    }
-
     onDelete() {
         this.usersPanel?.deleteUser();
         this.refresh();
@@ -183,9 +175,20 @@ export class UsersWindow extends AbstractWindow {
         this.updateEnabledButtons();
     }
 
+    registerObjects() {
+        super.registerObjects();
+        EventBus.subscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this);
+    }
+
     save() {
         this.usersPanel?.saveUser();
         this.refresh();
+    }
+
+    unregisterObjects() {
+        super.unregisterObjects();
+        EventBus.unsubscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this);
+        this.usersPanel?.releaseHandlers();
     }
 
     updateEnabledButtons() {

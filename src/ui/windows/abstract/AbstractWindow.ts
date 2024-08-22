@@ -12,6 +12,7 @@ export class AbstractWindow extends QxWindowWindow {
         this.addSouth(this.buttonBar);
         this.addButtonsLeft();
         this.addButtonsRight();
+        this.registerObjects();
         if (this.defaultAutoDestroy())
             this.setAutoDestroy(true);
     }
@@ -92,7 +93,20 @@ export class AbstractWindow extends QxWindowWindow {
         console.log('onButtonClick', tag);
     }
 
+    onClose() {
+        super.onClose();
+        this.unregisterObjects();
+    }
+
     onResize() {
+    }
+
+    registerObjects() {
+
+    }
+
+    unregisterObjects() {
+
     }
 
 }
