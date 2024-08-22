@@ -9,7 +9,6 @@ export class ActionHandler {
         const service: string = data.service;
         const ownerId: number = data.input_id;
         const args: any[] = data.args;
-        console.log('handleAction', data);
         switch (service) {
             case ActionConstants.ServiceWorkbench:
                 WorkbenchHandler.handleAction(ownerId, args);

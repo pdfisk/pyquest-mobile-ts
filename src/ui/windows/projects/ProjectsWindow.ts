@@ -230,7 +230,6 @@ export class ProjectsWindow extends AbstractWindow {
         const src: string = this.getCode();
         const stdOutId: number = this.getStdOutId();
         const processId: number = VmApi.run(src, this.getId(), stdOutId);
-        console.log('RUN processId', processId);
     }
 
     onRunContinuously() {

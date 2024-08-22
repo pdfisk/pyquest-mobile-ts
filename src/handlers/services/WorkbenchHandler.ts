@@ -23,7 +23,6 @@ export class WorkbenchHandler {
         const tab: string = args.shift();
         if ('setActiveTab' in owner)
             (owner as any).setActiveTab(tab);
-        console.log('actionAutotab', tab, owner);
     }
 
 }
