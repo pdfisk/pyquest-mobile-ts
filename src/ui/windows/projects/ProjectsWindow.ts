@@ -16,6 +16,7 @@ import { AbstractWindow } from '../abstract/AbstractWindow';
 import { ProjectsButtonBar } from './widgets/ProjectsButtonBar';
 import { ProjectsPanel } from './widgets/ProjectsPanel';
 import { ProjectTabView } from './widgets/ProjectTabView';
+import { IStdOut } from '../../../interfaces/IStdOut';
 
 export class ProjectsWindow extends AbstractWindow {
     deleteButton?: QxFormButton;
@@ -132,6 +133,12 @@ export class ProjectsWindow extends AbstractWindow {
         return this.projectsPanel ? this.projectsPanel.hasSelectedData() : false;
     }
 
+    initStdOut() {
+        super.initStdOut();
+        if (this.tabView?.getTranscriptPanel())
+            this.setStdOut(this.tabView?.getTranscriptPanel());
+    }
+
     isLoggedIn(): boolean {
         return SessionStatus.isLoggedIn();
     }
@@ -218,7 +225,9 @@ export class ProjectsWindow extends AbstractWindow {
 
     onRun() {
         const src: string = this.getCode();
-        VmApi.run(src, 123, 456);
+        const stdOutId: number = this.getStdOutId();
+        console.log('onRun', stdOutId);
+        VmApi.run(src, -1, stdOutId);
     }
 
     onRunContinuously() {

@@ -80,6 +80,10 @@ export class ProjectTabView extends QxTabView {
         return this.detailsPanel.getValue();
     }
 
+    getTranscriptPanel():TranscriptPanel {
+        return this.transcriptPanel;
+    }
+
     onAppear() {
         super.onAppear();
         this.codePanel.widget.getLayoutParent().getLayoutParent().setPadding(0);

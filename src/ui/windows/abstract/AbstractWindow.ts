@@ -79,6 +79,10 @@ export class AbstractWindow extends QxWindowWindow {
         return this.stdOut;
     }
 
+    getStdOutId():number {
+        return this.stdOutId;
+    }
+
     initStdOut() {
     }
 
