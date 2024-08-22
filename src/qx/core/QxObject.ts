@@ -1,18 +1,24 @@
 export abstract class QxObject {
+    id: number;
     widget: any;
     static idCounter: number = 0;
 
     constructor(widget: any) {
         this.widget = widget;
-        this.setId(this.generateId());
+        this.id = QxObject.idCounter++;
+        this.setQxId(this.generateQxId());
         this.initialize();
     }
 
-    generateId(): string {
-        return `${this.getClassName()}-${QxObject.idCounter++}`;
+    generateQxId(): string {
+        return `${this.getClassName()}-${this.id}`;
     }
 
-    getId(): string {
+    getId(): number {
+        return this.id;
+    }
+
+    getQxId(): string {
         return this.widget.getQxObjectId();
     }
 
@@ -27,7 +33,7 @@ export abstract class QxObject {
     initialize() {
     }
 
-    setId(id: string) {
+    setQxId(id: string) {
         this.widget.setQxObjectId(id);
     }
 

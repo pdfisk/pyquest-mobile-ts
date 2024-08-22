@@ -1,10 +1,14 @@
+import { IStdOut } from '../../../interfaces/IStdOut';
 import { QxFormButton } from '../../../qx/ui/form/QxFormButton';
 import { QxWindowWindow } from '../../../qx/ui/window/QxWindowWindow';
+import { ObjectRegistry } from '../../../util/ObjectRegistry';
 import { ButtonBar } from '../../widgets/ButtonBar';
 
 export class AbstractWindow extends QxWindowWindow {
     buttonBar: any;
     hasAppeared: boolean = false;
+    stdOut?: IStdOut;
+    stdOutId: number = -1;
 
     initialize() {
         super.initialize();
@@ -12,6 +16,7 @@ export class AbstractWindow extends QxWindowWindow {
         this.addSouth(this.buttonBar);
         this.addButtonsLeft();
         this.addButtonsRight();
+        this.initStdOut();
         this.registerObjects();
         if (this.defaultAutoDestroy())
             this.setAutoDestroy(true);
@@ -50,7 +55,7 @@ export class AbstractWindow extends QxWindowWindow {
         this.widget.close();
     }
 
-    defaultAutoDestroy():boolean {
+    defaultAutoDestroy(): boolean {
         return true;
     }
 
@@ -62,12 +67,19 @@ export class AbstractWindow extends QxWindowWindow {
         return true;
     }
 
-    defaultEnableOnResize() : boolean {
+    defaultEnableOnResize(): boolean {
         return true;
     }
 
     defaultInitialPosition(): number[] {
         return [];
+    }
+
+    getStdOut(): IStdOut | undefined {
+        return this.stdOut;
+    }
+
+    initStdOut() {
     }
 
     moveTo(left: number, top: number) {
@@ -102,11 +114,25 @@ export class AbstractWindow extends QxWindowWindow {
     }
 
     registerObjects() {
+        if (this.stdOut)
+            this.registerStdOut();
+    }
 
+    registerStdOut() {
+        this.stdOutId = ObjectRegistry.registerObject(this.stdOut);
+    }
+
+    setStdOut(stdOut: IStdOut) {
+        this.stdOut = stdOut;
     }
 
     unregisterObjects() {
+        if (this.stdOut)
+            this.unregisterStdOut();
+    }
 
+    unregisterStdOut() {
+        ObjectRegistry.removeId(this.stdOutId);
     }
 
 }

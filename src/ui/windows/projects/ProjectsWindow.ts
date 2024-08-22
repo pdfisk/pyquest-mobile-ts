@@ -254,6 +254,10 @@ export class ProjectsWindow extends AbstractWindow {
         this.updateEnabledButtons();
     }
 
+    registerObjects() {
+        super.registerObjects();
+    }
+
     save() {
         this.projectsPanel?.saveProject();
         this.refresh();
