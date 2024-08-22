@@ -16,7 +16,6 @@ import { AbstractWindow } from '../abstract/AbstractWindow';
 import { ProjectsButtonBar } from './widgets/ProjectsButtonBar';
 import { ProjectsPanel } from './widgets/ProjectsPanel';
 import { ProjectTabView } from './widgets/ProjectTabView';
-import { IStdOut } from '../../../interfaces/IStdOut';
 
 export class ProjectsWindow extends AbstractWindow {
     deleteButton?: QxFormButton;
@@ -226,7 +225,6 @@ export class ProjectsWindow extends AbstractWindow {
     onRun() {
         const src: string = this.getCode();
         const stdOutId: number = this.getStdOutId();
-        console.log('onRun', stdOutId);
         VmApi.run(src, -1, stdOutId);
     }
 
@@ -270,6 +268,11 @@ export class ProjectsWindow extends AbstractWindow {
     save() {
         this.projectsPanel?.saveProject();
         this.refresh();
+    }
+
+    unregisterObjects() {
+        super.unregisterObjects();
+        this.projectsPanel?.releaseHandlers();
     }
 
     updateCategories(categories: string[]) {

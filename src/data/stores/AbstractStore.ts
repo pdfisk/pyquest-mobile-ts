@@ -64,7 +64,7 @@ export abstract class AbstractStore {
         this.loadData();
     }
 
-    removeLoadHandlerFn(key:number) {
+    removeLoadHandlerFn(key: number) {
         this.loadHandlerFns.delete(key);
     }
 
