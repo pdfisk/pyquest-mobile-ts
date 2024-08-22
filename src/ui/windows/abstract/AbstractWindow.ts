@@ -16,8 +16,6 @@ export class AbstractWindow extends QxWindowWindow {
         this.addSouth(this.buttonBar);
         this.addButtonsLeft();
         this.addButtonsRight();
-        this.initStdOut();
-        this.registerObjects();
         if (this.defaultAutoDestroy())
             this.setAutoDestroy(true);
     }
@@ -79,7 +77,7 @@ export class AbstractWindow extends QxWindowWindow {
         return this.stdOut;
     }
 
-    getStdOutId():number {
+    getStdOutId(): number {
         return this.stdOutId;
     }
 
@@ -101,6 +99,8 @@ export class AbstractWindow extends QxWindowWindow {
     onAppear() {
         if (!this.hasAppeared) {
             super.onAppear();
+            this.initStdOut();
+            this.registerObjects();
             this.moveToInitialPosition();
         }
     }
