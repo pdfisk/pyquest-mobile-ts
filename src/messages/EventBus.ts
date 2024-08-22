@@ -20,13 +20,15 @@ export class EventBus {
         this.getInstance().unsubscribe(name, fn, context);
     }
 
-    private constructor() {
-        this.messageBus = (window as any).qx.event.message.Bus;
-    }
-
     dispatch(name: string, data: any) {
         const message = new (window as any).qx.event.message.Message(name, data);
-        this.messageBus.dispatch(message);
+        this.getMessageBus().dispatch(message);
+    }
+
+    getMessageBus(): any {
+        if (!this.messageBus)
+            this.messageBus = new (window as any).qx.event.message.Bus;
+        return this.messageBus;
     }
 
     show(caption: string) {
@@ -34,11 +36,11 @@ export class EventBus {
     }
 
     subscribe(name: string, fn: Function, context: any) {
-        this.messageBus.subscribe(name, fn, context);
+        this.getMessageBus().subscribe(name, fn, context);
     }
 
     unsubscribe(name: string, fn: Function, context: any) {
-        this.messageBus.unsubscribe(name, fn, context);
+        this.getMessageBus().unsubscribe(name, fn, context);
     }
 
 }
