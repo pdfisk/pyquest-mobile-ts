@@ -1,5 +1,6 @@
 export class ErrorConstants {
     static ActionHandlerMissingService: string = 'ActionHandler missing service';
+    static BoardHandlerMissingAction: string = 'BoardHandler missing action';
     static ConsoleWindowOnButtonClick: string = 'ConsoleWindow onButtonClick';
     static LoginWindowOnButtonClick: string = 'LoginWindow onButtonClick';
     static ProjectsTabsUnknownTab: string = 'ProjectsTabs unknown tab';

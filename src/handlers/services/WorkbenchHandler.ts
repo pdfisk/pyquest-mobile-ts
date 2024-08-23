@@ -32,7 +32,7 @@ export class WorkbenchHandler extends HandlerBase {
     actionAutotab(ownerId: number, args: any[]) {
         const owner: QxWidget = this.getOwner(ownerId);
         const tab: string = args.shift();
-        if ('setActiveTab' in owner)
+        if (ActionConstants.FunctionSetActiveTab in owner)
             (owner as any).setActiveTab(tab);
     }
 

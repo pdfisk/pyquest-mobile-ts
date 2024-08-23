@@ -16,6 +16,15 @@ export class ActionConstants {
     static ActionRunStepping: string = 'run_stepping';
     static ActionSave: string = 'save';
     static ActionStatus: string = 'status';
+ 
+    static FunctionGetBoardPanel: string = 'getBoardPanel';
+    static FunctionGetTranscriptPanel: string = 'getTranscriptPanel';
+    static FunctionSetActiveTab: string = 'setActiveTab';
 
-    static ServiceWorkbench:string = 'workbench';
+    static ServiceBoard: string = 'board';
+    static ServiceWorkbench: string = 'workbench';
+
+    static TabTranscript: string = 'transcript';
+    static TabBoard: string = 'board';
+
 }

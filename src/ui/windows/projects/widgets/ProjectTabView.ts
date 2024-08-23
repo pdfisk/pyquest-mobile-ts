@@ -1,3 +1,4 @@
+import { ActionConstants } from '../../../../constants/ActionConstants';
 import { ErrorConstants } from '../../../../constants/ErrorConstants';
 import { LabelConstants } from '../../../../constants/LabelConstants';
 import { ErrorHandler } from '../../../../handlers/ErrorHandler';
@@ -75,6 +76,10 @@ export class ProjectTabView extends QxTabView {
         return true;
     }
 
+    getBoardPanel(): BoardPanel {
+        return this.boardPanel;
+    }
+
     getCode(): string {
         return this.codePanel.getValue();
     }
@@ -103,8 +108,11 @@ export class ProjectTabView extends QxTabView {
 
     setActiveTab(tab: string) {
         switch (tab) {
-            case 'transcript':
+            case ActionConstants.TabTranscript:
                 this.setSelection(this.transcriptPage);
+                break;
+            case ActionConstants.TabBoard:
+                this.setSelection(this.boardPage);
                 break;
             default:
                 ErrorHandler.logError(ErrorConstants.ProjectsTabsUnknownTab, tab);
@@ -123,9 +131,5 @@ export class ProjectTabView extends QxTabView {
     setDetails(text: string) {
         this.detailsPanel.setValue(text);
     }
-
-    // setSelection(child: QxWidget) {
-    //     this.widget.setSelection([child.widget.getLayoutParent()]);
-    // }
 
 }
