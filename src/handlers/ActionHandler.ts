@@ -9,7 +9,7 @@ export class ActionHandler {
     static handleAction(data: any) {
         const service: string = data.service;
         const ownerId: number = data.input_id;
-        const args: any[] = data.args;
+        const args: any = data.args;
         switch (service) {
             case ActionConstants.ServiceBoard:
                 BoardHandler.handleAction(ownerId, args);

@@ -1,5 +1,6 @@
 import { ActionConstants } from "../../constants/ActionConstants";
 import { BoardPanel } from "../../ui/widgets/BoardPanel";
+import { EditorPanel } from "../../ui/widgets/EditorPanel";
 import { TranscriptPanel } from "../../ui/widgets/TranscriptPanel";
 import { ObjectRegistry } from "../../util/ObjectRegistry";
 
@@ -13,6 +14,13 @@ export class HandlerBase {
         const owner = this.getOwner(ownerId);
         if (owner && ActionConstants.FunctionGetBoardPanel in owner)
             return owner[ActionConstants.FunctionGetBoardPanel]();
+        return null;
+    }
+
+    getEditorPanel(ownerId: number): EditorPanel | null {
+        const owner = this.getOwner(ownerId);
+        if (owner && ActionConstants.FunctionGetEditorPanel in owner)
+            return owner[ActionConstants.FunctionGetEditorPanel]();
         return null;
     }
 

@@ -14,23 +14,23 @@ import { DetailsPanel } from './DetailsPanel';
 export class ProjectTabView extends QxTabView {
     boardPanel: BoardPanel;
     boardPage: QxTabPage;
-    codePanel: EditorPanel;
     codePage: QxTabPage;
     descriptionPanel: TextPanel;
     descriptionPage: QxTabPage;
     detailsPanel: DetailsPanel;
     detailsPage: QxTabPage;
+    editorPanel: EditorPanel;
     transcriptPanel: TranscriptPanel;
     transcriptPage: QxTabPage;
 
     constructor() {
         super();
         this.boardPanel = new BoardPanel;
-        this.codePanel = new EditorPanel;
         this.descriptionPanel = new TextPanel;
         this.detailsPanel = new DetailsPanel;
+        this.editorPanel = new EditorPanel;
         this.transcriptPanel = new TranscriptPanel;
-        this.codePage = this.addPage(LabelConstants.TabPageCode, this.codePanel);
+        this.codePage = this.addPage(LabelConstants.TabPageCode, this.editorPanel);
         this.descriptionPage = this.addPage(LabelConstants.TabPageDescription, this.descriptionPanel);
         this.detailsPage = this.addPage(LabelConstants.TabPageDetails, this.detailsPanel);
         this.transcriptPage = this.addPage(LabelConstants.TabPageTranscript, this.transcriptPanel);
@@ -57,7 +57,7 @@ export class ProjectTabView extends QxTabView {
     }
 
     clearCode() {
-        this.codePanel.clear();
+        this.editorPanel.clear();
     }
 
     clearDescription() {
@@ -81,7 +81,7 @@ export class ProjectTabView extends QxTabView {
     }
 
     getCode(): string {
-        return this.codePanel.getValue();
+        return this.editorPanel.getValue();
     }
 
     getDescription(): string {
@@ -92,13 +92,17 @@ export class ProjectTabView extends QxTabView {
         return this.detailsPanel.getValue();
     }
 
+    getEditorPanel(): EditorPanel {
+        return this.editorPanel;
+    }
+
     getTranscriptPanel(): TranscriptPanel {
         return this.transcriptPanel;
     }
 
     onAppear() {
         super.onAppear();
-        this.codePanel.widget.getLayoutParent().getLayoutParent().setPadding(0);
+        this.editorPanel.widget.getLayoutParent().getLayoutParent().setPadding(0);
     }
 
     onResize() {
@@ -121,7 +125,7 @@ export class ProjectTabView extends QxTabView {
     }
 
     setCode(code: string) {
-        this.codePanel.setValue(code);
+        this.editorPanel.setValue(code);
     }
 
     setDescription(text: string) {

@@ -23,7 +23,10 @@ export class WorkbenchHandler extends HandlerBase {
             case ActionConstants.ActionAutotab:
                 this.actionAutotab(ownerId, args);
                 break;
-            default:
+                case ActionConstants.ActionSync:
+                    this.actionSync(ownerId, args);
+                    break;
+                default:
                 ErrorHandler.logError(ErrorConstants.WorkbenchHandlerMissingAction, action);
                 break;
         }
@@ -34,6 +37,10 @@ export class WorkbenchHandler extends HandlerBase {
         const tab: string = args.shift();
         if (ActionConstants.FunctionSetActiveTab in owner)
             (owner as any).setActiveTab(tab);
+    }
+
+    actionSync(ownerId:number, args:any[] ) {
+
     }
 
 }

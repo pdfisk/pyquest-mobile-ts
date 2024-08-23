@@ -16,8 +16,10 @@ export class ActionConstants {
     static ActionRunStepping: string = 'run_stepping';
     static ActionSave: string = 'save';
     static ActionStatus: string = 'status';
- 
+    static ActionSync: string = 'sync';
+
     static FunctionGetBoardPanel: string = 'getBoardPanel';
+    static FunctionGetEditorPanel: string = 'getEditorPanel';
     static FunctionGetTranscriptPanel: string = 'getTranscriptPanel';
     static FunctionSetActiveTab: string = 'setActiveTab';
 

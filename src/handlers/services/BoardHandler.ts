@@ -19,7 +19,7 @@ export class BoardHandler extends HandlerBase {
 
     handleAction(ownerId: number, args: any[]) {
         const action: string = args.shift();
-        const board:BoardPanel|null = this.getBoardPanel(ownerId);
+        const board: BoardPanel | null = this.getBoardPanel(ownerId);
         if (!board) return;
         switch (action) {
             case ActionConstants.ActionClear:
@@ -31,7 +31,8 @@ export class BoardHandler extends HandlerBase {
         }
     }
 
-    actionClear(board:BoardPanel) {
+    actionClear(board: BoardPanel) {
+        console.log('actionClear');
         board.clear();
     }
 

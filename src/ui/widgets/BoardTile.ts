@@ -9,7 +9,6 @@ export class BoardTile extends CenteredPanel {
     constructor() {
         super(new QxBasicLabel);
         this.setValue('X');
-        (window as any).X = this;
     }
 
     getValue(): string {

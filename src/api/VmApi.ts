@@ -47,8 +47,11 @@ export class VmApi {
     }
 
     handleAction(jsonStr: string) {
+        console.log('handleAction', jsonStr);
         if (typeof (jsonStr) === 'string') {
-            const data = JSON.parse(jsonStr);
+            let args = JSON.parse(jsonStr)['args'];
+            let data = JSON.parse(jsonStr);
+            data.args = args;
             ActionHandler.handleAction(data);
         }
     }
