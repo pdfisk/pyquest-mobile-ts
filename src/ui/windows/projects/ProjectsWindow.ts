@@ -11,7 +11,10 @@ import { QxSplitButton } from '../../../qx/ui/form/QxSplitButton';
 import { QxPopup } from '../../../qx/ui/popup/Popup';
 import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
 import { SessionStatus } from '../../../session/SessionStatus';
+import { BoardPanel } from '../../widgets/BoardPanel';
 import { ButtonBar } from '../../widgets/ButtonBar';
+import { EditorPanel } from '../../widgets/EditorPanel';
+import { TranscriptPanel } from '../../widgets/TranscriptPanel';
 import { AbstractWindow } from '../abstract/AbstractWindow';
 import { ProjectsButtonBar } from './widgets/ProjectsButtonBar';
 import { ProjectsPanel } from './widgets/ProjectsPanel';
@@ -106,6 +109,10 @@ export class ProjectsWindow extends AbstractWindow {
         return SizeConstants.ProjectsWindowWidth;
     }
 
+    getBoardPanel(): BoardPanel | undefined {
+        return this.tabView?.getBoardPanel();
+    }
+
     getCode(): string {
         if (this.tabView)
             return this.tabView.getCode();
@@ -124,12 +131,20 @@ export class ProjectsWindow extends AbstractWindow {
         return '';
     }
 
+    getEditorPanel(): EditorPanel | undefined {
+        return this.tabView?.getEditorPanel();
+    }
+
     getSelectedCategory(): string {
         return (this.buttonBar as ProjectsButtonBar).getSelectedCategory();
     }
 
     getTabViewId(): number {
         return this.tabView ? this.tabView?.getId() : -1;
+    }
+
+    getTranscriptPanel(): TranscriptPanel | undefined {
+        return this.tabView?.getTranscriptPanel();
     }
 
     hasSelectedData(): boolean {

@@ -11,6 +11,10 @@ export class BoardTile extends CenteredPanel {
         this.setValue('X');
     }
 
+    clear() {
+        this.setValue('');
+    }
+
     getValue(): string {
         return (this.child as QxBasicLabel).getValue();
     }

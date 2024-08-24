@@ -1,6 +1,7 @@
 import { VmApiConstants } from "../constants/VmApiConstants";
 import { ActionHandler } from "../handlers/ActionHandler";
 import { ResultHandler } from "../handlers/ResultHandler";
+import { ActionRec } from "../interfaces/ActionRec";
 
 export class VmApi {
 
@@ -47,12 +48,10 @@ export class VmApi {
     }
 
     handleAction(jsonStr: string) {
-        console.log('handleAction', jsonStr);
         if (typeof (jsonStr) === 'string') {
-            let args = JSON.parse(jsonStr)['args'];
-            let data = JSON.parse(jsonStr);
-            data.args = args;
-            ActionHandler.handleAction(data);
+            (window as any).__dummy__ = JSON.parse(jsonStr);
+            ActionHandler.handleAction((window as any).__dummy__);
+            (window as any).__dummy__ = undefined;
         }
     }
 

@@ -23,7 +23,7 @@ export class BoardPanel extends AbstractPanel {
         for (let i = 0; i < this.size; i++) {
             for (let j = 0; j < this.size; j++) {
                 const tile = new BoardTile;
-                this.tileMap.set(`row:${i}column:${j}`, tile);
+                this.tileMap.set(this.getRowColumnTag(i, j), tile);
                 this.widget.add(tile.widget, { row: i, column: j });
             }
         }
@@ -35,14 +35,28 @@ export class BoardPanel extends AbstractPanel {
     }
 
     clear() {
-        this.widget.removeAll();
-        this.tileMap.clear();
+        this.getAllTiles().forEach(tile => { tile.clear(); });
     }
 
     defaultLayout(): QxGridLayout {
         this.layout = new QxGridLayout();
         this.layout.setSpacing(LayoutConstants.BoardGridSpacing);
         return this.layout;
+    }
+
+    getAllTiles(): BoardTile[] {
+        const tiles: BoardTile[] = [];
+        for (let tile of this.tileMap.values())
+            tiles.push(tile);
+        return tiles;
+    }
+
+    getRowColumnTag(row: number, column: number): string {
+        return `row:${row}column:${column}`;
+    }
+
+    getRowColumnTile(row: number, column: number): BoardTile | undefined {
+        return this.tileMap.get(this.getRowColumnTag(row, column));
     }
 
     initialize() {

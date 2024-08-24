@@ -32,7 +32,6 @@ export class BoardHandler extends HandlerBase {
     }
 
     actionClear(board: BoardPanel) {
-        console.log('actionClear');
         board.clear();
     }
 
