@@ -3,8 +3,9 @@ import { QxWidget } from "../core/QxWidget";
 
 export class QxBasicAtom extends QxWidget {
 
-    constructor() {
-        super(QxFactory.basicAtom());
+    constructor(widget: any) {
+        if (!widget) widget = QxFactory.basicAtom();
+        super(widget);
     }
 
     clear() {
