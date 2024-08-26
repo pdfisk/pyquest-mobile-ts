@@ -1,4 +1,4 @@
-export interface ActionRec {
+export interface ServiceRec {
     service: string;
     id: number;
     input_id: number;

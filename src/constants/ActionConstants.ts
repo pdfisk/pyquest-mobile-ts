@@ -6,6 +6,7 @@ export class ActionConstants {
     static ActionDelete: string = 'delete';
     static ActionLogin: string = 'login';
     static ActionLogout: string = 'logout';
+    static ActionMoveTile: string = 'move_tile';
     static ActionNew: string = 'new';
     static ActionRefresh: string = 'refresh';
     static ActionRegister: string = 'register';
@@ -15,6 +16,9 @@ export class ActionConstants {
     static ActionRunSingleStep: string = 'run_single_step';
     static ActionRunStepping: string = 'run_stepping';
     static ActionSave: string = 'save';
+    static ActionSetSize: string = 'set_size';
+    static ActionSetTileImage: string = 'set_tile_image';
+    static ActionSetTileText: string = 'set_tile_text';
     static ActionStatus: string = 'status';
     static ActionSync: string = 'sync';
 

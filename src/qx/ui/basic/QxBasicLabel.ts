@@ -18,7 +18,10 @@ export class QxBasicLabel extends QxWidget {
     }
 
     getValue(): string {
-        return this.widget.getValue();
+        if (this.hasAppeared)
+            return this.widget.getValue();
+        else
+            return this.buffer;
     }
 
     onAppear() {

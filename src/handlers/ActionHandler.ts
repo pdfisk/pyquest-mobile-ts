@@ -1,13 +1,13 @@
 import { ActionConstants } from "../constants/ActionConstants";
 import { ErrorConstants } from "../constants/ErrorConstants";
-import { ActionRec } from "../interfaces/ActionRec";
+import { ServiceRec } from "../interfaces/ServiceRec";
 import { ErrorHandler } from "./ErrorHandler";
 import { BoardHandler } from "./services/BoardHandler";
 import { WorkbenchHandler } from "./services/WorkbenchHandler";
 
 export class ActionHandler {
 
-    static handleAction(actionRec: ActionRec) {
+    static handleAction(actionRec: ServiceRec) {
         const service: string = actionRec.service;
         const ownerId: number = actionRec.input_id;
         const args: any[] = actionRec.args;

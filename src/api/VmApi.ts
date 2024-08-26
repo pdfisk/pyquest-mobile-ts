@@ -1,7 +1,7 @@
 import { VmApiConstants } from "../constants/VmApiConstants";
 import { ActionHandler } from "../handlers/ActionHandler";
 import { ResultHandler } from "../handlers/ResultHandler";
-import { ActionRec } from "../interfaces/ActionRec";
+import { ServiceRec } from "../interfaces/ServiceRec";
 
 export class VmApi {
 
