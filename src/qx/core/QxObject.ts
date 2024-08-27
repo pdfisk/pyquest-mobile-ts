@@ -7,6 +7,7 @@ export abstract class QxObject {
         this.widget = widget;
         this.id = QxObject.idCounter++;
         this.setQxId(this.generateQxId());
+        this.widget.setUserData('tsobject', this);
         this.initialize();
     }
 

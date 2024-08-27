@@ -14,6 +14,7 @@ export class CenteredPanel extends BasicPanel {
 
     centerChild() {
         const tileBounds = this.getBounds();
+        if (!tileBounds) return;
         const tileWidth = tileBounds.width;
         const tileHeight = tileBounds.height;
         const labelLeft = (tileWidth - this.childWidth) / 2;

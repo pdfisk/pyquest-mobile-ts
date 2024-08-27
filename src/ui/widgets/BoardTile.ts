@@ -35,6 +35,7 @@ export class BoardTile extends CenteredPanel {
 
     setLabel(value: string) {
         (this.child as QxBasicAtom).setLabel(value);
+        this.centerChild();
     }
 
 }

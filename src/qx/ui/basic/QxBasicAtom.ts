@@ -1,4 +1,6 @@
 import { FontConstants } from "../../../constants/FontConstants";
+import { SizeConstants } from "../../../constants/SizeConstants";
+import { DeferredCall } from "../../../util/DeferredCall";
 import { QxFactory } from "../../factory/QxFactory";
 import { QxWidget } from "../core/QxWidget";
 import { QxBasicImage } from "./QxBasicImage";
@@ -48,18 +50,18 @@ export class QxBasicAtom extends QxWidget {
     }
 
     setLabel(label: string) {
-        console.log('setLabel', `[${label}]`);
-        (window as any).X = this;
         if (!this.widget) return;
         this.clearIcon();
         this.widget.setLabel(label);
-        if (!this.basicLabel) {
-            if (this.widget._getChildren().length > 0) {
-                const labelWidget = this.widget._getChildren()[0];
-                this.basicLabel = new QxBasicLabel(labelWidget);
-                this.basicLabel.setFontFamily(FontConstants.FontFamilyMonospace);
-                this.basicLabel.setFontSize(FontConstants.FontSize24Px);
-            }
+        if (label.length > 0 && this.widget._getChildren().length > 0) {
+            const labelWidget = this.widget._getChildren()[0];
+            labelWidget.getContentElement().setStyle(FontConstants.FONT_FAMILY, FontConstants.FontFamilyMonospace);
+            labelWidget.getContentElement().setStyle(FontConstants.FONT_SIZE, FontConstants.FontSize24Px);
+            const fn = () => {
+                labelWidget.setWidth(SizeConstants.LabelSize24);
+                labelWidget.setHeight(SizeConstants.LabelSize24);
+            };
+            DeferredCall.schedule(fn, this);
         }
     }
 
