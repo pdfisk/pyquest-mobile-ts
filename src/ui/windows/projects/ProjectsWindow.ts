@@ -11,6 +11,7 @@ import { QxSplitButton } from '../../../qx/ui/form/QxSplitButton';
 import { QxPopup } from '../../../qx/ui/popup/Popup';
 import { QxSplitPane } from '../../../qx/ui/splitpane/QxSplitPane';
 import { SessionStatus } from '../../../session/SessionStatus';
+import { DeferredCall } from '../../../util/DeferredCall';
 import { BoardPanel } from '../../widgets/BoardPanel';
 import { ButtonBar } from '../../widgets/ButtonBar';
 import { EditorPanel } from '../../widgets/EditorPanel';
@@ -320,7 +321,7 @@ export class ProjectsWindow extends AbstractWindow {
             if (this.saveButton)
                 this.saveButton.setEnabled(enabled_3);
         };
-        setTimeout(fn, 100);
+        DeferredCall.schedule(fn);
     }
 
 }

@@ -1,5 +1,6 @@
 import { EventConstants } from '../../../constants/EventConstants';
 import { SizeConstants } from '../../../constants/SizeConstants';
+import { DeferredCall } from '../../../util/DeferredCall';
 import { QxFactory } from '../../factory/QxFactory';
 import { QxWidget } from '../core/QxWidget';
 import { QxAbstractLayout } from '../layout/QxAbstractLayout';
@@ -23,7 +24,7 @@ export class QxWindowWindow extends QxWidget {
         this.setShowMinimize(this.defaultShowMinimize());
         this.addWindowHandlers();
         if (this.defaultShow())
-            setTimeout(() => { this.show(); }, 100);
+            DeferredCall.schedule(() => { this.show(); });
     }
 
     add(child: QxWidget) {
