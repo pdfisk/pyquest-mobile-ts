@@ -38,16 +38,16 @@ export class BoardPanel extends AbstractPanel {
         let row_2 = row_1;
         let column_2 = column_1;
         switch(direction) {
-            case 'down':
+            case ActionConstants.MoveDirectionDown:
                 row_2 += 1;
                 break;
-            case 'left':
+            case ActionConstants.MoveDirectionLeft:
                 column_2 -= 1;
                 break;
-            case 'right':
+            case ActionConstants.MoveDirectionRight:
                 column_2 += 1;
                 break;
-            case 'up':
+            case ActionConstants.MoveDirectionUp:
                 row_2 -= 1;
                 break;
         }

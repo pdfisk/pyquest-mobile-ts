@@ -27,6 +27,11 @@ export class ActionConstants {
     static FunctionGetTranscriptPanel: string = 'getTranscriptPanel';
     static FunctionSetActiveTab: string = 'setActiveTab';
 
+    static MoveDirectionDown: string = 'down';
+    static MoveDirectionLeft: string = 'left';
+    static MoveDirectionRight: string = 'right';
+    static MoveDirectionUp: string = 'up';
+
     static ServiceBoard: string = 'board';
     static ServiceWorkbench: string = 'workbench';
 
