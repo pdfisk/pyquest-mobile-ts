@@ -1,11 +1,10 @@
-import { QxFactory } from "../../factory/QxFactory";
 import { QxWidget } from "../core/QxWidget";
 
 export class QxBasicLabel extends QxWidget {
     buffer: string;
 
-    constructor(text: string = '') {
-        super(QxFactory.basicLabel(text));
+    constructor(widget:any) {
+        super(widget);
         this.buffer = '';
     }
 

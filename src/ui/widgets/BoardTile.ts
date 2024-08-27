@@ -1,26 +1,26 @@
 import { ColorConstants } from "../../constants/ColorConstants";
-import { FontConstants } from "../../constants/FontConstants";
 import { SizeConstants } from "../../constants/SizeConstants";
-import { QxBasicLabel } from '../../qx/ui/basic/QxBasicLabel';
+import { QxBasicAtom } from "../../qx/ui/basic/QxBasicAtom";
 import { CenteredPanel } from "./CenteredPanel";
 
 export class BoardTile extends CenteredPanel {
 
     constructor() {
-        super(new QxBasicLabel);
-    }
-
-    clear() {
-        this.setValue('');
-    }
-
-    copy(target:BoardTile) {
-        target.setValue(this.getValue());
+        super(new QxBasicAtom());
         this.clear();
     }
 
-    getValue(): string {
-        return (this.child as QxBasicLabel).getValue();
+    clear() {
+        this.setLabel('');
+    }
+
+    copy(target: BoardTile) {
+        target.setLabel(this.getLabel());
+        this.clear();
+    }
+
+    getLabel(): string {
+        return (this.child as QxBasicAtom).getLabel();
     }
 
     initialize() {
@@ -29,14 +29,12 @@ export class BoardTile extends CenteredPanel {
     }
 
     onAppear() {
-        this.child.setFontFamily(FontConstants.FontFamilyMonospace);
-        this.child.setFontSize(FontConstants.FontSize24Px);
         this.setSize(SizeConstants.LabelSize24, SizeConstants.LabelSize24);
         super.onAppear();
     }
 
-    setValue(value: string) {
-        (this.child as QxBasicLabel).setValue(value);
+    setLabel(value: string) {
+        (this.child as QxBasicAtom).setLabel(value);
     }
 
 }

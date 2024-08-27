@@ -71,7 +71,7 @@ export class BoardPanel extends AbstractPanel {
         const text: string = args[2];
         const tile: any = this.getTile(row, column);
         if (tile)
-            tile.setValue(text);
+            tile.setLabel(text);
     }
 
     addTiles() {
@@ -184,7 +184,7 @@ export class BoardPanel extends AbstractPanel {
     setTile(row: number, column: number, text: string) {
         const tile = this.getTile(row, column);
         if (tile)
-            tile.setValue(text);
+            tile.setLabel(text);
     }
 
 }
