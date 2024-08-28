@@ -142,10 +142,7 @@ export class BoardPanel extends AbstractPanel {
 
     onAppear() {
         super.onAppear();
-        this.addTiles();
-        this.deferredActions.forEach(actionRec => {
-            this.performAction(actionRec);
-        });
+        this.resize();
     }
 
     onResize() {
@@ -177,8 +174,18 @@ export class BoardPanel extends AbstractPanel {
         }
     }
 
+    resize() {
+        // this.removeAll();
+        this.addTiles();
+        this.deferredActions.forEach(actionRec => {
+            this.performAction(actionRec);
+        });
+        this.deferredActions = [];
+    }
+
     setSize(size: number) {
         this.size = size;
+        // this.resize();
     }
 
     setTile(row: number, column: number, text: string) {
