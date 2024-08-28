@@ -37,7 +37,7 @@ export class BoardPanel extends AbstractPanel {
             delay = args[4];
         let row_2 = row_1;
         let column_2 = column_1;
-        switch(direction) {
+        switch (direction) {
             case ActionConstants.MoveDirectionDown:
                 row_2 += 1;
                 break;
@@ -58,7 +58,9 @@ export class BoardPanel extends AbstractPanel {
     }
 
     actionSetSize(args: any[]) {
-        console.log('actionSetSize', args);
+        const size: number = args[0];
+        this.setSize(size);
+        this.resize();
     }
 
     actionSetTileImage(args: any[]) {
@@ -143,6 +145,10 @@ export class BoardPanel extends AbstractPanel {
     onAppear() {
         super.onAppear();
         this.resize();
+        this.deferredActions.forEach(actionRec => {
+            this.performAction(actionRec);
+        });
+        this.deferredActions = [];
     }
 
     onResize() {
@@ -177,15 +183,10 @@ export class BoardPanel extends AbstractPanel {
     resize() {
         this.removeAll();
         this.addTiles();
-        this.deferredActions.forEach(actionRec => {
-            this.performAction(actionRec);
-        });
-        this.deferredActions = [];
     }
 
     setSize(size: number) {
         this.size = size;
-        // this.resize();
     }
 
     setTile(row: number, column: number, text: string) {
