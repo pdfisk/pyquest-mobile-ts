@@ -175,7 +175,7 @@ export class BoardPanel extends AbstractPanel {
     }
 
     resize() {
-        // this.removeAll();
+        this.removeAll();
         this.addTiles();
         this.deferredActions.forEach(actionRec => {
             this.performAction(actionRec);
