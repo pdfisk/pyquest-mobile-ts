@@ -13,6 +13,8 @@ export class QxBasicAtom extends QxWidget {
     constructor(widget?: any) {
         if (!widget) widget = QxFactory.basicAtom();
         super(widget);
+        this.setCenter(true);
+        this.setRich(true);
         this.basicImage = undefined;
         this.basicLabel = undefined;
     }
@@ -44,6 +46,10 @@ export class QxBasicAtom extends QxWidget {
         return this.widget.getShow();
     }
 
+    setCenter(value:boolean) {
+        this.widget.setCenter(value);
+    }
+
     setIcon(icon: string) {
         this.clearLabel();
         this.widget.setIcon(icon);
@@ -52,8 +58,9 @@ export class QxBasicAtom extends QxWidget {
     setLabel(label: string) {
         if (!this.widget) return;
         this.clearIcon();
-        this.widget.setLabel(label);
-        this.setLabelStyle();
+        const html = `<span style="font-size:24px;font-family:monospace,sans">${label}</span>`;
+        this.widget.setLabel(html);
+        // this.setLabelStyle();
     }
 
     setLabelStyle() {
@@ -67,6 +74,10 @@ export class QxBasicAtom extends QxWidget {
             };
             DeferredCall.schedule(fn, this);
         }
+    }
+
+    setRich(value:boolean) {
+        this.widget.setRich(value);
     }
 
     setShow(show: string) {
