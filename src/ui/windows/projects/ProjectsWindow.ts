@@ -235,7 +235,7 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     onResize() {
-        this.tabView?.boardPanel.centerLabels();
+        this.tabView?.boardPanel.setMaxSizes();
     }
 
     onRestore() {

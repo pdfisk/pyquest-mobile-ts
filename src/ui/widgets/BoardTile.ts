@@ -1,17 +1,19 @@
 import { ColorConstants } from "../../constants/ColorConstants";
-import { SizeConstants } from "../../constants/SizeConstants";
 import { QxBasicAtom } from "../../qx/ui/basic/QxBasicAtom";
-import { CenteredPanel } from "./CenteredPanel";
 
-export class BoardTile extends CenteredPanel {
+export class BoardTile extends QxBasicAtom {
 
     constructor() {
-        super(new QxBasicAtom());
+        super();
         this.clear();
+        this.setCenter(true);
+        this.setRich(true);
+        // this.setLabelStyle
     }
 
     clear() {
-        this.setLabel('');
+        this.clearIcon();
+        this.clearLabel();
     }
 
     copy(target: BoardTile) {
@@ -19,23 +21,16 @@ export class BoardTile extends CenteredPanel {
         this.clear();
     }
 
-    getLabel(): string {
-        return (this.child as QxBasicAtom).getLabel();
-    }
-
     initialize() {
         super.initialize();
         this.setBackgroundColor(ColorConstants.BoardTileBackground);
     }
 
-    onAppear() {
-        this.setSize(SizeConstants.LabelSize24, SizeConstants.LabelSize24);
-        super.onAppear();
-    }
-
     setLabel(value: string) {
-        (this.child as QxBasicAtom).setLabel(value);
-        this.centerChild();
+        if (value.length > 0)
+            (window as any).X = this;
+        const html = `<span style="font-size:24px;font-family:monospace,sans">${value}</span>`;
+        super.setLabel(html);
     }
 
 }

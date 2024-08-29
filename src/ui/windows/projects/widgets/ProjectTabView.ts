@@ -107,7 +107,7 @@ export class ProjectTabView extends QxTabView {
 
     onResize() {
         super.onResize();
-        this.boardPanel.centerLabels();
+        this.boardPanel.setMaxSizes();
     }
 
     setActiveTab(tab: string) {

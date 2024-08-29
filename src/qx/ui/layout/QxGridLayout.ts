@@ -15,12 +15,20 @@ export class QxGridLayout extends QxAbstractLayout {
         this.widget.setColumnWidth(colNo, width);
     }
 
+    setColumnMaxWidth(colNo: number, width: number) {
+        this.widget.setColumnMaxWidth(colNo, width);
+    }
+
     setRowFlex(rowNo: number, flex: number) {
         this.widget.setRowFlex(rowNo, flex);
     }
 
     setRowHeight(rowNo: number, height: number) {
         this.widget.setRowHeight(rowNo, height);
+    }
+
+    setRowMaxHeight(rowNo: number, height: number) {
+        this.widget.setRowMaxHeight(rowNo, height);
     }
 
     setSpacing(spacing: number) {

@@ -6,4 +6,8 @@ export abstract class QxLayoutItem extends QxObject {
         super(widget);
     }
 
+    getSizeHint(): any {
+        return this.widget.getSizeHint();
+    }
+
 }

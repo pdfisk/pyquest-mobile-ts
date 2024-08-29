@@ -89,11 +89,7 @@ export class BoardPanel extends AbstractPanel {
                 this.widget.add(tile.widget, { row: i, column: j });
             }
         }
-    }
-
-    centerLabels() {
-        for (let tile of this.tileMap.values())
-            tile.centerChild();
+        this.setMaxSizes();
     }
 
     clear() {
@@ -152,7 +148,7 @@ export class BoardPanel extends AbstractPanel {
     }
 
     onResize() {
-        this.centerLabels();
+        this.setMaxSizes();
     }
 
     performAction(actionRec: ActionRec) {
@@ -183,6 +179,18 @@ export class BoardPanel extends AbstractPanel {
     resize() {
         this.removeAll();
         this.addTiles();
+    }
+
+    setMaxSizes() {
+        const bounds = this.getBounds();
+        const height = bounds.height;
+        const width = bounds.width;
+        const rowHeight = height / this.size;
+        const columnWidth = width / this.size;
+        for (let i = 0; i < this.size; i++)
+            this.layout?.setRowMaxHeight(i, rowHeight);
+        for (let j = 0; j < this.size; j++)
+            this.layout?.setColumnMaxWidth(j, columnWidth);
     }
 
     setSize(size: number) {
