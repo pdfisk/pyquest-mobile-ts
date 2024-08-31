@@ -196,13 +196,18 @@ export class BoardPanel extends AbstractPanel {
             this.layout?.setRowMaxHeight(i, rowHeight);
         for (let j = 0; j < this.size; j++)
             this.layout?.setColumnMaxWidth(j, columnWidth);
+        this.getAllTiles().forEach((tile) => {
+            tile.setMaxHeight(rowHeight);
+            tile.setMaxWidth(columnWidth);
+            tile.setChildSize();
+        });
     }
 
     setSize(size: number) {
         this.size = size;
     }
 
-    setTile(row: number, column: number, text: string) {
+    setTileText(row: number, column: number, text: string) {
         const tile = this.getTile(row, column);
         if (tile)
             tile.setLabel(text);

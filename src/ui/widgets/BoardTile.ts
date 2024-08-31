@@ -17,13 +17,23 @@ export class BoardTile extends QxBasicAtom {
     }
 
     copy(target: BoardTile) {
-        target.setLabel(this.getLabel());
+        const label = this.getLabel();
+        if (label)
+            target.setLabel(label);
+        const icon = this.getIcon();
+        if (icon)
+            target.setIcon(icon);
         this.clear();
     }
 
     initialize() {
         super.initialize();
         this.setBackgroundColor(ColorConstants.BoardTileBackground);
+    }
+
+    resetMaxWidthAndHeight() {
+        const bounds = this.getBounds();
+        console.log('resetMaxWidthAndHeight', bounds);
     }
 
     setImage(fname: string) {

@@ -112,6 +112,14 @@ export abstract class QxWidget extends QxLayoutItem {
         this.widget.setMarginTop(margin);
     }
 
+    setMaxHeight(height: number) {
+        this.widget.setMaxHeight(height);
+    }
+
+    setMaxWidth(width: number) {
+        this.widget.setMaxWidth(width);
+    }
+
     setPadding(padding: number[]) {
         this.widget.setPadding.apply(this.widget, padding);
     }

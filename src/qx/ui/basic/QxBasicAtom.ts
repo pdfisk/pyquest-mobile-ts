@@ -1,3 +1,4 @@
+import { StyleConstants } from "../../../constants/StyleConstants";
 import { QxFactory } from "../../factory/QxFactory";
 import { QxWidget } from "../core/QxWidget";
 
@@ -13,6 +14,12 @@ export class QxBasicAtom extends QxWidget {
     clear() {
         this.resetIcon();
         this.resetLabel();
+    }
+
+    getFirstChild(): any {
+        const children = this.widget._getChildren();
+        if (children.length === 0) return null;
+        return children[0];
     }
 
     getIcon(): string {
@@ -35,13 +42,30 @@ export class QxBasicAtom extends QxWidget {
         this.widget.resetLabel();
     }
 
-    setCenter(value:boolean) {
+    setCenter(value: boolean) {
         this.widget.setCenter(value);
+    }
+
+    setChildSize() {
+        const width = this.widget.getMaxWidth();
+        const height = this.widget.getMaxHeight();
+        const child = this.getFirstChild();
+        if (!child) return;
+        child.setWidth(width * StyleConstants.ImagePercentSize);
+        child.setHeight(height * StyleConstants.ImagePercentSize);
     }
 
     setIcon(path: string) {
         this.resetLabel();
         this.widget.setIcon(path);
+        this.setIconStyle();
+        this.setChildSize();
+    }
+
+    setIconStyle() {
+        const image = this.getFirstChild();
+        image.setScale(true);
+        image.setForceRatio(true);
     }
 
     setLabel(label: string) {
@@ -51,7 +75,7 @@ export class QxBasicAtom extends QxWidget {
         this.widget.setLabel(html);
     }
 
-    setRich(value:boolean) {
+    setRich(value: boolean) {
         this.widget.setRich(value);
     }
 
