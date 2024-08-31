@@ -64,7 +64,12 @@ export class BoardPanel extends AbstractPanel {
     }
 
     actionSetTileImage(args: any[]) {
-        console.log('actionSetTileImage', args);
+        const row: number = args[0];
+        const column: number = args[1];
+        const fname: string = args[2];
+        const tile: any = this.getTile(row, column);
+        if (tile)
+            tile.setImage(fname);
     }
 
     actionSetTileText(args: any[]) {
