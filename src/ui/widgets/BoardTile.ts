@@ -12,8 +12,8 @@ export class BoardTile extends QxBasicAtom {
     }
 
     clear() {
-        this.clearIcon();
-        this.clearLabel();
+        this.resetIcon();
+        this.resetLabel();
     }
 
     copy(target: BoardTile) {
@@ -27,7 +27,10 @@ export class BoardTile extends QxBasicAtom {
     }
 
     setImage(fname: string) {
-        console.log('setImage', fname);
+        if (fname.indexOf('.') < 0)
+            fname += '.png';
+        const path = `resource/images/${fname}`;
+        super.setIcon(path);
     }
 
     setLabel(value: string) {
