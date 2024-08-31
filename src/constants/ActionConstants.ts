@@ -1,3 +1,7 @@
+/**
+ * Action constants define the names of
+ * client actions requested by the Python vm.
+ */
 export class ActionConstants {
     static ActionAutotab: string = 'autotab';
     static ActionClear: string = 'clear';

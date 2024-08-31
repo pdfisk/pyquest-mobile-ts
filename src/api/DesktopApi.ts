@@ -2,6 +2,12 @@ import { Version } from '../constants/Version';
 import { Viewport } from '../ui/viewport/Viewport';
 
 export class DesktopApi {
+    /**
+     * DesktopApi is a singletom.
+     * Upon creation it will instantiate the Viewport singleton
+     * which, in turn, creates the rest of the user interface.
+     * 
+     */
 
     static instance: DesktopApi;
 

@@ -1,3 +1,27 @@
 import { DesktopApi } from './api/DesktopApi';
 
-(window as any).DesktopApi = DesktopApi.getInstance();
+/**
+ * This is the entry point for the application.
+ * 
+ * It creates an instance of the TypeScript singleton DesktopApi
+ * and assigns it to a JavaScript global variable DesktopApi.
+ * 
+ * The DesktopApi singleton upon creation will instantiate
+ * the Viewport singleton which, in turn, creates the rest
+ * of the user interface.
+ * 
+ */
+
+export * from './api/index';
+export * from './constants/index';
+export * from './data/index';
+export * from './handlers/index';
+export * from './qx/index';
+
+export function start() {
+    (window as any).DesktopApi = DesktopApi.getInstance();
+}
+
+/** call the start function */
+start();
+
