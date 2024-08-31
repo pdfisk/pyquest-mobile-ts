@@ -1,4 +1,5 @@
 import { ColorConstants } from "../../constants/ColorConstants";
+import { FontConstants } from "../../constants/FontConstants";
 import { QxBasicAtom } from "../../qx/ui/basic/QxBasicAtom";
 
 export class BoardTile extends QxBasicAtom {
@@ -8,7 +9,6 @@ export class BoardTile extends QxBasicAtom {
         this.clear();
         this.setCenter(true);
         this.setRich(true);
-        // this.setLabelStyle
     }
 
     clear() {
@@ -26,10 +26,13 @@ export class BoardTile extends QxBasicAtom {
         this.setBackgroundColor(ColorConstants.BoardTileBackground);
     }
 
+    setImage(fname: string) {
+        console.log('setImage', fname);
+    }
+
     setLabel(value: string) {
-        if (value.length > 0)
-            (window as any).X = this;
-        const html = `<span style="font-size:24px;font-family:monospace,sans">${value}</span>`;
+        const style = `font-size:${FontConstants.FontSize24Px};font-family:${FontConstants.FontFamilyMonospace}`;
+        const html = `<span style="${style}">${value}</span>`;
         super.setLabel(html);
     }
 
