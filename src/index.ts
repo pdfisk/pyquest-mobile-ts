@@ -16,7 +16,12 @@ export * from './api/index';
 export * from './constants/index';
 export * from './data/index';
 export * from './handlers/index';
+export * from './interfaces/index';
 export * from './qx/index';
+export * from './server/index';
+export * from './session/index';
+export * from './ui/index';
+export * from './util/index';
 
 export function start() {
     (window as any).DesktopApi = DesktopApi.getInstance();

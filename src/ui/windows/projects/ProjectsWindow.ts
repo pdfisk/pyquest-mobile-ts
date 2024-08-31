@@ -19,7 +19,7 @@ import { TranscriptPanel } from '../../widgets/TranscriptPanel';
 import { AbstractWindow } from '../abstract/AbstractWindow';
 import { ProjectsButtonBar } from './widgets/ProjectsButtonBar';
 import { ProjectsPanel } from './widgets/ProjectsPanel';
-import { ProjectTabView } from './widgets/ProjectTabView';
+import { ProjectsTabView } from './widgets/ProjectsTabView';
 
 export class ProjectsWindow extends AbstractWindow {
     deleteButton?: QxFormButton;
@@ -33,12 +33,12 @@ export class ProjectsWindow extends AbstractWindow {
     runSteppingButton?: QxFormButton;
     saveButton?: QxFormButton;
     splitPane?: QxSplitPane;
-    tabView?: ProjectTabView;
+    tabView?: ProjectsTabView;
 
     initialize() {
         super.initialize();
         this.projectsPanel = this.buildProjectsList();
-        this.tabView = new ProjectTabView;
+        this.tabView = new ProjectsTabView;
         this.splitPane = QxSplitPane.createHorizontal();
         this.splitPane.add(this.projectsPanel, 1);
         this.splitPane.add(this.tabView, 2);
@@ -268,7 +268,7 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     onSelectionChange(value: any) {
-        const tabView: ProjectTabView = this.tabView as ProjectTabView;
+        const tabView: ProjectsTabView = this.tabView as ProjectsTabView;
         tabView.setCode(value.code);
         tabView.setDescription(value.description);
         tabView.setDetails(value.details);
@@ -276,7 +276,7 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     refresh() {
-        (this.tabView as ProjectTabView).clear();
+        (this.tabView as ProjectsTabView).clear();
         this.projectsPanel?.refresh();
         this.updateEnabledButtons();
     }

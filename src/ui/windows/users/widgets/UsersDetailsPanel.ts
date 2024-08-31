@@ -3,7 +3,7 @@ import { QxTextField } from "../../../../qx/ui/form/QxTextField";
 import { AbstractForm } from "../../../widgets/AbstractForm";
 import { UsersWindow } from "../UsersWindow";
 
-export class DetailsPanel extends AbstractForm {
+export class UsersDetailsPanel extends AbstractForm {
     passwordField: QxTextField;
     userField: QxTextField;
     usersWindow: UsersWindow;

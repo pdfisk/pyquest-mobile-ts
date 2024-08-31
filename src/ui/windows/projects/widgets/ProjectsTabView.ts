@@ -9,15 +9,15 @@ import { BoardPanel } from '../../../widgets/BoardPanel';
 import { EditorPanel } from '../../../widgets/EditorPanel';
 import { TextPanel } from '../../../widgets/TextPanel';
 import { TranscriptPanel } from '../../../widgets/TranscriptPanel';
-import { DetailsPanel } from './DetailsPanel';
+import { ProjectsDetailsPanel } from './ProjectsDetailsPanel';
 
-export class ProjectTabView extends QxTabView {
+export class ProjectsTabView extends QxTabView {
     boardPanel: BoardPanel;
     boardPage: QxTabPage;
     codePage: QxTabPage;
     descriptionPanel: TextPanel;
     descriptionPage: QxTabPage;
-    detailsPanel: DetailsPanel;
+    detailsPanel: ProjectsDetailsPanel;
     detailsPage: QxTabPage;
     editorPanel: EditorPanel;
     transcriptPanel: TranscriptPanel;
@@ -27,7 +27,7 @@ export class ProjectTabView extends QxTabView {
         super();
         this.boardPanel = new BoardPanel;
         this.descriptionPanel = new TextPanel;
-        this.detailsPanel = new DetailsPanel;
+        this.detailsPanel = new ProjectsDetailsPanel;
         this.editorPanel = new EditorPanel;
         this.transcriptPanel = new TranscriptPanel;
         this.codePage = this.addPage(LabelConstants.TabPageCode, this.editorPanel);

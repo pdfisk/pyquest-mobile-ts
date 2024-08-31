@@ -13,13 +13,13 @@ import { SessionStatus } from '../../../session/SessionStatus';
 import { DeferredCall } from '../../../util/DeferredCall';
 import { ButtonBar } from '../../widgets/ButtonBar';
 import { AbstractWindow } from '../abstract/AbstractWindow';
-import { DetailsPanel } from './widgets/DetailsPanel';
+import { UsersDetailsPanel } from './widgets/UsersDetailsPanel';
 import { UsersButtonBar } from './widgets/UsersButtonBar';
 import { UsersPanel } from './widgets/UsersPanel';
 
 export class UsersWindow extends AbstractWindow {
     deleteButton?: QxFormButton;
-    detailsPanel?: DetailsPanel;
+    detailsPanel?: UsersDetailsPanel;
     moreButton?: QxSplitButton;
     newButton?: QxFormButton;
     renameButton?: QxFormButton;
@@ -30,7 +30,7 @@ export class UsersWindow extends AbstractWindow {
     initialize() {
         super.initialize();
         this.usersPanel = this.buildUsersList();
-        this.detailsPanel = new DetailsPanel(this);
+        this.detailsPanel = new UsersDetailsPanel(this);
         this.splitPane = QxSplitPane.createHorizontal();
         this.splitPane.add(this.usersPanel, 1);
         this.splitPane.add(this.detailsPanel, 2);
@@ -79,11 +79,11 @@ export class UsersWindow extends AbstractWindow {
     }
 
     getName(): string {
-        return (this.detailsPanel as DetailsPanel).getName();
+        return (this.detailsPanel as UsersDetailsPanel).getName();
     }
 
     getPassword(): string {
-        return (this.detailsPanel as DetailsPanel).getPassword();
+        return (this.detailsPanel as UsersDetailsPanel).getPassword();
     }
 
     hasSelectedData(): boolean {
