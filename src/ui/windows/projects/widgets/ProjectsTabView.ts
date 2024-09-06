@@ -35,6 +35,7 @@ export class ProjectsTabView extends QxTabView {
         this.detailsPage = this.addPage(LabelConstants.TabPageDetails, this.detailsPanel);
         this.transcriptPage = this.addPage(LabelConstants.TabPageTranscript, this.transcriptPanel);
         this.boardPage = this.addPage(LabelConstants.TabPageBoard, this.boardPanel);
+        this.boardPage.setPaddingAll(0);
     }
 
     addPage(label: string, widget: QxWidget): QxTabPage {

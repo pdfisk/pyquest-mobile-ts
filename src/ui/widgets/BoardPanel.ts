@@ -140,11 +140,11 @@ export class BoardPanel extends AbstractPanel {
             this.layout?.setColumnFlex(i, 1);
             this.layout?.setRowFlex(i, 1);
         }
-        this.setBackgroundColor(ColorConstants.BoardBackground);
     }
 
     onAppear() {
         super.onAppear();
+        this.setBackgroundColor(ColorConstants.BoardBackground);
         this.resize();
         this.deferredActions.forEach(actionRec => {
             this.performAction(actionRec);
