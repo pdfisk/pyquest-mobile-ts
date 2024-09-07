@@ -13,6 +13,13 @@ import { LogoPanel } from './logo/LogoPanel';
 export class NavBar extends QxToolBarToolBar {
     loginButton?: LoginButton;
     viewsButton?: ViewsButton;
+    static instance: NavBar;
+
+    static getInstance(): NavBar {
+        if (!this.instance)
+            this.instance = new NavBar();
+        return this.instance;
+    }
 
     constructor() {
         super();

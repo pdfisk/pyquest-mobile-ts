@@ -1,3 +1,5 @@
+import { QxConstants } from "../../constants";
+
 export abstract class QxObject {
     id: number;
     widget: any;
@@ -7,7 +9,7 @@ export abstract class QxObject {
         this.widget = widget;
         this.id = QxObject.idCounter++;
         this.setQxId(this.generateQxId());
-        this.widget.setUserData('tsobject', this);
+        this.widget.setUserData(QxConstants.TsObject, this);
         this.initialize();
     }
 
@@ -28,7 +30,7 @@ export abstract class QxObject {
     }
 
     idClassName(): string {
-        return 'QxObject';
+        return QxConstants.QxObjectName;
     }
 
     initialize() {

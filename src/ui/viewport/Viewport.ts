@@ -1,10 +1,12 @@
 import { ColorConstants } from '../../constants/ColorConstants';
-import { QxComposite } from '../../qx/ui/container/QxComposite';
 import { SessionStatus } from '../../session/SessionStatus';
+import { DockPanel } from '../widgets';
+import { Desktop } from './desktop/Desktop';
 import { NavBar } from './navbar/NavBar';
 
-export class Viewport extends QxComposite {
-    navBar: any = undefined;
+export class Viewport extends DockPanel {
+    desktop: Desktop;
+    navBar: NavBar;
     static instance: Viewport;
 
     static getInstance(root: any = null) {
@@ -15,6 +17,10 @@ export class Viewport extends QxComposite {
 
     constructor(root: any) {
         super();
+        this.desktop = Desktop.getInstance();
+        this.navBar = NavBar.getInstance();
+        this.addNorth(this.navBar);
+        this.addCenter(this.desktop);
         root.add(this.widget, { top: 0, right: 0, bottom: 0, left: 0 });
     }
 
@@ -22,8 +28,6 @@ export class Viewport extends QxComposite {
         super.initialize();
         SessionStatus.getInstance();
         this.setBackgroundColor(ColorConstants.ViewportBackground);
-        this.navBar = new NavBar();
-        this.addNorth(this.navBar);
     }
 
 }

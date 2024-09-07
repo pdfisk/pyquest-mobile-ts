@@ -1,3 +1,4 @@
 export class QxConstants {
-    static ActionAutotab: string = 'autotab';
+    static QxObjectName:string = 'QxObject';
+    static TsObject: string = 'tsobject';
 }

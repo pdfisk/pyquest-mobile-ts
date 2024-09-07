@@ -4,13 +4,9 @@ import { QxWidget } from "../core/QxWidget";
 export class QxBasicImage extends QxWidget {
     source: string;
 
-    constructor() {
+    constructor(source: string = '') {
         super(QxFactory.basicImage());
-        this.source = ''
-    }
-
-    defaultEnableOnAppear(): boolean {
-        return true;
+        this.source = this.setSource(source);
     }
 
     getSource(): string {
@@ -19,16 +15,10 @@ export class QxBasicImage extends QxWidget {
         return this.source;
     }
 
-    onAppear() {
-        super.onAppear();
-        this.setSource(this.source);
-    }
-
-    setSource(source: string) {
-        if (this.hasAppeared)
-            this.widget.setSource(source);
-        else
-            this.source = source;
+    setSource(source: string): string {
+        this.source = source;
+        this.widget.setSource(this.source);
+        return this.source;
     }
 
 }
