@@ -34,6 +34,14 @@ export abstract class QxWidget extends QxLayoutItem {
         return this.widget.getBounds();
     }
 
+    getBoundsHeight(): number {
+        return this.getBounds().height;
+    }
+
+    getBoundsWidth(): number {
+        return this.getBounds().width;
+    }
+
     getContentElement(): QxElement {
         if (this.contentElement === undefined)
             this.contentElement = new QxElement(this.widget.getContentElement());
@@ -73,11 +81,11 @@ export abstract class QxWidget extends QxLayoutItem {
     }
 
     setFontFamily(fontFamily: string) {
-        this.setStyle('fontFamily', fontFamily);
+        this.setStyle(StyleConstants.FontFamily, fontFamily);
     }
 
     setFontSize(fontSize: string) {
-        this.setStyle('fontSize', fontSize);
+        this.setStyle(StyleConstants.FontSize, fontSize);
     }
 
     setHeight(height: number) {
@@ -118,6 +126,14 @@ export abstract class QxWidget extends QxLayoutItem {
 
     setMaxWidth(width: number) {
         this.widget.setMaxWidth(width);
+    }
+
+    setObjectFit(fit: string) {
+        this.setStyle(StyleConstants.ObjectFit, fit);
+    }
+
+    setObjectFitCover() {
+        this.setObjectFit(StyleConstants.ObjectFitCover);
     }
 
     setPadding(padding: number[]) {

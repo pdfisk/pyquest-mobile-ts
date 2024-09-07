@@ -6,6 +6,8 @@ import { NavBar } from './navbar/NavBar';
 
 export class Viewport extends DockPanel {
     desktop: Desktop;
+    desktopHeight: number = 0;
+    desktopWidth: number = 0;
     navBar: NavBar;
     static instance: Viewport;
 
@@ -28,6 +30,16 @@ export class Viewport extends DockPanel {
         super.initialize();
         SessionStatus.getInstance();
         this.setBackgroundColor(ColorConstants.ViewportBackground);
+    }
+
+    onResize() {
+        const newDesktopWidth = window.innerWidth;
+        const newDesktopHeight = window.innerHeight - this.navBar.getBoundsHeight();
+        if (newDesktopWidth !== this.desktopWidth || newDesktopHeight != this.desktopHeight) {
+            this.desktopWidth = newDesktopWidth;
+            this.desktopHeight = newDesktopHeight;
+            this.desktop.setImageSize(this.desktopWidth, this.desktopHeight);
+        }
     }
 
 }

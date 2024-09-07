@@ -6,6 +6,9 @@ export class QxBasicImage extends QxWidget {
 
     constructor(source: string = '') {
         super(QxFactory.basicImage());
+        this.setObjectFitCover();
+        this.setScale();
+        this.setForceRatio();
         this.source = this.setSource(source);
     }
 
@@ -13,6 +16,14 @@ export class QxBasicImage extends QxWidget {
         if (this.hasAppeared)
             return this.widget.getSource();
         return this.source;
+    }
+
+    setForceRatio(value: string = 'width') {
+        this.widget.setForceRatio(value);
+    }
+
+    setScale(scale: boolean = true) {
+        this.widget.setScale(scale);
     }
 
     setSource(source: string): string {

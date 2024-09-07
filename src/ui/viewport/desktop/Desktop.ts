@@ -1,3 +1,4 @@
+import { StyleConstants } from "../../../constants";
 import { ImageConstants } from "../../../constants/ImageConstants";
 import { QxBasicImage } from "../../../qx";
 import { GrowPanel } from "../../widgets";
@@ -14,8 +15,16 @@ export class Desktop extends GrowPanel {
 
     constructor() {
         super();
+        this.setStyle(StyleConstants.Border, StyleConstants.BorderSlateGray2);
         this.image = new QxBasicImage(ImageConstants.DesktopClouds);
         this.add(this.image);
+    }
+
+    setImageSize(width: number, height: number) {
+        setTimeout(() => {
+            this.image.setWidth(width);
+            this.image.setHeight(height);
+        }, 500);
     }
 
 }
