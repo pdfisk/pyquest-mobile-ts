@@ -1,6 +1,7 @@
 import { StyleConstants } from "../../../constants";
 import { ImageConstants } from "../../../constants/ImageConstants";
 import { QxBasicImage } from "../../../qx";
+import { DeferredCall } from "../../../util";
 import { GrowPanel } from "../../widgets";
 
 export class Desktop extends GrowPanel {
@@ -21,10 +22,10 @@ export class Desktop extends GrowPanel {
     }
 
     setImageSize(width: number, height: number) {
-        setTimeout(() => {
+        DeferredCall.schedule(() => {
             this.image.setWidth(width);
             this.image.setHeight(height);
-        }, 500);
+        });
     }
 
 }
