@@ -25,6 +25,8 @@ export abstract class AbstractStore {
         return key;
     }
 
+    abstract createNewRecord():any;
+
     deleteRecord(data: any) {
         if (!data) return;
         const id = data.id;
@@ -50,7 +52,7 @@ export abstract class AbstractStore {
     }
 
     newRecord() {
-        const data = { name: '-- new project --', description: '', code: '' };
+        const data = this.createNewRecord();;
         const fn = () => { this.reload(); }
         Server.sendPostRequest(this.serviceName(), data, fn);
     }

@@ -26,7 +26,7 @@ export class UsersPanel extends DataListPanel {
         this.dataStore = UsersStore.getInstance();
     }
 
-    updateName(name : string) {
+    updateName(name: string) {
         if (this.selectedData)
             this.selectedData.name = name;
     }
