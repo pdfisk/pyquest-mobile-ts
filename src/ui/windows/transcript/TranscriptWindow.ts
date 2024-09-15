@@ -1,3 +1,4 @@
+import { VmApi } from '../../../api';
 import { ActionConstants } from '../../../constants/ActionConstants';
 import { ErrorConstants } from '../../../constants/ErrorConstants';
 import { LabelConstants } from '../../../constants/LabelConstants';
@@ -68,9 +69,10 @@ export class TranscriptWindow extends AbstractWindow {
     }
 
     onStatus() {
-        const str1 = `  Version: ${Version.version}`;
-        const str2 = `Timestamp: ${Version.timestamp}`;
-        const str = `${str1}\n${str2}`;
+        const str1 = `       Version: ${Version.version}`;
+        const str2 = `Client Updated: ${Version.timestamp}`;
+        const str3 = `    Vm Updated: ${VmApi.getInstance().getVmApiGetTimestamp()}`;
+        const str = `${str1}\n${str2}\n${str3}\n`;
         this.transcriptPanel?.setValue(str);
     }
 

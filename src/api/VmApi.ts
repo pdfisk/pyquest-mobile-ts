@@ -1,7 +1,6 @@
 import { VmApiConstants } from "../constants/VmApiConstants";
 import { ActionHandler } from "../handlers/ActionHandler";
 import { ResultHandler } from "../handlers/ResultHandler";
-import { ServiceRec } from "../interfaces/ServiceRec";
 
 export class VmApi {
 
@@ -45,6 +44,16 @@ export class VmApi {
     getVmApiSetResultHandlerFn(): Function {
         const vmApi: any = this.getOpalVmApi();
         return vmApi ? vmApi[VmApiConstants.SET_RESULT_HANDLER_FN] : null;
+    }
+
+    getVmApiGetTimestamp(): string {
+        const vmApi: any = this.getOpalVmApi();
+        return vmApi ? vmApi[VmApiConstants.GET_TIMESTAMP]() : '---';
+    }
+
+    getVmApiGetVersion(): string {
+        const vmApi: any = this.getOpalVmApi();
+        return vmApi ? vmApi[VmApiConstants.GET_VERSION]() : '---';
     }
 
     handleAction(jsonStr: string) {

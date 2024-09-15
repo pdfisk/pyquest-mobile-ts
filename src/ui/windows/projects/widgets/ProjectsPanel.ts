@@ -42,7 +42,7 @@ export class ProjectsPanel extends DataListPanel {
     }
 
     getDetailsCategory(details: any): any {
-        if (typeof (details) !== 'string')
+        if (typeof (details) !== 'string' || details.length < 2)
             return null;
         const data = JSON.parse(details);
         return data.category;
