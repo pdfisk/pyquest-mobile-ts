@@ -31,4 +31,10 @@ export class SizeConstants {
     static UsersPanelSpacingY: number = 2;
     static UsersWindowHeight: number = 435;
     static UsersWindowWidth: number = 575;
+    static VisitorsPanelColOneWidth: number = 175;
+    static VisitorsPanelColZeroWidth: number = 60;
+    static VisitorsPanelSpacingX: number = 2;
+    static VisitorsPanelSpacingY: number = 2;
+    static VisitorsWindowHeight: number = 435;
+    static VisitorsWindowWidth: number = 575;
 }

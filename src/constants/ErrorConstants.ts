@@ -8,5 +8,6 @@ export class ErrorConstants {
     static RegisterWindowOnButtonClick: string = 'RegisterWindow onButtonClick';
     static TranscriptWindowOnButtonClick: string = 'TrancriptWindow onButtonClick';
     static UsersWindowOnButtonClick: string = 'UsersWindow onButtonClick';
+    static VisitorsWindowOnButtonClick: string = 'VisitorsWindow onButtonClick';
     static WorkbenchHandlerMissingAction: string = 'WorkbenchHandler missing action';
 }

@@ -18,7 +18,9 @@ export class Server {
 
     static logIpAddress(ipAddress: string) {
         const data = { ip_address: ipAddress };
-        const fn = (reply: any) => { console.log(reply) };
+        const fn = (reply: any) => {
+            //  console.log(reply);
+        };
         this.getInstance().sendPostRequest(ServerConstants.ServiceLog, data, fn);
     }
 

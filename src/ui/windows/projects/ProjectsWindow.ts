@@ -296,6 +296,7 @@ export class ProjectsWindow extends AbstractWindow {
 
     unregisterObjects() {
         super.unregisterObjects();
+        EventBus.unsubscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this);
         this.projectsPanel?.releaseHandlers();
     }
 

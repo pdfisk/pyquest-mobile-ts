@@ -49,8 +49,8 @@ export abstract class DataListPanel extends AbstractPanel {
         this.list.initSelection();
     }
 
-    isCategorySelected(item: any): boolean {
-        return true;
+    getListKey(item: any): string {
+        return item.name;
     }
 
     getSelectedData(): any {
@@ -70,14 +70,18 @@ export abstract class DataListPanel extends AbstractPanel {
         return this.selectedData !== null && this.selectedData !== undefined;
     }
 
+    isCategorySelected(item: any): boolean {
+        return true;
+    }
+
     onAppear() {
         super.onAppear();
         this.refresh();
     }
 
-    onChangeSelection(name: string) {
+    onChangeSelection(key: string) {
         if (this.changeHandler)
-            this.changeHandler(this.getSelectionValue(name));
+            this.changeHandler(this.getSelectionValue(key));
     }
 
     refresh() {
@@ -97,24 +101,22 @@ export abstract class DataListPanel extends AbstractPanel {
     abstract setStore(): void;
 
     updateList() {
-        const names: string[] = [];
-        (this.dataMap as any).forEach((item: any) => {
+        const keys: string[] = [];
+        (this.dataMap.values() as any).forEach((item: any) => {
             if (this.isCategorySelected(item))
-                names.push(item.name);
+                keys.push(this.getListKey(item));
         });
-        names.sort();
+        keys.sort();
         this.list.widget.initSelection();
-        this.list.setData(names);
+        this.list.setData(keys);
     }
 
     updateMapData(data: any[]) {
         this.dataMap.clear();
-        const names: string[] = [];
         for (let i = 0; i < data.length; i++) {
             const item: any = data[i];
-            const name: string = item.name;
-            names.push(name);
-            this.dataMap.set(name, item);
+            const key: string = this.getListKey(item);
+            this.dataMap.set(key, item);
         }
         this.updateList();
     }

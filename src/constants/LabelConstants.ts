@@ -20,9 +20,11 @@ export class LabelConstants {
     static ButtonLabelTranscript: string = 'Transcript';
     static ButtonLabelUsers: string = 'Users';
     static ButtonLabelViews: string = 'Views';
+    static ButtonLabelVisitors: string = 'Visitors';
 
     static FieldLabelAuthor: string = 'Author';
     static FieldLabelCategory: string = 'Category';
+    static FieldLabelIpAddress: string = 'IP Address';
     static FieldLabelName: string = 'Name';
     static FieldLabelPassword: string = 'Password';
 
@@ -40,4 +42,5 @@ export class LabelConstants {
     static WindowLabelRegister: string = 'Register';
     static WindowLabelTranscript: string = 'Transcript';
     static WindowLabelUsers: string = 'Users';
+    static WindowLabelVisitors: string = 'Visitors';
 }

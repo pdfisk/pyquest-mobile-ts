@@ -33,7 +33,7 @@ export class ProjectsDetailsPanel extends AbstractForm {
     }
 
     setValue(jsonStr: string) {
-        if (typeof (jsonStr) !== 'string')
+        if (typeof (jsonStr) !== 'string' || jsonStr.length < 2)
             return;
         const data = JSON.parse(jsonStr);
         if (typeof (data.author) !== 'string')

@@ -8,17 +8,22 @@ import { ConsoleWindow } from "../../../windows/console/ConsoleWindow";
 import { ProjectsWindow } from "../../../windows/projects/ProjectsWindow";
 import { TranscriptWindow } from "../../../windows/transcript/TranscriptWindow";
 import { UsersWindow } from "../../../windows/users/UsersWindow";
+import { VisitorsWindow } from "../../../windows/visitors";
 
 export class ViewsButton extends QxMenuBarButton {
     menu?: QxMenu;
     usersButton: any;
     usersSeparator: any;
+    visitorsButton: any;
 
     initialize() {
         super.initialize();
         this.setLabel(LabelConstants.ButtonLabelViews);
         this.usersButton = QxMenuButton.create(LabelConstants.ButtonLabelUsers, () => {
             this.openUsers();
+        });
+        this.visitorsButton = QxMenuButton.create(LabelConstants.ButtonLabelVisitors, () => {
+            this.openVisitors();
         });
         this.usersSeparator = new QxMenuSeparator;
         this.setMenu(this.createMenu());
@@ -56,14 +61,20 @@ export class ViewsButton extends QxMenuBarButton {
         new UsersWindow();
     }
 
+    openVisitors() {
+        new VisitorsWindow();
+    }
+
     updateMenu(status: string) {
         if (status == SessionConstants.SessionLoggedInAsAdmin) {
             this.menu?.add(this.usersSeparator);
             this.menu?.add(this.usersButton);
+            this.menu?.add(this.visitorsButton);
         }
         else {
             this.menu?.remove(this.usersSeparator);
             this.menu?.remove(this.usersButton);
+            this.menu?.remove(this.visitorsButton);
         }
     }
 

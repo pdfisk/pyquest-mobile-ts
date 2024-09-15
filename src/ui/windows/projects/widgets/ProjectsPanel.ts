@@ -24,11 +24,11 @@ export class ProjectsPanel extends DataListPanel {
         this.dataStore?.deleteRecord(this.selectedData);
     }
 
-    generateCategories(dataRecords: any[]): string[] {
+    generateCategories(dataRecords: any): string[] {
         const categories: string[] = [];
         for (let i = 0; i < dataRecords.length; i++) {
             const record: any = dataRecords.at(i);
-            if (typeof (record.details) === 'string') {
+            if (typeof (record.details) === 'string' && record.details.length > 2) {
                 const data: any = JSON.parse(record.details);
                 if (typeof (data.category) === 'string') {
                     const category: string = data.category;

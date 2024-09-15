@@ -1,5 +1,3 @@
-import { QxBasicAtom } from "../qx/ui/basic/QxBasicAtom";;
-
 export class StyleUtil {
 
     static createStyleSpan(text: string, styles: Map<string, string>): string {
