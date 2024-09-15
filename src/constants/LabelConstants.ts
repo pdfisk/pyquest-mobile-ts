@@ -24,9 +24,12 @@ export class LabelConstants {
 
     static FieldLabelAuthor: string = 'Author';
     static FieldLabelCategory: string = 'Category';
+    static FieldLabelCreatedAt: string = 'Created At';
+    static FieldLabelId: string = 'id';
     static FieldLabelIpAddress: string = 'IP Address';
     static FieldLabelName: string = 'Name';
     static FieldLabelPassword: string = 'Password';
+    static FieldLabelUpdatedAt: string = 'Updated At';
 
     static TabPageBoard: string = 'Board';
     static TabPageCode: string = 'Code';

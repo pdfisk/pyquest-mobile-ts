@@ -30,7 +30,9 @@ export class ProjectsStore extends AbstractStore {
             const details = item.$$user_details;
             const code = item.$$user_code;
             const code_object_json = item.$$user_code_object;
-            let code_object = null;
+            const created_at = item.$$user_created_at;
+            const updated_at = item.$$user_updated_at;
+             let code_object = null;
             if (typeof (code_object_json) === 'string')
                 code_object = JSON.parse(code_object_json);
             const projectRecord: any = {};
@@ -40,6 +42,8 @@ export class ProjectsStore extends AbstractStore {
             projectRecord.details = details;
             projectRecord.code = code;
             projectRecord.code_object = code_object;
+            projectRecord.created_at = created_at;
+            projectRecord.updated_at = updated_at;
             projectsData.push(projectRecord);
         }
         return projectsData;

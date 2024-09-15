@@ -117,7 +117,7 @@ export class VisitorsWindow extends AbstractWindow {
 
     onSelectionChange(value: any) {
         if (!value) return;
-        this.detailsPanel?.setIpAddress(value.ip_address);
+        this.detailsPanel?.setValue(value);
         this.updateEnabledButtons();
     }
 

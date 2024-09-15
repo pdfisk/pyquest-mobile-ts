@@ -26,9 +26,13 @@ export class VisitorsStore extends AbstractStore {
             const item = model.getItem(i);
             const id = item.$$user_id;
             const ip_address = item.$$user_ip_address;
+            const created_at = item.$$user_created_at;
+            const updated_at = item.$$user_updated_at;
             const visitorRecord: any = {};
             visitorRecord.id = id;
             visitorRecord.ip_address = ip_address;
+            visitorRecord.created_at = created_at;
+            visitorRecord.updated_at = updated_at;
             visitorsData.push(visitorRecord);
         }
         return visitorsData;

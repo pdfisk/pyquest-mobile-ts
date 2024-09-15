@@ -27,10 +27,14 @@ export class UsersStore extends AbstractStore {
             const id = item.$$user_id;
             const name = item.$$user_name;
             const passwd = item.$$user_passwd;
+            const created_at = item.$$user_created_at;
+            const updated_at = item.$$user_updated_at;
             const userRecord: any = {};
             userRecord.id = id;
             userRecord.name = name;
             userRecord.passwd = passwd;
+            userRecord.created_at = created_at;
+            userRecord.updated_at = updated_at;
             usersData.push(userRecord);
         }
         return usersData;
