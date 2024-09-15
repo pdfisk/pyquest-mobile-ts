@@ -15,8 +15,8 @@ export class ProjectsStore extends AbstractStore {
         super();
     }
 
-    createNewRecord():any {
-return { name: '-- new project --', description: '', details:'', author: '', code: '' };
+    createNewRecord(): any {
+        return { name: '-- new project --', description: '', details: '', author: '', code: '' };
     }
 
     getDataRecords(): any[] {

@@ -74,7 +74,7 @@ export class Server {
     }
 
     sendPostRequest(service: string, data: any, fn: Function) {
-        this.sendServerRequest(service, ServerConstants.MethodPost, data, fn);
+        this.sendServerRequest(ServerUtil.getUrl(service), ServerConstants.MethodPost, data, fn);
     }
 
     sendPutRequest(service: string, id: number, data: any, fn: Function) {
