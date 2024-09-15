@@ -134,7 +134,14 @@ export class ProjectsTabView extends QxTabView {
     }
 
     setDetails(text: string) {
-        this.detailsPanel.setValue(text);
+        this.detailsPanel.setDetails(text);
+    }
+
+    setValue(value: any) {
+        this.setCode(value.code);
+        this.setDescription(value.description);
+        this.setDetails(value.details);
+        this.detailsPanel.setValue(value);
     }
 
 }

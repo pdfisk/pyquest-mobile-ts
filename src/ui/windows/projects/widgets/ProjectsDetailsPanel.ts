@@ -41,10 +41,17 @@ export class ProjectsDetailsPanel extends AbstractForm {
             this.form.add(this.idField, LabelConstants.FieldLabelId);
             this.form.add(this.updatedAtField, LabelConstants.FieldLabelUpdatedAt);
             this.form.add(this.createdAtField, LabelConstants.FieldLabelCreatedAt);
+            this.idField.setEnabled(false);
+            this.updatedAtField.setEnabled(false);
+            this.createdAtField.setEnabled(false);
         }
     }
 
-    setValue(jsonStr: string) {
+    setCreatedAt(createdAt: string) {
+        this.createdAtField.setValue(createdAt);
+    }
+
+    setDetails(jsonStr: string) {
         if (typeof (jsonStr) !== 'string' || jsonStr.length < 2)
             return;
         const data = JSON.parse(jsonStr);
@@ -54,9 +61,21 @@ export class ProjectsDetailsPanel extends AbstractForm {
             data.category = '';
         this.authorField.setValue(data.author);
         this.categoryField.setValue(data.category);
-        this.idField.setValue(data.id);
-        this.updatedAtField.setValue(data.updated_at);
-        this.createdAtField.setValue(data.created_at);
+    }
+
+    setId(id: string) {
+        this.idField.setValue(id);
+    }
+
+    setUpdatedAt(updatedAt: string) {
+        this.updatedAtField.setValue(updatedAt);
+    }
+
+    setValue(value: any) {
+        this.setDetails(value.details);
+        this.setId(`${value.id}`);
+        this.setUpdatedAt(value.updated_at);
+        this.setCreatedAt(value.created_at);
     }
 
 }

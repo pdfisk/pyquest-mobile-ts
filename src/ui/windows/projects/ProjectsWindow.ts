@@ -269,9 +269,7 @@ export class ProjectsWindow extends AbstractWindow {
 
     onSelectionChange(value: any) {
         const tabView: ProjectsTabView = this.tabView as ProjectsTabView;
-        tabView.setCode(value.code);
-        tabView.setDescription(value.description);
-        tabView.setDetails(value.details);
+        tabView.setValue(value);
         this.updateEnabledButtons();
     }
 
