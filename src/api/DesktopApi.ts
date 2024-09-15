@@ -1,4 +1,6 @@
+import { UrlConstants } from '../constants';
 import { Version } from '../constants/Version';
+import { Server } from '../server/Server';
 import { Viewport } from '../ui/viewport/Viewport';
 
 export class DesktopApi {
@@ -25,7 +27,18 @@ export class DesktopApi {
         return Version.version;
     }
 
+    getIpAddress() {
+        fetch(UrlConstants.ipify)
+            .then(response => response.json())
+            .then(data => {
+                Server.logIpAddress(data.ip);
+            })
+            .catch(error => {
+            });
+    }
+
     start(root: any) {
+        this.getIpAddress();
         Viewport.getInstance(root);
     }
 

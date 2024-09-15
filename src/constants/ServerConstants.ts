@@ -8,6 +8,7 @@ export class ServerConstants {
     static MethodPost: string = 'POST';
     static MethodPut: string = 'PUT';
 
+    static ServiceLog: string = 'log';
     static ServiceLogin: string = 'login';
     static ServiceProjects: string = 'projects';
     static ServiceRegister: string = 'register';

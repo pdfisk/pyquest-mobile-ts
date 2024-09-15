@@ -1,3 +1,4 @@
+import { UrlConstants } from "../constants";
 import { ServerConstants } from "../constants/ServerConstants";
 import { ServerUtil } from "./ServerUtil";
 
@@ -13,6 +14,12 @@ export class Server {
 
     static deleteProject(data: any) {
         this.getInstance().deleteProject(data);
+    }
+
+    static logIpAddress(ipAddress: string) {
+        const data = { ip_address: ipAddress };
+        const fn = (reply: any) => { console.log(reply) };
+        this.getInstance().sendPostRequest(ServerConstants.ServiceLog, data, fn);
     }
 
     static login(name: string, password: string, fn: Function) {
