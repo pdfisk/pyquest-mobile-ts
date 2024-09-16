@@ -1,21 +1,20 @@
 import { UrlConstants } from '../constants';
 import { Version } from '../constants/Version';
 import { Server } from '../server/Server';
-import { Viewport } from '../ui/viewport/Viewport';
 
-export class DesktopApi {
+export class MobileApi {
     /**
-     * DesktopApi is a singletom.
+     * MobileApi is a singletom.
      * Upon creation it will instantiate the Viewport singleton
      * which, in turn, creates the rest of the user interface.
      * 
      */
 
-    static instance: DesktopApi;
+    static instance: MobileApi;
 
-    static getInstance(): DesktopApi {
+    static getInstance(): MobileApi {
         if (!this.instance)
-            this.instance = new DesktopApi;
+            this.instance = new MobileApi;
         return this.instance;
     }
 
@@ -41,7 +40,8 @@ export class DesktopApi {
 
     start(root: any) {
         this.getIpAddress();
-        Viewport.getInstance(root);
+        console.log('START-----');
+        // Viewport.getInstance(root);
     }
 
 }

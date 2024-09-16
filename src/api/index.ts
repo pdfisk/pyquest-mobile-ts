@@ -1,2 +1,2 @@
-export * from './DesktopApi';
+export * from './MobileApi';
 export * from './VmApi';
