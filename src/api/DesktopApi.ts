@@ -31,7 +31,9 @@ export class DesktopApi {
         fetch(UrlConstants.ipify)
             .then(response => response.json())
             .then(data => {
-                Server.logIpAddress(data.ip);
+                const ip_address: string = data.ip;
+                if (ip_address !== UrlConstants.myip)
+                    Server.logIpAddress(ip_address);
             })
             .catch(error => {
             });

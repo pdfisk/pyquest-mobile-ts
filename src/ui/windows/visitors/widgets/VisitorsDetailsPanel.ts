@@ -48,7 +48,7 @@ export class VisitorsDetailsPanel extends AbstractForm {
         if (typeof (data.ip_address) !== 'string')
             data.ip_address = '';
         this.ipAddressField.setValue(data.ip_address);
-        this.idField.setValue(data.id);
+        this.idField.setValue(`${data.id}`);
         this.updatedAtField.setValue(data.updated_at);
         this.createdAtField.setValue(data.created_at);
     }

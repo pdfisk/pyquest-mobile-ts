@@ -6,4 +6,5 @@ export class UrlConstants {
     static local8083: string = 'localhost:8083';
     static local9080: string = 'http://localhost:9080';
     static local9081: string = 'http://localhost:9081';
+    static myip: string = '96.20.115.27';
 }
