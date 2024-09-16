@@ -1,5 +1,3 @@
-import { QxForm } from "../ui/form/QxForm";
-
 export class QxFactory {
 
     static atomLayout(): any {
@@ -108,6 +106,22 @@ export class QxFactory {
 
     static menuSplitButton(text: string = ''): any {
         return new (window as any).qx.ui.form.SplitButton(text);
+    }
+
+    static mobileComposite(): any {
+        return new (window as any).qx.ui.mobile.container.Composite;
+    }
+
+    static mobilePageManager(): any {
+        return new (window as any).qx.ui.mobile.page.Manager;
+    }
+
+    static mobileRoot(): any {
+        return new (window as any).qx.ui.mobile.core.Root;
+    }
+
+    static mobileWidget(): any {
+        return new (window as any).qx.ui.mobile.core.Widget;
     }
 
     static selectBox(): any {

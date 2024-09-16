@@ -1,5 +1,6 @@
 import { UrlConstants } from '../constants';
 import { Version } from '../constants/Version';
+import { QxMobileRoot } from '../qx/mobile/core/QxMobileRoot';
 import { Server } from '../server/Server';
 
 export class MobileApi {
@@ -38,9 +39,12 @@ export class MobileApi {
             });
     }
 
-    start(root: any) {
+    start(widget: any) {
         this.getIpAddress();
-        console.log('START-----');
+        const root = new QxMobileRoot(widget);
+        root.setStyle('backgroundColor', 'red');
+        console.log('----- MOBILE STARTING -----');
+        (window as any).X = root;
         // Viewport.getInstance(root);
     }
 
