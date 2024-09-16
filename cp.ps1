@@ -1,1 +1,1 @@
-Copy-Item ./dist/desktop.js ./site/js
+Copy-Item ./dist/mobile.js ./site/js
