@@ -60,12 +60,12 @@ export class UsersDetailsPanel extends AbstractForm {
         this.passwordField.setValue(value);
     }
 
-    setValue(data:any) {
+    setValue(data: any) {
         this.userField.setValue(data.name);
         this.passwordField.setValue(data.passwd);
-        this.idField.setValue(data.id);
+        this.idField.setValue(`${data.id}`);
         this.updatedAtField.setValue(data.updated_at);
         this.createdAtField.setValue(data.created_at);
-     }
+    }
 
 }
