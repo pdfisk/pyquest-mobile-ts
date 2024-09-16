@@ -261,10 +261,12 @@ export class ProjectsWindow extends AbstractWindow {
     }
 
     onSave() {
-        this.projectsPanel?.updateCode(this.getCode());
-        this.projectsPanel?.updateDescription(this.getDescription());
-        this.projectsPanel?.updateDetails(this.getDetails());
-        this.save();
+        if (this.isLoggedIn() && this.hasSelectedData()) {
+            this.projectsPanel?.updateCode(this.getCode());
+            this.projectsPanel?.updateDescription(this.getDescription());
+            this.projectsPanel?.updateDetails(this.getDetails());
+            this.save();
+        }
     }
 
     onSelectionChange(value: any) {
@@ -318,7 +320,7 @@ export class ProjectsWindow extends AbstractWindow {
             if (this.runButton)
                 this.runButton.setEnabled(enabled_2);
             if (this.saveButton)
-                this.saveButton.setEnabled(enabled_3);
+                this.saveButton.setEnabled(enabled_1);
         };
         DeferredCall.schedule(fn);
     }
