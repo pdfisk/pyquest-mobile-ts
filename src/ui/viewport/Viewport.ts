@@ -1,16 +1,17 @@
+import { QxMobileRoot } from '../../qx/mobile/core/QxMobileRoot';
 import { QxMobileComposite } from '../../qx/mobile/container/QxMobileComposite';
 import { SessionStatus } from '../../session/SessionStatus';
 
 export class Viewport extends QxMobileComposite {
     static instance: Viewport;
 
-    static getInstance(root: any = null) {
+    static getInstance(root: QxMobileRoot) {
         if (this.instance === undefined)
             this.instance = new Viewport(root);
         return this.instance;
     }
 
-    constructor(root: any) {
+    constructor(root: QxMobileRoot) {
         super();
     }
 

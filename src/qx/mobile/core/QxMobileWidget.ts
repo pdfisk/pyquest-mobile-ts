@@ -4,7 +4,7 @@ import { QxFactory } from "../../factory";
 export class QxMobileWidget extends QxObject {
 
     constructor(widget?: any) {
-        super(widget ? widget : QxFactory.mobilePageManager());
+        super(widget ? widget : QxFactory.mobileComposite());
     }
 
     setStyle(key: string, value: any) {
