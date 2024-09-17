@@ -1,6 +1,3 @@
-import { BoardPanel } from "../../ui/widgets/BoardPanel";
-import { BoardTile } from "../../ui/widgets/BoardTile";
-import { ActionRec } from "./ActionRec";
 import { HandlerBase } from "./HandlerBase";
 
 export class BoardHandler extends HandlerBase {
@@ -17,19 +14,19 @@ export class BoardHandler extends HandlerBase {
         this.getInstance().handleAction(ownerId, args);
     }
 
-    getTile(board: BoardPanel, row: number, column: number): BoardTile | undefined {
-        return board.getTile(row, column);
-    }
+    // getTile(board: BoardPanel, row: number, column: number): BoardTile | undefined {
+    //     return board.getTile(row, column);
+    // }
 
     handleAction(ownerId: number, args: any[]) {
-        const action: string = args.shift();
-        const board: BoardPanel | null = this.getBoardPanel(ownerId);
-        if (!board) return;
-        const actionRec = new ActionRec(board, action, args);
-        if (board.haveTilesAppeared())
-            board.performAction(actionRec);
-        else
-            board.deferAction(actionRec);
+        // const action: string = args.shift();
+        // const board: BoardPanel | null = this.getBoardPanel(ownerId);
+        // if (!board) return;
+        // const actionRec = new ActionRec(board, action, args);
+        // if (board.haveTilesAppeared())
+        //     board.performAction(actionRec);
+        // else
+        //     board.deferAction(actionRec);
     }
 
 }

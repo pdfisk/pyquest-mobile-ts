@@ -1,5 +1,3 @@
-import { TranscriptPanel } from "../ui/widgets/TranscriptPanel";
-import { TranscriptWindow } from "../ui/windows/transcript/TranscriptWindow";
 import { ObjectRegistry } from "../util/ObjectRegistry";
 
 export class ResultHandler {
@@ -9,10 +7,10 @@ export class ResultHandler {
         const result: string = args[0];
         const stdOutId: number = args[1];
         const stdOut: any = ObjectRegistry.getId(stdOutId);
-        if (stdOut instanceof TranscriptPanel)
-            stdOut.pr(result);
-        else
-            TranscriptWindow.pr(result);
+        // if (stdOut instanceof TranscriptPanel)
+        //     stdOut.pr(result);
+        // else
+        //     TranscriptWindow.pr(result);
     }
 
 }
