@@ -31,6 +31,8 @@ export class LabelConstants {
     static FieldLabelPassword: string = 'Password';
     static FieldLabelUpdatedAt: string = 'Updated At';
 
+    static PageOverview: string = 'Overview';
+
     static TabPageBoard: string = 'Board';
     static TabPageCode: string = 'Code';
     static TabPageDescription: string = 'Description';

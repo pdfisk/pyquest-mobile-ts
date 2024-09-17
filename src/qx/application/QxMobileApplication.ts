@@ -1,3 +1,4 @@
+import { SessionStatus } from "../../session";
 import { Viewport } from "../../ui";
 import { QxObject } from "../core";
 import { QxInit } from "../core/QxInit";
@@ -19,12 +20,11 @@ export class QxMobileApplication extends QxObject {
         super(QxInit.getApplication());
         this.root = QxMobileRoot.getInstance(rootWidget);
         this.viewport = Viewport.getInstance();
-        this.root.add(this.viewport);
+        // this.root.add(this.viewport);
     }
 
     initialize() {
-        console.log('----- MOBILE2 STARTING -----');
-        (window as any).X = this;
+        SessionStatus.getInstance();
     }
 
 }

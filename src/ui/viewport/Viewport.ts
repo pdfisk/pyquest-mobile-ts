@@ -1,8 +1,9 @@
-import { ColorConstants, SizeConstants } from '../../constants';
-import { QxMobileComposite } from '../../qx/mobile/container/QxMobileComposite';
-import { SessionStatus } from '../../session/SessionStatus';
+import { QxNavigationPage } from '../../qx/mobile/page/QxNavigationPage';
+import { QxPage } from '../../qx/mobile/page/QxPage';
+import { QxPageManager } from '../../qx/mobile/page/QxPageManager';
 
-export class Viewport extends QxMobileComposite {
+export class Viewport extends QxPageManager {
+    navigationPage: QxNavigationPage;
     static instance: Viewport;
 
     static getInstance() {
@@ -11,11 +12,16 @@ export class Viewport extends QxMobileComposite {
         return this.instance;
     }
 
+    constructor() {
+        super();
+        this.navigationPage = new QxNavigationPage();
+    }
+
     initialize() {
         super.initialize();
-        SessionStatus.getInstance();
-        this.setHeight(SizeConstants.Size100Pct);
-        this.setBackgroundColor(ColorConstants.ViewportBackground);
+        const page = new QxPage();
+        (window as any).X = this;
+        console.log('OK');
     }
 
 }
