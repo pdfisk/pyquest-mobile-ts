@@ -1,4 +1,4 @@
-import { StyleConstants } from "../../../constants";
+import { SizeConstants, StyleConstants } from "../../../constants";
 import { QxObject } from "../../core";
 import { QxFactory } from "../../factory";
 
@@ -6,6 +6,7 @@ export class QxMobileWidget extends QxObject {
 
     constructor(widget?: any) {
         super(widget ? widget : QxFactory.mobileComposite());
+        this.setHeight(SizeConstants.Size100Pct);
     }
 
     setBackgroundColor(color: string) {
