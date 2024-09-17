@@ -37,4 +37,6 @@ export class SizeConstants {
     static VisitorsPanelSpacingY: number = 2;
     static VisitorsWindowHeight: number = 435;
     static VisitorsWindowWidth: number = 575;
+
+    static Size100Pct: string = '100%';
 }

@@ -1,25 +1,21 @@
-import { QxMobileRoot } from '../../qx/mobile/core/QxMobileRoot';
+import { ColorConstants, SizeConstants } from '../../constants';
 import { QxMobileComposite } from '../../qx/mobile/container/QxMobileComposite';
 import { SessionStatus } from '../../session/SessionStatus';
 
 export class Viewport extends QxMobileComposite {
     static instance: Viewport;
 
-    static getInstance(root: QxMobileRoot) {
+    static getInstance() {
         if (this.instance === undefined)
-            this.instance = new Viewport(root);
+            this.instance = new Viewport();
         return this.instance;
-    }
-
-    constructor(root: QxMobileRoot) {
-        super();
     }
 
     initialize() {
         super.initialize();
         SessionStatus.getInstance();
-        this.setStyle('backgroundColor', 'blue');
-        // this.setBackgroundColor(ColorConstants.ViewportBackground);
+        this.setHeight(SizeConstants.Size100Pct);
+        this.setBackgroundColor(ColorConstants.ViewportBackground);
     }
 
 }
