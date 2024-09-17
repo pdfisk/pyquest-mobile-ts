@@ -1,4 +1,4 @@
-import { QxWidget } from "../qx/ui/core/QxWidget";
+import { QxMobileWidget } from "../qx/mobile/core/QxMobileWidget";
 
 export class ObjectRegistry {
     objectMap: Map<number, any>;
@@ -14,7 +14,7 @@ export class ObjectRegistry {
         return this.instance;
     }
 
-    static registerObject(obj: QxWidget): number {
+    static registerObject(obj: QxMobileWidget): number {
         return this.getInstance().registerObject(obj);
     }
 
@@ -30,7 +30,7 @@ export class ObjectRegistry {
         return this.objectMap.get(id);
     }
 
-    registerObject(obj: QxWidget): number {
+    registerObject(obj: QxMobileWidget): number {
         const index = obj.getId();
         this.objectMap.set(index, obj);
         return index;
