@@ -1,7 +1,7 @@
 import { LabelConstants } from "../../constants/LabelConstants";
-import { AbstractPage } from "./AbstractPage";
+import { QxNavigationPage } from "../../qx/mobile/page/QxNavigationPage";
 
-export class OverviewPage extends AbstractPage {
+export class OverviewPage extends QxNavigationPage {
     static instance: OverviewPage;
 
     static getInstance(): OverviewPage {

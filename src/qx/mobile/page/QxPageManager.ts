@@ -22,4 +22,8 @@ export class QxPageManager extends QxObject {
         this.widget.addDetail(widgets);
     }
 
+    addMaster(page: AbstractPage) {
+        this.widget.addMaster(page.widget);
+    }
+
 }

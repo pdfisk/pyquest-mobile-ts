@@ -42,11 +42,13 @@ export class Viewport extends QxMobileComposite {
         this.pageOverview = OverviewPage.getInstance();
         this.pageProjects = ProjectsPage.getInstance();
         this.pageTranscript = TranscriptPage.getInstance();
+        this.addMasterPage();
         this.addDetailPages();
         this.buildRouting();
     }
 
     buildRouting() {
+        this.routing.onGet(RouteConstants.routeOverview, this.pageOverview);
         this.routing.onGet(RouteConstants.routeHome, this.pageHome);
         this.routing.onGet(RouteConstants.routeBoard, this.pageBoard);
         this.routing.onGet(RouteConstants.routeEditor, this.pageEditor);
@@ -59,6 +61,10 @@ export class Viewport extends QxMobileComposite {
         this.manager.addDetailPages([
             this.pageBoard, this.pageEditor, this.pageHome, this.pageProjects, this.pageTranscript
         ]);
+    }
+
+    addMasterPage() {
+        this.manager.addMaster(this.pageOverview);
     }
 
     initialize() {

@@ -1,7 +1,8 @@
 export class RouteConstants {
-    static routeHome = '/';
+    static routeOverview = '/';
     static routeBoard = '/board';
     static routeEditor = '/editor';
+    static routeHome = '/home';
     static routeProjects = '/projects';
     static routeTranscript = '/transcript';
 }
