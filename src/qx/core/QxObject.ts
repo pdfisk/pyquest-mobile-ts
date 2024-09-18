@@ -13,7 +13,15 @@ export abstract class QxObject {
         return this.id;
     }
 
+    hide() {
+        this.widget.hide();
+    }
+
     initialize() {
+    }
+
+    show(data: any = null) {
+        this.widget.show(data);
     }
 
 }

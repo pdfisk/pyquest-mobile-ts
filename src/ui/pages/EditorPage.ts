@@ -1,18 +1,18 @@
 import { LabelConstants } from "../../constants/LabelConstants";
 import { AbstractPage } from "./AbstractPage";
 
-export class OverviewPage extends AbstractPage {
-    static instance: OverviewPage;
+export class EditorPage extends AbstractPage {
+    static instance: EditorPage;
 
-    static getInstance(): OverviewPage {
+    static getInstance(): EditorPage {
         if (!this.instance)
-            this.instance = new OverviewPage();
+            this.instance = new EditorPage();
         return this.instance;
     }
 
     private constructor() {
         super();
-        this.setTitle(LabelConstants.PageOverview);
+        this.setTitle(LabelConstants.PageEditor);
     }
 
 }

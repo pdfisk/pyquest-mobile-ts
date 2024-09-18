@@ -16,7 +16,7 @@ export class VmApi {
         return this.getInstance().run(src, inputId, outputId);
     }
 
-    constructor() {
+    private constructor() {
         const setActionHandlerFn: Function = this.getVmApiSetActionHandlerFn();
         const setResultHandlerFn: Function = this.getVmApiSetResultHandlerFn();
         this.callVmApiFn(setActionHandlerFn, this.handleAction);

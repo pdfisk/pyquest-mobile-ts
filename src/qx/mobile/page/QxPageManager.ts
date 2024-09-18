@@ -1,3 +1,4 @@
+import { AbstractPage } from "../../../ui/pages/AbstractPage";
 import { QxObject } from "../../core";
 import { QxFactory } from "../../factory";
 
@@ -12,6 +13,14 @@ export class QxPageManager extends QxObject {
 
     private constructor() {
         super(QxFactory.mobilePageManager());
+    }
+
+    addDetailPages(pages: AbstractPage[]) {
+        const widgets: any[] = [];
+        for (let i = 0; i < pages.length; i++)
+            widgets.push(pages[i].widget);
+        (window as any).X = [this, pages];
+        this.widget.addDetail(widgets);
     }
 
 }
