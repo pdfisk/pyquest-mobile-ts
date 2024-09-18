@@ -36,6 +36,7 @@ export class LabelConstants {
     static PageHome: string = 'Home';
     static PageOverview: string = 'Overview';
     static PageProjects: string = 'Projects';
+    static PageStatus: string = 'Status';
     static PageTranscript: string = 'Transcript';
 
     static TabPageBoard: string = 'Board';

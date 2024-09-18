@@ -1,4 +1,4 @@
-import { RouteConstants } from '../../constants/RouteConstants';
+import { PageConstants } from '../../constants/PageConstants';
 import { QxMobileApplication } from '../../qx/application/QxMobileApplication';
 import { QxMobileRouting } from '../../qx/application/QxMobileRouting';
 import { QxMobileComposite } from '../../qx/mobile/container/QxMobileComposite';
@@ -9,6 +9,7 @@ import { EditorPage } from '../pages/EditorPage';
 import { HomePage } from '../pages/HomePage';
 import { OverviewPage } from '../pages/OverviewPage';
 import { ProjectsPage } from '../pages/ProjectsPage';
+import { StatusPage } from '../pages/StatusPage';
 import { TranscriptPage } from '../pages/TranscriptPage';
 
 export class Viewport extends QxMobileComposite {
@@ -19,6 +20,7 @@ export class Viewport extends QxMobileComposite {
     pageHome: HomePage;
     pageOverview: OverviewPage;
     pageProjects: ProjectsPage;
+    pageStatus: StatusPage;
     pageTranscript: TranscriptPage;
     root: QxMobileRoot;
     routing: QxMobileRouting;
@@ -41,6 +43,7 @@ export class Viewport extends QxMobileComposite {
         this.pageHome = HomePage.getInstance();
         this.pageOverview = OverviewPage.getInstance();
         this.pageProjects = ProjectsPage.getInstance();
+        this.pageStatus = StatusPage.getInstance();
         this.pageTranscript = TranscriptPage.getInstance();
         this.addMasterPage();
         this.addDetailPages();
@@ -48,18 +51,20 @@ export class Viewport extends QxMobileComposite {
     }
 
     buildRouting() {
-        this.routing.onGet(RouteConstants.routeOverview, this.pageOverview);
-        this.routing.onGet(RouteConstants.routeHome, this.pageHome);
-        this.routing.onGet(RouteConstants.routeBoard, this.pageBoard);
-        this.routing.onGet(RouteConstants.routeEditor, this.pageEditor);
-        this.routing.onGet(RouteConstants.routeProjects, this.pageProjects);
-        this.routing.onGet(RouteConstants.routeTranscript, this.pageTranscript);
+        this.routing.onGet(PageConstants.routeOverview, this.pageOverview);
+        this.routing.onGet(PageConstants.routeHome, this.pageHome);
+        this.routing.onGet(PageConstants.routeBoard, this.pageBoard);
+        this.routing.onGet(PageConstants.routeEditor, this.pageEditor);
+        this.routing.onGet(PageConstants.routeProjects, this.pageProjects);
+        this.routing.onGet(PageConstants.routeStatus, this.pageStatus);
+        this.routing.onGet(PageConstants.routeTranscript, this.pageTranscript);
         this.routing.init();
     }
 
     addDetailPages() {
         this.manager.addDetailPages([
-            this.pageBoard, this.pageEditor, this.pageHome, this.pageProjects, this.pageTranscript
+            this.pageBoard, this.pageEditor, this.pageHome,
+            this.pageProjects, this.pageStatus, this.pageTranscript
         ]);
     }
 

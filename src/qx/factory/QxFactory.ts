@@ -4,6 +4,16 @@ export class QxFactory {
         return new (window as any).qx.ui.mobile.container.Composite;
     }
 
+    static mobileList(): any {
+        return new (window as any).qx.ui.mobile.list.List({
+            configureItem(item: any, data: any) {
+                item.setTitle(data.title);
+                item.setSubtitle(data.subtitle);
+                item.setShowArrow(true);
+            },
+        });
+    }
+
     static mobileNavigationPage(): any {
         return new (window as any).qx.ui.mobile.page.NavigationPage;
     }
