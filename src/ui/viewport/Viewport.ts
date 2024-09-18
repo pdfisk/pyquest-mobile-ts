@@ -1,3 +1,4 @@
+import { RouteConstants } from '../../constants/RouteConstants';
 import { QxMobileApplication } from '../../qx/application/QxMobileApplication';
 import { QxMobileRouting } from '../../qx/application/QxMobileRouting';
 import { QxMobileComposite } from '../../qx/mobile/container/QxMobileComposite';
@@ -46,27 +47,12 @@ export class Viewport extends QxMobileComposite {
     }
 
     buildRouting() {
-        (window as any).routing = this.routing.widget;
-        (window as any).home = this.pageHome.widget;
-        (window as any).board = this.pageBoard.widget;
-        (window as any).editor = this.pageEditor.widget;
-        (window as any).projects = this.pageProjects.widget;
-        (window as any).transcript = this.pageTranscript.widget;
-        // (window as any).X = [
-        //     this.routing.widget,
-        //     this.pageHome.widget,
-        //     this.pageBoard.widget,
-        //     this.pageEditor.widget,
-        //     this.pageProjects.widget,
-        //     this.pageTranscript.widget
-        // ];
-        console.log('buildRouting');
-        // this.routing.onGet('/', this.pageHome);
-        // this.routing.onGet('/board', this.pageBoard);
-        // this.routing.onGet('/editor', this.pageEditor);
-        // this.routing.onGet('/projects', this.pageProjects);
-        // this.routing.onGet('/transcript', this.pageTranscript);
-        // this.routing.init();
+        this.routing.onGet(RouteConstants.routeHome, this.pageHome);
+        this.routing.onGet(RouteConstants.routeBoard, this.pageBoard);
+        this.routing.onGet(RouteConstants.routeEditor, this.pageEditor);
+        this.routing.onGet(RouteConstants.routeProjects, this.pageProjects);
+        this.routing.onGet(RouteConstants.routeTranscript, this.pageTranscript);
+        this.routing.init();
     }
 
     addDetailPages() {
@@ -77,7 +63,6 @@ export class Viewport extends QxMobileComposite {
 
     initialize() {
         super.initialize();
-        console.log('OK');
     }
 
 }
