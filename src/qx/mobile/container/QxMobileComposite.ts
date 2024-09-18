@@ -11,4 +11,8 @@ export  class QxMobileComposite extends QxMobileWidget {
         this.widget.add(child.widget, options);
     }
 
+    initialize() {
+        super.initialize();
+    }
+
 }

@@ -1,8 +1,10 @@
 import { QxMobileRouting } from '../../qx/application/QxMobileRouting';
+import { QxMobileComposite } from '../../qx/mobile/container/QxMobileComposite';
 import { QxMobileRoot } from '../../qx/mobile/core/QxMobileRoot';
 import { QxPageManager } from '../../qx/mobile/page/QxPageManager';
 
-export class Viewport extends QxPageManager {
+export class Viewport extends QxMobileComposite {
+    manager: QxPageManager;
     root: QxMobileRoot;
     routing: QxMobileRouting;
     static instance: Viewport;
@@ -15,6 +17,7 @@ export class Viewport extends QxPageManager {
 
     constructor() {
         super();
+        this.manager = QxPageManager.getInstance();
         this.root = QxMobileRoot.getInstance();
         this.routing = QxMobileRouting.getInstance();
     }

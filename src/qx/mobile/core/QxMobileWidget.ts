@@ -9,6 +9,10 @@ export class QxMobileWidget extends QxObject {
         this.setHeight(SizeConstants.Size100Pct);
     }
 
+    initialize() {
+        super.initialize();
+    }
+
     setBackgroundColor(color: string) {
         this.setStyle(StyleConstants.BackgroundColor, color);
     }

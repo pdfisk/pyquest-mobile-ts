@@ -1,8 +1,6 @@
 import { SessionStatus } from "../../session";
-import { Viewport } from "../../ui";
 import { QxObject } from "../core";
 import { QxInit } from "../core/QxInit";
-import { QxMobileRoot } from "../mobile/core/QxMobileRoot";
 
 export class QxMobileApplication extends QxObject {
 
@@ -19,6 +17,7 @@ export class QxMobileApplication extends QxObject {
     }
 
     initialize() {
+        super.initialize();
         SessionStatus.getInstance();
     }
 
