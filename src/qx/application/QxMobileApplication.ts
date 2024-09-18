@@ -5,26 +5,29 @@ import { QxInit } from "../core/QxInit";
 import { QxMobileRoot } from "../mobile/core/QxMobileRoot";
 
 export class QxMobileApplication extends QxObject {
-    root: QxMobileRoot;
-    viewport: Viewport;
 
     static instance: QxMobileApplication;
 
-    static getInstance(rootWidget: any): QxMobileApplication {
+    static getInstance(): QxMobileApplication {
         if (!this.instance)
-            this.instance = new QxMobileApplication(rootWidget);
+            this.instance = new QxMobileApplication();
         return this.instance;
     }
 
-    private constructor(rootWidget: any) {
+    private constructor() {
         super(QxInit.getApplication());
-        this.root = QxMobileRoot.getInstance(rootWidget);
-        this.viewport = Viewport.getInstance();
-        // this.root.add(this.viewport);
     }
 
     initialize() {
         SessionStatus.getInstance();
+    }
+
+    getRoot():any {
+        return this.widget.getRoot();
+    }
+
+    getRouting():any {
+        return this.widget.getRouting();
     }
 
 }

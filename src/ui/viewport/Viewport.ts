@@ -1,9 +1,10 @@
-import { QxNavigationPage } from '../../qx/mobile/page/QxNavigationPage';
-import { QxPage } from '../../qx/mobile/page/QxPage';
+import { QxMobileRouting } from '../../qx/application/QxMobileRouting';
+import { QxMobileRoot } from '../../qx/mobile/core/QxMobileRoot';
 import { QxPageManager } from '../../qx/mobile/page/QxPageManager';
 
 export class Viewport extends QxPageManager {
-    navigationPage: QxNavigationPage;
+    root: QxMobileRoot;
+    routing: QxMobileRouting;
     static instance: Viewport;
 
     static getInstance() {
@@ -14,12 +15,12 @@ export class Viewport extends QxPageManager {
 
     constructor() {
         super();
-        this.navigationPage = new QxNavigationPage();
+        this.root = QxMobileRoot.getInstance();
+        this.routing = QxMobileRouting.getInstance();
     }
 
     initialize() {
         super.initialize();
-        const page = new QxPage();
         (window as any).X = this;
         console.log('OK');
     }
