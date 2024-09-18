@@ -13,7 +13,7 @@ export class QxFactory {
     }
 
     static mobilePageManager(): any {
-        return new (window as any).qx.ui.mobile.page.Manager;
+        return new (window as any).qx.ui.mobile.page.Manager(false);
     }
 
     static mobileRoot(): any {
