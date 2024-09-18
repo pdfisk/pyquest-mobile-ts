@@ -46,14 +46,20 @@ export class Viewport extends QxMobileComposite {
     }
 
     buildRouting() {
-        (window as any).X = [
-            this.routing.widget,
-            this.pageHome.widget,
-            this.pageBoard.widget,
-            this.pageEditor.widget,
-            this.pageProjects.widget,
-            this.pageTranscript.widget
-        ];
+        (window as any).routing = this.routing.widget;
+        (window as any).home = this.pageHome.widget;
+        (window as any).board = this.pageBoard.widget;
+        (window as any).editor = this.pageEditor.widget;
+        (window as any).projects = this.pageProjects.widget;
+        (window as any).transcript = this.pageTranscript.widget;
+        // (window as any).X = [
+        //     this.routing.widget,
+        //     this.pageHome.widget,
+        //     this.pageBoard.widget,
+        //     this.pageEditor.widget,
+        //     this.pageProjects.widget,
+        //     this.pageTranscript.widget
+        // ];
         console.log('buildRouting');
         // this.routing.onGet('/', this.pageHome);
         // this.routing.onGet('/board', this.pageBoard);
