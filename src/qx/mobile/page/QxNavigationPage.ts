@@ -7,6 +7,10 @@ export class QxNavigationPage extends QxPage {
         super(QxFactory.mobileNavigationPage());
     }
 
+    getTitle(): string {
+        return this.widget.getTitle();
+    }
+
     setTitle(title: string) {
         this.widget.setTitle(title);
     }

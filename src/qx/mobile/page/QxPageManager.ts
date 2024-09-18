@@ -19,7 +19,6 @@ export class QxPageManager extends QxObject {
         const widgets: any[] = [];
         for (let i = 0; i < pages.length; i++)
             widgets.push(pages[i].widget);
-        (window as any).X = [this, pages];
         this.widget.addDetail(widgets);
     }
 

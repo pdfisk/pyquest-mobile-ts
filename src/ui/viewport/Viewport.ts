@@ -3,7 +3,6 @@ import { QxMobileRouting } from '../../qx/application/QxMobileRouting';
 import { QxMobileComposite } from '../../qx/mobile/container/QxMobileComposite';
 import { QxMobileRoot } from '../../qx/mobile/core/QxMobileRoot';
 import { QxPageManager } from '../../qx/mobile/page/QxPageManager';
-import { AbstractPage } from '../pages/AbstractPage';
 import { BoardPage } from '../pages/BoardPage';
 import { EditorPage } from '../pages/EditorPage';
 import { HomePage } from '../pages/HomePage';
@@ -43,14 +42,29 @@ export class Viewport extends QxMobileComposite {
         this.pageProjects = ProjectsPage.getInstance();
         this.pageTranscript = TranscriptPage.getInstance();
         this.addDetailPages();
+        this.buildRouting();
     }
 
     buildRouting() {
-
+        (window as any).X = [
+            this.routing.widget,
+            this.pageHome.widget,
+            this.pageBoard.widget,
+            this.pageEditor.widget,
+            this.pageProjects.widget,
+            this.pageTranscript.widget
+        ];
+        console.log('buildRouting');
+        // this.routing.onGet('/', this.pageHome);
+        // this.routing.onGet('/board', this.pageBoard);
+        // this.routing.onGet('/editor', this.pageEditor);
+        // this.routing.onGet('/projects', this.pageProjects);
+        // this.routing.onGet('/transcript', this.pageTranscript);
+        // this.routing.init();
     }
 
     addDetailPages() {
-        QxPageManager.getInstance().addDetailPages([
+        this.manager.addDetailPages([
             this.pageBoard, this.pageEditor, this.pageHome, this.pageProjects, this.pageTranscript
         ]);
     }
@@ -58,10 +72,6 @@ export class Viewport extends QxMobileComposite {
     initialize() {
         super.initialize();
         console.log('OK');
-    }
-
-    showPage(page: AbstractPage, data: any) {
-        page.show(data);
     }
 
 }
