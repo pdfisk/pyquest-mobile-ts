@@ -7,4 +7,8 @@ export class QxList extends QxMobileWidget {
         super(QxFactory.mobileList());
     }
 
+    setModel(model: any) {
+        this.widget.setModel(model);
+    }
+
 }
