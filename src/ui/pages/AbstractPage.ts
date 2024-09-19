@@ -6,6 +6,12 @@ export abstract class AbstractPage extends QxNavigationPage {
         super.onAppear();
         this.setBackButtonText('Back');
         this.setShowBackButton(true);
+        this.widget._back = () => { this.onBack() };
+        (window as any).X = this;
+    }
+
+    onBack() {
+        (window as any).qx.core.Init.getApplication().getRouting().back();
     }
 
     setBackButtonText(text: string) {
