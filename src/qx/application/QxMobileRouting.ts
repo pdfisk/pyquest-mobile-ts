@@ -21,9 +21,8 @@ export class QxMobileRouting extends QxObject {
     }
 
     onGet(route: string, page: AbstractPage) {
-        console.log('onGet', page.widget.getTitle());
         // @ts-ignore
-        this.widget.onGet(route, function() {this.show();}, page);
+        this.widget.onGet(route, function () { this.show(); }, page);
     }
 
     showPage(page: AbstractPage) {
