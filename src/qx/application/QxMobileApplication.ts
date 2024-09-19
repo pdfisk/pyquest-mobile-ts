@@ -10,13 +10,17 @@ export class QxMobileApplication extends QxObject {
         this.getRouting().back();
     }
 
+    static executeGet(route: string) {
+        this.getInstance().executeGet(route);
+    }
+
     static getInstance(): QxMobileApplication {
         if (!this.instance)
             this.instance = new QxMobileApplication();
         return this.instance;
     }
 
-    static getRouting():any {
+    static getRouting(): any {
         return this.getInstance().getRouting();
     }
 
@@ -27,6 +31,10 @@ export class QxMobileApplication extends QxObject {
     initialize() {
         super.initialize();
         SessionStatus.getInstance();
+    }
+
+    executeGet(route: string) {
+        this.getRouting().executeGet(route);
     }
 
     getRoot(): any {

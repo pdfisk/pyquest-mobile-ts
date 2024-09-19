@@ -1,5 +1,6 @@
 import { EventConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
+import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { QxList } from "../../qx/mobile/list/QxList";
 import { QxNavigationPage } from "../../qx/mobile/page/QxNavigationPage";
 
@@ -27,9 +28,7 @@ export class OverviewPage extends QxNavigationPage {
             EventConstants.QxEventChangeSelection,
             function (evt: any) {
                 const path = data[evt.getData()].path;
-                (window as any).qx.core.Init.getApplication()
-                    .getRouting()
-                    .executeGet('/' + path);
+                QxMobileApplication.executeGet('/' + path);
             },
             this
         );
