@@ -1,4 +1,3 @@
-import { AbstractPage } from "../../ui/pages/AbstractPage";
 import { QxObject } from "../core";
 import { QxNavigationPage } from "../mobile/page/QxNavigationPage";
 import { QxMobileApplication } from "./QxMobileApplication";
@@ -24,10 +23,6 @@ export class QxMobileRouting extends QxObject {
     onGet(route: string, page: QxNavigationPage) {
         // @ts-ignore
         this.widget.onGet(route, function () { this.show(); }, page);
-    }
-
-    showPage(page: AbstractPage) {
-        page.show();
     }
 
 }
