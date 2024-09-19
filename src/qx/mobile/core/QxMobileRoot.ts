@@ -11,8 +11,19 @@ export class QxMobileRoot extends QxMobileComposite {
         return this.instance;
     }
 
+    static getSize(): any {
+        return this.getInstance().getSize();
+    }
+
     constructor() {
         super(QxMobileApplication.getInstance().getRoot());
+    }
+
+    getSize(): any {
+        const element: any = this.widget.getContentElement();
+        if (!element) return;
+        const rect = element.getBoundingClientRect();
+        return { width: rect.width, height: rect.height };
     }
 
 }

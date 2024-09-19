@@ -14,11 +14,11 @@ export class QxNavigationPage extends QxPage {
     }
 
     onOrientation() {
-console.log('onOrientation');
+        console.log('onOrientation');
     }
 
-    onResize() {
-        console.log('onResize');
+    onResize(width: number, height: number) {
+        console.log('onResize', width, height);
     }
 
     setTitle(title: string) {

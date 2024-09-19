@@ -3,6 +3,8 @@ export class EventConstants {
     static QxEventAppear: string = 'appear';
     static QxEventChangeSelection: string = 'changeSelection';
     static QxEventLoaded: string = 'loaded';
+    static QxEventResize: string = 'resize';
+    static QxEventOrientationChange: string = 'orientationchange';
     static WindowEventClose: string = 'close';
     static WindowEventMaximize: string = 'maximize';
     static WindowEventMinimize: string = 'minimize';
