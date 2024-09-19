@@ -1,3 +1,4 @@
+import { EventConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { QxList } from "../../qx/mobile/list/QxList";
 import { QxNavigationPage } from "../../qx/mobile/page/QxNavigationPage";
@@ -20,7 +21,18 @@ export class OverviewPage extends QxNavigationPage {
     }
 
     buildList() {
-        this.list.setModel(new (window as any).qx.data.Array(this.getData()));
+        const data = this.getData();
+        this.list.setModel(new (window as any).qx.data.Array(data));
+        this.list.widget.addListener(
+            EventConstants.QxEventChangeSelection,
+            function (evt: any) {
+                const path = data[evt.getData()].path;
+                (window as any).qx.core.Init.getApplication()
+                    .getRouting()
+                    .executeGet('/' + path);
+            },
+            this
+        );
     }
 
     getData(): any[] {
