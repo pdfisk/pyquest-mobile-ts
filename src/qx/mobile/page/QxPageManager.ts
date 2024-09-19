@@ -1,6 +1,7 @@
 import { AbstractPage } from "../../../ui/pages/AbstractPage";
 import { QxObject } from "../../core";
 import { QxFactory } from "../../factory";
+import { QxNavigationPage } from "./QxNavigationPage";
 
 export class QxPageManager extends QxObject {
     static instance: QxPageManager;
@@ -22,7 +23,7 @@ export class QxPageManager extends QxObject {
         this.widget.addDetail(widgets);
     }
 
-    addMaster(page: AbstractPage) {
+    addMaster(page: QxNavigationPage) {
         this.widget.addMaster(page.widget);
     }
 
