@@ -1,3 +1,4 @@
+import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { QxNavigationPage } from "../../qx/mobile/page/QxNavigationPage";
 
 export abstract class AbstractPage extends QxNavigationPage {
@@ -7,11 +8,10 @@ export abstract class AbstractPage extends QxNavigationPage {
         this.setBackButtonText('Back');
         this.setShowBackButton(true);
         this.widget._back = () => { this.onBack() };
-        (window as any).X = this;
     }
 
     onBack() {
-        (window as any).qx.core.Init.getApplication().getRouting().back();
+        QxMobileApplication.back();
     }
 
     setBackButtonText(text: string) {
