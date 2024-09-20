@@ -53,4 +53,9 @@ export class OverviewPage extends QxNavigationPage {
         super.initialize();
     }
 
+    resizeHeight(height:number) {
+        console.log('resizeHeight', height);
+        (window as any).X = this;
+    }
+
 }

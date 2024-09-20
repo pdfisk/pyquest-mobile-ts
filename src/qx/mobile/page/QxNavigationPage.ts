@@ -32,7 +32,10 @@ export class QxNavigationPage extends QxPage {
 
     resize() {
         const height = QxMobileRoot.getHeight();
-        console.log('resize', height);
+        this.resizeHeight(height);
+    }
+
+    resizeHeight(height: number) {
     }
 
     setTitle(title: string) {
