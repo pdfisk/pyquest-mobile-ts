@@ -7,8 +7,22 @@ export class QxList extends QxWidget {
         super(QxFactory.mobileList(config));
     }
 
+    setData(labels: string[]) {
+        const model = (window.qx as any).data.marshal.Json.createModel(labels.sort());
+        this.widget.setModel(model);
+        this.scrollToTop();
+    }
+
     setModel(model: any) {
         this.widget.setModel(model);
+    }
+
+    scrollToTop() {
+        this.scrollToY(0);
+    }
+
+    scrollToY(y: number) {
+        // this.widget.scrollToY(y);
     }
 
 }

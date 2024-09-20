@@ -16,18 +16,12 @@ export class ProjectsPage extends DataListPage {
         this.setTitle(LabelConstants.PageProjects);
     }
 
-    addLoadHandlerFns(): void {
-        const handlerFn = (dataRecords: any[]) => {
-            console.log('HANDLE', dataRecords);
-        }
-        this.dataStore.addLoaderHandlerFn(handlerFn);
-    }
-
     getListConfig(): any {
         return {
             configureItem(item: any, data: any) {
-                item.setTitle(data.getName());
-                item.setSubtitle(data.getUpdated_at());
+                console.log('ITEM', data);
+                // item.setTitle(data.getName());
+                // item.setSubtitle(data.getUpdated_at());
             },
         };
     }
