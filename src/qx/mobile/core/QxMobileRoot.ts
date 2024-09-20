@@ -11,6 +11,10 @@ export class QxMobileRoot extends QxMobileComposite {
         return this.instance;
     }
 
+    static getHeight():number {
+        return this.getSize().height;
+    }
+
     static getSize(): any {
         return this.getInstance().getSize();
     }

@@ -21,6 +21,10 @@ export class OverviewPage extends QxNavigationPage {
         this.buildList();
     }
 
+    addContent() {
+        this.widget.getContent().add(this.list.widget);
+    }
+
     buildList() {
         const data = this.getData();
         this.list.setModel(new (window as any).qx.data.Array(data));
@@ -47,10 +51,6 @@ export class OverviewPage extends QxNavigationPage {
 
     initialize() {
         super.initialize();
-    }
-
-    onAppear() {
-        this.widget.getContent().add(this.list.widget);
     }
 
 }

@@ -1,5 +1,4 @@
 import { EventConstants } from "../constants";
-import { QxMobileRoot } from "../qx/mobile/core/QxMobileRoot";
 import { QxNavigationPage } from "../qx/mobile/page/QxNavigationPage";
 
 export class ResizeManager {
@@ -43,11 +42,8 @@ export class ResizeManager {
     }
 
     onResize() {
-        const size = QxMobileRoot.getSize();
-        const width = size.width;
-        const height = size.height;
         for (let i = 0; i < this.subscribers.length; i++)
-            this.subscribers.at(i)?.onResize(width, height);
+            this.subscribers.at(i)?.onResize();
     }
 
     subscribe(subscriber: QxNavigationPage) {
