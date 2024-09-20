@@ -1,13 +1,13 @@
 import { QxFactory } from "../../factory";
-import { QxMobileWidget } from "../core/QxMobileWidget";
+import { QxWidget } from "../core/QxWidget";
 
-export class QxMobileScroll extends QxMobileWidget {
+export class QxScroll extends QxWidget {
 
     constructor() {
         super(QxFactory.mobileComposite());
     }
 
-    add(child: QxMobileWidget, options: any = {}) {
+    add(child: QxWidget, options: any = {}) {
         this.widget.add(child.widget, options);
     }
 

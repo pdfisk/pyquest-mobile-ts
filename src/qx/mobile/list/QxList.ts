@@ -1,7 +1,7 @@
 import { QxFactory } from "../../factory";
-import { QxMobileWidget } from "../core/QxMobileWidget";
+import { QxWidget } from "../core/QxWidget";
 
-export class QxList extends QxMobileWidget {
+export class QxList extends QxWidget {
 
     constructor(config: any) {
         super(QxFactory.mobileList(config));

@@ -2,7 +2,7 @@ import { SizeConstants, StyleConstants } from "../../../constants";
 import { QxObject } from "../../core";
 import { QxFactory } from "../../factory";
 
-export class QxMobileWidget extends QxObject {
+export class QxWidget extends QxObject {
 
     constructor(widget?: any) {
         super(widget ? widget : QxFactory.mobileComposite());

@@ -1,11 +1,13 @@
 import { EventConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
+import { QxScroll } from "../../qx/mobile/container/QxScroll";
 import { QxList } from "../../qx/mobile/list/QxList";
 import { QxNavigationPage } from "../../qx/mobile/page/QxNavigationPage";
 
 export class OverviewPage extends QxNavigationPage {
     list: QxList;
+    scroll: QxScroll;
     static instance: OverviewPage;
 
     static getInstance(): OverviewPage {
@@ -25,11 +27,13 @@ export class OverviewPage extends QxNavigationPage {
             },
         };
         this.list = new QxList(config);
+        this.scroll = new QxScroll();
         this.buildList();
     }
 
     addContent() {
-        this.widget.getContent().add(this.list.widget);
+        this.scroll.add(this.list);
+        this.widget.getContent().add(this.scroll.widget);
     }
 
     buildList() {

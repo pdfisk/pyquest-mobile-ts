@@ -1,13 +1,13 @@
 import { QxMobileApplication } from "../../application/QxMobileApplication";
-import { QxMobileComposite } from "../container/QxMobileComposite";
+import { QxComposite } from "../container/QxComposite";
 
-export class QxMobileRoot extends QxMobileComposite {
+export class QxRoot extends QxComposite {
 
-    static instance: QxMobileRoot;
+    static instance: QxRoot;
 
-    static getInstance(): QxMobileRoot {
+    static getInstance(): QxRoot {
         if (!this.instance)
-            this.instance = new QxMobileRoot();
+            this.instance = new QxRoot();
         return this.instance;
     }
 

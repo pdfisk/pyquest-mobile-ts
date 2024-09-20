@@ -1,8 +1,8 @@
 import { PageConstants } from '../../constants/PageConstants';
 import { QxMobileApplication } from '../../qx/application/QxMobileApplication';
 import { QxMobileRouting } from '../../qx/application/QxMobileRouting';
-import { QxMobileComposite } from '../../qx/mobile/container/QxMobileComposite';
-import { QxMobileRoot } from '../../qx/mobile/core/QxMobileRoot';
+import { QxComposite } from '../../qx/mobile/container/QxComposite';
+import { QxRoot } from '../../qx/mobile/core/QxRoot';
 import { QxPageManager } from '../../qx/mobile/page/QxPageManager';
 import { BoardPage } from '../pages/BoardPage';
 import { EditorPage } from '../pages/EditorPage';
@@ -12,7 +12,7 @@ import { ProjectsPage } from '../pages/ProjectsPage';
 import { StatusPage } from '../pages/StatusPage';
 import { TranscriptPage } from '../pages/TranscriptPage';
 
-export class Viewport extends QxMobileComposite {
+export class Viewport extends QxComposite {
     application: QxMobileApplication;
     manager: QxPageManager;
     pageBoard: BoardPage;
@@ -22,7 +22,7 @@ export class Viewport extends QxMobileComposite {
     pageProjects: ProjectsPage;
     pageStatus: StatusPage;
     pageTranscript: TranscriptPage;
-    root: QxMobileRoot;
+    root: QxRoot;
     routing: QxMobileRouting;
     static instance: Viewport;
 
@@ -36,7 +36,7 @@ export class Viewport extends QxMobileComposite {
         super();
         this.application = QxMobileApplication.getInstance();
         this.manager = QxPageManager.getInstance();
-        this.root = QxMobileRoot.getInstance();
+        this.root = QxRoot.getInstance();
         this.routing = QxMobileRouting.getInstance();
         this.pageBoard = BoardPage.getInstance();
         this.pageEditor = EditorPage.getInstance();

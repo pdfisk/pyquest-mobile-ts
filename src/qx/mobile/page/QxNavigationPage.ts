@@ -1,6 +1,6 @@
 import { ResizeManager } from "../../../util/ResizeManager";
 import { QxFactory } from "../../factory";
-import { QxMobileRoot } from "../core/QxMobileRoot";
+import { QxRoot } from "../core/QxRoot";
 import { QxPage } from "./QxPage";
 
 export class QxNavigationPage extends QxPage {
@@ -31,7 +31,7 @@ export class QxNavigationPage extends QxPage {
     }
 
     resize() {
-        const height = QxMobileRoot.getHeight();
+        const height = QxRoot.getHeight();
         this.resizeHeight(height);
     }
 
