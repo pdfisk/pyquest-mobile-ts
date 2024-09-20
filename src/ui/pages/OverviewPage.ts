@@ -17,7 +17,14 @@ export class OverviewPage extends QxNavigationPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageOverview);
-        this.list = new QxList();
+        const config = {
+            configureItem(item: any, data: any) {
+                item.setTitle(data.title);
+                item.setSubtitle(data.subtitle);
+                item.setShowArrow(true);
+            },
+        };
+        this.list = new QxList(config);
         this.buildList();
     }
 
@@ -53,7 +60,7 @@ export class OverviewPage extends QxNavigationPage {
         super.initialize();
     }
 
-    resizeHeight(height:number) {
+    resizeHeight(height: number) {
         console.log('resizeHeight', height);
         (window as any).X = this;
     }

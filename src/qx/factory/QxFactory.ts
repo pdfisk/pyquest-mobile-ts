@@ -4,14 +4,8 @@ export class QxFactory {
         return new (window as any).qx.ui.mobile.container.Composite;
     }
 
-    static mobileList(): any {
-        return new (window as any).qx.ui.mobile.list.List({
-            configureItem(item: any, data: any) {
-                item.setTitle(data.title);
-                item.setSubtitle(data.subtitle);
-                item.setShowArrow(true);
-            },
-        });
+    static mobileList(config: any): any {
+        return new (window as any).qx.ui.mobile.list.List(config);
     }
 
     static mobileNavigationPage(): any {
@@ -28,6 +22,10 @@ export class QxFactory {
 
     static mobileRoot(): any {
         return new (window as any).qx.ui.mobile.core.Root;
+    }
+
+    static mobileScroll(): any {
+        return new (window as any).qx.ui.mobile.container.Scroll;
     }
 
     static mobileWidget(): any {
