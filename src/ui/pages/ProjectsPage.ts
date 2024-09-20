@@ -1,12 +1,8 @@
 import { LabelConstants } from "../../constants/LabelConstants";
 import { AbstractStore, ProjectsStore } from "../../data";
-import { QxScroll } from "../../qx/mobile/container/QxScroll";
-import { QxList } from "../../qx/mobile/list/QxList";
 import { DataListPage } from "./DataListPage";
 
 export class ProjectsPage extends DataListPage {
-    list: QxList;
-    scroll: QxScroll;
     static instance: ProjectsPage;
 
     static getInstance(): ProjectsPage {
@@ -18,19 +14,6 @@ export class ProjectsPage extends DataListPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageProjects);
-        const config = {
-            configureItem(item: any, data: any) {
-                item.setTitle(data.getName());
-                item.setSubtitle(data.getUpdated_at());
-            },
-        };
-        this.list = new QxList(config);
-        this.scroll = new QxScroll();
-    }
-
-    addContent() {
-        this.scroll.add(this.list);
-        this.widget.getContent().add(this.scroll.widget);
     }
 
     addLoadHandlerFns(): void {
@@ -38,6 +21,15 @@ export class ProjectsPage extends DataListPage {
             console.log('HANDLE', dataRecords);
         }
         this.dataStore.addLoaderHandlerFn(handlerFn);
+    }
+
+    getListConfig(): any {
+        return {
+            configureItem(item: any, data: any) {
+                item.setTitle(data.getName());
+                item.setSubtitle(data.getUpdated_at());
+            },
+        };
     }
 
     getStore(): AbstractStore {
