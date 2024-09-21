@@ -1,13 +1,14 @@
+import { LabelConstants } from "../../constants";
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
-import { QxNavigationPage } from "../../qx/mobile/page/QxNavigationPage";
+import { RoutingPage } from "./RoutingPage";
 
-export abstract class AbstractPage extends QxNavigationPage {
+export abstract class AbstractPage extends RoutingPage {
 
     onAppear() {
         super.onAppear();
-        this.setBackButtonText('Back');
+        this.setBackButtonText(LabelConstants.ButtonLabelBack);
         this.setShowBackButton(true);
-        this.widget._back = () => { this.onBack() };
+        this.widget._back = () => { this.onBack(); };
     }
 
     onBack() {

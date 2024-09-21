@@ -1,4 +1,5 @@
 export class LabelConstants {
+    static ButtonLabelBack: string = 'Back';
     static ButtonLabelClear: string = 'Clear';
     static ButtonLabelClearIn: string = 'Clear In';
     static ButtonLabelClearOut: string = 'Clear Out';

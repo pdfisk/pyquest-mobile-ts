@@ -3,9 +3,9 @@ import { LabelConstants } from "../../constants/LabelConstants";
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { QxScroll } from "../../qx/mobile/container/QxScroll";
 import { QxList } from "../../qx/mobile/list/QxList";
-import { QxNavigationPage } from "../../qx/mobile/page/QxNavigationPage";
+import { RoutingPage } from "./RoutingPage";
 
-export class OverviewPage extends QxNavigationPage {
+export class OverviewPage extends RoutingPage {
     list: QxList;
     scroll: QxScroll;
     static instance: OverviewPage;
@@ -39,7 +39,7 @@ export class OverviewPage extends QxNavigationPage {
     buildList() {
         const data = this.getData();
         this.list.setModel(new (window as any).qx.data.Array(data));
-        this.list.widget.addListener(
+        this.list.addListener(
             EventConstants.QxEventChangeSelection,
             function (evt: any) {
                 const path = data[evt.getData()].path;
