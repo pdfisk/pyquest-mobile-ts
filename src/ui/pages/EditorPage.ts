@@ -10,9 +10,17 @@ export class EditorPage extends AbstractPage {
         return this.instance;
     }
 
+    static setCode(code: string) {
+        this.getInstance().setCode(code);
+    }
+
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageEditor);
+    }
+
+    setCode(code: string) {
+        console.log('setCode', code.length);
     }
 
 }

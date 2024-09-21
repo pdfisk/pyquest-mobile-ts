@@ -11,6 +11,14 @@ export class QxList extends QxWidget {
         this.widget.addListener(eventName, fn, context);
     }
 
+    getItem(index: number): any {
+        return this.getModel().getItem(index);
+    }
+
+    getModel(): any {
+        return this.widget.getModel();
+    }
+
     setData(labels: string[]) {
         const model = (window.qx as any).data.marshal.Json.createModel(labels.sort());
         this.widget.setModel(model);

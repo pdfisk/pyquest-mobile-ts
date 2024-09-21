@@ -1,6 +1,7 @@
 import { LabelConstants } from "../../constants/LabelConstants";
 import { AbstractStore, ProjectsStore } from "../../data";
 import { DataListPage } from "./DataListPage";
+import { EditorPage } from "./EditorPage";
 
 export class ProjectsPage extends DataListPage {
     static instance: ProjectsPage;
@@ -14,6 +15,15 @@ export class ProjectsPage extends DataListPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageProjects);
+    }
+    getOnChangeFn(): Function {
+        return (evt: any) => {
+            const index: number = evt.getData();
+            const record = this.list.getItem(index);
+            const code = record.getCode();
+            EditorPage.setCode(code);
+            this.showEditor();
+        };
     }
 
     getListConfig(): any {

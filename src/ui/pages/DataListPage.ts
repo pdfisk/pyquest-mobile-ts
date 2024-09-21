@@ -1,3 +1,4 @@
+import { EventConstants } from "../../constants";
 import { AbstractStore } from "../../data";
 import { QxScroll } from "../../qx/mobile/container/QxScroll";
 import { QxList } from "../../qx/mobile/list/QxList";
@@ -14,12 +15,21 @@ export abstract class DataListPage extends AbstractPage {
         this.dataStore = this.getStore();
         this.list = new QxList(this.getListConfig());
         this.scroll = new QxScroll();
+        this.addChangeHandlerFn();
         this.addLoadHandlerFns();
     }
 
     addContent() {
         this.scroll.add(this.list);
         this.widget.getContent().add(this.scroll.widget);
+    }
+
+    addChangeHandlerFn() {
+        this.list.addListener(
+            EventConstants.QxEventChangeSelection,
+            this.getOnChangeFn(),
+            this
+        );
     }
 
     addLoadHandlerFns(): void {
@@ -32,6 +42,8 @@ export abstract class DataListPage extends AbstractPage {
     abstract getListConfig(): any;
 
     abstract getListKey(data: any): string;
+
+    abstract getOnChangeFn(): Function;
 
     abstract getStore(): AbstractStore;
 
