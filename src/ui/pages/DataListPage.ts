@@ -31,9 +31,7 @@ export abstract class DataListPage extends AbstractPage {
 
     abstract getListConfig(): any;
 
-    getListKey(data: any): string {
-        return data.name;
-    }
+    abstract getListKey(data: any): string;
 
     abstract getStore(): AbstractStore;
 

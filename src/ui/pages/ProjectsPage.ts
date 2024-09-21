@@ -25,6 +25,10 @@ export class ProjectsPage extends DataListPage {
         };
     }
 
+    getListKey(data: any): string {
+        return data.name;
+    }
+
     getStore(): AbstractStore {
         return ProjectsStore.getInstance();
     }
