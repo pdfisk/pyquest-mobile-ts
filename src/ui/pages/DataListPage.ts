@@ -31,10 +31,8 @@ export abstract class DataListPage extends AbstractPage {
 
     abstract getListConfig(): any;
 
-    getListKey(item: any): string {
-        console.log(item);
-        return 'DUDE';
-        // return item.name;
+    getListKey(data: any): string {
+        return data.name;
     }
 
     abstract getStore(): AbstractStore;
@@ -46,11 +44,15 @@ export abstract class DataListPage extends AbstractPage {
 
     updateList() {
         const keys: string[] = [];
-        (this.dataMap.values() as any).forEach((item: any) => {
-            keys.push(this.getListKey(item));
+        (this.dataMap.values() as any).forEach((data: any) => {
+            keys.push(this.getListKey(data));
         });
         keys.sort();
-        this.list.setData(keys);
+        const values: any[] = [];
+        keys.forEach((key: string) => {
+            values.push(this.dataMap.get(key));
+        });
+        this.list.setData(values);
     }
 
     updateMapData(data: any[]) {

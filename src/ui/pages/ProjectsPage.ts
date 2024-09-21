@@ -19,9 +19,8 @@ export class ProjectsPage extends DataListPage {
     getListConfig(): any {
         return {
             configureItem(item: any, data: any) {
-                console.log('ITEM', data);
-                // item.setTitle(data.getName());
-                // item.setSubtitle(data.getUpdated_at());
+                item.setTitle(data.getName());
+                item.setSubtitle(data.getUpdated_at());
             },
         };
     }
