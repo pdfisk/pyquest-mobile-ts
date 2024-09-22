@@ -18,7 +18,13 @@ export class QxNavigationPage extends QxPage {
     }
 
     getContent(): any {
-        return this.widget.getContent();
+        const content = this.widget.getContent();
+        content._setStyle('height', '100%');
+        return content;
+    }
+
+    getContentElement():any {
+        return this.getContent().getContentElement();
     }
 
     getTitle(): string {

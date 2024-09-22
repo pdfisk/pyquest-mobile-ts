@@ -26,11 +26,8 @@ export class EditorPage extends AbstractPage {
     onAppear() {
         super.onAppear();
         const cfg: any = { mode: 'ace/mode/python' };
-        const content = this.getContent();
-        content._setStyle('height', '100%');
-        this.editor = this.ace.edit(content.getContentElement(), cfg);
+        this.editor = this.ace.edit(this.getContentElement(), cfg);
         this.setValue(this.initValue);
-        (window as any).X = this;
     }
 
     setLine(line: number) {
