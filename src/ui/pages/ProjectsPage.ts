@@ -16,6 +16,7 @@ export class ProjectsPage extends DataListPage {
         super();
         this.setTitle(LabelConstants.PageProjects);
     }
+    
     getOnChangeFn(): Function {
         return (evt: any) => {
             const index: number = evt.getData();
