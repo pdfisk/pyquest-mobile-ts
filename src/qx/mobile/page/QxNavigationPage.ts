@@ -13,7 +13,11 @@ export class QxNavigationPage extends QxPage {
     addContent() {
     }
 
-    getContent():any {
+    addContentWidget(child: any) {
+        this.getContent().add(child.widget);
+    }
+
+    getContent(): any {
         return this.widget.getContent();
     }
 

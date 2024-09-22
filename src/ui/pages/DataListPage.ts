@@ -21,7 +21,7 @@ export abstract class DataListPage extends AbstractPage {
 
     addContent() {
         this.scroll.add(this.list);
-        this.getContent().add(this.scroll.widget);
+        this.addContentWidget(this.scroll);
     }
 
     addChangeHandlerFn() {
