@@ -4,6 +4,15 @@ import { RoutingPage } from "./RoutingPage";
 
 export abstract class AbstractPage extends RoutingPage {
 
+    constructor() {
+        super();
+        this.addNavbar();
+    }
+
+    addNavbar() {
+console.log
+    }
+
     onAppear() {
         super.onAppear();
         this.setBackButtonText(LabelConstants.ButtonLabelBack);

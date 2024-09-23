@@ -29,8 +29,6 @@ export class EditorPage extends AbstractPage {
         const cfg: any = { mode: EditorConstants.ModePython };
         this.editor = this.ace.edit(this.getContentElement(), cfg);
         this.setValue(this.initValue);
-        console.log('EditorPage');
-        (window as any).X = this;
     }
 
     setLine(line: number) {
