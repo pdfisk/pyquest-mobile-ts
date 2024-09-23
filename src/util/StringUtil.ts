@@ -1,5 +1,9 @@
 export class StringUtil {
 
+    static asPixels(size: number) {
+        return `${size}px`;
+    }
+
     static format(template: string, ...args: any[]): string {
         return (window as any).qx.lang.String.format(template, args);
     }
