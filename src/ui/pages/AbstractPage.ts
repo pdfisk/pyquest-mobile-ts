@@ -6,19 +6,13 @@ import { RoutingPage } from "./RoutingPage";
 export abstract class AbstractPage extends RoutingPage {
     buttonbar: ButtonBar = new ButtonBar;
 
-    constructor() {
-        super();
-    }
-
     addButton(label: string) {
         this.buttonbar.addButton(label);
     }
 
     addButtonBar() {
-        this.buttonbar.setBackgroundColor(ColorConstants.PageButtonBarBackground);
-        this.buttonbar.setHeightPx(SizeConstants.PageButtonBarHeight);
-        this.buttonbar.setBorderTopPx(ColorConstants.PageButtonBarBorder, SizeConstants.NavBarBorderTopWidth);
-        this.buttonbar.setMarginTopPx(SizeConstants.NavBarMarginTopWidth);
+        this.buttonbar.setBorderTopPx(ColorConstants.ButtonBarBorder, SizeConstants.ButtonBarBorderTopWidth);
+        this.buttonbar.setMarginTopPx(SizeConstants.ButtonBarMarginTopWidth);
         this.add(this.buttonbar);
         this.addButtons();
     }

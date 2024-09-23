@@ -36,6 +36,26 @@ export class QxWidget extends QxObject {
         this.setStyle(StyleConstants.MarginTop, marginTop);
     }
 
+    setPaddingBottomPx(padding:number) {
+        const paddingBottom = StringUtil.asPixels(padding);
+        this.setStyle(StyleConstants.PaddingBottom, paddingBottom);
+    }
+
+    setPaddingLeftPx(padding:number) {
+        const paddingLeft = StringUtil.asPixels(padding);
+        this.setStyle(StyleConstants.PaddingLeft, paddingLeft);
+    }
+
+    setPaddingRightPx(padding:number) {
+        const paddingRight = StringUtil.asPixels(padding);
+        this.setStyle(StyleConstants.PaddingRight, paddingRight);
+    }
+
+    setPaddingTopPx(padding:number) {
+        const paddingTop = StringUtil.asPixels(padding);
+        this.setStyle(StyleConstants.PaddingTop, paddingTop);
+    }
+
     setStyle(key: string, value: any) {
         if (this.widget._setStyle) {
             this.widget._setStyle(key, value);

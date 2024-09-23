@@ -1,4 +1,12 @@
 export class SizeConstants {
+    static ButtonBarBorderTopWidth: number = 1;
+    static ButtonBarButtonHeight: number = 30;
+    static ButtonBarHeight: number = 50;
+    static ButtonBarMarginTopWidth: number = 5;
+    static ButtonBarPaddingBottom: number = 5;
+    static ButtonBarPaddingLeft: number = 15;
+    static ButtonBarPaddingRight: number = 15;
+    static ButtonBarPaddingTop: number = 5;
     static DefaultWindowButtonBarHeight: number = 29;
     static DefaultWindowButtonBarPadding: number[] = [3, 10, 3, 10];
     static DefaultWindowButtonBarSpacing: number = 3;
@@ -15,10 +23,6 @@ export class SizeConstants {
     static LogoPanelWidth: number = 125;
     static MediumWindowHeight: number = 425;
     static MediumWindowWidth: number = 525;
-    static NavBarBorderTopWidth: number = 1;
-    static NavBarHeight: number = 35;
-    static NavBarMarginTopWidth: number = 5;
-    static PageButtonBarHeight: number = 65;
     static PanelPadding: number = 15;
     static ProjectsWindowHeight: number = 435;
     static ProjectsWindowWidth: number = 575;
