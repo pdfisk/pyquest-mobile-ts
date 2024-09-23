@@ -1,5 +1,13 @@
 export class QxFactory {
 
+    static mobileAtom(): any {
+        return new (window as any).qx.ui.mobile.basic.Atom;
+    }
+
+    static mobileButton(): any {
+        return new (window as any).qx.ui.mobile.form.Button;
+    }
+
     static mobileComposite(): any {
         return new (window as any).qx.ui.mobile.container.Composite;
     }
