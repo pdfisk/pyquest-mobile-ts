@@ -1,3 +1,4 @@
+import { SizeConstants, StyleConstants } from "../../../constants";
 import { ResizeManager } from "../../../util/ResizeManager";
 import { QxFactory } from "../../factory";
 import { QxRoot } from "../core/QxRoot";
@@ -19,7 +20,7 @@ export class QxNavigationPage extends QxPage {
 
     getContent(): any {
         const content = this.widget.getContent();
-        content._setStyle('height', '100%');
+        content._setStyle(StyleConstants.Height, SizeConstants.Size100Pct);
         return content;
     }
 

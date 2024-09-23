@@ -1,3 +1,4 @@
+import { EditorConstants } from "../../constants/EditorConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { AbstractPage } from "./AbstractPage";
 
@@ -25,7 +26,7 @@ export class EditorPage extends AbstractPage {
 
     onAppear() {
         super.onAppear();
-        const cfg: any = { mode: 'ace/mode/python' };
+        const cfg: any = { mode: EditorConstants.ModePython };
         this.editor = this.ace.edit(this.getContentElement(), cfg);
         this.setValue(this.initValue);
     }
