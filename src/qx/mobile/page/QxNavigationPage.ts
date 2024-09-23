@@ -37,7 +37,7 @@ export class QxNavigationPage extends QxPage {
     }
 
     onOrientation() {
-        console.log('onOrientation');
+        // console.log('onOrientation');
     }
 
     onResize() {
