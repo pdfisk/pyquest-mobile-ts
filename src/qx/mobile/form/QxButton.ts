@@ -1,10 +1,11 @@
 import { QxFactory } from "../../factory";
-import { QxWidget } from "../core/QxWidget";
+import { QxAtom } from "../basic/QxAtom";
 
-export class QxButton extends QxWidget {
+export class QxButton extends QxAtom {
 
-    constructor() {
+    constructor(label: string) {
         super(QxFactory.mobileButton());
+        this.setLabel(label);
     }
 
 }

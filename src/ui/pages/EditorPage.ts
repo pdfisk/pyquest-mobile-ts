@@ -24,6 +24,10 @@ export class EditorPage extends AbstractPage {
         this.setTitle(LabelConstants.PageEditor);
     }
 
+    defaultButtons(): string[] {
+        return ['Run', 'Clear'];
+    }
+
     onAppear() {
         super.onAppear();
         const cfg: any = { mode: EditorConstants.ModePython };

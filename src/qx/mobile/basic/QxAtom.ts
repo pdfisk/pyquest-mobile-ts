@@ -3,8 +3,12 @@ import { QxWidget } from "../core/QxWidget";
 
 export class QxAtom extends QxWidget {
 
-    constructor() {
-        super(QxFactory.mobileAtom());
+    constructor(widget: any) {
+        super(widget ? widget : QxFactory.mobileAtom());
+    }
+
+    setLabel(label: string) {
+        this.widget.setLabel(label);
     }
 
 }
