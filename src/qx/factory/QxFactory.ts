@@ -1,5 +1,9 @@
 export class QxFactory {
 
+    static mobileAbstract(): any {
+        return new (window as any).qx.ui.mobile.layout.Absract;
+    }
+
     static mobileAtom(): any {
         return new (window as any).qx.ui.mobile.basic.Atom;
     }
@@ -10,6 +14,10 @@ export class QxFactory {
 
     static mobileComposite(): any {
         return new (window as any).qx.ui.mobile.container.Composite;
+    }
+
+    static mobileHBox(): any {
+        return new (window as any).qx.ui.mobile.layout.HBox;
     }
 
     static mobileList(config: any): any {
@@ -34,6 +42,10 @@ export class QxFactory {
 
     static mobileScroll(): any {
         return new (window as any).qx.ui.mobile.container.Scroll;
+    }
+
+    static mobileVBox(): any {
+        return new (window as any).qx.ui.mobile.layout.VBox;
     }
 
     static mobileWidget(): any {
