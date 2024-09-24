@@ -12,11 +12,22 @@ export class StringUtil {
         return (window as any).qx.lang.String.format(template, args);
     }
 
+    static padSpace(text: string, len: number): string {
+        let value: string = text.toString();
+        while (value.length < len)
+            value = ' ' + value;
+        return value;
+    }
+
     static padZero(text: string, len: number): string {
         let value: string = text.toString();
         while (value.length < len)
             value = '0' + value;
         return value;
+    }
+
+    static spaces(len: number): string {
+        return this.padSpace('', len);
     }
 
 }

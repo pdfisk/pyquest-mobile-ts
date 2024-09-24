@@ -1,7 +1,9 @@
+import { VmApi } from "../../api";
+import { Version } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
-import { AbstractPage } from "./AbstractPage";
+import { AbstractTextPage } from "./AbstractTextPage";
 
-export class StatusPage extends AbstractPage {
+export class StatusPage extends AbstractTextPage {
     static instance: StatusPage;
 
     static getInstance(): StatusPage {
@@ -13,6 +15,22 @@ export class StatusPage extends AbstractPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageStatus);
+    }
+
+    onAppear() {
+        super.onAppear();
+        this.showStatus();
+    }
+
+    showStatus() {
+        this.prn('Client:');
+        this.space(3).prn(`  Version: ${Version.version}`);
+        this.space(3).prn(`Timestamp: ${Version.timestamp}`);
+        this.newline();
+        this.prn('Vm:');
+        this.space(3).prn(`  Version: ${VmApi.getVersion()}`);
+        this.space(3).prn(`Timestamp: ${VmApi.getTimestamp()}`);
+        this.newline();
     }
 
 }

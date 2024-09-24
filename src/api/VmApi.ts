@@ -12,6 +12,14 @@ export class VmApi {
         return this.instance;
     }
 
+    static getTimestamp(): string {
+        return this.getInstance().getVmApiGetTimestamp();
+    }
+
+    static getVersion(): string {
+        return this.getInstance().getVmApiGetVersion();
+    }
+
     static run(src: string, inputId: number = 0, outputId: number = 0): number {
         return this.getInstance().run(src, inputId, outputId);
     }

@@ -2,7 +2,7 @@ import { PageConstants } from "../../constants/PageConstants";
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { QxNavigationPage } from "../../qx/mobile/page/QxNavigationPage";
 
-export abstract class AbsoluteRoutingPage extends QxNavigationPage {
+export abstract class AbstractRoutingPage extends QxNavigationPage {
 
     showBoard() {
         QxMobileApplication.executeGet(PageConstants.routeBoard);

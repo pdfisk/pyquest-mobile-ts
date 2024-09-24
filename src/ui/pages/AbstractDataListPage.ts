@@ -4,7 +4,7 @@ import { QxScroll } from "../../qx/mobile/container/QxScroll";
 import { QxList } from "../../qx/mobile/list/QxList";
 import { AbstractPage } from "./AbstractPage";
 
-export abstract class AbsoluteDataListPage extends AbstractPage {
+export abstract class AbstractDataListPage extends AbstractPage {
     dataMap: Map<string, any> = new Map();
     dataStore: AbstractStore;
     list: QxList;

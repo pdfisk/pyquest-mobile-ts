@@ -2,9 +2,9 @@ import { ColorConstants, LabelConstants, SizeConstants } from "../../constants";
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { StringUtil } from "../../util/StringUtil";
 import { ButtonBar } from "../widgets/ButtonBar";
-import { AbsoluteRoutingPage } from "./AbsoluteRoutingPage";
+import { AbstractRoutingPage } from "./AbstractRoutingPage";
 
-export abstract class AbstractPage extends AbsoluteRoutingPage {
+export abstract class AbstractPage extends AbstractRoutingPage {
     buttonbar: ButtonBar = new ButtonBar;
 
     addButton(label: string, fn: Function) {
