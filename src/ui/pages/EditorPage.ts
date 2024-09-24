@@ -26,7 +26,7 @@ export class EditorPage extends AbstractPage {
     }
 
     defaultButtons(): string[] {
-        return ['Run', 'Clear'];
+        return [LabelConstants.ButtonLabelRun, LabelConstants.ButtonLabelClear];
     }
 
     onAppear() {
@@ -37,7 +37,7 @@ export class EditorPage extends AbstractPage {
     }
 
     onClear() {
-        console.log('onClear');
+        this.setValue('');
     }
 
     onRun() {
@@ -53,7 +53,7 @@ export class EditorPage extends AbstractPage {
                 this.onRun();
                 break;
             default:
-                console.log('onTap', action);
+                console.log('EditorPage onTap', action);
                 break;
         }
     }

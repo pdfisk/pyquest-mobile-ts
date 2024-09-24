@@ -1,3 +1,4 @@
+import { ActionConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { AbstractStore, ProjectsStore } from "../../data";
 import { DataListPage } from "./DataListPage";
@@ -16,7 +17,11 @@ export class ProjectsPage extends DataListPage {
         super();
         this.setTitle(LabelConstants.PageProjects);
     }
-    
+
+    defaultButtons(): string[] {
+        return [LabelConstants.ButtonLabelRefresh];
+    }
+
     getOnChangeFn(): Function {
         return (evt: any) => {
             const index: number = evt.getData();
@@ -42,6 +47,21 @@ export class ProjectsPage extends DataListPage {
 
     getStore(): AbstractStore {
         return ProjectsStore.getInstance();
+    }
+
+    onRefresh() {
+        this.getStore().reload();
+    }
+
+    onTap(action: string) {
+        switch (action) {
+            case ActionConstants.ActionRefresh:
+                this.onRefresh();
+                break;
+            default:
+                console.log('ProjectsPage onTap', action);
+                break;
+        }
     }
 
 }
