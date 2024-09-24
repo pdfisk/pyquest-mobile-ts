@@ -45,8 +45,9 @@ export abstract class AbstractStore {
     }
 
     loadData() {
-        if (this.dataLoaded)
+        if (this.dataLoaded) {
             this.dataStore.reload();
+        }
         else
             this.dataStore.setUrl(ServerUtil.getUrl(this.serviceName()));
     }

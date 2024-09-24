@@ -1,3 +1,4 @@
+import { VmApi } from "../../api";
 import { ActionConstants } from "../../constants";
 import { EditorConstants } from "../../constants/EditorConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
@@ -29,6 +30,12 @@ export class EditorPage extends AbstractPage {
         return [LabelConstants.ButtonLabelRun, LabelConstants.ButtonLabelClear];
     }
 
+    getValue(): string {
+        if (this.editor)
+            return this.editor.getValue();
+        return '';
+    }
+
     onAppear() {
         super.onAppear();
         const cfg: any = { mode: EditorConstants.ModePython };
@@ -41,7 +48,8 @@ export class EditorPage extends AbstractPage {
     }
 
     onRun() {
-        console.log('onRun');
+        const code = this.getValue();
+        VmApi.run(code, 123, 456);
     }
 
     onTap(action: string) {
