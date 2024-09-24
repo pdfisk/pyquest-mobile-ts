@@ -1,10 +1,10 @@
 import { ActionConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { AbstractStore, ProjectsStore } from "../../data";
-import { DataListPage } from "./DataListPage";
+import { AbsoluteDataListPage } from "./AbsoluteDataListPage";
 import { EditorPage } from "./EditorPage";
 
-export class ProjectsPage extends DataListPage {
+export class ProjectsPage extends AbsoluteDataListPage {
     static instance: ProjectsPage;
 
     static getInstance(): ProjectsPage {

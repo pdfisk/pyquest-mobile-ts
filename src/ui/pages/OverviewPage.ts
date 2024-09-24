@@ -3,9 +3,9 @@ import { LabelConstants } from "../../constants/LabelConstants";
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { QxScroll } from "../../qx/mobile/container/QxScroll";
 import { QxList } from "../../qx/mobile/list/QxList";
-import { RoutingPage } from "./RoutingPage";
+import { AbsoluteRoutingPage } from "./AbsoluteRoutingPage";
 
-export class OverviewPage extends RoutingPage {
+export class OverviewPage extends AbsoluteRoutingPage {
     list: QxList;
     scroll: QxScroll;
     static instance: OverviewPage;

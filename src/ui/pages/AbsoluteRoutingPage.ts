@@ -2,33 +2,33 @@ import { PageConstants } from "../../constants/PageConstants";
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { QxNavigationPage } from "../../qx/mobile/page/QxNavigationPage";
 
-export abstract class RoutingPage extends QxNavigationPage {
+export abstract class AbsoluteRoutingPage extends QxNavigationPage {
 
-     showBoard() {
+    showBoard() {
         QxMobileApplication.executeGet(PageConstants.routeBoard);
     }
 
-     showEditor() {
+    showEditor() {
         QxMobileApplication.executeGet(PageConstants.routeEditor);
     }
 
-     showHome() {
+    showHome() {
         QxMobileApplication.executeGet(PageConstants.routeHome);
     }
 
-     showOverview() {
+    showOverview() {
         QxMobileApplication.executeGet(PageConstants.routeOverview);
     }
 
-     showProjects() {
+    showProjects() {
         QxMobileApplication.executeGet(PageConstants.routeProjects);
     }
 
-     showStatus() {
+    showStatus() {
         QxMobileApplication.executeGet(PageConstants.routeStatus);
     }
 
-     showTranscript() {
+    showTranscript() {
         QxMobileApplication.executeGet(PageConstants.routeTranscript);
     }
 

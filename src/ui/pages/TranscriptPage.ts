@@ -1,10 +1,8 @@
 import { ActionConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
-import { QxTextArea } from "../../qx/mobile/form/QxTextArea";
-import { AbstractPage } from "./AbstractPage";
+import { AbstractTextPage } from "./AbsoluteTextPage";
 
-export class TranscriptPage extends AbstractPage {
-    textArea: QxTextArea;
+export class TranscriptPage extends AbstractTextPage {
     static instance: TranscriptPage;
 
     static getInstance(): TranscriptPage {
@@ -31,32 +29,15 @@ export class TranscriptPage extends AbstractPage {
 
     private constructor() {
         super();
-        this.textArea = new QxTextArea;
         this.setTitle(LabelConstants.PageTranscript);
-    }
-
-    addContent() {
-        this.addContentWidget(this.textArea);
-    }
-
-    clear() {
-        this.textArea.clear();
     }
 
     defaultButtons(): string[] {
         return [LabelConstants.ButtonLabelClear];
     }
 
-    getValue(): string {
-        return this.textArea.getValue();
-    }
-
     onClear() {
         this.clear();
-    }
-
-    prn(text: string) {
-        this.setValue(`${this.getValue()}${text.trimEnd()}\n`);
     }
 
     onTap(action: string) {
@@ -68,10 +49,6 @@ export class TranscriptPage extends AbstractPage {
                 console.log('TranscriptPage onTap', action);
                 break;
         }
-    }
-
-    setValue(text: string) {
-        this.textArea.setValue(text);
     }
 
 }
