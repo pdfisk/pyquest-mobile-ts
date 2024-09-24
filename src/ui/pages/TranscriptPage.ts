@@ -1,3 +1,4 @@
+import { ActionConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { QxTextArea } from "../../qx/mobile/form/QxTextArea";
 import { AbstractPage } from "./AbstractPage";
@@ -39,15 +40,34 @@ export class TranscriptPage extends AbstractPage {
     }
 
     clear() {
-        this.setValue('');
+        this.textArea.clear();
+    }
+
+    defaultButtons(): string[] {
+        return [LabelConstants.ButtonLabelClear];
     }
 
     getValue(): string {
         return this.textArea.getValue();
     }
 
+    onClear() {
+        this.clear();
+    }
+
     prn(text: string) {
         this.setValue(`${this.getValue()}${text.trimEnd()}\n`);
+    }
+
+    onTap(action: string) {
+        switch (action) {
+            case ActionConstants.ActionClear:
+                this.onClear();
+                break;
+            default:
+                console.log('TranscriptPage onTap', action);
+                break;
+        }
     }
 
     setValue(text: string) {

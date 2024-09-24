@@ -7,6 +7,10 @@ export class QxTextArea extends QxWidget {
         super(QxFactory.mobileTextArea());
     }
 
+    clear() {
+        this.setValue('');
+    }
+
     getValue(): string {
         if (this.widget)
             return this.widget.getValue();
