@@ -44,6 +44,10 @@ export class QxFactory {
         return new (window as any).qx.ui.mobile.container.Scroll;
     }
 
+    static mobileTextArea(): any {
+        return new (window as any).qx.ui.mobile.form.TextArea;
+    }
+
     static mobileVBox(): any {
         return new (window as any).qx.ui.mobile.layout.VBox;
     }

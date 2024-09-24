@@ -12,7 +12,7 @@ export class VmApi {
         return this.instance;
     }
 
-    static run(src: string, inputId: number, outputId: number): number {
+    static run(src: string, inputId: number = 0, outputId: number = 0): number {
         return this.getInstance().run(src, inputId, outputId);
     }
 
