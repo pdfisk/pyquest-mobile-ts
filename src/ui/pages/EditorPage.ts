@@ -1,3 +1,4 @@
+import { ActionConstants } from "../../constants";
 import { EditorConstants } from "../../constants/EditorConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { AbstractPage } from "./AbstractPage";
@@ -33,6 +34,28 @@ export class EditorPage extends AbstractPage {
         const cfg: any = { mode: EditorConstants.ModePython };
         this.editor = this.ace.edit(this.getContentElement(), cfg);
         this.setValue(this.initValue);
+    }
+
+    onClear() {
+        console.log('onClear');
+    }
+
+    onRun() {
+        console.log('onRun');
+    }
+
+    onTap(action: string) {
+        switch (action) {
+            case ActionConstants.ActionClear:
+                this.onClear();
+                break;
+            case ActionConstants.ActionRun:
+                this.onRun();
+                break;
+            default:
+                console.log('onTap', action);
+                break;
+        }
     }
 
     setLine(line: number) {
