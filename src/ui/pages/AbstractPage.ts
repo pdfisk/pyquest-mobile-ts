@@ -1,13 +1,14 @@
 import { ColorConstants, LabelConstants, SizeConstants } from "../../constants";
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
+import { StringUtil } from "../../util/StringUtil";
 import { ButtonBar } from "../widgets/ButtonBar";
 import { RoutingPage } from "./RoutingPage";
 
 export abstract class AbstractPage extends RoutingPage {
     buttonbar: ButtonBar = new ButtonBar;
 
-    addButton(label: string) {
-        this.buttonbar.addButton(label);
+    addButton(label: string, fn: Function) {
+        this.buttonbar.addButton(label, fn);
     }
 
     addButtonBar() {
@@ -20,7 +21,8 @@ export abstract class AbstractPage extends RoutingPage {
     addButtons() {
         const buttons: string[] = this.defaultButtons();
         buttons.forEach((label: string) => {
-            this.addButton(label);
+            const fn: Function = () => { this.onTap(StringUtil.asTag(label)); }
+            this.addButton(label, fn);
         });
     }
 
@@ -38,6 +40,10 @@ export abstract class AbstractPage extends RoutingPage {
 
     onBack() {
         QxMobileApplication.back();
+    }
+
+    onTap(action: string) {
+        console.log('onTap', action);
     }
 
     setBackButtonText(text: string) {

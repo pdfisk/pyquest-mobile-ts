@@ -3,9 +3,10 @@ import { QxAtom } from "../basic/QxAtom";
 
 export class QxButton extends QxAtom {
 
-    constructor(label: string) {
-        super(QxFactory.mobileButton());
-        this.setLabel(label);
+    constructor(label: string, fn?: Function) {
+        super(QxFactory.mobileButton(label));
+        if (fn)
+            this.widget.addListener('tap', fn);
     }
 
 }

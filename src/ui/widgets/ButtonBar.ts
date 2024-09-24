@@ -9,8 +9,8 @@ export class ButtonBar extends QxHBox {
         this.setHeightPx(SizeConstants.ButtonBarHeight);
     }
 
-    addButton(label: string) {
-        const button: QxButton = new QxButton(label);
+    addButton(label: string, fn?: Function) {
+        const button: QxButton = new QxButton(label, fn);
         button.setHeightPx(SizeConstants.ButtonBarButtonHeight);
         this.add(button);
     }

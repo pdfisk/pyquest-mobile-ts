@@ -1,7 +1,11 @@
 export class StringUtil {
 
-    static asPixels(size: number) {
-        return `${size}px`;
+    static asPixels(value: number) {
+        return `${value}px`;
+    }
+
+    static asTag(text: string): string {
+        return (text.toLowerCase() as any).replaceAll(' ', '_')
     }
 
     static format(template: string, ...args: any[]): string {
@@ -9,7 +13,7 @@ export class StringUtil {
     }
 
     static padZero(text: string, len: number): string {
-        let value: string = text.toString();;
+        let value: string = text.toString();
         while (value.length < len)
             value = '0' + value;
         return value;

@@ -8,8 +8,8 @@ export class QxFactory {
         return new (window as any).qx.ui.mobile.basic.Atom;
     }
 
-    static mobileButton(): any {
-        return new (window as any).qx.ui.mobile.form.Button;
+    static mobileButton(label: string): any {
+        return new (window as any).qx.ui.mobile.form.Button(label);
     }
 
     static mobileComposite(): any {

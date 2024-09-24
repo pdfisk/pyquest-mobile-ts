@@ -28,7 +28,7 @@ export class QxWidget extends QxObject {
     }
 
     setHeightPx(height: number) {
-        this.setHeight(`${height}px`);
+        this.setHeight(StringUtil.asPixels(height));
     }
 
     setMarginTopPx(height: number) {
@@ -36,22 +36,22 @@ export class QxWidget extends QxObject {
         this.setStyle(StyleConstants.MarginTop, marginTop);
     }
 
-    setPaddingBottomPx(padding:number) {
+    setPaddingBottomPx(padding: number) {
         const paddingBottom = StringUtil.asPixels(padding);
         this.setStyle(StyleConstants.PaddingBottom, paddingBottom);
     }
 
-    setPaddingLeftPx(padding:number) {
+    setPaddingLeftPx(padding: number) {
         const paddingLeft = StringUtil.asPixels(padding);
         this.setStyle(StyleConstants.PaddingLeft, paddingLeft);
     }
 
-    setPaddingRightPx(padding:number) {
+    setPaddingRightPx(padding: number) {
         const paddingRight = StringUtil.asPixels(padding);
         this.setStyle(StyleConstants.PaddingRight, paddingRight);
     }
 
-    setPaddingTopPx(padding:number) {
+    setPaddingTopPx(padding: number) {
         const paddingTop = StringUtil.asPixels(padding);
         this.setStyle(StyleConstants.PaddingTop, paddingTop);
     }
