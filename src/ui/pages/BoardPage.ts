@@ -3,7 +3,8 @@ import { BoardPanel } from "../widgets/BoardPanel";
 import { AbstractPage } from "./AbstractPage";
 
 export class BoardPage extends AbstractPage {
-    panel: BoardPanel;
+    boardPanel: BoardPanel;
+    deferredHeight: number = 0;
     static instance: BoardPage;
 
     static getInstance(): BoardPage {
@@ -14,16 +15,23 @@ export class BoardPage extends AbstractPage {
 
     private constructor() {
         super();
-        this.panel = new BoardPanel;
+        this.boardPanel = new BoardPanel;
         this.setTitle(LabelConstants.PageBoard);
     }
 
     addContent() {
-        this.addContentWidget(this.panel);
+        this.addContentWidget(this.boardPanel);
     }
 
     resizeHeight(height: number) {
-        console.log('resizeHeight', height, this.getHeight());
+        if (this.boardPanel)
+            this.setBoardPanelHeight(height);
+        else
+            this.deferredHeight = height;
+    }
+
+    setBoardPanelHeight(height: number) {
+        this.boardPanel.setHeightPx(height);
     }
 
 }

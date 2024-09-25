@@ -2,7 +2,6 @@ import { VmApi } from "../../api";
 import { ActionConstants } from "../../constants";
 import { EditorConstants } from "../../constants/EditorConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
-import { DeferredCall } from "../../util";
 import { StringUtil } from "../../util/StringUtil";
 import { AbstractPage } from "./AbstractPage";
 

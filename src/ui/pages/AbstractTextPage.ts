@@ -3,6 +3,7 @@ import { StringUtil } from "../../util/StringUtil";
 import { AbstractPage } from "./AbstractPage";
 
 export abstract class AbstractTextPage extends AbstractPage {
+    deferredHeight: number = 0;
     textArea: QxTextArea;
 
     protected constructor() {
@@ -41,6 +42,17 @@ export abstract class AbstractTextPage extends AbstractPage {
         this.pr(text);
         this.newline();
         return this;
+    }
+
+    resizeHeight(height: number) {
+        if (this.textArea)
+            this.setTextEditorHeight(height);
+        else
+            this.deferredHeight = height;
+    }
+
+    setTextEditorHeight(height: number) {
+        this.textArea.setHeightPx(height);
     }
 
     setValue(text: string): AbstractTextPage {

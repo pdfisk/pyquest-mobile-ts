@@ -8,9 +8,7 @@ export class BoardPanel extends QxVBox {
 
     initialize() {
         super.initialize();
-        this.setBorderPx('red', 5);
-        this.setPaddingBottomPx(25);
-        console.log('board panel');
+        this.setBackgroundColor('red');
     }
 
 }
