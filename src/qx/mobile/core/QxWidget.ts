@@ -14,8 +14,23 @@ export class QxWidget extends QxObject {
         super.initialize();
     }
 
+    getHeight(): any {
+        return this.getStyle(StyleConstants.Height);
+    }
+
+    getStyle(key: string): any {
+        if (this.widget._getStyle)
+            return this.widget._getStyle(key,);
+        return '---';
+    }
+
     setBackgroundColor(color: string) {
         this.setStyle(StyleConstants.BackgroundColor, color);
+    }
+
+    setBorderPx(color: string, height: number) {
+        const border = `${StringUtil.asPixels(height)} solid ${color}`;
+        this.setStyle(StyleConstants.Border, border);
     }
 
     setBorderTopPx(color: string, height: number) {

@@ -5,7 +5,6 @@ export class QxList extends QxWidget {
 
     constructor(config: any) {
         super(QxFactory.mobileList(config));
-        (window as any).X = this;
     }
 
     addListener(eventName: string, fn: Function, context: any) {

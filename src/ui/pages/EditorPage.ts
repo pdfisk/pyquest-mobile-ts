@@ -2,10 +2,13 @@ import { VmApi } from "../../api";
 import { ActionConstants } from "../../constants";
 import { EditorConstants } from "../../constants/EditorConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
+import { DeferredCall } from "../../util";
+import { StringUtil } from "../../util/StringUtil";
 import { AbstractPage } from "./AbstractPage";
 
 export class EditorPage extends AbstractPage {
     ace: any;
+    deferredHeight: number = 0;
     editor: any;
     initValue: string = '';
     static instance: EditorPage;
@@ -41,6 +44,8 @@ export class EditorPage extends AbstractPage {
         const cfg: any = { mode: EditorConstants.ModePython };
         this.editor = this.ace.edit(this.getContentElement(), cfg);
         this.setValue(this.initValue);
+        if (this.deferredHeight > 0)
+            this.setEditorHeight(this.deferredHeight);;
     }
 
     onClear() {
@@ -65,6 +70,17 @@ export class EditorPage extends AbstractPage {
                 console.log('EditorPage onTap', action);
                 break;
         }
+    }
+
+    resizeHeight(height: number) {
+        if (this.editor)
+            this.setEditorHeight(height);
+        else
+            this.deferredHeight = height;
+    }
+
+    setEditorHeight(height: number) {
+        this.editor.container.style.height = StringUtil.asPixels(height);
     }
 
     setLine(line: number) {

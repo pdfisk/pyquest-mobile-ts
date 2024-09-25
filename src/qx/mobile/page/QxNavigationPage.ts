@@ -20,7 +20,7 @@ export class QxNavigationPage extends QxPage {
 
     getContent(): any {
         const content = this.widget.getContent();
-        content._setStyle(StyleConstants.Height, SizeConstants.Size100Pct);
+        // content._setStyle(StyleConstants.Height, SizeConstants.Size100Pct);
         return content;
     }
 
