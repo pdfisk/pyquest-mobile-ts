@@ -12,6 +12,10 @@ export class QxComposite extends QxWidget {
         this.widget.add(child.widget, options);
     }
 
+    addFlex(child: QxWidget, flex: number = 1) {
+        this.add(child, { flex: flex });
+    }
+
     setLayout(layout: QxAbstractBox) {
         this.widget.setLayout(layout.widget);
     }

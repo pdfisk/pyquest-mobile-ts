@@ -46,6 +46,11 @@ export class QxWidget extends QxObject {
         this.setHeight(StringUtil.asPixels(height));
     }
 
+    setMarginBottomPx(height: number) {
+        const marginBottom = StringUtil.asPixels(height);
+        this.setStyle(StyleConstants.MarginBottom, marginBottom);
+    }
+
     setMarginTopPx(height: number) {
         const marginTop = StringUtil.asPixels(height);
         this.setStyle(StyleConstants.MarginTop, marginTop);
