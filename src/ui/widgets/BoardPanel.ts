@@ -2,6 +2,7 @@ import { QxVBox } from "../../qx/mobile/container/QxVBox";
 import { BoardRow } from "./BoardRow";
 
 export class BoardPanel extends QxVBox {
+    size: number = 7;
 
     constructor() {
         super();
@@ -9,8 +10,6 @@ export class BoardPanel extends QxVBox {
 
     initialize() {
         super.initialize();
-        this.setBackgroundColor('red');
-        (window as any).X = this;
     }
 
     addRow(): BoardRow {
@@ -20,12 +19,10 @@ export class BoardPanel extends QxVBox {
     }
 
     addRows() {
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < this.size; i++) {
             const row = this.addRow();
-            if (i % 2 == 0)
-                row.setBackgroundColor('honeydew');
-            else
-                row.setBackgroundColor('peru');
+            if (i < this.size - 1)
+                row.setMarginBottomPx(4);
         }
     }
 

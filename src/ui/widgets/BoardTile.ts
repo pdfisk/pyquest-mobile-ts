@@ -11,7 +11,8 @@ export class BoardTile extends QxComposite {
 
     initialize() {
         super.initialize();
-        this.setBackgroundColor('orange');
+        this.setBackgroundColor('#ccc');
     }
+
 
 }

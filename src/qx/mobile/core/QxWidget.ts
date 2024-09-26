@@ -22,7 +22,7 @@ export class QxWidget extends QxObject {
 
     getStyle(key: string): any {
         if (this.widget._getStyle)
-            return this.widget._getStyle(key,);
+            return this.widget._getStyle(key);
         return '---';
     }
 

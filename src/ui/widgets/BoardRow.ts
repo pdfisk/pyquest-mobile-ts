@@ -4,6 +4,7 @@ import { BoardTile } from "./BoardTile";
 
 export class BoardRow extends QxHBox {
     boardPanel: BoardPanel;
+    size: number = 7;
 
     constructor(boardPanel: BoardPanel) {
         super();
@@ -12,23 +13,19 @@ export class BoardRow extends QxHBox {
 
     initialize() {
         super.initialize();
-        this.setMarginBottomPx(4);
     }
 
     addTile(): BoardTile {
         const tile = new BoardTile(this.boardPanel);
-        tile.setMarginRightPx(4);
         this.addFlex(tile);
         return tile;
     }
 
     addTiles() {
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < this.size; i++) {
             const tile = this.addTile();
-            if (i % 2 == 0)
-                tile.setBackgroundColor('gray');
-            else
-                tile.setBackgroundColor('slategray');
+            if (i < this.size - 1)
+                tile.setMarginRightPx(4);
         }
     }
 
