@@ -14,7 +14,7 @@ export class BoardRow extends QxHBox {
 
     addTile(): BoardTile {
         const tile = new BoardTile();
-        tile.setPaddingRightPx(4);
+        tile.setMarginRightPx(4);
         this.addFlex(tile);
         return tile;
     }
@@ -27,6 +27,10 @@ export class BoardRow extends QxHBox {
             else
                 tile.setBackgroundColor('slategray');
         }
+    }
+
+    handlesOnAppear(): boolean {
+        return true;
     }
 
     onAppear() {
