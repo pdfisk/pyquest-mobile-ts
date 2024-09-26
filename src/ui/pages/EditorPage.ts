@@ -7,8 +7,7 @@ import { AbstractPage } from "./AbstractPage";
 
 export class EditorPage extends AbstractPage {
     ace: any;
-    deferredHeight: number = 0;
-    editor: any;
+    editor?: any = undefined;
     initValue: string = '';
     static instance: EditorPage;
 
@@ -36,6 +35,10 @@ export class EditorPage extends AbstractPage {
         if (this.editor)
             return this.editor.getValue();
         return '';
+    }
+
+    isContentReady(): boolean {
+        return this.editor !== undefined;
     }
 
     onAppear() {
@@ -71,11 +74,8 @@ export class EditorPage extends AbstractPage {
         }
     }
 
-    resizeHeight(height: number) {
-        if (this.editor)
-            this.setEditorHeight(height);
-        else
-            this.deferredHeight = height;
+    setAdjustedHeight(adjustedHeight: number): void {
+        this.setEditorHeight(adjustedHeight);
     }
 
     setEditorHeight(height: number) {

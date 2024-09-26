@@ -4,8 +4,7 @@ import { StringUtil } from "../../util/StringUtil";
 import { AbstractPage } from "./AbstractPage";
 
 export abstract class AbstractTextPage extends AbstractPage {
-    deferredHeight: number = 0;
-    textArea: QxTextArea;
+    textArea?: QxTextArea = undefined;
 
     protected constructor() {
         super();
@@ -21,12 +20,18 @@ export abstract class AbstractTextPage extends AbstractPage {
     }
 
     clear(): AbstractTextPage {
-        this.textArea.clear();
+        this.textArea?.clear();
         return this;
     }
 
     getValue(): string {
-        return this.textArea.getValue();
+        if (this.textArea)
+            return this.textArea.getValue();
+        return '';
+    }
+
+    isContentReady(): boolean {
+        return this.textArea !== undefined;
     }
 
     newline(): AbstractTextPage {
@@ -52,12 +57,16 @@ export abstract class AbstractTextPage extends AbstractPage {
             this.deferredHeight = height;
     }
 
+    setAdjustedHeight(adjustedHeight: number): void {
+        this.setTextAreaHeight(adjustedHeight);
+    }
+
     setTextAreaHeight(height: number) {
-        this.textArea.setHeightPx(height - SizeConstants.ButtonBarButtonHeight);
+        this.textArea?.setHeightPx(height);
     }
 
     setValue(text: string): AbstractTextPage {
-        this.textArea.setValue(text);
+        this.textArea?.setValue(text);
         return this;
     }
 
