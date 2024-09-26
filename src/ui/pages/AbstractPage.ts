@@ -6,6 +6,7 @@ import { AbstractRoutingPage } from "./AbstractRoutingPage";
 
 export abstract class AbstractPage extends AbstractRoutingPage {
     buttonbar: ButtonBar = new ButtonBar;
+    deferredHeight: number = 0;
 
     addButton(label: string, fn: Function) {
         this.buttonbar.addButton(label, fn);

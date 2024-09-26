@@ -4,8 +4,7 @@ import { BoardPanel } from "../widgets/BoardPanel";
 import { AbstractPage } from "./AbstractPage";
 
 export class BoardPage extends AbstractPage {
-    boardPanel: BoardPanel;
-    deferredHeight: number = 0;
+    boardPanel?: BoardPanel = undefined;
     static instance: BoardPage;
 
     static getInstance(): BoardPage {
@@ -24,16 +23,23 @@ export class BoardPage extends AbstractPage {
         this.addContentWidget(this.boardPanel);
     }
 
+    isContentReady(): boolean {
+        return this.boardPanel !== undefined;
+    }
+
     resizeHeight(height: number) {
-        if (this.boardPanel)
-            this.setBoardPanelHeight(height);
+        if (this.isContentReady())
+            this.setAdjustedHeight(height - SizeConstants.ButtonBarButtonHeight - SizeConstants.ButtonBarHeightOffset);
         else
             this.deferredHeight = height;
     }
 
-    setBoardPanelHeight(height: number) {
-        const adjustedHeight = height - SizeConstants.ButtonBarButtonHeight - SizeConstants.ButtonBarHeightOffset;
-        this.boardPanel.setHeightPx(adjustedHeight);
+    setAdjustedHeight(adjustedHeight: number) {
+        this.setBoardPanelHeight(adjustedHeight);
+    }
+
+    setBoardPanelHeight(adjustedHeight: number) {
+        this.boardPanel?.setHeightPx(adjustedHeight);
     }
 
 }
