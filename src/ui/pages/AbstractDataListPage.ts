@@ -47,9 +47,21 @@ export abstract class AbstractDataListPage extends AbstractPage {
 
     abstract getStore(): AbstractStore;
 
+    isContentReady(): boolean {
+        return this.list instanceof QxList;
+    }
+
     onAppear() {
         super.onAppear();
         this.dataStore.loadData();
+    }
+
+    setAdjustedHeight(adjustedHeight: number): void {
+        this.setListHeight(adjustedHeight);
+    }
+
+    setListHeight(height:number) {
+        this.list.setHeightPx(height);
     }
 
     updateList() {

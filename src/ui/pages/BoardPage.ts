@@ -3,7 +3,7 @@ import { BoardPanel } from "../widgets/BoardPanel";
 import { AbstractPage } from "./AbstractPage";
 
 export class BoardPage extends AbstractPage {
-    boardPanel?: BoardPanel = undefined;
+    boardPanel: BoardPanel;
     static instance: BoardPage;
 
     static getInstance(): BoardPage {
@@ -23,10 +23,10 @@ export class BoardPage extends AbstractPage {
     }
 
     isContentReady(): boolean {
-        return this.boardPanel !== undefined;
+        return this.boardPanel instanceof BoardPanel;
     }
 
-    setAdjustedHeight(adjustedHeight: number):void {
+    setAdjustedHeight(adjustedHeight: number): void {
         this.setBoardPanelHeight(adjustedHeight);
     }
 

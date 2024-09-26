@@ -1,10 +1,9 @@
-import { SizeConstants } from "../../constants";
 import { QxTextArea } from "../../qx/mobile/form/QxTextArea";
 import { StringUtil } from "../../util/StringUtil";
 import { AbstractPage } from "./AbstractPage";
 
 export abstract class AbstractTextPage extends AbstractPage {
-    textArea?: QxTextArea = undefined;
+    textArea: QxTextArea;
 
     protected constructor() {
         super();
@@ -31,7 +30,7 @@ export abstract class AbstractTextPage extends AbstractPage {
     }
 
     isContentReady(): boolean {
-        return this.textArea !== undefined;
+        return this.textArea instanceof QxTextArea;
     }
 
     newline(): AbstractTextPage {

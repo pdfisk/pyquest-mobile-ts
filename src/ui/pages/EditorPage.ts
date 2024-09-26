@@ -7,7 +7,7 @@ import { AbstractPage } from "./AbstractPage";
 
 export class EditorPage extends AbstractPage {
     ace: any;
-    editor?: any = undefined;
+    editor: any = undefined;
     initValue: string = '';
     static instance: EditorPage;
 

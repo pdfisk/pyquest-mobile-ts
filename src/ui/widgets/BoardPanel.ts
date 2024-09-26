@@ -14,14 +14,20 @@ export class BoardPanel extends QxVBox {
         (window as any).X = this;
     }
 
-    addRow() {
+    addRow(): BoardRow {
         const row = new BoardRow();
-        this.add(row);
+        this.addFlex(row);
+        return row;
     }
 
     addRows() {
-        for (let i = 0; i < 7; i++)
-            this.addRow();
+        for (let i = 0; i < 7; i++) {
+            const row = this.addRow();
+            if (i % 2 == 0)
+                row.setBackgroundColor('honeydew');
+            else
+                row.setBackgroundColor('peru');
+        }
     }
 
 }
