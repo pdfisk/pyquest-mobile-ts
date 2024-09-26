@@ -14,7 +14,7 @@ export class BoardPanel extends QxVBox {
     }
 
     addRow(): BoardRow {
-        const row = new BoardRow();
+        const row = new BoardRow(this);
         this.addFlex(row);
         return row;
     }

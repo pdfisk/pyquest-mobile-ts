@@ -1,10 +1,13 @@
 import { QxHBox } from "../../qx/mobile/container/QxHBox";
+import { BoardPanel } from "./BoardPanel";
 import { BoardTile } from "./BoardTile";
 
 export class BoardRow extends QxHBox {
+    boardPanel: BoardPanel;
 
-    constructor() {
+    constructor(boardPanel: BoardPanel) {
         super();
+        this.boardPanel = boardPanel;
     }
 
     initialize() {
@@ -13,7 +16,7 @@ export class BoardRow extends QxHBox {
     }
 
     addTile(): BoardTile {
-        const tile = new BoardTile();
+        const tile = new BoardTile(this.boardPanel);
         tile.setMarginRightPx(4);
         this.addFlex(tile);
         return tile;
