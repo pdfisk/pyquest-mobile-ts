@@ -31,6 +31,8 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         return [];
     }
 
+    abstract isContentReady(): boolean;
+
     onAppear() {
         super.onAppear();
         this.setBackButtonText(LabelConstants.ButtonLabelBack);
@@ -46,6 +48,15 @@ export abstract class AbstractPage extends AbstractRoutingPage {
     onTap(action: string) {
         console.log('onTap', action);
     }
+
+    resizeHeight(height: number) {
+        if (this.isContentReady())
+            this.setAdjustedHeight(height - SizeConstants.ButtonBarButtonHeight - SizeConstants.ButtonBarHeightOffset);
+        else
+            this.deferredHeight = height;
+    }
+
+    abstract setAdjustedHeight(adjustedHeight: number): void;
 
     setBackButtonText(text: string) {
         this.widget.setBackButtonText(text);

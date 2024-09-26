@@ -1,4 +1,3 @@
-import { SizeConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { BoardPanel } from "../widgets/BoardPanel";
 import { AbstractPage } from "./AbstractPage";
@@ -27,14 +26,7 @@ export class BoardPage extends AbstractPage {
         return this.boardPanel !== undefined;
     }
 
-    resizeHeight(height: number) {
-        if (this.isContentReady())
-            this.setAdjustedHeight(height - SizeConstants.ButtonBarButtonHeight - SizeConstants.ButtonBarHeightOffset);
-        else
-            this.deferredHeight = height;
-    }
-
-    setAdjustedHeight(adjustedHeight: number) {
+    setAdjustedHeight(adjustedHeight: number):void {
         this.setBoardPanelHeight(adjustedHeight);
     }
 
