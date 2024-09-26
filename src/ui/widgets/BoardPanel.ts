@@ -10,7 +10,6 @@ export class BoardPanel extends QxVBox {
     initialize() {
         super.initialize();
         this.setBackgroundColor('red');
-        this.addRows();
         (window as any).X = this;
     }
 
@@ -28,6 +27,14 @@ export class BoardPanel extends QxVBox {
             else
                 row.setBackgroundColor('peru');
         }
+    }
+
+    handlesOnAppear(): boolean {
+        return true;
+    }
+
+    onAppear() {
+        this.addRows();
     }
 
 }

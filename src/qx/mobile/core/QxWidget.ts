@@ -1,4 +1,4 @@
-import { SizeConstants, StyleConstants } from "../../../constants";
+import { EventConstants, SizeConstants, StyleConstants } from "../../../constants";
 import { StringUtil } from "../../../util/StringUtil";
 import { QxObject } from "../../core";
 import { QxFactory } from "../../factory";
@@ -12,6 +12,8 @@ export class QxWidget extends QxObject {
 
     initialize() {
         super.initialize();
+        if (this.handlesOnAppear())
+            this.widget.addListenerOnce(EventConstants.QxEventAppear, this.onAppear, this);
     }
 
     getHeight(): any {
@@ -22,6 +24,13 @@ export class QxWidget extends QxObject {
         if (this.widget._getStyle)
             return this.widget._getStyle(key,);
         return '---';
+    }
+
+    handlesOnAppear(): boolean {
+        return false;
+    }
+
+    onAppear() {
     }
 
     setBackgroundColor(color: string) {
@@ -49,6 +58,16 @@ export class QxWidget extends QxObject {
     setMarginBottomPx(height: number) {
         const marginBottom = StringUtil.asPixels(height);
         this.setStyle(StyleConstants.MarginBottom, marginBottom);
+    }
+
+    setMarginLeftPx(height: number) {
+        const marginLeft = StringUtil.asPixels(height);
+        this.setStyle(StyleConstants.MarginLeft, marginLeft);
+    }
+
+    setMarginRightPx(height: number) {
+        const marginRight = StringUtil.asPixels(height);
+        this.setStyle(StyleConstants.MarginRight, marginRight);
     }
 
     setMarginTopPx(height: number) {

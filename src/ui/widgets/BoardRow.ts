@@ -9,20 +9,28 @@ export class BoardRow extends QxHBox {
 
     initialize() {
         super.initialize();
-        // this.setBackgroundColor('green');
-        // this.setHeightPx(50);
-        // this.addTiles();
+        this.setMarginBottomPx(4);
     }
 
-    addTile() {
+    addTile(): BoardTile {
         const tile = new BoardTile();
-        tile.setPaddingBottomPx(4);
+        tile.setPaddingRightPx(4);
         this.addFlex(tile);
+        return tile;
     }
 
     addTiles() {
-        for (let i = 0; i < 7; i++)
-            this.addTile();
+        for (let i = 0; i < 7; i++) {
+            const tile = this.addTile();
+            if (i % 2 == 0)
+                tile.setBackgroundColor('gray');
+            else
+                tile.setBackgroundColor('slategray');
+        }
+    }
+
+    onAppear() {
+        this.addTiles();
     }
 
 }
