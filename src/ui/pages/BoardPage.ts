@@ -1,3 +1,4 @@
+import { SizeConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { BoardPanel } from "../widgets/BoardPanel";
 import { AbstractPage } from "./AbstractPage";
@@ -31,7 +32,8 @@ export class BoardPage extends AbstractPage {
     }
 
     setBoardPanelHeight(height: number) {
-        this.boardPanel.setHeightPx(height);
+        const adjustedHeight = height - SizeConstants.ButtonBarButtonHeight - SizeConstants.ButtonBarHeightOffset;
+        this.boardPanel.setHeightPx(adjustedHeight);
     }
 
 }

@@ -1,3 +1,4 @@
+import { SizeConstants } from "../../constants";
 import { QxTextArea } from "../../qx/mobile/form/QxTextArea";
 import { StringUtil } from "../../util/StringUtil";
 import { AbstractPage } from "./AbstractPage";
@@ -46,13 +47,13 @@ export abstract class AbstractTextPage extends AbstractPage {
 
     resizeHeight(height: number) {
         if (this.textArea)
-            this.setTextEditorHeight(height);
+            this.setTextAreaHeight(height);
         else
             this.deferredHeight = height;
     }
 
-    setTextEditorHeight(height: number) {
-        this.textArea.setHeightPx(height);
+    setTextAreaHeight(height: number) {
+        this.textArea.setHeightPx(height - SizeConstants.ButtonBarButtonHeight);
     }
 
     setValue(text: string): AbstractTextPage {

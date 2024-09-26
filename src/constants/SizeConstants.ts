@@ -2,6 +2,7 @@ export class SizeConstants {
     static ButtonBarBorderTopWidth: number = 1;
     static ButtonBarButtonHeight: number = 30;
     static ButtonBarHeight: number = 50;
+    static ButtonBarHeightOffset = 75;
     static ButtonBarMarginTopWidth: number = 5;
     static ButtonBarPaddingBottom: number = 5;
     static ButtonBarPaddingLeft: number = 15;

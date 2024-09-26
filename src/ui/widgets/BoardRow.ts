@@ -10,6 +10,7 @@ export class BoardRow extends QxHBox {
     initialize() {
         super.initialize();
         this.setBackgroundColor('green');
+        this.setHeightPx(50);
         // this.addTiles();
     }
 
