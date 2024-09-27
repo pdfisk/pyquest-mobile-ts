@@ -1,8 +1,8 @@
 import { ColorConstants } from "../../constants";
-import { QxComposite } from "../../qx/mobile/container/QxComposite";
+import { QxAtom } from "../../qx/mobile/basic/QxAtom";
 import { BoardPanel } from "./BoardPanel";
 
-export class BoardTile extends QxComposite {
+export class BoardTile extends QxAtom {
     boardPanel: BoardPanel;
 
     constructor(boardPanel: BoardPanel) {
