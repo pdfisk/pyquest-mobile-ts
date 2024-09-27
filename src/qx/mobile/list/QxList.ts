@@ -7,10 +7,6 @@ export class QxList extends QxWidget {
         super(QxFactory.mobileList(config));
     }
 
-    addListener(eventName: string, fn: Function, context: any) {
-        this.widget.addListener(eventName, fn, context);
-    }
-
     getItem(index: number): any {
         return this.getModel().getItem(index);
     }

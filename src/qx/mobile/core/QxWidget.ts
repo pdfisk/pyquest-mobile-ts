@@ -10,10 +10,20 @@ export class QxWidget extends QxObject {
         this.setHeight(SizeConstants.Size100Pct);
     }
 
+    addListener(eventName: string, fn: Function, context: any = this) {
+        this.widget.addListener(eventName, fn, context);
+    }
+
+    addListenerOnce(eventName: string, fn?: Function, context: any = this) {
+        this.widget.addListenerOnce(eventName, fn, context);
+    }
+
     initialize() {
         super.initialize();
         if (this.handlesOnAppear())
             this.widget.addListenerOnce(EventConstants.QxEventAppear, this.onAppear, this);
+        if (this.handlesOnTap())
+            this.widget.addListener(EventConstants.QxEventTap, this.onTap, this);
     }
 
     getHeight(): any {
@@ -30,7 +40,14 @@ export class QxWidget extends QxObject {
         return false;
     }
 
+    handlesOnTap(): boolean {
+        return false;
+    }
+
     onAppear() {
+    }
+
+    onTap() {
     }
 
     setBackgroundColor(color: string) {

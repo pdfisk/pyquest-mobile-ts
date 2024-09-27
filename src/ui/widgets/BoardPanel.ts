@@ -5,7 +5,7 @@ import { BoardRow } from "./BoardRow";
 export class BoardPanel extends QxVBox {
     size: number;
 
-    constructor(size: number = 9) {
+    constructor(size: number = 7) {
         super();
         this.size = size;
     }

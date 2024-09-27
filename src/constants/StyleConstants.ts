@@ -4,6 +4,8 @@ export class StyleConstants {
     static BorderTop: string = 'borderTop';
     static FontFamily: string = 'fontFamily';
     static FontSize: string = 'fontSize';
+    static FontWeight: string = 'fontWeight';
+    static FontWeightBold: string = 'bold';
     static Height: string = 'height';
     static ImagePercentSize: number = 0.9;
     static MarginBottom: string = 'marginBottom';
@@ -12,6 +14,7 @@ export class StyleConstants {
     static MarginTop: string = 'marginTop';
     static ObjectFit: string = 'objectFit';
     static ObjectFitCover: string = 'cover';
+    static ObjectFitScaleDown: string = 'scaleDown';
     static PaddingBottom: string = 'paddingBottom';
     static PaddingLeft: string = 'paddingLeft';
     static PaddingRight: string = 'paddingRight';

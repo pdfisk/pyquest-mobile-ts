@@ -1,4 +1,4 @@
-import { ColorConstants } from "../../constants";
+import { ColorConstants, StyleConstants } from "../../constants";
 import { QxAtom } from "../../qx/mobile/basic/QxAtom";
 import { BoardPanel } from "./BoardPanel";
 
@@ -28,13 +28,18 @@ export class BoardTile extends QxAtom {
     getOffset(direction: string) {
     }
 
-    getShow() {
+    handlesOnAppear(): boolean {
+        return true;
+    }
+
+    handlesOnTap(): boolean {
+        return true;
     }
 
     hideImage() {
     }
 
-    hideText() {
+    hideLabel() {
     }
 
     initialize() {
@@ -43,6 +48,16 @@ export class BoardTile extends QxAtom {
     }
 
     onAppear() {
+        super.onAppear();
+        this.setIconStyle(StyleConstants.ObjectFit, StyleConstants.ObjectFitScaleDown);
+        this.setLabelStyle(StyleConstants.FontWeight, StyleConstants.FontWeightBold);
+        this.resize();
+        this.clear();
+        this.setText('X');
+    }
+
+    onTap() {
+        console.log('tile onTap', this);
     }
 
     onClick() {
@@ -63,7 +78,7 @@ export class BoardTile extends QxAtom {
     setImage(image_name_arg: string) {
     }
 
-    setText(text: string) {
+    setLabel(text: string) {
     }
 
     showImage() {
