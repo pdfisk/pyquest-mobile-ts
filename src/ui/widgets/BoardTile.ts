@@ -1,3 +1,4 @@
+import { ColorConstants } from "../../constants";
 import { QxComposite } from "../../qx/mobile/container/QxComposite";
 import { BoardPanel } from "./BoardPanel";
 
@@ -11,8 +12,10 @@ export class BoardTile extends QxComposite {
 
     initialize() {
         super.initialize();
-        this.setBackgroundColor('#ccc');
+        this.setBackgroundColor(ColorConstants.BoardTileBackground);
     }
 
+    setImage(image_name_arg: string) {
+    }
 
 }

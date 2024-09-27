@@ -37,13 +37,13 @@ export class QxWidget extends QxObject {
         this.setStyle(StyleConstants.BackgroundColor, color);
     }
 
-    setBorderPx(color: string, height: number) {
-        const border = `${StringUtil.asPixels(height)} solid ${color}`;
+    setBorderPx(color: string, width: number = 1) {
+        const border = `${StringUtil.asPixels(width)} solid ${color}`;
         this.setStyle(StyleConstants.Border, border);
     }
 
-    setBorderTopPx(color: string, height: number) {
-        const borderTop = `${StringUtil.asPixels(height)} solid ${color}`;
+    setBorderTopPx(color: string, width: number) {
+        const borderTop = `${StringUtil.asPixels(width)} solid ${color}`;
         this.setStyle(StyleConstants.BorderTop, borderTop);
     }
 

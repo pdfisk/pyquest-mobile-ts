@@ -1,3 +1,4 @@
+import { ColorConstants, SizeConstants } from "../../constants";
 import { QxVBox } from "../../qx/mobile/container/QxVBox";
 import { BoardRow } from "./BoardRow";
 
@@ -10,6 +11,8 @@ export class BoardPanel extends QxVBox {
 
     initialize() {
         super.initialize();
+        this.setBackgroundColor(ColorConstants.BoardBackground);
+        this.setBorderPx(ColorConstants.BoardBackground, SizeConstants.BoardTileSeparatorWidth);
     }
 
     addRow(): BoardRow {
@@ -22,7 +25,7 @@ export class BoardPanel extends QxVBox {
         for (let i = 0; i < this.size; i++) {
             const row = this.addRow();
             if (i < this.size - 1)
-                row.setMarginBottomPx(4);
+                row.setMarginBottomPx(SizeConstants.BoardTileSeparatorWidth);
         }
     }
 

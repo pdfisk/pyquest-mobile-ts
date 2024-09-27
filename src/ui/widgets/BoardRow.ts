@@ -1,3 +1,4 @@
+import { SizeConstants } from "../../constants";
 import { QxHBox } from "../../qx/mobile/container/QxHBox";
 import { BoardPanel } from "./BoardPanel";
 import { BoardTile } from "./BoardTile";
@@ -25,7 +26,7 @@ export class BoardRow extends QxHBox {
         for (let i = 0; i < this.size; i++) {
             const tile = this.addTile();
             if (i < this.size - 1)
-                tile.setMarginRightPx(4);
+                tile.setMarginRightPx(SizeConstants.BoardTileSeparatorWidth);
         }
     }
 
