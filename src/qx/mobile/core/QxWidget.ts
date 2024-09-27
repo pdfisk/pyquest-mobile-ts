@@ -22,6 +22,8 @@ export class QxWidget extends QxObject {
         super.initialize();
         if (this.handlesOnAppear())
             this.widget.addListenerOnce(EventConstants.QxEventAppear, this.onAppear, this);
+        if (this.handlesOnClick())
+            this.widget.addListener(EventConstants.QxEventClick, this.onClick, this);
         if (this.handlesOnTap())
             this.widget.addListener(EventConstants.QxEventTap, this.onTap, this);
     }
@@ -40,11 +42,18 @@ export class QxWidget extends QxObject {
         return false;
     }
 
+    handlesOnClick(): boolean {
+        return false;
+    }
+
     handlesOnTap(): boolean {
         return false;
     }
 
     onAppear() {
+    }
+
+    onClick() {
     }
 
     onTap() {

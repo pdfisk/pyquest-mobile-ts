@@ -45,10 +45,6 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         QxMobileApplication.back();
     }
 
-    onTap(action: string) {
-        console.log('onTap', action);
-    }
-
     resizeHeight(height: number) {
         if (this.isContentReady())
             this.setAdjustedHeight(height - SizeConstants.ButtonBarButtonHeight - SizeConstants.ButtonBarHeightOffset);

@@ -2,6 +2,7 @@ export class EventConstants {
     static EventSessionStatusChanged: string = 'session_status_changed';
     static QxEventAppear: string = 'appear';
     static QxEventChangeSelection: string = 'changeSelection';
+    static QxEventClick: string = 'click';
     static QxEventLoaded: string = 'loaded';
     static QxEventOrientationChange: string = 'orientationchange';
     static QxEventResize: string = 'resize';

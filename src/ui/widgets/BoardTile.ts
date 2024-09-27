@@ -32,7 +32,7 @@ export class BoardTile extends QxAtom {
         return true;
     }
 
-    handlesOnTap(): boolean {
+    handlesOnClick(): boolean {
         return true;
     }
 
@@ -56,11 +56,8 @@ export class BoardTile extends QxAtom {
         this.setText('X');
     }
 
-    onTap() {
-        console.log('tile onTap', this);
-    }
-
     onClick() {
+        console.log('tile onClick', this);
     }
 
     postEvent() {
