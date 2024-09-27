@@ -3,20 +3,21 @@ import { QxVBox } from "../../qx/mobile/container/QxVBox";
 import { BoardRow } from "./BoardRow";
 
 export class BoardPanel extends QxVBox {
-    size: number = 7;
+    size: number;
 
-    constructor() {
+    constructor(size: number = 9) {
         super();
+        this.size = size;
     }
 
     initialize() {
         super.initialize();
         this.setBackgroundColor(ColorConstants.BoardBackground);
-        this.setBorderPx(ColorConstants.BoardBackground, SizeConstants.BoardTileSeparatorWidth);
+        this.setBorderPx(ColorConstants.BoardBackground, SizeConstants.BoardTileRowSeparatorWidth);
     }
 
     addRow(rowIndex: number): BoardRow {
-        const row = new BoardRow(this, rowIndex);
+        const row = new BoardRow(this, rowIndex, this.size);
         this.addFlex(row);
         return row;
     }
@@ -25,7 +26,7 @@ export class BoardPanel extends QxVBox {
         for (let rowIndex = 0; rowIndex < this.size; rowIndex++) {
             const row = this.addRow(rowIndex);
             if (rowIndex < this.size - 1)
-                row.setMarginBottomPx(SizeConstants.BoardTileSeparatorWidth);
+                row.setMarginBottomPx(SizeConstants.BoardTileRowSeparatorWidth);
         }
     }
 

@@ -6,29 +6,30 @@ import { BoardTile } from "./BoardTile";
 export class BoardRow extends QxHBox {
     boardPanel: BoardPanel;
     rowIndex: number;
-    size: number = 7;
+    size: number;
 
-    constructor(boardPanel: BoardPanel, rowIndex: number) {
+    constructor(boardPanel: BoardPanel, rowIndex: number, size: number) {
         super();
         this.boardPanel = boardPanel;
         this.rowIndex = rowIndex;
+        this.size = size;
     }
 
     initialize() {
         super.initialize();
     }
 
-    addTile(): BoardTile {
-        const tile = new BoardTile(this.boardPanel);
+    addTile(columnIndex: number): BoardTile {
+        const tile = new BoardTile(this.boardPanel, this.rowIndex, columnIndex);
         this.addFlex(tile);
         return tile;
     }
 
     addTiles() {
-        for (let i = 0; i < this.size; i++) {
-            const tile = this.addTile();
-            if (i < this.size - 1)
-                tile.setMarginRightPx(SizeConstants.BoardTileSeparatorWidth);
+        for (let columnIndex = 0; columnIndex < this.size; columnIndex++) {
+            const tile = this.addTile(columnIndex);
+            if (columnIndex < this.size - 1)
+                tile.setMarginRightPx(SizeConstants.BoardTileColumnSeparatorWidth);
         }
     }
 
