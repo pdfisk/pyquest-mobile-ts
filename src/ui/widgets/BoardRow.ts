@@ -5,11 +5,13 @@ import { BoardTile } from "./BoardTile";
 
 export class BoardRow extends QxHBox {
     boardPanel: BoardPanel;
+    rowIndex: number;
     size: number = 7;
 
-    constructor(boardPanel: BoardPanel) {
+    constructor(boardPanel: BoardPanel, rowIndex: number) {
         super();
         this.boardPanel = boardPanel;
+        this.rowIndex = rowIndex;
     }
 
     initialize() {

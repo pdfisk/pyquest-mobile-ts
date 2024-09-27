@@ -15,16 +15,16 @@ export class BoardPanel extends QxVBox {
         this.setBorderPx(ColorConstants.BoardBackground, SizeConstants.BoardTileSeparatorWidth);
     }
 
-    addRow(): BoardRow {
-        const row = new BoardRow(this);
+    addRow(rowIndex: number): BoardRow {
+        const row = new BoardRow(this, rowIndex);
         this.addFlex(row);
         return row;
     }
 
     addRows() {
-        for (let i = 0; i < this.size; i++) {
-            const row = this.addRow();
-            if (i < this.size - 1)
+        for (let rowIndex = 0; rowIndex < this.size; rowIndex++) {
+            const row = this.addRow(rowIndex);
+            if (rowIndex < this.size - 1)
                 row.setMarginBottomPx(SizeConstants.BoardTileSeparatorWidth);
         }
     }

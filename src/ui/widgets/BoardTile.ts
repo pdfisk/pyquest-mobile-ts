@@ -5,24 +5,24 @@ import { BoardPanel } from "./BoardPanel";
 export class BoardTile extends QxAtom {
     boardPanel: BoardPanel;
 
-    constructor(boardPanel: BoardPanel) {
-        super();
+    constructor(boardPanel: BoardPanel, rowIndex:number, rowColumn:number) {
+        super(rowIndex, rowColumn);
         this.boardPanel = boardPanel;
     }
 
     clear() {
     }
 
-    copy(destTile:BoardTile) {
+    copy(destTile: BoardTile) {
     }
 
     getImage() {
     }
 
-    getOffset(direction:string) {
+    getOffset(direction: string) {
     }
 
-    getShow(){
+    getShow() {
     }
 
     hideImage() {
@@ -58,7 +58,7 @@ export class BoardTile extends QxAtom {
     setImage(image_name_arg: string) {
     }
 
-    setText(text:string) {
+    setText(text: string) {
     }
 
     showImage() {
