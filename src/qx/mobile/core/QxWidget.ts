@@ -56,7 +56,7 @@ export class QxWidget extends QxObject {
     onClick() {
     }
 
-    onTap() {
+    onTap(arg?: string) {
     }
 
     setBackgroundColor(color: string) {
