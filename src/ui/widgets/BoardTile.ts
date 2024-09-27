@@ -10,12 +10,61 @@ export class BoardTile extends QxAtom {
         this.boardPanel = boardPanel;
     }
 
+    clear() {
+    }
+
+    copy(destTile:BoardTile) {
+    }
+
+    getImage() {
+    }
+
+    getOffset(direction:string) {
+    }
+
+    getShow(){
+    }
+
+    hideImage() {
+    }
+
+    hideText() {
+
+    }
+
     initialize() {
         super.initialize();
         this.setBackgroundColor(ColorConstants.BoardTileBackground);
     }
 
+    onAppear() {
+    }
+
+    onClick() {
+    }
+
+    postEvent() {
+    }
+
+    resize() {
+    }
+
+    restoreValue() {
+    }
+
+    saveValue() {
+    }
+
     setImage(image_name_arg: string) {
+    }
+
+    setText(text:string) {
+    }
+
+    showImage() {
+    }
+
+    showText() {
     }
 
 }
