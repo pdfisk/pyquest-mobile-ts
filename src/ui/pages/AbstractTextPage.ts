@@ -49,13 +49,6 @@ export abstract class AbstractTextPage extends AbstractPage {
         return this;
     }
 
-    resizeHeight(height: number) {
-        if (this.textArea)
-            this.setTextAreaHeight(height);
-        else
-            this.deferredHeight = height;
-    }
-
     setAdjustedHeight(adjustedHeight: number): void {
         this.setTextAreaHeight(adjustedHeight);
     }
