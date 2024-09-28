@@ -4,9 +4,9 @@ import { BoardPanel } from "./BoardPanel";
 
 export class BoardTile extends QxAtom {
     boardPanel: BoardPanel;
+    cachedText:string = '';
     columnIndex: number;
     rowIndex: number;
-    savedText:string = '';
 
     constructor(boardPanel: BoardPanel, rowIndex: number, columnIndex: number) {
         super();
@@ -14,6 +14,12 @@ export class BoardTile extends QxAtom {
         this.rowIndex = rowIndex;
         this.columnIndex = columnIndex;
         this.boardPanel.registerTile(this);
+    }
+
+    cacheAndRelease() {
+        this.cachedText = this.getLabel();
+        this.clear();
+        super.unlockMaxAndMin();
     }
 
     clear() {
@@ -47,11 +53,6 @@ export class BoardTile extends QxAtom {
         this.setBackgroundColor(ColorConstants.BoardTileBackground);
     }
 
-    lockMaxAndMin() {
-        // this.setLabel(this.savedText);
-        // super.lockMaxAndMin();
-    }
-
     mapKey(): string {
         return `tile-${this.rowIndex}-${this.columnIndex}`;
     }
@@ -78,6 +79,11 @@ export class BoardTile extends QxAtom {
     resize() {
     }
 
+    restoreAndLock() {
+        this.setLabel(this.cachedText);
+        super.lockMaxAndMin();
+    }
+
     restoreValue() {
     }
 
@@ -91,12 +97,6 @@ export class BoardTile extends QxAtom {
     }
 
     showText() {
-    }
-
-    unlockMaxAndMin() {
-        // this.savedText = this.getLabel();
-        // this.clear();
-        // super.unlockMaxAndMin();
     }
 
 }

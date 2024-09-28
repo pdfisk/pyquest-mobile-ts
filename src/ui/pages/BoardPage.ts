@@ -22,12 +22,16 @@ export class BoardPage extends AbstractPage {
         this.addContentWidget(this.boardPanel);
     }
 
+    cacheAndRelease() {
+        this.boardPanel?.cacheAndRelease();
+    }
+
     isContentReady(): boolean {
         return this.boardPanel instanceof BoardPanel;
     }
 
-    lockAllMaxAndMin() {
-        this.boardPanel?.lockAllMaxAndMin();
+    restoreAndLock() {
+        this.boardPanel?.restoreAndLock();
     }
 
     setAdjustedHeight(adjustedHeight: number): void {
@@ -39,17 +43,11 @@ export class BoardPage extends AbstractPage {
     }
 
     setBoardPanelHeight(adjustedHeight: number) {
-        console.log('setBoardPanelHeight', adjustedHeight);
         this.boardPanel?.setHeightPx(adjustedHeight);
     }
 
     setBoardPanelWidth(adjustedWidth: number) {
-        console.log('setBoardPanelWidth', adjustedWidth);
         this.boardPanel?.setWidthPx(adjustedWidth);
-    }
-
-    unlockAllMaxAndMin() {
-        this.boardPanel?.unlockAllMaxAndMin();
     }
 
 }

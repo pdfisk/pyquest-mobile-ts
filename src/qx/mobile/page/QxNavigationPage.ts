@@ -18,6 +18,9 @@ export class QxNavigationPage extends QxPage {
         this.getContent().add(child.widget);
     }
 
+    cacheAndRelease() {
+    }
+
     getContent(): any {
         return this.widget.getContent();
     }
@@ -28,9 +31,6 @@ export class QxNavigationPage extends QxPage {
 
     getTitle(): string {
         return this.widget.getTitle();
-    }
-
-    lockAllMaxAndMin() {
     }
 
     onAppear() {
@@ -47,10 +47,10 @@ export class QxNavigationPage extends QxPage {
     }
 
     resize() {
-        this.unlockAllMaxAndMin();
+        this.cacheAndRelease();
         this.resizeHeight(QxRoot.getHeight());
         this.resizeWidth(QxRoot.getWidth());
-        this.lockAllMaxAndMin();
+        this.restoreAndLock();
     }
 
     resizeHeight(height: number) {
@@ -59,11 +59,11 @@ export class QxNavigationPage extends QxPage {
     resizeWidth(width: number) {
     }
 
-    setTitle(title: string) {
-        this.widget.setTitle(title);
+    restoreAndLock() {
     }
 
-    unlockAllMaxAndMin() {
+    setTitle(title: string) {
+        this.widget.setTitle(title);
     }
 
 }

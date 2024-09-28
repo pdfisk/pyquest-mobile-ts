@@ -32,13 +32,13 @@ export class BoardPanel extends QxVBox {
         }
     }
 
-    handlesOnAppear(): boolean {
-        return true;
+    cacheAndRelease() {
+        for (let tile of this.tileMap.values())
+            tile.cacheAndRelease();
     }
 
-    lockAllMaxAndMin() {
-        for (let tile of this.tileMap.values())
-            tile.lockMaxAndMin();
+    handlesOnAppear(): boolean {
+        return true;
     }
 
     onAppear() {
@@ -49,9 +49,9 @@ export class BoardPanel extends QxVBox {
         this.tileMap.set(tile.mapKey(), tile);
     }
 
-    unlockAllMaxAndMin() {
+    restoreAndLock() {
         for (let tile of this.tileMap.values())
-            tile.unlockMaxAndMin();
+            tile.restoreAndLock();
     }
 
 }
