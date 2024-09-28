@@ -4,7 +4,7 @@ import { BoardPanel } from "./BoardPanel";
 
 export class BoardTile extends QxAtom {
     boardPanel: BoardPanel;
-    cachedText:string = '';
+    cachedText: string = '';
     columnIndex: number;
     rowIndex: number;
 
@@ -80,8 +80,8 @@ export class BoardTile extends QxAtom {
     }
 
     restoreAndLock() {
-        this.setLabel(this.cachedText);
         super.lockMaxAndMin();
+        this.setLabel(this.cachedText);
     }
 
     restoreValue() {
@@ -91,6 +91,13 @@ export class BoardTile extends QxAtom {
     }
 
     setImage(image_name_arg: string) {
+    }
+
+    setText(text: string) {
+        console.log('setText', text);
+        this.cacheAndRelease();
+        this.cachedText = text;
+        this.restoreAndLock();
     }
 
     showImage() {
