@@ -19,9 +19,7 @@ export class QxNavigationPage extends QxPage {
     }
 
     getContent(): any {
-        const content = this.widget.getContent();
-        // content._setStyle(StyleConstants.Height, SizeConstants.Size100Pct);
-        return content;
+        return this.widget.getContent();
     }
 
     getContentElement():any {
@@ -42,7 +40,6 @@ export class QxNavigationPage extends QxPage {
     }
 
     onResize() {
-        console.log('NavigationPage onResize');
         this.resize();
     }
 

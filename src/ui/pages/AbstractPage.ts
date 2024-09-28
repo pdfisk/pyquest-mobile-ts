@@ -7,6 +7,7 @@ import { AbstractRoutingPage } from "./AbstractRoutingPage";
 export abstract class AbstractPage extends AbstractRoutingPage {
     buttonbar: ButtonBar = new ButtonBar;
     deferredHeight: number = 0;
+    deferredWidth: number = 0;
 
     addButton(label: string, fn: Function) {
         this.buttonbar.addButton(label, fn);
@@ -46,10 +47,11 @@ export abstract class AbstractPage extends AbstractRoutingPage {
     }
 
     resizeHeight(height: number) {
+        const adjustedHeight: number = height - SizeConstants.ButtonBarButtonHeight - SizeConstants.ButtonBarHeightOffset;
         if (this.isContentReady())
-            this.setAdjustedHeight(height - SizeConstants.ButtonBarButtonHeight - SizeConstants.ButtonBarHeightOffset);
+            this.setAdjustedHeight(adjustedHeight);
         else
-            this.deferredHeight = height;
+            this.deferredHeight = adjustedHeight;
     }
 
     abstract setAdjustedHeight(adjustedHeight: number): void;
