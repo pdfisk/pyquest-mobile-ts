@@ -60,6 +60,9 @@ export abstract class AbstractDataListPage extends AbstractPage {
         this.setListHeight(adjustedHeight);
     }
 
+    setAdjustedWidth(adjustedWidth: number): void {
+    }
+
     setListHeight(height:number) {
         this.list.setHeightPx(height);
     }

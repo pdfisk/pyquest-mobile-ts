@@ -54,7 +54,17 @@ export abstract class AbstractPage extends AbstractRoutingPage {
             this.deferredHeight = adjustedHeight;
     }
 
+    resizeWidth(width: number) {
+        const adjustedWidth: number = width  - SizeConstants.ButtonBarWidthOffset;
+        if (this.isContentReady())
+            this.setAdjustedWidth(adjustedWidth);
+        else
+            this.deferredWidth = adjustedWidth;
+    }
+
     abstract setAdjustedHeight(adjustedHeight: number): void;
+
+    abstract setAdjustedWidth(adjustedWidth: number): void;
 
     setBackButtonText(text: string) {
         this.widget.setBackButtonText(text);

@@ -16,6 +16,10 @@ export class QxAtom extends QxWidget {
         return this.widget.getIconWidget();
     }
 
+    getLabel(): string {
+        return this.widget.getLabel();
+    }
+
     getLabelWidget(): any {
         return this.widget.getLabelWidget();
     }
@@ -53,10 +57,10 @@ export class QxAtom extends QxWidget {
     }
 
     setText(text: string) {
-        this.setShow(QxConstants.AtomShowText);
-        this.setLabel(text);
-        this.hideImage();
-        this.showText();
+        // this.setShow(QxConstants.AtomShowText);
+        // this.setLabel(text);
+        // this.hideImage();
+        // this.showText();
     }
 
     showImage() {

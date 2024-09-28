@@ -6,12 +6,14 @@ export class BoardTile extends QxAtom {
     boardPanel: BoardPanel;
     columnIndex: number;
     rowIndex: number;
+    savedText:string = '';
 
     constructor(boardPanel: BoardPanel, rowIndex: number, columnIndex: number) {
         super();
         this.boardPanel = boardPanel;
         this.rowIndex = rowIndex;
         this.columnIndex = columnIndex;
+        this.boardPanel.registerTile(this);
     }
 
     clear() {
@@ -45,6 +47,15 @@ export class BoardTile extends QxAtom {
         this.setBackgroundColor(ColorConstants.BoardTileBackground);
     }
 
+    lockMaxAndMin() {
+        // this.setLabel(this.savedText);
+        // super.lockMaxAndMin();
+    }
+
+    mapKey(): string {
+        return `tile-${this.rowIndex}-${this.columnIndex}`;
+    }
+
     onAppear() {
         super.onAppear();
         this.setIconStyle(StyleConstants.ObjectFit, StyleConstants.ObjectFitScaleDown);
@@ -65,7 +76,6 @@ export class BoardTile extends QxAtom {
     }
 
     resize() {
-        this.lockMaxAndMin();
     }
 
     restoreValue() {
@@ -81,6 +91,12 @@ export class BoardTile extends QxAtom {
     }
 
     showText() {
+    }
+
+    unlockMaxAndMin() {
+        // this.savedText = this.getLabel();
+        // this.clear();
+        // super.unlockMaxAndMin();
     }
 
 }

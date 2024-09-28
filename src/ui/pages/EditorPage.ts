@@ -78,6 +78,9 @@ export class EditorPage extends AbstractPage {
         this.setEditorHeight(adjustedHeight);
     }
 
+    setAdjustedWidth(adjustedHeight: number): void {
+    }
+
     setEditorHeight(height: number) {
         this.editor.container.style.height = StringUtil.asPixels(height);
     }

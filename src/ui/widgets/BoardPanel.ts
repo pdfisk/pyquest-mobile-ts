@@ -1,9 +1,11 @@
 import { ColorConstants, SizeConstants } from "../../constants";
 import { QxVBox } from "../../qx/mobile/container/QxVBox";
 import { BoardRow } from "./BoardRow";
+import { BoardTile } from "./BoardTile";
 
 export class BoardPanel extends QxVBox {
     size: number;
+    tileMap: Map<string, BoardTile> = new Map;
 
     constructor(size: number = 7) {
         super();
@@ -34,8 +36,22 @@ export class BoardPanel extends QxVBox {
         return true;
     }
 
+    lockAllMaxAndMin() {
+        for (let tile of this.tileMap.values())
+            tile.lockMaxAndMin();
+    }
+
     onAppear() {
         this.addRows();
+    }
+
+    registerTile(tile: BoardTile) {
+        this.tileMap.set(tile.mapKey(), tile);
+    }
+
+    unlockAllMaxAndMin() {
+        for (let tile of this.tileMap.values())
+            tile.unlockMaxAndMin();
     }
 
 }

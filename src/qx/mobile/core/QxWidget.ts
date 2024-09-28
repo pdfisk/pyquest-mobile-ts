@@ -55,7 +55,6 @@ export class QxWidget extends QxObject {
     }
 
     lockMaxAndMin() {
-        this.unlockMaxAndMin();
         const width = this.getWidth();
         const height = this.getHeight();
         this.setMaxHeight(height);
@@ -167,6 +166,8 @@ export class QxWidget extends QxObject {
     unlockMaxAndMin() {
         this.setMaxHeight(undefined);
         this.setMinHeight(undefined);
+        this.setMaxWidth(undefined);
+        this.setMinWidth(undefined);
     }
 
 }

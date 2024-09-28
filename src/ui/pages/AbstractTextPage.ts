@@ -53,6 +53,9 @@ export abstract class AbstractTextPage extends AbstractPage {
         this.setTextAreaHeight(adjustedHeight);
     }
 
+    setAdjustedWidth(adjustedWidth: number): void {
+    }
+
     setTextAreaHeight(height: number) {
         this.textArea?.setHeightPx(height);
     }
