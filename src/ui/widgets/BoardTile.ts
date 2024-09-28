@@ -12,8 +12,6 @@ export class BoardTile extends QxAtom {
         this.boardPanel = boardPanel;
         this.rowIndex = rowIndex;
         this.columnIndex = columnIndex;
-        if (rowIndex == 1 && columnIndex == 1)
-            (window as any).X = this;
     }
 
     clear() {
@@ -53,7 +51,10 @@ export class BoardTile extends QxAtom {
         this.setLabelStyle(StyleConstants.FontWeight, StyleConstants.FontWeightBold);
         this.resize();
         this.clear();
-        this.setText('X');
+        if (this.rowIndex == 1 && this.columnIndex == 1) {
+            (window as any).X = this;
+            this.setText('X');
+        }
     }
 
     onClick() {
@@ -64,6 +65,7 @@ export class BoardTile extends QxAtom {
     }
 
     resize() {
+        this.lockMaxAndMin();
     }
 
     restoreValue() {
@@ -73,9 +75,6 @@ export class BoardTile extends QxAtom {
     }
 
     setImage(image_name_arg: string) {
-    }
-
-    setLabel(text: string) {
     }
 
     showImage() {

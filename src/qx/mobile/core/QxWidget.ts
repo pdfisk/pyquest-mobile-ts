@@ -28,7 +28,7 @@ export class QxWidget extends QxObject {
             this.widget.addListener(EventConstants.QxEventTap, this.onTap, this);
     }
 
-    getHeight(): any {
+    getHeight(): string {
         return this.getStyle(StyleConstants.Height);
     }
 
@@ -36,6 +36,10 @@ export class QxWidget extends QxObject {
         if (this.widget._getStyle)
             return this.widget._getStyle(key);
         return '---';
+    }
+
+    getWidth(): string {
+        return this.getStyle(StyleConstants.Width);
     }
 
     handlesOnAppear(): boolean {
@@ -48,6 +52,16 @@ export class QxWidget extends QxObject {
 
     handlesOnTap(): boolean {
         return false;
+    }
+
+    lockMaxAndMin() {
+        this.unlockMaxAndMin();
+        const width = this.getWidth();
+        const height = this.getHeight();
+        this.setMaxHeight(height);
+        this.setMinHeight(height);
+        this.setMaxWidth(width);
+        this.setMinWidth(width);
     }
 
     onAppear() {
@@ -101,6 +115,22 @@ export class QxWidget extends QxObject {
         this.setStyle(StyleConstants.MarginTop, marginTop);
     }
 
+    setMinHeight(height:string|undefined) {
+        this.setStyle(StyleConstants.MinHeight, height);
+    }
+
+    setMinWidth(width:string|undefined) {
+        this.setStyle(StyleConstants.MinWidth, width);
+    }
+
+    setMaxHeight(height:string|undefined) {
+        this.setStyle(StyleConstants.MaxHeight, height);
+    }
+
+    setMaxWidth(width:string|undefined) {
+        this.setStyle(StyleConstants.MaxWidth, width);
+    }
+
     setPaddingBottomPx(padding: number) {
         const paddingBottom = StringUtil.asPixels(padding);
         this.setStyle(StyleConstants.PaddingBottom, paddingBottom);
@@ -122,13 +152,21 @@ export class QxWidget extends QxObject {
     }
 
     setStyle(key: string, value: any) {
-        if (this.widget._setStyle) {
+        if (this.widget._setStyle)
             this.widget._setStyle(key, value);
-        }
     }
 
     setWidth(width: string) {
         this.setStyle(StyleConstants.Width, width);
+    }
+
+    setWidthPx(width: number) {
+        this.setWidth(StringUtil.asPixels(width));
+    }
+
+    unlockMaxAndMin() {
+        this.setMaxHeight(undefined);
+        this.setMinHeight(undefined);
     }
 
 }

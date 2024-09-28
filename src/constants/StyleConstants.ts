@@ -12,6 +12,10 @@ export class StyleConstants {
     static MarginLeft: string = 'marginLeft';
     static MarginRight: string = 'marginRight';
     static MarginTop: string = 'marginTop';
+    static MaxHeight: string = 'maxHeight';
+    static MaxWidth: string = 'maxWidth';
+    static MinHeight: string = 'minHeight';
+    static MinWidth: string = 'minWidth';
     static ObjectFit: string = 'objectFit';
     static ObjectFitCover: string = 'cover';
     static ObjectFitScaleDown: string = 'scaleDown';

@@ -11,12 +11,16 @@ export class QxRoot extends QxComposite {
         return this.instance;
     }
 
-    static getHeight():number {
+    static getHeight(): number {
         return this.getSize().height;
     }
 
     static getSize(): any {
         return this.getInstance().getSize();
+    }
+
+    static getWidth(): number {
+        return this.getSize().width;
     }
 
     constructor() {

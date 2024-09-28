@@ -42,6 +42,7 @@ export class QxNavigationPage extends QxPage {
     }
 
     onResize() {
+        console.log('NavigationPage onResize');
         this.resize();
     }
 
