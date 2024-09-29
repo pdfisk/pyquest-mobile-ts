@@ -28,6 +28,10 @@ export class QxWidget extends QxObject {
             this.widget.addListener(EventConstants.QxEventTap, this.onTap, this);
     }
 
+    getBoundingRect():any {
+        return this.widget.getContentElement().getBoundingClientRect();
+    }
+
     getHeight(): string {
         return this.getStyle(StyleConstants.Height);
     }

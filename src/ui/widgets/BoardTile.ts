@@ -1,4 +1,4 @@
-import { ColorConstants, StyleConstants } from "../../constants";
+import { ColorConstants, SizeConstants, StyleConstants } from "../../constants";
 import { QxAtom } from "../../qx/mobile/basic/QxAtom";
 import { BoardPanel } from "./BoardPanel";
 
@@ -9,7 +9,7 @@ export class BoardTile extends QxAtom {
     rowIndex: number;
 
     constructor(boardPanel: BoardPanel, rowIndex: number, columnIndex: number) {
-        super();
+        super('');
         this.boardPanel = boardPanel;
         this.rowIndex = rowIndex;
         this.columnIndex = columnIndex;
@@ -23,6 +23,7 @@ export class BoardTile extends QxAtom {
     }
 
     clear() {
+        this.setLabel('');
     }
 
     copy(destTile: BoardTile) {
@@ -61,11 +62,12 @@ export class BoardTile extends QxAtom {
         super.onAppear();
         this.setIconStyle(StyleConstants.ObjectFit, StyleConstants.ObjectFitScaleDown);
         this.setLabelStyle(StyleConstants.FontWeight, StyleConstants.FontWeightBold);
-        this.resize();
+        this.setLabelStyle(StyleConstants.Height, SizeConstants.Size100Pct);
         this.clear();
+        this.onResize();
         if (this.rowIndex == 1 && this.columnIndex == 1) {
-            (window as any).X = this;
             this.setText('X');
+            (window as any).X = this;
         }
     }
 
@@ -73,18 +75,15 @@ export class BoardTile extends QxAtom {
         console.log('tile onClick', this);
     }
 
+    onResize() {
+        this.setLabelStyle(StyleConstants.LineHeight, this.getHeight());
+    }
+
     postEvent() {
     }
 
-    resize() {
-    }
-
-    restoreAndLock() {
-        super.lockMaxAndMin();
+    restore() {
         this.setLabel(this.cachedText);
-    }
-
-    restoreValue() {
     }
 
     saveValue() {
@@ -94,10 +93,10 @@ export class BoardTile extends QxAtom {
     }
 
     setText(text: string) {
-        console.log('setText', text);
         this.cacheAndRelease();
         this.cachedText = text;
-        this.restoreAndLock();
+        this.lockMaxAndMin();
+        this.restore();
     }
 
     showImage() {

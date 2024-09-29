@@ -30,8 +30,17 @@ export class BoardPage extends AbstractPage {
         return this.boardPanel instanceof BoardPanel;
     }
 
-    restoreAndLock() {
-        this.boardPanel?.restoreAndLock();
+    lockMaxAndMin() {
+        this.boardPanel?.lockMaxAndMin();
+    }
+
+    resize() {
+        super.resize();
+        this.boardPanel.onResize();
+    }
+
+    restore() {
+        this.boardPanel?.restore();
     }
 
     setAdjustedHeight(adjustedHeight: number): void {

@@ -4,4 +4,8 @@ export class QxWidgetUtil {
         return widget.getContentElement().getAllStyles();
     }
 
+    static getBoundingRect(widget: any): any {
+        return widget.getContentElement().getBoundingClientRect();
+    }
+
 }

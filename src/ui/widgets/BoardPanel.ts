@@ -41,17 +41,27 @@ export class BoardPanel extends QxVBox {
         return true;
     }
 
+    lockMaxAndMin() {
+        for (let tile of this.tileMap.values())
+            tile.lockMaxAndMin();
+    }
+
     onAppear() {
         this.addRows();
+    }
+
+    onResize() {
+        for (let tile of this.tileMap.values())
+            tile.onResize();
     }
 
     registerTile(tile: BoardTile) {
         this.tileMap.set(tile.mapKey(), tile);
     }
 
-    restoreAndLock() {
+    restore() {
         for (let tile of this.tileMap.values())
-            tile.restoreAndLock();
+            tile.restore();
     }
 
 }

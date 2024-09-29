@@ -1,4 +1,3 @@
-import { SizeConstants, StyleConstants } from "../../../constants";
 import { ResizeManager } from "../../../util/ResizeManager";
 import { QxFactory } from "../../factory";
 import { QxRoot } from "../core/QxRoot";
@@ -50,7 +49,8 @@ export class QxNavigationPage extends QxPage {
         this.cacheAndRelease();
         this.resizeHeight(QxRoot.getHeight());
         this.resizeWidth(QxRoot.getWidth());
-        this.restoreAndLock();
+        this.lockMaxAndMin();
+        this.restore();
     }
 
     resizeHeight(height: number) {
@@ -59,7 +59,10 @@ export class QxNavigationPage extends QxPage {
     resizeWidth(width: number) {
     }
 
-    restoreAndLock() {
+    restore() {
+    }
+
+    lockMaxAndMin() {
     }
 
     setTitle(title: string) {

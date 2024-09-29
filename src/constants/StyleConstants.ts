@@ -8,6 +8,7 @@ export class StyleConstants {
     static FontWeightBold: string = 'bold';
     static Height: string = 'height';
     static ImagePercentSize: number = 0.9;
+    static LineHeight: string = 'lineHeight';
     static MarginBottom: string = 'marginBottom';
     static MarginLeft: string = 'marginLeft';
     static MarginRight: string = 'marginRight';
