@@ -70,9 +70,10 @@ export class VmApi {
 
     handleAction(jsonStr: string) {
         if (typeof (jsonStr) === 'string') {
-            (window as any).__dummy__ = JSON.parse(jsonStr);
-            ActionHandler.handleAction((window as any).__dummy__);
-            (window as any).__dummy__ = undefined;
+            const data = (window as any).JSON.parse(jsonStr);
+            const service = data.service;
+            const args = data.args;
+            ActionHandler.handleAction(service, args);
         }
     }
 

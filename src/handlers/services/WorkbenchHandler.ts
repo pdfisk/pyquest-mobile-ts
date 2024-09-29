@@ -1,6 +1,6 @@
 import { ActionConstants } from "../../constants/ActionConstants";
 import { ErrorConstants } from "../../constants/ErrorConstants";
-import { QxWidget } from "../../qx/mobile/core/QxWidget";
+import { NavigationUtil } from "../../util/NavigationUtil";
 import { ErrorHandler } from "../ErrorHandler";
 import { HandlerBase } from "./HandlerBase";
 
@@ -32,11 +32,9 @@ export class WorkbenchHandler extends HandlerBase {
         }
     }
 
-    actionAutotab(ownerId: number, args: any[]) {
-        const owner: QxWidget = this.getOwner(ownerId);
-        const tab: string = args.shift();
-        if (ActionConstants.FunctionSetActiveTab in owner)
-            (owner as any).setActiveTab(tab);
+    actionAutotab(ownerId: number, args: any) {
+        const tag: string = args.shift();
+        NavigationUtil.showPage(tag);
     }
 
     actionSync(ownerId: number, args: any[]) {

@@ -69,7 +69,6 @@ export class BoardTile extends QxAtom {
         this.onResize();
         if (this.rowIndex == 1 && this.columnIndex == 1) {
             this.setText('X');
-            (window as any).X = this;
         }
     }
 

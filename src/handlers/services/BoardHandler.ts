@@ -19,7 +19,8 @@ export class BoardHandler extends HandlerBase {
     // }
 
     handleAction(ownerId: number, args: any[]) {
-        // const action: string = args.shift();
+        const action: string = args.shift();
+        console.log('HANDLE ACTION', action, args);
         // const board: BoardPanel | null = this.getBoardPanel(ownerId);
         // if (!board) return;
         // const actionRec = new ActionRec(board, action, args);
