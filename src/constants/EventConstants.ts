@@ -1,4 +1,5 @@
 export class EventConstants {
+    static BoardTileClicked:string = 'tile_clicked';
     static EventSessionStatusChanged: string = 'session_status_changed';
     static QxEventAppear: string = 'appear';
     static QxEventChangeSelection: string = 'changeSelection';

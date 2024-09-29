@@ -1,6 +1,6 @@
 import { EventConstants } from "../constants/EventConstants";
 import { SessionConstants } from "../constants/SessionConstants";
-import { EventBus } from "../messages/EventBus";
+import { MessageBus } from "../messages/MessageBus";
 
 export class SessionStatus {
     loginStatus: string = SessionConstants.SessionLoggedOut;
@@ -25,7 +25,7 @@ export class SessionStatus {
     }
 
     constructor() {
-        EventBus.subscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this);
+        MessageBus.subscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this);
     }
 
     isLoggedIn() {

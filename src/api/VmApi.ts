@@ -20,6 +20,10 @@ export class VmApi {
         return this.getInstance().getVmApiGetVersion();
     }
 
+    static postEvent(eventName: string, args: any) {
+        this.getInstance().postEvent(eventName, args);
+    }
+
     static run(src: string, inputId: number = 0, outputId: number = 0): number {
         return this.getInstance().run(src, inputId, outputId);
     }
@@ -74,6 +78,12 @@ export class VmApi {
 
     handleResult(...args: any[]) {
         ResultHandler.handleResult(...args);
+    }
+
+    postEvent(eventName: string, args: any) {
+        const data = { event_name: eventName, args: args };
+        const jsonStr = JSON.stringify(data);
+        this.getOpalVmApi()[VmApiConstants.POST_EVENT](jsonStr);
     }
 
     run(src: string, inputId: number, outputId: number): number {

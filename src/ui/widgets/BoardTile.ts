@@ -1,4 +1,6 @@
-import { ColorConstants, SizeConstants, StyleConstants } from "../../constants";
+import { VmApi } from "../../api";
+import { ColorConstants, EventConstants, SizeConstants, StyleConstants } from "../../constants";
+import { MessageBus } from "../../messages";
 import { QxAtom } from "../../qx/mobile/basic/QxAtom";
 import { BoardPanel } from "./BoardPanel";
 
@@ -73,6 +75,7 @@ export class BoardTile extends QxAtom {
 
     onClick() {
         console.log('tile onClick', this);
+        this.postEvent();
     }
 
     onResize() {
@@ -80,7 +83,11 @@ export class BoardTile extends QxAtom {
     }
 
     postEvent() {
-    }
+        const eventName = EventConstants.BoardTileClicked;
+        const args = [this.rowIndex, this.columnIndex, this.getLabel()];
+        MessageBus.dispatch(eventName, args);
+        VmApi.postEvent(eventName, args);
+}
 
     restore() {
         this.setLabel(this.cachedText);

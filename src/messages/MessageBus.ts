@@ -1,10 +1,10 @@
-export class EventBus {
+export class MessageBus {
     messageBus: any;
-    static instance: EventBus;
+    static instance: MessageBus;
 
-    static getInstance(): EventBus {
+    static getInstance(): MessageBus {
         if (!this.instance)
-            this.instance = new EventBus;
+            this.instance = new MessageBus;
         return this.instance;
     }
 

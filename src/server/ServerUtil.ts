@@ -3,9 +3,9 @@ import { UrlConstants } from "../constants/UrlConstants";
 export class ServerUtil {
 
     static getHost() {
-        if (window.location.host.startsWith(UrlConstants.local8082))
+        if (window.location.host.startsWith(UrlConstants.local8080))
             return UrlConstants.local9080;
-        else if (window.location.host.startsWith(UrlConstants.local8083))
+        else if (window.location.host.startsWith(UrlConstants.local8081))
             return UrlConstants.local9081;
         else
             return UrlConstants.heroku;
