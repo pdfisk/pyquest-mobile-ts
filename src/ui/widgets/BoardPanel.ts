@@ -1,4 +1,5 @@
 import { ColorConstants, SizeConstants } from "../../constants";
+import { ActionRec } from "../../handlers";
 import { QxVBox } from "../../qx/mobile/container/QxVBox";
 import { BoardRow } from "./BoardRow";
 import { BoardTile } from "./BoardTile";
@@ -32,6 +33,10 @@ export class BoardPanel extends QxVBox {
         }
     }
 
+    deferAction(actionRec: ActionRec) {
+        console.log('deferAction', actionRec);
+    }
+
     cacheAndRelease() {
         for (let tile of this.tileMap.values())
             tile.cacheAndRelease();
@@ -54,6 +59,10 @@ export class BoardPanel extends QxVBox {
     onResize() {
         for (let tile of this.tileMap.values())
             tile.onResize();
+    }
+
+    performAction(actionRec: ActionRec) {
+        console.log('performAction', actionRec);
     }
 
     registerTile(tile: BoardTile) {
