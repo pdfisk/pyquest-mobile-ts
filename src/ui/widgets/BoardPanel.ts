@@ -5,6 +5,7 @@ import { BoardRow } from "./BoardRow";
 import { BoardTile } from "./BoardTile";
 
 export class BoardPanel extends QxVBox {
+    deferredActions: ActionRec[] = [];
     size: number = 0;
     tileMap: Map<string, BoardTile> = new Map;
 
@@ -34,7 +35,7 @@ export class BoardPanel extends QxVBox {
     }
 
     deferAction(actionRec: ActionRec) {
-        console.log('deferAction', actionRec);
+        this.deferredActions.push(actionRec);
     }
 
     cacheAndRelease() {
@@ -54,6 +55,8 @@ export class BoardPanel extends QxVBox {
     onAppear() {
         super.onAppear();
         this.addRows();
+        for (let actionRec of this.deferredActions)
+            this.performAction(actionRec);
     }
 
     onResize() {

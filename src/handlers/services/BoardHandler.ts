@@ -17,13 +17,8 @@ export class BoardHandler extends HandlerBase {
         this.getInstance().handleAction(ownerId, args);
     }
 
-    // getTile(board: BoardPanel, row: number, column: number): BoardTile | undefined {
-    //     return board.getTile(row, column);
-    // }
-
     handleAction(ownerId: number, args: any[]) {
         const action: string = args.shift();
-        console.log('HANDLE ACTION', action, args);
         const board: BoardPanel = BoardPage.getBoardPanel();
         const actionRec = new ActionRec(board, action, args);
         if (board.hasAppeared)
