@@ -67,9 +67,6 @@ export class BoardTile extends QxAtom {
         this.setLabelStyle(StyleConstants.Height, SizeConstants.Size100Pct);
         this.clear();
         this.onResize();
-        if (this.rowIndex == 1 && this.columnIndex == 1) {
-            this.setText('X');
-        }
     }
 
     onClick() {
