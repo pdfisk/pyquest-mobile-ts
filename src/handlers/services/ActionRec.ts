@@ -1,12 +1,14 @@
-export class ActionRec {
-    // action: string;
-    // args: any[];
-    // board: BoardPanel;
+import { BoardPanel } from "../../ui/widgets/BoardPanel";
 
-    // constructor(board: BoardPanel, action: string, args: any[]) {
-    //     this.board = board;
-    //     this.action = action;
-    //     this.args = args;
-    // }
+export class ActionRec {
+    action: string;
+    args: any[];
+    board: BoardPanel;
+
+    constructor(board: BoardPanel, action: string, args: any[]) {
+        this.board = board;
+        this.action = action;
+        this.args = args;
+    }
 
 }

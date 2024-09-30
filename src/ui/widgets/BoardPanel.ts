@@ -4,12 +4,12 @@ import { BoardRow } from "./BoardRow";
 import { BoardTile } from "./BoardTile";
 
 export class BoardPanel extends QxVBox {
-    size: number;
+    size: number = 0;
     tileMap: Map<string, BoardTile> = new Map;
 
     constructor(size: number = 7) {
         super();
-        this.size = size;
+        this.resizeBoard(size);
     }
 
     initialize() {
@@ -47,6 +47,7 @@ export class BoardPanel extends QxVBox {
     }
 
     onAppear() {
+        super.onAppear();
         this.addRows();
     }
 
@@ -57,6 +58,13 @@ export class BoardPanel extends QxVBox {
 
     registerTile(tile: BoardTile) {
         this.tileMap.set(tile.mapKey(), tile);
+    }
+
+    resizeBoard(boardSize: number) {
+        this.size = boardSize;
+        this.widget.removeAll();
+        if (this.hasAppeared)
+            this.addRows();
     }
 
     restore() {

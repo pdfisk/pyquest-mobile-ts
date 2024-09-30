@@ -4,6 +4,7 @@ import { QxObject } from "../../core";
 import { QxFactory } from "../../factory";
 
 export class QxWidget extends QxObject {
+    hasAppeared: boolean = false;
 
     constructor(widget?: any) {
         super(widget ? widget : QxFactory.mobileComposite());
@@ -28,7 +29,7 @@ export class QxWidget extends QxObject {
             this.widget.addListener(EventConstants.QxEventTap, this.onTap, this);
     }
 
-    getBoundingRect():any {
+    getBoundingRect(): any {
         return this.widget.getContentElement().getBoundingClientRect();
     }
 
@@ -68,6 +69,7 @@ export class QxWidget extends QxObject {
     }
 
     onAppear() {
+        this.hasAppeared = true;
     }
 
     onClick() {
@@ -118,19 +120,19 @@ export class QxWidget extends QxObject {
         this.setStyle(StyleConstants.MarginTop, marginTop);
     }
 
-    setMinHeight(height:string|undefined) {
+    setMinHeight(height: string | undefined) {
         this.setStyle(StyleConstants.MinHeight, height);
     }
 
-    setMinWidth(width:string|undefined) {
+    setMinWidth(width: string | undefined) {
         this.setStyle(StyleConstants.MinWidth, width);
     }
 
-    setMaxHeight(height:string|undefined) {
+    setMaxHeight(height: string | undefined) {
         this.setStyle(StyleConstants.MaxHeight, height);
     }
 
-    setMaxWidth(width:string|undefined) {
+    setMaxWidth(width: string | undefined) {
         this.setStyle(StyleConstants.MaxWidth, width);
     }
 

@@ -1,3 +1,6 @@
+import { BoardPage } from "../../ui/pages/BoardPage";
+import { BoardPanel } from "../../ui/widgets/BoardPanel";
+import { ActionRec } from "./ActionRec";
 import { HandlerBase } from "./HandlerBase";
 
 export class BoardHandler extends HandlerBase {
@@ -21,9 +24,8 @@ export class BoardHandler extends HandlerBase {
     handleAction(ownerId: number, args: any[]) {
         const action: string = args.shift();
         console.log('HANDLE ACTION', action, args);
-        // const board: BoardPanel | null = this.getBoardPanel(ownerId);
-        // if (!board) return;
-        // const actionRec = new ActionRec(board, action, args);
+        const board: BoardPanel  = BoardPage.getBoardPanel();
+        const actionRec = new ActionRec(board, action, args);
         // if (board.haveTilesAppeared())
         //     board.performAction(actionRec);
         // else

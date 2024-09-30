@@ -6,6 +6,10 @@ export class BoardPage extends AbstractPage {
     boardPanel: BoardPanel;
     static instance: BoardPage;
 
+    static getBoardPanel(): BoardPanel {
+        return this.getInstance().boardPanel;
+    }
+
     static getInstance(): BoardPage {
         if (!this.instance)
             this.instance = new BoardPage();
