@@ -16,6 +16,10 @@ export class QxComposite extends QxWidget {
         this.add(child, { flex: flex });
     }
 
+    removeAll() {
+        this.widget.removeAll();
+    }
+
     setLayout(layout: QxAbstractBox) {
         this.widget.setLayout(layout.widget);
     }
