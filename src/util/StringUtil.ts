@@ -30,4 +30,8 @@ export class StringUtil {
         return this.padSpace('', len);
     }
 
+    static tileMapKey(row: number, column: number): string {
+        return `tile-${row}-${column}`;
+    }
+
 }

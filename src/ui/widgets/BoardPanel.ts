@@ -1,6 +1,7 @@
-import { ColorConstants, SizeConstants } from "../../constants";
+import { ActionConstants, ColorConstants, SizeConstants } from "../../constants";
 import { ActionRec } from "../../handlers";
 import { QxVBox } from "../../qx/mobile/container/QxVBox";
+import { StringUtil } from "../../util/StringUtil";
 import { BoardRow } from "./BoardRow";
 import { BoardTile } from "./BoardTile";
 
@@ -43,6 +44,10 @@ export class BoardPanel extends QxVBox {
             tile.cacheAndRelease();
     }
 
+    getTile(row: number, column: number): BoardTile | undefined {
+        return this.tileMap.get(StringUtil.tileMapKey(row, column));
+    }
+
     handlesOnAppear(): boolean {
         return true;
     }
@@ -65,7 +70,38 @@ export class BoardPanel extends QxVBox {
     }
 
     performAction(actionRec: ActionRec) {
-        console.log('performAction', actionRec);
+        switch (actionRec.action) {
+            case ActionConstants.ActionClear:
+                this.performActionClear();
+                break;
+            case ActionConstants.ActionSetSize:
+                this.performActionSetSize(actionRec.args);
+                break;
+            case ActionConstants.ActionSetTileText:
+                this.performActionSetTileText(actionRec.args);
+                break;
+            default:
+                console.log('performAction action not found', actionRec.action);
+                break;
+        }
+    }
+
+    performActionClear() {
+        console.log('performActionClear');
+    }
+
+    performActionSetSize(args: any[]) {
+        // this.resizeBoard(args[0]);
+    }
+
+    performActionSetTileText(args: any[]) {
+        const row = args[0];
+        const column = args[1];
+        const text = args[2];
+        const tile = this.getTile(row, column);
+        console.log('performActionSetTileText', row, column, text, tile === undefined);
+        if (!tile) return;
+        tile.setText(text);
     }
 
     registerTile(tile: BoardTile) {

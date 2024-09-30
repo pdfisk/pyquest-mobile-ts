@@ -2,6 +2,7 @@ import { VmApi } from "../../api";
 import { ColorConstants, EventConstants, SizeConstants, StyleConstants } from "../../constants";
 import { MessageBus } from "../../messages";
 import { QxAtom } from "../../qx/mobile/basic/QxAtom";
+import { StringUtil } from "../../util/StringUtil";
 import { BoardPanel } from "./BoardPanel";
 
 export class BoardTile extends QxAtom {
@@ -57,7 +58,7 @@ export class BoardTile extends QxAtom {
     }
 
     mapKey(): string {
-        return `tile-${this.rowIndex}-${this.columnIndex}`;
+        return StringUtil.tileMapKey(this.rowIndex, this.columnIndex);
     }
 
     onAppear() {
@@ -83,7 +84,7 @@ export class BoardTile extends QxAtom {
         const args = [this.rowIndex, this.columnIndex, this.getLabel()];
         MessageBus.dispatch(eventName, args);
         VmApi.postEvent(eventName, args);
-}
+    }
 
     restore() {
         this.setLabel(this.cachedText);
@@ -96,6 +97,8 @@ export class BoardTile extends QxAtom {
     }
 
     setText(text: string) {
+        console.log('setText', text);
+        (window as any).X = this;
         this.cacheAndRelease();
         this.cachedText = text;
         this.lockMaxAndMin();
