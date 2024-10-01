@@ -36,6 +36,16 @@ export class BoardPanel extends QxVBox {
         }
     }
 
+    buildTileMap() {
+        this.tileMap.clear();
+        for (let row = 0; row < this.boardSize; row++) {
+            for (let col = 0; col < this.boardSize; col++) {
+                const tile = new BoardTile(this, row, col);
+                this.registerTile(tile);
+            }
+        }
+    }
+
     cacheAndRelease() {
         for (let tile of this.tileMap.values())
             tile.cacheAndRelease();
@@ -108,7 +118,6 @@ export class BoardPanel extends QxVBox {
         const column = args[1];
         const text = args[2];
         const tile = this.getTile(row, column);
-        console.log('performActionSetTileText', row, column, text, tile === undefined);
         if (!tile) return;
         tile.setText(text);
     }
@@ -120,7 +129,7 @@ export class BoardPanel extends QxVBox {
     resizeBoard(boardSize: number) {
         this.boardSize = boardSize;
         this.removeAll();
-        this.tileMap.clear();
+        this.buildTileMap();
         if (this.hasAppeared)
             this.addRows();
     }

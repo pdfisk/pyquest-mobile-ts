@@ -17,7 +17,6 @@ export class BoardTile extends QxAtom {
         this.boardPanel = boardPanel;
         this.rowIndex = rowIndex;
         this.columnIndex = columnIndex;
-        this.boardPanel.registerTile(this);
     }
 
     cacheAndRelease() {

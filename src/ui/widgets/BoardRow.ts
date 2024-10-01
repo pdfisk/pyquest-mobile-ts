@@ -1,4 +1,3 @@
-import { QxWidget } from "../../../dist/mobile";
 import { SizeConstants } from "../../constants";
 import { QxHBox } from "../../qx/mobile/container/QxHBox";
 import { BoardPanel } from "./BoardPanel";
@@ -20,16 +19,17 @@ export class BoardRow extends QxHBox {
         super.initialize();
     }
 
-    addTile(columnIndex: number): BoardTile {
-        const tile = new BoardTile(this.boardPanel, this.rowIndex, columnIndex);
-        this.addFlex(tile);
+    addTile(columnIndex: number): BoardTile | undefined {
+        const tile = this.boardPanel.getTile(this.rowIndex, columnIndex);
+        if (tile)
+            this.addFlex(tile);
         return tile;
     }
 
     addTiles() {
         for (let columnIndex = 0; columnIndex < this.boardSize; columnIndex++) {
             const tile = this.addTile(columnIndex);
-            if (columnIndex < this.boardSize - 1)
+            if (columnIndex < this.boardSize - 1 && tile instanceof BoardTile)
                 tile.setMarginRightPx(SizeConstants.BoardTileColumnSeparatorWidth);
         }
     }
