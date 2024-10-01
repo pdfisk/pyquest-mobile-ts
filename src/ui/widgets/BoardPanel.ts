@@ -10,7 +10,7 @@ export class BoardPanel extends QxVBox {
     size: number = 0;
     tileMap: Map<string, BoardTile> = new Map;
 
-    constructor(size: number = 3) {
+    constructor(size: number = 7) {
         super();
         this.resizeBoard(size);
     }
