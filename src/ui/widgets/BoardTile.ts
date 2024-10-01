@@ -1,8 +1,7 @@
 import { VmApi } from "../../api";
-import { ColorConstants, EventConstants, FontConstants, SizeConstants, StyleConstants } from "../../constants";
+import { ColorConstants, EventConstants, FontConstants, StyleConstants } from "../../constants";
 import { MessageBus } from "../../messages";
 import { QxAtom } from "../../qx/mobile/basic/QxAtom";
-import { DeferredCall } from "../../util";
 import { StringUtil } from "../../util/StringUtil";
 import { BoardPanel } from "./BoardPanel";
 
@@ -71,6 +70,7 @@ export class BoardTile extends QxAtom {
         this.setIconStyle(StyleConstants.ObjectFit, StyleConstants.ObjectFitScaleDown);
         this.setLabelStyle(FontConstants.FONT_FAMILY, FontConstants.FontFamilyMonospace);
         this.setLabelStyle(FontConstants.FONT_WEIGHT, FontConstants.FontWeightBold);
+        this.setLabelStyle(FontConstants.FONT_SIZE, FontConstants.FontSize2_5Em);
         const height = this.getHeight();
         const width = this.getWidth();
         this.setMaxHeight(height);
