@@ -6,13 +6,13 @@ import { BoardRow } from "./BoardRow";
 import { BoardTile } from "./BoardTile";
 
 export class BoardPanel extends QxVBox {
+    boardSize: number = 0;
     deferredActions: ActionRec[] = [];
-    size: number = 0;
     tileMap: Map<string, BoardTile> = new Map;
 
-    constructor(size: number = 7) {
+    constructor(boardSize: number = 3) {
         super();
-        this.resizeBoard(size);
+        this.resizeBoard(boardSize);
     }
 
     initialize() {
@@ -22,16 +22,16 @@ export class BoardPanel extends QxVBox {
     }
 
     addRow(rowIndex: number): BoardRow {
-        const row = new BoardRow(this, rowIndex, this.size);
+        const row = new BoardRow(this, rowIndex, this.boardSize);
         this.addFlex(row);
         return row;
     }
 
     addRows() {
         this.clear();
-        for (let rowIndex = 0; rowIndex < this.size; rowIndex++) {
+        for (let rowIndex = 0; rowIndex < this.boardSize; rowIndex++) {
             const row = this.addRow(rowIndex);
-            if (rowIndex < this.size - 1)
+            if (rowIndex < this.boardSize - 1)
                 row.setMarginBottomPx(SizeConstants.BoardTileRowSeparatorWidth);
         }
     }
@@ -97,7 +97,10 @@ export class BoardPanel extends QxVBox {
     }
 
     performActionSetSize(args: any[]) {
-        this.resizeBoard(args[0]);
+        const newSize = args[0];
+        if (this.boardSize == newSize)
+            return;
+        this.resizeBoard(newSize);
     }
 
     performActionSetTileText(args: any[]) {
@@ -115,8 +118,9 @@ export class BoardPanel extends QxVBox {
     }
 
     resizeBoard(boardSize: number) {
-        this.size = boardSize;
-        this.widget.removeAll();
+        this.boardSize = boardSize;
+        this.removeAll();
+        this.tileMap.clear();
         if (this.hasAppeared)
             this.addRows();
     }

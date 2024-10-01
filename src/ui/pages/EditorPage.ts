@@ -57,7 +57,6 @@ export class EditorPage extends AbstractPage {
     onRun() {
         const code = this.getValue();
         VmApi.run(code);
-        this.showTranscript();
     }
 
     onTap(action: string) {

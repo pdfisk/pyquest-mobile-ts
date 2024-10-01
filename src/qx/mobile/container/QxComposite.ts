@@ -16,6 +16,26 @@ export class QxComposite extends QxWidget {
         this.add(child, { flex: flex });
     }
 
+    getChild(index: number): QxWidget | null {
+        const childWidget = this.getChildWidget(index);
+        if (!childWidget)
+            return null;
+        const userData = this.widget.getUserData();
+        if (userData instanceof QxWidget)
+            return userData as QxWidget;
+        return null;
+    }
+
+    getChildWidget(index: number): any {
+        if (index < this.getChildCount())
+            return this.widget.getChild(index);
+        return null;
+    }
+
+    getChildCount(): number {
+        return this.widget.getChildCount();
+    }
+
     removeAll() {
         this.widget.removeAll();
     }
