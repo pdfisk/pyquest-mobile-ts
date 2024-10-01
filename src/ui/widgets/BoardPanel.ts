@@ -42,8 +42,8 @@ export class BoardPanel extends QxVBox {
     }
 
     clear() {
-        this.removeAll();
-        this.tileMap.clear();
+        for (let tile of this.tileMap.values())
+            tile.clear();
     }
 
     deferAction(actionRec: ActionRec) {
