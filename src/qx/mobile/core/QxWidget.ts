@@ -100,6 +100,10 @@ export class QxWidget extends QxObject {
         this.setHeight(StringUtil.asPixels(height));
     }
 
+    setLineHeight(height: string) {
+        this.setStyle(StyleConstants.LineHeight, height);
+    }
+
     setMarginBottomPx(height: number) {
         const marginBottom = StringUtil.asPixels(height);
         this.setStyle(StyleConstants.MarginBottom, marginBottom);
@@ -120,20 +124,20 @@ export class QxWidget extends QxObject {
         this.setStyle(StyleConstants.MarginTop, marginTop);
     }
 
-    setMinHeight(height: string | undefined) {
-        this.setStyle(StyleConstants.MinHeight, height);
-    }
-
-    setMinWidth(width: string | undefined) {
-        this.setStyle(StyleConstants.MinWidth, width);
-    }
-
     setMaxHeight(height: string | undefined) {
         this.setStyle(StyleConstants.MaxHeight, height);
     }
 
     setMaxWidth(width: string | undefined) {
         this.setStyle(StyleConstants.MaxWidth, width);
+    }
+
+    setMinHeight(height: string | undefined) {
+        this.setStyle(StyleConstants.MinHeight, height);
+    }
+
+    setMinWidth(width: string | undefined) {
+        this.setStyle(StyleConstants.MinWidth, width);
     }
 
     setPaddingBottomPx(padding: number) {

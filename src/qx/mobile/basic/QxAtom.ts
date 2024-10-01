@@ -1,4 +1,4 @@
-import { QxConstants } from "../../../constants";
+import { QxConstants, StyleConstants } from "../../../constants";
 import { QxFactory } from "../../factory";
 import { QxWidget } from "../core/QxWidget";
 
@@ -44,6 +44,10 @@ export class QxAtom extends QxWidget {
 
     setLabel(label: string) {
         this.widget.setLabel(label);
+    }
+
+    setLabelLineHeightStyle(value: string) {
+        this.setLabelStyle(StyleConstants.LineHeight, value);
     }
 
     setLabelStyle(key: string, value: string) {

@@ -1,5 +1,5 @@
 import { VmApi } from "../../api";
-import { ColorConstants, EventConstants, SizeConstants, StyleConstants } from "../../constants";
+import { ColorConstants, EventConstants, FontConstants, SizeConstants, StyleConstants } from "../../constants";
 import { MessageBus } from "../../messages";
 import { QxAtom } from "../../qx/mobile/basic/QxAtom";
 import { DeferredCall } from "../../util";
@@ -57,6 +57,11 @@ export class BoardTile extends QxAtom {
         this.setBackgroundColor(ColorConstants.BoardTileBackground);
     }
 
+    lockMaxAndMin() {
+        super.lockMaxAndMin();
+        this.setLineHeight(this.getHeight());
+    }
+
     mapKey(): string {
         return StringUtil.tileMapKey(this.rowIndex, this.columnIndex);
     }
@@ -64,11 +69,16 @@ export class BoardTile extends QxAtom {
     onAppear() {
         super.onAppear();
         this.setIconStyle(StyleConstants.ObjectFit, StyleConstants.ObjectFitScaleDown);
-        this.setLabelStyle(StyleConstants.FontWeight, StyleConstants.FontWeightBold);
-        this.setLabelStyle(StyleConstants.Height, SizeConstants.Size100Pct);
-        this.clear();
-        DeferredCall.schedule(() => { this.onResize(); });
-    }
+        this.setLabelStyle(FontConstants.FONT_FAMILY, FontConstants.FontFamilyMonospace);
+        this.setLabelStyle(FontConstants.FONT_WEIGHT, FontConstants.FontWeightBold);
+        const height = this.getHeight();
+        const width = this.getWidth();
+        this.setMaxHeight(height);
+        this.setMaxWidth(width);
+        this.setLabelLineHeightStyle(height);
+        if (this.cachedText.length > 0)
+            this.setLabel(this.cachedText);
+     }
 
     onClick() {
         console.log('tile onClick', this);
@@ -97,12 +107,15 @@ export class BoardTile extends QxAtom {
     }
 
     setText(text: string) {
-        console.log('setText', text);
+        console.log('setText', text, this.hasAppeared, this.getHeight());
         (window as any).X = this;
         this.cacheAndRelease();
-        this.cachedText = text;
-        this.lockMaxAndMin();
-        this.restore();
+        if (this.hasAppeared) {
+            this.lockMaxAndMin();
+            this.setLabel(text);
+            }
+        else
+            this.cachedText = text;
     }
 
     showImage() {

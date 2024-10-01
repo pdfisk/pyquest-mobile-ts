@@ -1,6 +1,7 @@
 import { ActionConstants, ColorConstants, SizeConstants } from "../../constants";
 import { ActionRec } from "../../handlers";
 import { QxVBox } from "../../qx/mobile/container/QxVBox";
+import { ResizeManager } from "../../util/ResizeManager";
 import { StringUtil } from "../../util/StringUtil";
 import { BoardRow } from "./BoardRow";
 import { BoardTile } from "./BoardTile";
@@ -34,6 +35,7 @@ export class BoardPanel extends QxVBox {
             if (rowIndex < this.boardSize - 1)
                 row.setMarginBottomPx(SizeConstants.BoardTileRowSeparatorWidth);
         }
+        this.onResize();
     }
 
     buildTileMap() {
@@ -76,6 +78,7 @@ export class BoardPanel extends QxVBox {
     onAppear() {
         super.onAppear();
         this.addRows();
+        ResizeManager.getInstance().onResize();
         for (let actionRec of this.deferredActions)
             this.performAction(actionRec);
     }
