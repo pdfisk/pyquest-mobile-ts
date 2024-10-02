@@ -1,4 +1,12 @@
+import { ImageConstants } from "../constants/ImageConstants";
+
 export class StringUtil {
+
+    static asImagePath(imageFileName: string): string {
+        if (!imageFileName.includes('.'))
+            imageFileName += '.png';
+        return `${ImageConstants.ImagePath}/${imageFileName}`;
+    }
 
     static asPixels(value: number) {
         return `${value}px`;

@@ -7,7 +7,7 @@ import { BoardPanel } from "./BoardPanel";
 
 export class BoardTile extends QxAtom {
     boardPanel: BoardPanel;
-    cachedImage: string = '';
+    cachedPath: string = '';
     cachedText: string = '';
     columnIndex: number;
     rowIndex: number;
@@ -67,7 +67,9 @@ export class BoardTile extends QxAtom {
         this.setLabelLineHeightStyle(height);
         if (this.cachedText.length > 0)
             this.setLabel(this.cachedText);
-     }
+        if (this.cachedPath.length > 0)
+            this.setIcon(this.cachedPath);
+    }
 
     onClick() {
         console.log('tile onClick', this);
@@ -92,12 +94,22 @@ export class BoardTile extends QxAtom {
     saveValue() {
     }
 
+    setImage(path: string) {
+        this.cacheAndRelease();
+        if (this.hasAppeared) {
+            this.lockMaxAndMin();
+            this.setIcon(path);
+        }
+        else
+            this.cachedPath = path;
+    }
+    
     setText(text: string) {
         this.cacheAndRelease();
         if (this.hasAppeared) {
             this.lockMaxAndMin();
             this.setLabel(text);
-            }
+        }
         else
             this.cachedText = text;
     }

@@ -120,7 +120,12 @@ export class BoardPanel extends QxVBox {
     }
 
     performActionSetTileImage(args: any[]) {
-        console.log('performActionSetTileImage', args);
+        const row = args[0];
+        const column = args[1];
+        const path = StringUtil.asImagePath(args[2]);
+        const tile = this.getTile(row, column);
+        if (!tile) return;
+        tile.setImage(path);
     }
 
     performActionSetTileText(args: any[]) {
