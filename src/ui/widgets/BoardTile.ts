@@ -56,14 +56,18 @@ export class BoardTile extends QxAtom {
 
     onAppear() {
         super.onAppear();
-        this.setIconStyle(StyleConstants.ObjectFit, StyleConstants.ObjectFitScaleDown);
-        this.setLabelStyle(FontConstants.FONT_FAMILY, FontConstants.FontFamilyMonospace);
-        this.setLabelStyle(FontConstants.FONT_WEIGHT, FontConstants.FontWeightBold);
-        this.setLabelStyle(FontConstants.FONT_SIZE, FontConstants.FontSize2_5Em);
         const height = this.getHeight();
         const width = this.getWidth();
         this.setMaxHeight(height);
         this.setMaxWidth(width);
+        this.setIconStyle(StyleConstants.ObjectFit, StyleConstants.ObjectFitScaleDown);
+        this.setIconStyle(StyleConstants.Height, height);
+        this.setIconStyle(StyleConstants.MaxHeight, height);
+        this.setIconStyle(StyleConstants.Width, width);
+        this.setIconStyle(StyleConstants.MaxWidth, width);
+        this.setLabelStyle(FontConstants.FONT_FAMILY, FontConstants.FontFamilyMonospace);
+        this.setLabelStyle(FontConstants.FONT_WEIGHT, FontConstants.FontWeightBold);
+        this.setLabelStyle(FontConstants.FONT_SIZE, FontConstants.FontSize2_5Em);
         this.setLabelLineHeightStyle(height);
         if (this.cachedText.length > 0)
             this.setLabel(this.cachedText);
@@ -92,6 +96,10 @@ export class BoardTile extends QxAtom {
     }
 
     saveValue() {
+    }
+
+    setAllStyles() {
+        
     }
 
     setImage(path: string) {
