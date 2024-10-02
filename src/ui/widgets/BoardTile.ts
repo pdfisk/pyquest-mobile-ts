@@ -68,7 +68,7 @@ export class BoardTile extends QxAtom {
         if (this.cachedText.length > 0)
             this.setLabel(this.cachedText);
         if (this.cachedPath.length > 0)
-            this.setIcon(this.cachedPath);
+            this.setImage(this.cachedPath);
     }
 
     onClick() {
@@ -95,15 +95,18 @@ export class BoardTile extends QxAtom {
     }
 
     setImage(path: string) {
+        console.log('setImage', path);
+        (window as any).X = this;
         this.cacheAndRelease();
         if (this.hasAppeared) {
             this.lockMaxAndMin();
             this.setIcon(path);
+            this.showImage();
         }
         else
             this.cachedPath = path;
     }
-    
+
     setText(text: string) {
         this.cacheAndRelease();
         if (this.hasAppeared) {
