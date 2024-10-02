@@ -18,6 +18,7 @@ export class StyleConstants {
     static MinHeight: string = 'minHeight';
     static MinWidth: string = 'minWidth';
     static ObjectFit: string = 'objectFit';
+    static ObjectFitContain: string = 'contain';
     static ObjectFitCover: string = 'cover';
     static ObjectFitScaleDown: string = 'scaleDown';
     static PaddingBottom: string = 'paddingBottom';

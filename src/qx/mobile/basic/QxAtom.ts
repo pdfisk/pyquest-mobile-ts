@@ -41,7 +41,6 @@ export class QxAtom extends QxWidget {
     }
 
     setIcon(iconPath: string) {
-        console.log('SETICON', iconPath);
         this.widget.setIcon(iconPath);
     }
 

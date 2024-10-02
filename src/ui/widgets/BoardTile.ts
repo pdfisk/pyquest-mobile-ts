@@ -20,12 +20,14 @@ export class BoardTile extends QxAtom {
     }
 
     cacheAndRelease() {
+        this.cachedPath = this.getIcon();
         this.cachedText = this.getLabel();
         this.clear();
         super.unlockMaxAndMin();
     }
 
     clear() {
+        this.setIcon('');
         this.setLabel('');
     }
 
@@ -47,7 +49,9 @@ export class BoardTile extends QxAtom {
 
     lockMaxAndMin() {
         super.lockMaxAndMin();
+        console.log('lockMaxAndMin', this.getHeight(), this.getWidth());
         this.setLineHeight(this.getHeight());
+        this.setIconStyles();
     }
 
     mapKey(): string {
@@ -60,19 +64,12 @@ export class BoardTile extends QxAtom {
         const width = this.getWidth();
         this.setMaxHeight(height);
         this.setMaxWidth(width);
-        this.setIconStyle(StyleConstants.ObjectFit, StyleConstants.ObjectFitScaleDown);
-        this.setIconStyle(StyleConstants.Height, height);
-        this.setIconStyle(StyleConstants.MaxHeight, height);
-        this.setIconStyle(StyleConstants.Width, width);
-        this.setIconStyle(StyleConstants.MaxWidth, width);
         this.setLabelStyle(FontConstants.FONT_FAMILY, FontConstants.FontFamilyMonospace);
         this.setLabelStyle(FontConstants.FONT_WEIGHT, FontConstants.FontWeightBold);
         this.setLabelStyle(FontConstants.FONT_SIZE, FontConstants.FontSize2_5Em);
         this.setLabelLineHeightStyle(height);
-        if (this.cachedText.length > 0)
-            this.setLabel(this.cachedText);
-        if (this.cachedPath.length > 0)
-            this.setImage(this.cachedPath);
+        this.setIconStyles();
+        this.restore();
     }
 
     onClick() {
@@ -81,7 +78,10 @@ export class BoardTile extends QxAtom {
     }
 
     onResize() {
+        console.log('onResize', this.getHeight(), this.getWidth());
         this.setLabelStyle(StyleConstants.LineHeight, this.getHeight());
+        this.setIconStyles();
+        this.restore();
     }
 
     postEvent() {
@@ -92,14 +92,23 @@ export class BoardTile extends QxAtom {
     }
 
     restore() {
-        this.setLabel(this.cachedText);
+        if (this.cachedText && this.cachedText.length > 0)
+            this.setLabel(this.cachedText);
+        if (this.cachedPath && this.cachedPath.length > 0)
+            this.setImage(this.cachedPath);
     }
 
     saveValue() {
     }
 
-    setAllStyles() {
-        
+    setIconStyles() {
+        const height = this.getHeight();
+        const width = this.getWidth();
+        this.setIconStyle(StyleConstants.ObjectFit, StyleConstants.ObjectFitContain);
+        this.setIconStyle(StyleConstants.Height, height);
+        this.setIconStyle(StyleConstants.MaxHeight, height);
+        this.setIconStyle(StyleConstants.Width, width);
+        this.setIconStyle(StyleConstants.MaxWidth, width);
     }
 
     setImage(path: string) {
