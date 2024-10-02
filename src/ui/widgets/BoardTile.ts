@@ -7,6 +7,7 @@ import { BoardPanel } from "./BoardPanel";
 
 export class BoardTile extends QxAtom {
     boardPanel: BoardPanel;
+    cachedImage: string = '';
     cachedText: string = '';
     columnIndex: number;
     rowIndex: number;
@@ -31,24 +32,12 @@ export class BoardTile extends QxAtom {
     copy(destTile: BoardTile) {
     }
 
-    getImage() {
-    }
-
-    getOffset(direction: string) {
-    }
-
     handlesOnAppear(): boolean {
         return true;
     }
 
     handlesOnClick(): boolean {
         return true;
-    }
-
-    hideImage() {
-    }
-
-    hideLabel() {
     }
 
     initialize() {
@@ -103,12 +92,7 @@ export class BoardTile extends QxAtom {
     saveValue() {
     }
 
-    setImage(image_name_arg: string) {
-    }
-
     setText(text: string) {
-        console.log('setText', text, this.hasAppeared, this.getHeight());
-        (window as any).X = this;
         this.cacheAndRelease();
         if (this.hasAppeared) {
             this.lockMaxAndMin();
@@ -116,12 +100,6 @@ export class BoardTile extends QxAtom {
             }
         else
             this.cachedText = text;
-    }
-
-    showImage() {
-    }
-
-    showText() {
     }
 
 }

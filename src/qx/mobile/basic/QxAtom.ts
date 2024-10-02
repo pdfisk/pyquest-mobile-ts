@@ -12,6 +12,10 @@ export class QxAtom extends QxWidget {
         this.savedValue = '';
     }
 
+    getIcon(): string {
+        return this.widget.getIcon();
+    }
+
     getIconWidget(): any {
         return this.widget.getIconWidget();
     }
@@ -34,6 +38,10 @@ export class QxAtom extends QxWidget {
 
     hideText() {
         this.getLabelWidget().hide();
+    }
+
+    setIcon(iconPath: string) {
+        this.widget.setIcon(iconPath);
     }
 
     setIconStyle(key: string, value: string) {

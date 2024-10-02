@@ -96,6 +96,9 @@ export class BoardPanel extends QxVBox {
             case ActionConstants.ActionSetSize:
                 this.performActionSetSize(actionRec.args);
                 break;
+            case ActionConstants.ActionSetTileImage:
+                this.performActionSetTileImage(actionRec.args);
+                break;
             case ActionConstants.ActionSetTileText:
                 this.performActionSetTileText(actionRec.args);
                 break;
@@ -114,6 +117,10 @@ export class BoardPanel extends QxVBox {
         if (this.boardSize == newSize)
             return;
         this.resizeBoard(newSize);
+    }
+
+    performActionSetTileImage(args: any[]) {
+        console.log('performActionSetTileImage', args);
     }
 
     performActionSetTileText(args: any[]) {
