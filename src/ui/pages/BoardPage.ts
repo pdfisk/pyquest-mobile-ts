@@ -26,21 +26,25 @@ export class BoardPage extends AbstractPage {
         this.addContentWidget(this.boardPanel);
     }
 
-    cacheAndRelease() {
-        this.boardPanel?.cacheAndRelease();
-    }
-
     isContentReady(): boolean {
         return this.boardPanel instanceof BoardPanel;
     }
 
-    lockMaxAndMin() {
-        this.boardPanel?.lockMaxAndMin();
+    // lockMaxValues() {
+    //     this.boardPanel?.lockMaxValues();
+    // }
+
+    // resize() {
+    //     super.resize();
+    //     this.boardPanel.onResize();
+    // }
+
+    resizeHeight(height: number) {
+        console.log('BoardPanel resizeHeight', height);
     }
 
-    resize() {
-        super.resize();
-        this.boardPanel.onResize();
+    resizeWidth(width: number) {
+        console.log('BoardPanel resizeWidth', width);
     }
 
     restore() {

@@ -9,6 +9,7 @@ import { BoardTile } from "./BoardTile";
 export class BoardPanel extends QxVBox {
     boardSize: number = 0;
     deferredActions: ActionRec[] = [];
+    rows: BoardRow[] = [];
     tileMap: Map<string, BoardTile> = new Map;
 
     constructor(boardSize: number = 3) {
@@ -24,12 +25,14 @@ export class BoardPanel extends QxVBox {
 
     addRow(rowIndex: number): BoardRow {
         const row = new BoardRow(this, rowIndex, this.boardSize);
-        this.addFlex(row);
+        this.rows.push(row);
+        this.add(row);
         return row;
     }
 
     addRows() {
         this.clear();
+        this.rows = [];
         for (let rowIndex = 0; rowIndex < this.boardSize; rowIndex++) {
             const row = this.addRow(rowIndex);
             if (rowIndex < this.boardSize - 1)
@@ -46,11 +49,6 @@ export class BoardPanel extends QxVBox {
                 this.registerTile(tile);
             }
         }
-    }
-
-    cacheAndRelease() {
-        for (let tile of this.tileMap.values())
-            tile.cacheAndRelease();
     }
 
     clear() {
@@ -70,9 +68,13 @@ export class BoardPanel extends QxVBox {
         return true;
     }
 
-    lockMaxAndMin() {
-        for (let tile of this.tileMap.values())
-            tile.lockMaxAndMin();
+    lockMaxValues() {
+        const height = this.getBoundingHeight();
+        const width = this.getBoundingWidth();
+        const rowHeight = (height - (this.boardSize - 1)) / this.boardSize;
+        console.log('BoardPanel lockMaxValues', width, height, rowHeight);
+        for (let row of this.rows)
+            row.lockRowMaxValues(width, rowHeight);
     }
 
     onAppear() {
@@ -152,6 +154,22 @@ export class BoardPanel extends QxVBox {
     restore() {
         for (let tile of this.tileMap.values())
             tile.restore();
+    }
+
+    setHeightPx(height: number) {
+        console.log('BoardPanel setHeightPx', height);
+        const heightWithoutMargins = height - (this.boardSize - 1);
+        const rowHeight = heightWithoutMargins / this.boardSize;
+        for (let row = 0; row < this.boardSize; row++)
+            this.rows[row].setHeightPx(rowHeight);
+    }
+
+    setWidthPx(width: number) {
+        console.log('BoardPanel setWidthPx', width);
+        const widthWithoutMargins = width - (this.boardSize - 1);
+        const rowWidth = widthWithoutMargins / this.boardSize;
+        for (let row = 0; row < this.boardSize; row++)
+            this.rows[row].setWidthPx(rowWidth);
     }
 
 }

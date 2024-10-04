@@ -32,6 +32,9 @@ export class QxNavigationPage extends QxPage {
         return this.widget.getTitle();
     }
 
+    lockMaxValues() {
+    }
+
     onAppear() {
         this.addContent();
         this.resize();
@@ -46,11 +49,10 @@ export class QxNavigationPage extends QxPage {
     }
 
     resize() {
-        this.cacheAndRelease();
         this.resizeHeight(QxRoot.getHeight());
         this.resizeWidth(QxRoot.getWidth());
-        this.lockMaxAndMin();
-        this.restore();
+        // this.lockMaxValues();
+        // this.restore();
     }
 
     resizeHeight(height: number) {
@@ -60,9 +62,6 @@ export class QxNavigationPage extends QxPage {
     }
 
     restore() {
-    }
-
-    lockMaxAndMin() {
     }
 
     setTitle(title: string) {

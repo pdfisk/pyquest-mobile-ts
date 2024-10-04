@@ -27,8 +27,8 @@ export class BoardTile extends QxAtom {
     }
 
     clear() {
-        this.setIcon('');
-        this.setLabel('');
+        this.hideImage();
+        this.hideText();
     }
 
     copy(destTile: BoardTile) {
@@ -47,11 +47,17 @@ export class BoardTile extends QxAtom {
         this.setBackgroundColor(ColorConstants.BoardTileBackground);
     }
 
-    lockMaxAndMin() {
-        super.lockMaxAndMin();
-        console.log('lockMaxAndMin', this.getHeight(), this.getWidth());
-        this.setLineHeight(this.getHeight());
-        this.setIconStyles();
+    lockTileMaxValues(tileWidth: number, tileHeight: number) {
+        console.log('BoardTile lockMaxValues', tileWidth, tileHeight);
+        this.setLineHeightPx(tileHeight);
+        this.setHeightPx(tileHeight);
+        this.setMaxHeightPx(tileHeight);
+        this.setWidthPx(tileWidth);
+        this.setMaxWidthPx(tileWidth);
+        this.setIconHeightPx(tileHeight);
+        this.setIconMaxHeightPx(tileHeight);
+        this.setIconWidthPx(tileWidth);
+        this.setIconMaxWidthPx(tileWidth);
     }
 
     mapKey(): string {
@@ -68,7 +74,6 @@ export class BoardTile extends QxAtom {
         this.setLabelStyle(FontConstants.FONT_WEIGHT, FontConstants.FontWeightBold);
         this.setLabelStyle(FontConstants.FONT_SIZE, FontConstants.FontSize2_5Em);
         this.setLabelLineHeightStyle(height);
-        this.setIconStyles();
         this.restore();
     }
 
@@ -78,9 +83,7 @@ export class BoardTile extends QxAtom {
     }
 
     onResize() {
-        console.log('onResize', this.getHeight(), this.getWidth());
         this.setLabelStyle(StyleConstants.LineHeight, this.getHeight());
-        this.setIconStyles();
         this.restore();
     }
 
@@ -92,31 +95,36 @@ export class BoardTile extends QxAtom {
     }
 
     restore() {
-        if (this.cachedText && this.cachedText.length > 0)
-            this.setLabel(this.cachedText);
+        this.restoreImage();
+        this.restoreLabel();
+    }
+
+    restoreImage() {
         if (this.cachedPath && this.cachedPath.length > 0)
             this.setImage(this.cachedPath);
+    }
+
+    restoreLabel() {
+        if (this.cachedText && this.cachedText.length > 0)
+            this.setLabel(this.cachedText);
     }
 
     saveValue() {
     }
 
-    setIconStyles() {
-        const height = this.getHeight();
-        const width = this.getWidth();
+    setIconStyles(tileWidth: number, tileHeight: number) {
         this.setIconStyle(StyleConstants.ObjectFit, StyleConstants.ObjectFitContain);
-        this.setIconStyle(StyleConstants.Height, height);
-        this.setIconStyle(StyleConstants.MaxHeight, height);
-        this.setIconStyle(StyleConstants.Width, width);
-        this.setIconStyle(StyleConstants.MaxWidth, width);
+        this.setIconStyle(StyleConstants.Height, StringUtil.asPixels(tileHeight));
+        this.setIconStyle(StyleConstants.MaxHeight, StringUtil.asPixels(tileHeight));
+        this.setIconStyle(StyleConstants.Width, StringUtil.asPixels(tileWidth));
+        this.setIconStyle(StyleConstants.MaxWidth, StringUtil.asPixels(tileWidth));
     }
 
     setImage(path: string) {
-        console.log('setImage', path);
         (window as any).X = this;
         this.cacheAndRelease();
         if (this.hasAppeared) {
-            this.lockMaxAndMin();
+            this.lockMaxValues();
             this.setIcon(path);
             this.showImage();
         }
@@ -127,7 +135,7 @@ export class BoardTile extends QxAtom {
     setText(text: string) {
         this.cacheAndRelease();
         if (this.hasAppeared) {
-            this.lockMaxAndMin();
+            this.lockMaxValues();
             this.setLabel(text);
         }
         else

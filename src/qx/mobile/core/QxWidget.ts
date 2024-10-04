@@ -29,8 +29,16 @@ export class QxWidget extends QxObject {
             this.widget.addListener(EventConstants.QxEventTap, this.onTap, this);
     }
 
+    getBoundingHeight(): number {
+        return this.getBoundingRect().height;
+    }
+
     getBoundingRect(): any {
         return this.widget.getContentElement().getBoundingClientRect();
+    }
+
+    getBoundingWidth(): number {
+        return this.getBoundingRect().width;
     }
 
     getHeight(): string {
@@ -59,13 +67,11 @@ export class QxWidget extends QxObject {
         return false;
     }
 
-    lockMaxAndMin() {
+    lockMaxValues() {
         const width = this.getWidth();
         const height = this.getHeight();
         this.setMaxHeight(height);
-        this.setMinHeight(height);
         this.setMaxWidth(width);
-        this.setMinWidth(width);
     }
 
     onAppear() {
@@ -92,7 +98,7 @@ export class QxWidget extends QxObject {
         this.setStyle(StyleConstants.BorderTop, borderTop);
     }
 
-    setHeight(height: string) {
+    setHeight(height: string | undefined) {
         this.setStyle(StyleConstants.Height, height);
     }
 
@@ -102,6 +108,10 @@ export class QxWidget extends QxObject {
 
     setLineHeight(height: string) {
         this.setStyle(StyleConstants.LineHeight, height);
+    }
+
+    setLineHeightPx(height: number) {
+        this.setLineHeight(StringUtil.asPixels(height));
     }
 
     setMarginBottomPx(height: number) {
@@ -128,8 +138,16 @@ export class QxWidget extends QxObject {
         this.setStyle(StyleConstants.MaxHeight, height);
     }
 
+    setMaxHeightPx(height: number) {
+        this.setMaxHeight(StringUtil.asPixels(height));
+    }
+
     setMaxWidth(width: string | undefined) {
         this.setStyle(StyleConstants.MaxWidth, width);
+    }
+
+    setMaxWidthPx(width: number) {
+        this.setMaxWidth(StringUtil.asPixels(width));
     }
 
     setMinHeight(height: string | undefined) {
@@ -161,11 +179,11 @@ export class QxWidget extends QxObject {
     }
 
     setStyle(key: string, value: any) {
-        if (this.widget._setStyle)
+        if (this.widget && this.widget._setStyle)
             this.widget._setStyle(key, value);
     }
 
-    setWidth(width: string) {
+    setWidth(width: string | undefined) {
         this.setStyle(StyleConstants.Width, width);
     }
 
@@ -174,10 +192,10 @@ export class QxWidget extends QxObject {
     }
 
     unlockMaxAndMin() {
+        this.setHeight(undefined);
+        this.setWidth(undefined);
         this.setMaxHeight(undefined);
-        this.setMinHeight(undefined);
         this.setMaxWidth(undefined);
-        this.setMinWidth(undefined);
     }
 
 }

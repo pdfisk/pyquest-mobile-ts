@@ -7,6 +7,7 @@ export class BoardRow extends QxHBox {
     boardPanel: BoardPanel;
     boardSize: number;
     rowIndex: number;
+    tiles: BoardTile[] = [];
 
     constructor(boardPanel: BoardPanel, rowIndex: number, boardSize: number) {
         super();
@@ -27,11 +28,18 @@ export class BoardRow extends QxHBox {
     }
 
     addTiles() {
+        this.tiles = [];
         for (let columnIndex = 0; columnIndex < this.boardSize; columnIndex++) {
             const tile = this.addTile(columnIndex);
             if (columnIndex < this.boardSize - 1 && tile instanceof BoardTile)
                 tile.setMarginRightPx(SizeConstants.BoardTileColumnSeparatorWidth);
         }
+    }
+
+    cacheAndRelease() {
+        console.log('row cacheAndRelease');
+        // for (let tile of this.tiles)
+        //     tile.cacheAndRelease();
     }
 
     getTile(index: number): BoardTile | null {
@@ -45,6 +53,17 @@ export class BoardRow extends QxHBox {
         return true;
     }
 
+    lockRowMaxValues(rowWidth: number, rowHeight: number) {
+        this.setHeightPx(rowHeight);
+        this.setMaxHeightPx(rowHeight);
+        this.setWidthPx(rowWidth);
+        this.setMaxWidthPx(rowWidth);
+        const tileWidth = (rowWidth - (this.boardSize - 1)) / this.boardSize;
+        console.log('lockRowMaxValues', rowWidth, rowHeight, tileWidth);
+        for (let tile of this.tiles)
+            tile.lockTileMaxValues(tileWidth, rowHeight);
+    }
+
     onAppear() {
         this.resizeTo(this.boardSize);
     }
@@ -53,6 +72,11 @@ export class BoardRow extends QxHBox {
         this.boardSize = boardSize;
         this.removeAll();
         this.addTiles();
+    }
+
+    restore() {
+        for (let tile of this.tiles)
+            tile.restore();
     }
 
 }

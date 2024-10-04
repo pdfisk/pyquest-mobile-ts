@@ -3,12 +3,14 @@ import { QxWidget } from "../core/QxWidget";
 import { QxAbstractBox } from "../layout/QxAbstractBox";
 
 export class QxComposite extends QxWidget {
+    children: QxWidget[] = [];
 
     constructor(widget?: any) {
         super(widget ? widget : QxFactory.mobileComposite());
     }
 
     add(child: QxWidget, options: any = {}) {
+        this.children.push(child);
         this.widget.add(child.widget, options);
     }
 
@@ -37,6 +39,7 @@ export class QxComposite extends QxWidget {
     }
 
     removeAll() {
+        this.children = [];
         this.widget.removeAll();
     }
 
