@@ -15,4 +15,7 @@ export class HomePage extends AbstractTextPage {
         this.setTitle(LabelConstants.PageHome);
     }
 
+    setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+    }
+
 }

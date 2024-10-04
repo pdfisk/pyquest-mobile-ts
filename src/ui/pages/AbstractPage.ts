@@ -46,25 +46,19 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         QxMobileApplication.back();
     }
 
-    resizeHeight(height: number) {
+    resizeWidthAndHeight(width: number, height: number) {
+        const adjustedWidth: number = width - SizeConstants.ButtonBarWidthOffset;
         const adjustedHeight: number = height - SizeConstants.ButtonBarButtonHeight - SizeConstants.ButtonBarHeightOffset;
-        if (this.isContentReady())
-            this.setAdjustedHeight(adjustedHeight);
-        else
-            this.deferredHeight = adjustedHeight;
-    }
-
-    resizeWidth(width: number) {
-        const adjustedWidth: number = width  - SizeConstants.ButtonBarWidthOffset;
-        if (this.isContentReady())
-            this.setAdjustedWidth(adjustedWidth);
-        else
+        if (this.isContentReady()) {
+            this.setAdjustedWidthAndHeight(adjustedWidth, adjustedHeight);
+        }
+        else {
             this.deferredWidth = adjustedWidth;
+            this.deferredHeight = adjustedHeight;
+        }
     }
 
-    abstract setAdjustedHeight(adjustedHeight: number): void;
-
-    abstract setAdjustedWidth(adjustedWidth: number): void;
+    abstract setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void;
 
     setBackButtonText(text: string) {
         this.widget.setBackButtonText(text);

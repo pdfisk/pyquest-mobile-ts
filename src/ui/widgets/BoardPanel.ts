@@ -156,6 +156,10 @@ export class BoardPanel extends QxVBox {
             tile.restore();
     }
 
+    setAdjustedWidthAndHeight(adjustedWidth:number, adjustedHeight:number) {
+        console.log('BoardPanel setAdjustedWidthAndHeight', adjustedWidth, adjustedHeight);
+    }
+
     setHeightPx(height: number) {
         console.log('BoardPanel setHeightPx', height);
         const heightWithoutMargins = height - (this.boardSize - 1);

@@ -55,8 +55,8 @@ export class BoardPage extends AbstractPage {
         this.setBoardPanelHeight(adjustedHeight);
     }
 
-    setAdjustedWidth(adjustedWidth: number): void {
-        this.setBoardPanelWidth(adjustedWidth);
+    setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+        this.boardPanel.setAdjustedWidthAndHeight(adjustedWidth, adjustedHeight);
     }
 
     setBoardPanelHeight(adjustedHeight: number) {

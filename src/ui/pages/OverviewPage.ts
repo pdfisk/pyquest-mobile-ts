@@ -64,4 +64,7 @@ export class OverviewPage extends AbstractRoutingPage {
         super.initialize();
     }
 
+    setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+    }
+
 }

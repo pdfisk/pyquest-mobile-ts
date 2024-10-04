@@ -64,4 +64,7 @@ export class ProjectsPage extends AbstractDataListPage {
         }
     }
 
+    setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+    }
+
 }

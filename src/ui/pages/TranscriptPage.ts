@@ -51,4 +51,7 @@ export class TranscriptPage extends AbstractTextPage {
         }
     }
 
+    setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+    }
+
 }

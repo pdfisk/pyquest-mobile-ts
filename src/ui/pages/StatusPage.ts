@@ -22,6 +22,9 @@ export class StatusPage extends AbstractTextPage {
         this.showStatus();
     }
 
+    setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+    }
+
     showStatus() {
         this.prn('Client:');
         this.space(3).prn(`  Version: ${Version.version}`);

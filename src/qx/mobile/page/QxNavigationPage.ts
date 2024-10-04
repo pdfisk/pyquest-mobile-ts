@@ -49,16 +49,10 @@ export class QxNavigationPage extends QxPage {
     }
 
     resize() {
-        this.resizeHeight(QxRoot.getHeight());
-        this.resizeWidth(QxRoot.getWidth());
-        // this.lockMaxValues();
-        // this.restore();
+        this.resizeWidthAndHeight(QxRoot.getWidth(), QxRoot.getHeight());
     }
 
-    resizeHeight(height: number) {
-    }
-
-    resizeWidth(width: number) {
+    resizeWidthAndHeight(width: number, height: number) {
     }
 
     restore() {
