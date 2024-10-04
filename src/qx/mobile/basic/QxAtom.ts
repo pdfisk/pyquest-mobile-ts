@@ -87,6 +87,10 @@ export class QxAtom extends QxWidget {
         this.widget.setLabel(label);
     }
 
+    setLabelLineHeightPx(value: number) {
+        this.setLabelLineHeightStyle(StringUtil.asPixels(value));
+    }
+
     setLabelLineHeightStyle(value: string) {
         this.setLabelStyle(StyleConstants.LineHeight, value);
     }

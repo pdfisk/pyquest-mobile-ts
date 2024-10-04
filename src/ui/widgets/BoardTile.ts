@@ -65,15 +65,15 @@ export class BoardTile extends QxAtom {
     }
 
     onAppear() {
-        super.onAppear();
-        const height = this.getHeight();
-        const width = this.getWidth();
-        this.setMaxHeight(height);
-        this.setMaxWidth(width);
+        // super.onAppear();
+        // const height = this.getHeight();
+        // const width = this.getWidth();
+        // this.setMaxHeight(height);
+        // this.setMaxWidth(width);
         this.setLabelStyle(FontConstants.FONT_FAMILY, FontConstants.FontFamilyMonospace);
         this.setLabelStyle(FontConstants.FONT_WEIGHT, FontConstants.FontWeightBold);
         this.setLabelStyle(FontConstants.FONT_SIZE, FontConstants.FontSize2_5Em);
-        this.setLabelLineHeightStyle(height);
+        // this.setLabelLineHeightStyle(height);
         this.restore();
     }
 
@@ -121,10 +121,9 @@ export class BoardTile extends QxAtom {
     }
 
     setImage(path: string) {
-        (window as any).X = this;
-        this.cacheAndRelease();
+        // this.cacheAndRelease();
         if (this.hasAppeared) {
-            this.lockMaxValues();
+            // this.lockMaxValues();
             this.setIcon(path);
             this.showImage();
         }
@@ -143,6 +142,7 @@ export class BoardTile extends QxAtom {
     }
 
     setTileWidthAndHeight(width: number, height: number) {
+        this.setLabelLineHeightPx(height);
         this.setWidthPx(width);
         this.setMaxWidthPx(width);
         this.setHeightPx(height);

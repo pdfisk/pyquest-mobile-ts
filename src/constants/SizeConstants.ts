@@ -1,4 +1,5 @@
 export class SizeConstants {
+    static BoardPanelHeightAdjust = 5;
     static BoardRowHeightAdjust = 1;
     static BoardTileColumnSeparatorWidth: number = -2;
     static BoardTileRowSeparatorWidth: number = 2;

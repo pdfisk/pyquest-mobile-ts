@@ -1,3 +1,4 @@
+import { SizeConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { BoardPanel } from "../widgets/BoardPanel";
 import { AbstractPage } from "./AbstractPage";
@@ -56,7 +57,7 @@ export class BoardPage extends AbstractPage {
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
-        this.boardPanel.setAdjustedWidthAndHeight(adjustedWidth, adjustedHeight);
+        this.boardPanel.setAdjustedWidthAndHeight(adjustedWidth, adjustedHeight - SizeConstants.BoardPanelHeightAdjust);
     }
 
     setBoardPanelHeight(adjustedHeight: number) {
