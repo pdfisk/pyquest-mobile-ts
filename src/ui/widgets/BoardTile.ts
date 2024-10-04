@@ -142,4 +142,13 @@ export class BoardTile extends QxAtom {
             this.cachedText = text;
     }
 
+    setTileWidthAndHeight(width: number, height: number) {
+        this.setWidthPx(width);
+        this.setMaxWidthPx(width);
+        this.setHeightPx(height);
+        this.setMaxHeightPx(height);
+        if (this.rowIndex == 1 && this.columnIndex == 1)
+            (window as any).X = this;
+    }
+
 }

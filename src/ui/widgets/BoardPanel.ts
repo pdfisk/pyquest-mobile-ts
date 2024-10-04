@@ -7,6 +7,8 @@ import { BoardRow } from "./BoardRow";
 import { BoardTile } from "./BoardTile";
 
 export class BoardPanel extends QxVBox {
+    adjustedHeight: number = 0;
+    adjustedWidth: number = 0;
     boardSize: number = 0;
     deferredActions: ActionRec[] = [];
     rows: BoardRow[] = [];
@@ -38,7 +40,14 @@ export class BoardPanel extends QxVBox {
             if (rowIndex < this.boardSize - 1)
                 row.setMarginBottomPx(SizeConstants.BoardTileRowSeparatorWidth);
         }
-        this.onResize();
+        this.applyResize();
+    }
+
+    applyResize() {
+        const rowHeight = this.adjustedHeight / this.boardSize;
+        this.rows.forEach((row) => {
+            row.setRowWidthAndHeight(this.adjustedWidth, rowHeight);
+        });
     }
 
     buildTileMap() {
@@ -83,11 +92,6 @@ export class BoardPanel extends QxVBox {
         ResizeManager.getInstance().onResize();
         for (let actionRec of this.deferredActions)
             this.performAction(actionRec);
-    }
-
-    onResize() {
-        for (let tile of this.tileMap.values())
-            tile.onResize();
     }
 
     performAction(actionRec: ActionRec) {
@@ -156,13 +160,16 @@ export class BoardPanel extends QxVBox {
             tile.restore();
     }
 
-    setAdjustedWidthAndHeight(adjustedWidth:number, adjustedHeight:number) {
+    setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number) {
+        this.adjustedWidth = adjustedWidth;
+        this.adjustedHeight = adjustedHeight;
+        this.applyResize();
         console.log('BoardPanel setAdjustedWidthAndHeight', adjustedWidth, adjustedHeight);
     }
 
     setHeightPx(height: number) {
         console.log('BoardPanel setHeightPx', height);
-        const heightWithoutMargins = height - (this.boardSize - 1);
+        const heightWithoutMargins = height - (this.boardSize - 1) * SizeConstants.BoardTileRowSeparatorWidth;
         const rowHeight = heightWithoutMargins / this.boardSize;
         for (let row = 0; row < this.boardSize; row++)
             this.rows[row].setHeightPx(rowHeight);

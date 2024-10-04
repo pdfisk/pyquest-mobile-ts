@@ -1,4 +1,5 @@
 import { QxConstants } from "../../constants";
+import { QxWidgetUtil } from "../../util";
 import { QxWidget } from "../mobile/core/QxWidget";
 
 export abstract class QxObject {
@@ -19,7 +20,7 @@ export abstract class QxObject {
     }
 
     getTypeScriptWidget(): QxWidget {
-        return this.widget.getUserData(QxConstants.TsObject);
+        return QxWidgetUtil.getTypeScriptWidget(this.widget);
     }
 
     hide() {

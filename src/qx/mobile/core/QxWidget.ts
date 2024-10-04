@@ -1,4 +1,5 @@
 import { EventConstants, SizeConstants, StyleConstants } from "../../../constants";
+import { QxWidgetUtil } from "../../../util";
 import { StringUtil } from "../../../util/StringUtil";
 import { QxObject } from "../../core";
 import { QxFactory } from "../../factory";
@@ -43,6 +44,13 @@ export class QxWidget extends QxObject {
 
     getHeight(): string {
         return this.getStyle(StyleConstants.Height);
+    }
+
+    getLayoutParentWidget(): QxWidget | null {
+        const parentQxWidget = this.widget.getLayoutParent();
+        if (!parentQxWidget)
+            return null;
+        return QxWidgetUtil.getTypeScriptWidget(parentQxWidget);
     }
 
     getStyle(key: string): any {

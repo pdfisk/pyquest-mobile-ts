@@ -79,4 +79,16 @@ export class BoardRow extends QxHBox {
             tile.restore();
     }
 
+    setRowWidthAndHeight(rowWidth: number, rowHeight: number) {
+        const adjustedRowHeight = rowHeight - SizeConstants.BoardRowHeightAdjust;
+        this.setHeightPx(adjustedRowHeight);
+        this.setMaxHeightPx(adjustedRowHeight);
+        const widthWithoutMargins = rowWidth - (this.boardSize - 1) * SizeConstants.BoardTileRowSeparatorWidth;
+        const tileWidth = widthWithoutMargins / this.boardSize;
+        this.tiles.forEach((tile) => {
+            tile.setTileWidthAndHeight(tileWidth, adjustedRowHeight);
+        });
+        console.log('BoardRow setRowWidthAndHeight', rowHeight, rowWidth);
+    }
+
 }
