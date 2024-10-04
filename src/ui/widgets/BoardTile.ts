@@ -11,12 +11,32 @@ export class BoardTile extends QxAtom {
     cachedText: string = '';
     columnIndex: number;
     rowIndex: number;
+    tileHeight: number = 0;
+    tileWidth: number = 0;
 
     constructor(boardPanel: BoardPanel, rowIndex: number, columnIndex: number) {
         super('');
         this.boardPanel = boardPanel;
         this.rowIndex = rowIndex;
         this.columnIndex = columnIndex;
+    }
+
+    applyTileWidthAndHeight() {
+        if (this.tileWidth === 0 || this.tileHeight === 0)
+            return;
+        this.setWidthPx(this.tileWidth);
+        this.setMaxWidthPx(this.tileWidth);
+        this.setHeightPx(this.tileHeight);
+        this.setMaxHeightPx(this.tileHeight);
+        this.setLabelWidthPx(this.tileWidth);
+        this.setLabelMaxWidthPx(this.tileWidth);
+        this.setLabelLineHeightPx(this.tileHeight);
+        this.setLabelHeightPx(this.tileHeight);
+        this.setLabelMaxHeightPx(this.tileHeight);
+        this.setIconHeightPx(this.tileHeight);
+        this.setIconMaxHeightPx(this.tileHeight);
+        this.setIconWidthPx(this.tileWidth);
+        this.setIconMaxWidthPx(this.tileWidth);
     }
 
     cacheAndRelease() {
@@ -65,7 +85,7 @@ export class BoardTile extends QxAtom {
     }
 
     onAppear() {
-        // super.onAppear();
+        super.onAppear();
         // const height = this.getHeight();
         // const width = this.getWidth();
         // this.setMaxHeight(height);
@@ -121,6 +141,7 @@ export class BoardTile extends QxAtom {
     }
 
     setImage(path: string) {
+            (window as any).X = this;
         // this.cacheAndRelease();
         if (this.hasAppeared) {
             // this.lockMaxValues();
@@ -142,13 +163,9 @@ export class BoardTile extends QxAtom {
     }
 
     setTileWidthAndHeight(width: number, height: number) {
-        this.setLabelLineHeightPx(height);
-        this.setWidthPx(width);
-        this.setMaxWidthPx(width);
-        this.setHeightPx(height);
-        this.setMaxHeightPx(height);
-        if (this.rowIndex == 1 && this.columnIndex == 1)
-            (window as any).X = this;
+        this.tileWidth = width;
+        this.tileHeight = height;
+        this.applyTileWidthAndHeight();
     }
 
 }

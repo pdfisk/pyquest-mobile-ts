@@ -42,7 +42,7 @@ export class QxAtom extends QxWidget {
     }
 
     setIcon(iconPath: string) {
-        // this.widget.setIcon(iconPath);
+        this.widget.setIcon(iconPath);
     }
 
     setIconHeight(height: string) {
@@ -87,6 +87,14 @@ export class QxAtom extends QxWidget {
         this.widget.setLabel(label);
     }
 
+    setLabelHeight(height: string) {
+        this.setLabelStyle(StyleConstants.Height, height);
+    }
+
+    setLabelHeightPx(height: number) {
+        this.setLabelHeight(StringUtil.asPixels(height));
+    }
+
     setLabelLineHeightPx(value: number) {
         this.setLabelLineHeightStyle(StringUtil.asPixels(value));
     }
@@ -95,10 +103,34 @@ export class QxAtom extends QxWidget {
         this.setLabelStyle(StyleConstants.LineHeight, value);
     }
 
+    setLabelMaxHeight(height: string) {
+        this.setLabelStyle(StyleConstants.MaxHeight, height);
+    }
+
+    setLabelMaxHeightPx(height: number) {
+        this.setLabelMaxHeight(StringUtil.asPixels(height));
+    }
+
+    setLabelMaxWidth(width: string) {
+        this.setLabelStyle(StyleConstants.MaxWidth, width);
+    }
+
+    setLabelMaxWidthPx(width: number) {
+        this.setLabelMaxWidth(StringUtil.asPixels(width));
+    }
+
     setLabelStyle(key: string, value: string) {
         const widget = this.getLabelWidget();
         if (widget)
             widget._setStyle(key, value);
+    }
+
+    setLabelWidth(width: string) {
+        this.setLabelStyle(StyleConstants.Width, width);
+    }
+
+    setLabelWidthPx(width: number) {
+        this.setLabelWidth(StringUtil.asPixels(width));
     }
 
     setShow(show: string) {
