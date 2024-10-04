@@ -86,14 +86,8 @@ export class BoardTile extends QxAtom {
 
     onAppear() {
         super.onAppear();
-        // const height = this.getHeight();
-        // const width = this.getWidth();
-        // this.setMaxHeight(height);
-        // this.setMaxWidth(width);
-        this.setLabelStyle(FontConstants.FONT_FAMILY, FontConstants.FontFamilyMonospace);
-        this.setLabelStyle(FontConstants.FONT_WEIGHT, FontConstants.FontWeightBold);
-        this.setLabelStyle(FontConstants.FONT_SIZE, FontConstants.FontSize2_5Em);
-        // this.setLabelLineHeightStyle(height);
+        this.setIconStyles();
+        this.setLabelStyles();
         this.restore();
     }
 
@@ -132,12 +126,22 @@ export class BoardTile extends QxAtom {
     saveValue() {
     }
 
-    setIconStyles(tileWidth: number, tileHeight: number) {
+    setIconStyles() {
         this.setIconStyle(StyleConstants.ObjectFit, StyleConstants.ObjectFitContain);
-        this.setIconStyle(StyleConstants.Height, StringUtil.asPixels(tileHeight));
-        this.setIconStyle(StyleConstants.MaxHeight, StringUtil.asPixels(tileHeight));
-        this.setIconStyle(StyleConstants.Width, StringUtil.asPixels(tileWidth));
-        this.setIconStyle(StyleConstants.MaxWidth, StringUtil.asPixels(tileWidth));
+        this.setIconStyle(StyleConstants.Height, StringUtil.asPixels(this.tileHeight));
+        this.setIconStyle(StyleConstants.MaxHeight, StringUtil.asPixels(this.tileHeight));
+        this.setIconStyle(StyleConstants.Width, StringUtil.asPixels(this.tileWidth));
+        this.setIconStyle(StyleConstants.MaxWidth, StringUtil.asPixels(this.tileWidth));
+    }
+
+    setLabelStyles() {
+        this.setLabelStyle(FontConstants.FONT_FAMILY, FontConstants.FontFamilyMonospace);
+        this.setLabelStyle(FontConstants.FONT_WEIGHT, FontConstants.FontWeightBold);
+        this.setLabelStyle(FontConstants.FONT_SIZE, FontConstants.FontSize2_5Em);
+        this.setLabelStyle(StyleConstants.Height, StringUtil.asPixels(this.tileHeight));
+        this.setLabelStyle(StyleConstants.MaxHeight, StringUtil.asPixels(this.tileHeight));
+        this.setLabelStyle(StyleConstants.Width, StringUtil.asPixels(this.tileWidth));
+        this.setLabelStyle(StyleConstants.MaxWidth, StringUtil.asPixels(this.tileWidth));
     }
 
     setImage(path: string) {

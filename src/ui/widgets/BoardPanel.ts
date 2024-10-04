@@ -44,10 +44,14 @@ export class BoardPanel extends QxVBox {
     }
 
     applyResize() {
+        if (this.tileMap.size < this.boardSize * this.boardSize)
+            return;
         const rowHeight = this.adjustedHeight / this.boardSize;
-        this.rows.forEach((row) => {
-            row.setRowWidthAndHeight(this.adjustedWidth, rowHeight);
-        });
+        const tileHeight = rowHeight - SizeConstants.BoardRowHeightAdjust;
+        const widthWithoutMargins = this.adjustedWidth - (this.boardSize - 1) * SizeConstants.BoardTileRowSeparatorWidth;
+        const tileWidth = widthWithoutMargins / this.boardSize;
+        for (let tile of this.tileMap.values())
+            tile.setTileWidthAndHeight(tileWidth, tileHeight);
     }
 
     buildTileMap() {
@@ -164,7 +168,6 @@ export class BoardPanel extends QxVBox {
         this.adjustedWidth = adjustedWidth;
         this.adjustedHeight = adjustedHeight;
         this.applyResize();
-        console.log('BoardPanel setAdjustedWidthAndHeight', adjustedWidth, adjustedHeight);
     }
 
     setHeightPx(height: number) {
