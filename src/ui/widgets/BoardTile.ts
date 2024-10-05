@@ -1,5 +1,5 @@
 import { VmApi } from "../../api";
-import { ColorConstants, EventConstants, FontConstants, StyleConstants } from "../../constants";
+import { ActionConstants, ColorConstants, EventConstants, FontConstants, QxConstants, StyleConstants } from "../../constants";
 import { MessageBus } from "../../messages";
 import { QxAtom } from "../../qx/mobile/basic/QxAtom";
 import { StringUtil } from "../../util/StringUtil";
@@ -45,6 +45,42 @@ export class BoardTile extends QxAtom {
     }
 
     copy(destTile: BoardTile) {
+        switch (this.getShow()) {
+            case QxConstants.AtomShowIcon:
+                destTile.setImage(this.getIcon());
+                this.clear();
+                break;
+            case QxConstants.AtomShowLabel:
+                destTile.setText(this.getLabel());
+                this.clear();
+                break;
+            default:
+                console.log('BoardTile copy', this.getShow());
+                break;
+        }
+    }
+
+    getOffset(direction: string): any {
+        let row = this.rowIndex;
+        let column = this.columnIndex;
+        switch (direction) {
+            case ActionConstants.MoveDirectionDown:
+                row++;
+                break;
+            case ActionConstants.MoveDirectionLeft:
+                column--;
+                break;
+            case ActionConstants.MoveDirectionRight:
+                column++;
+                break;
+            case ActionConstants.MoveDirectionUp:
+                row--;
+                break;
+            default:
+                console.log('BoardTile getOffset', direction);
+                break;
+        }
+        return { row: row, column: column };
     }
 
     handlesOnAppear(): boolean {

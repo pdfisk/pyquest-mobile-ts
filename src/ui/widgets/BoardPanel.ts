@@ -103,6 +103,9 @@ export class BoardPanel extends QxVBox {
             case ActionConstants.ActionClear:
                 this.performActionClear();
                 break;
+            case ActionConstants.ActionMoveTile:
+                this.performActionMoveTile(actionRec.args);
+                break;
             case ActionConstants.ActionSetSize:
                 this.performActionSetSize(actionRec.args);
                 break;
@@ -120,6 +123,21 @@ export class BoardPanel extends QxVBox {
 
     performActionClear() {
         this.clear();
+    }
+
+    performActionMoveTile(args: any) {
+        const row: number = args[0];
+        const column: number = args[1];
+        const direction: string = args[2];
+        const tile_1 = this.getTile(row, column);
+        console.log(`row: ${row} column: ${column} direction: ${direction} tile_1: ${tile_1}`)
+        if (!tile_1) return;
+        const offset = tile_1.getOffset(direction);
+        const tile_2 = this.getTile(offset.row, offset.column);
+        console.log(`row: ${offset.row} column: ${offset.column} direction: ${direction} tile_2: ${tile_2}`)
+        if (!tile_2) return;
+        tile_1.copy(tile_2);
+        console.log('performActionMoveTile', row, column, direction);
     }
 
     performActionSetSize(args: any[]) {

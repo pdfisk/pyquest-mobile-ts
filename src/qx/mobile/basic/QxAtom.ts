@@ -138,7 +138,7 @@ export class QxAtom extends QxWidget {
     }
 
     setText(text: string) {
-        this.setShow(QxConstants.AtomShowText);
+        this.setShow(QxConstants.AtomShowLabel);
         this.setLabel(text);
         this.hideImage();
         this.showText();
