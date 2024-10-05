@@ -25,7 +25,9 @@ export class StyleConstants {
     static PaddingLeft: string = 'paddingLeft';
     static PaddingRight: string = 'paddingRight';
     static PaddingTop: string = 'paddingTop';
+    static TextAlign: string = 'textAlign';
     static Width: string = 'width';
 
     static BorderSlateGray2: string = '2px solid slategray';
+    static TextAlignCenter: string = 'center';
 }

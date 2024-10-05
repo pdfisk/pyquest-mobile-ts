@@ -39,13 +39,6 @@ export class BoardTile extends QxAtom {
         this.setIconMaxWidthPx(this.tileWidth);
     }
 
-    cacheAndRelease() {
-        this.cachedPath = this.getIcon();
-        this.cachedText = this.getLabel();
-        this.clear();
-        super.unlockMaxAndMin();
-    }
-
     clear() {
         this.hideImage();
         this.hideText();
@@ -68,7 +61,6 @@ export class BoardTile extends QxAtom {
     }
 
     lockTileMaxValues(tileWidth: number, tileHeight: number) {
-        console.log('BoardTile lockMaxValues', tileWidth, tileHeight);
         this.setLineHeightPx(tileHeight);
         this.setHeightPx(tileHeight);
         this.setMaxHeightPx(tileHeight);
@@ -114,13 +106,17 @@ export class BoardTile extends QxAtom {
     }
 
     restoreImage() {
-        if (this.cachedPath && this.cachedPath.length > 0)
+        if (this.cachedPath && this.cachedPath.length > 0) {
             this.setImage(this.cachedPath);
+            this.showImage();
+        }
     }
 
     restoreLabel() {
-        if (this.cachedText && this.cachedText.length > 0)
+        if (this.cachedText && this.cachedText.length > 0) {
             this.setLabel(this.cachedText);
+            this.showText();
+        }
     }
 
     saveValue() {
@@ -140,15 +136,13 @@ export class BoardTile extends QxAtom {
         this.setLabelStyle(FontConstants.FONT_SIZE, FontConstants.FontSize2_5Em);
         this.setLabelStyle(StyleConstants.Height, StringUtil.asPixels(this.tileHeight));
         this.setLabelStyle(StyleConstants.MaxHeight, StringUtil.asPixels(this.tileHeight));
-        this.setLabelStyle(StyleConstants.Width, StringUtil.asPixels(this.tileWidth));
         this.setLabelStyle(StyleConstants.MaxWidth, StringUtil.asPixels(this.tileWidth));
+        this.setLabelStyle(StyleConstants.TextAlign, StyleConstants.TextAlignCenter);
+        this.setLabelStyle(StyleConstants.Width, StringUtil.asPixels(this.tileWidth));
     }
 
     setImage(path: string) {
-            (window as any).X = this;
-        // this.cacheAndRelease();
         if (this.hasAppeared) {
-            // this.lockMaxValues();
             this.setIcon(path);
             this.showImage();
         }
@@ -157,10 +151,9 @@ export class BoardTile extends QxAtom {
     }
 
     setText(text: string) {
-        this.cacheAndRelease();
         if (this.hasAppeared) {
-            this.lockMaxValues();
             this.setLabel(text);
+            this.showText();
         }
         else
             this.cachedText = text;
