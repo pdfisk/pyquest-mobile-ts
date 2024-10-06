@@ -145,10 +145,12 @@ export class QxAtom extends QxWidget {
     }
 
     showImage() {
+        this.setShow(QxConstants.AtomShowIcon);
         this.getIconWidget().show();
     }
 
     showText() {
+        this.setShow(QxConstants.AtomShowLabel);
         this.getLabelWidget().show();
     }
 

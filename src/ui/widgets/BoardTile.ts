@@ -1,7 +1,9 @@
 import { VmApi } from "../../api";
 import { ActionConstants, ColorConstants, EventConstants, FontConstants, QxConstants, StyleConstants } from "../../constants";
+import { DeferredConstants } from "../../constants/DeferredConstants";
 import { MessageBus } from "../../messages";
 import { QxAtom } from "../../qx/mobile/basic/QxAtom";
+import { DeferredCommand } from "../../util/DeferredCommand";
 import { StringUtil } from "../../util/StringUtil";
 import { BoardPanel } from "./BoardPanel";
 
@@ -10,6 +12,7 @@ export class BoardTile extends QxAtom {
     cachedPath: string = '';
     cachedText: string = '';
     columnIndex: number;
+    deferredCommands: DeferredCommand[];
     rowIndex: number;
     tileHeight: number = 0;
     tileWidth: number = 0;
@@ -17,8 +20,15 @@ export class BoardTile extends QxAtom {
     constructor(boardPanel: BoardPanel, rowIndex: number, columnIndex: number) {
         super('');
         this.boardPanel = boardPanel;
+        this.deferredCommands = [];
         this.rowIndex = rowIndex;
         this.columnIndex = columnIndex;
+    }
+
+    applyDeferredCommands() {
+        this.deferredCommands.forEach((cmd) => {
+            cmd.apply(this);
+        });
     }
 
     applyTileWidthAndHeight() {
@@ -40,15 +50,25 @@ export class BoardTile extends QxAtom {
     }
 
     clear() {
+        if (!this.hasAppeared) {
+            this.pushDeferredCommand(DeferredConstants.Clear);
+            return;
+        }
         this.hideImage();
         this.hideText();
     }
 
     copy(destTile: BoardTile) {
+        if (!this.hasAppeared) {
+            this.pushDeferredCommand(DeferredConstants.Copy, destTile);
+            return;
+        }
         switch (this.getShow()) {
             case QxConstants.AtomShowIcon:
+                console.log('COPY ICON', this.hasAppeared, destTile.hasAppeared);
                 destTile.setImage(this.getIcon());
                 this.clear();
+                (window as any).X = [this, destTile];
                 break;
             case QxConstants.AtomShowLabel:
                 destTile.setText(this.getLabel());
@@ -116,7 +136,7 @@ export class BoardTile extends QxAtom {
         super.onAppear();
         this.setIconStyles();
         this.setLabelStyles();
-        this.restore();
+        this.applyDeferredCommands();
     }
 
     onClick() {
@@ -134,6 +154,10 @@ export class BoardTile extends QxAtom {
         const args = [this.rowIndex, this.columnIndex, this.getLabel()];
         MessageBus.dispatch(eventName, args);
         VmApi.postEvent(eventName, args);
+    }
+
+    pushDeferredCommand(cmd: string, ...args: any[]) {
+        this.deferredCommands.push(new DeferredCommand(cmd, args));
     }
 
     restore() {
@@ -178,21 +202,21 @@ export class BoardTile extends QxAtom {
     }
 
     setImage(path: string) {
-        if (this.hasAppeared) {
-            this.setIcon(path);
-            this.showImage();
+        if (!this.hasAppeared) {
+            this.pushDeferredCommand(DeferredConstants.SetImage, path);
+            return;
         }
-        else
-            this.cachedPath = path;
+        this.showImage();
+        this.setIcon(path);
     }
 
     setText(text: string) {
-        if (this.hasAppeared) {
-            this.setLabel(text);
-            this.showText();
+        if (!this.hasAppeared) {
+            this.pushDeferredCommand(DeferredConstants.SetText, text);
+            return;
         }
-        else
-            this.cachedText = text;
+        this.showText();
+        this.setLabel(text);
     }
 
     setTileWidthAndHeight(width: number, height: number) {
