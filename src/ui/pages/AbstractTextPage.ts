@@ -49,7 +49,12 @@ export abstract class AbstractTextPage extends AbstractPage {
         return this;
     }
 
+    resizeWidthAndHeight(adjustedWidth: number, adjustedHeight: number) {
+        this.setTextAreaHeight(adjustedHeight);
+    }
+
     setAdjustedHeight(adjustedHeight: number): void {
+        console.log('AbstractTextPage setAdjustedHeight', adjustedHeight);
         this.setTextAreaHeight(adjustedHeight);
     }
 
@@ -57,6 +62,8 @@ export abstract class AbstractTextPage extends AbstractPage {
     }
 
     setTextAreaHeight(height: number) {
+        console.log('setTextAreaHeight', height);
+        (window as any).X = this;
         this.textArea?.setHeightPx(height);
     }
 
