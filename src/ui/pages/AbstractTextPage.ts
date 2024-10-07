@@ -53,18 +53,8 @@ export abstract class AbstractTextPage extends AbstractPage {
         this.setTextAreaHeight(adjustedHeight);
     }
 
-    // setAdjustedHeight(adjustedHeight: number): void {
-    //     console.log('AbstractTextPage setAdjustedHeight', adjustedHeight);
-    //     this.setTextAreaHeight(adjustedHeight);
-    // }
-
-    // setAdjustedWidth(adjustedWidth: number): void {
-    // }
-
-    setTextAreaHeight(height: number) {
-        console.log('setTextAreaHeight', height);
-        (window as any).X = this;
-        this.textArea?.setHeightPx(height);
+    setTextAreaHeight(adjustedHeight: number) {
+        this.textArea?.setHeightPx(adjustedHeight);
     }
 
     setValue(text: string): AbstractTextPage {

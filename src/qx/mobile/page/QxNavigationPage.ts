@@ -55,9 +55,6 @@ export class QxNavigationPage extends QxPage {
     resizeWidthAndHeight(width: number, height: number) {
     }
 
-    restore() {
-    }
-
     setTitle(title: string) {
         this.widget.setTitle(title);
     }
