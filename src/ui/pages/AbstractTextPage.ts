@@ -1,3 +1,4 @@
+import { SizeConstants } from "../../constants";
 import { QxTextArea } from "../../qx/mobile/form/QxTextArea";
 import { StringUtil } from "../../util/StringUtil";
 import { AbstractPage } from "./AbstractPage";
@@ -50,7 +51,7 @@ export abstract class AbstractTextPage extends AbstractPage {
     }
 
     resizeWidthAndHeight(adjustedWidth: number, adjustedHeight: number) {
-        this.setTextAreaHeight(adjustedHeight);
+        this.setTextAreaHeight(adjustedHeight - SizeConstants.TextPanelHeightAdjust);
     }
 
     setTextAreaHeight(adjustedHeight: number) {

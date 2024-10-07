@@ -81,15 +81,6 @@ export class BoardPanel extends QxVBox {
         return true;
     }
 
-    lockMaxValues() {
-        const height = this.getBoundingHeight();
-        const width = this.getBoundingWidth();
-        const rowHeight = (height - (this.boardSize - 1)) / this.boardSize;
-        console.log('BoardPanel lockMaxValues', width, height, rowHeight);
-        for (let row of this.rows)
-            row.lockRowMaxValues(width, rowHeight);
-    }
-
     onAppear() {
         super.onAppear();
         this.addRows();

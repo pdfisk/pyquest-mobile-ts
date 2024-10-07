@@ -32,9 +32,6 @@ export class QxNavigationPage extends QxPage {
         return this.widget.getTitle();
     }
 
-    lockMaxValues() {
-    }
-
     onAppear() {
         this.addContent();
         this.resize();

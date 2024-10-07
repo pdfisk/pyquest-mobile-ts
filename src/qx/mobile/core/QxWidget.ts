@@ -75,13 +75,6 @@ export class QxWidget extends QxObject {
         return false;
     }
 
-    lockMaxValues() {
-        const width = this.getWidth();
-        const height = this.getHeight();
-        this.setMaxHeight(height);
-        this.setMaxWidth(width);
-    }
-
     onAppear() {
         this.hasAppeared = true;
     }
@@ -197,13 +190,6 @@ export class QxWidget extends QxObject {
 
     setWidthPx(width: number) {
         this.setWidth(StringUtil.asPixels(width));
-    }
-
-    unlockMaxAndMin() {
-        this.setHeight(undefined);
-        this.setWidth(undefined);
-        this.setMaxHeight(undefined);
-        this.setMaxWidth(undefined);
     }
 
 }
