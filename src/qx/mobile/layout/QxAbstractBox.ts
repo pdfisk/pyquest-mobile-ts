@@ -1,6 +1,6 @@
-import { QxAbstract } from "./QxAbstract";
+import { QxAbstractLayout } from "./QxAbstractLayout";
 
-export abstract class QxAbstractBox extends QxAbstract {
+export abstract class QxAbstractBox extends QxAbstractLayout {
 
     constructor(widget: any) {
         super(widget);
