@@ -25,7 +25,7 @@ export class VmApi {
     }
 
     static run(src: string, inputId: number = 0, outputId: number = 0): number {
-        return this.getInstance().run(src, inputId, outputId);
+        return this.getInstance().run_with_toast(src, inputId, outputId);
     }
 
     private constructor() {
@@ -39,13 +39,30 @@ export class VmApi {
         return fn.call(this.getOpalVmApi(), ...args);
     }
 
+    compile_to_json(src: string): string | null {
+        const compileFn: Function = this.getVmApiCompileToJsonFn();
+        if (compileFn)
+            return this.callVmApiFn(compileFn, src);
+        return null;
+    }
+
     getOpalVmApi(): any {
         return (window as any).Opal['VmApi'];
+    }
+
+    getVmApiCompileToJsonFn(): Function {
+        const vmApi: any = this.getOpalVmApi();
+        return vmApi ? vmApi[VmApiConstants.COMPILE_TO_JSON] : null;
     }
 
     getVmApiRunFn(): Function {
         const vmApi: any = this.getOpalVmApi();
         return vmApi ? vmApi[VmApiConstants.RUN] : null;
+    }
+
+    getVmApiRunCompiledFn(): Function {
+        const vmApi: any = this.getOpalVmApi();
+        return vmApi ? vmApi[VmApiConstants.RUN_COMPILED] : null;
     }
 
     getVmApiSetActionHandlerFn(): Function {
@@ -92,6 +109,19 @@ export class VmApi {
         if (runFn) {
             const jsonStr: string = this.callVmApiFn(runFn, src, inputId, outputId);
             const data: any = JSON.parse(jsonStr);
+            return data.id;
+        }
+        else
+            return -1;
+    }
+
+    run_with_toast(src: string, inputId: number, outputId: number): number {
+        const compiledObjectJson = this.compile_to_json(src);
+        if (!compiledObjectJson) return -1;
+        const runCompiledFn: Function = this.getVmApiRunCompiledFn();
+        if (runCompiledFn) {
+            const resultJsonStr = this.callVmApiFn(runCompiledFn, compiledObjectJson);
+            const data: any = JSON.parse(resultJsonStr);
             return data.id;
         }
         else

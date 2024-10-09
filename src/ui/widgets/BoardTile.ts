@@ -65,10 +65,8 @@ export class BoardTile extends QxAtom {
         }
         switch (this.getShow()) {
             case QxConstants.AtomShowIcon:
-                console.log('COPY ICON', this.hasAppeared, destTile.hasAppeared);
                 destTile.setImage(this.getIcon());
                 this.clear();
-                (window as any).X = [this, destTile];
                 break;
             case QxConstants.AtomShowLabel:
                 destTile.setText(this.getLabel());
