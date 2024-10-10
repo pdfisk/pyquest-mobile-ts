@@ -118,15 +118,17 @@ export class VmApi {
     }
 
     run_with_toast(src: string, inputId: number, outputId: number): number {
-        const onAppearFn = () => {
-            console.log('onAppearFn');
-            const compiledObjectJson = this.compile_to_json(src);
-            console.log('after compile', compiledObjectJson);
+        const userFn_1 = (toast: Toast) => {
+            return this.compile_to_json(src);
         };
-        Toast.showNoClose('Compiling...', onAppearFn);
+        const userFn_2 = (toast: Toast) => {
+            console.log('userResult_1', toast.userResult_1);
+            return null;
+        };
+        Toast.showNoClose('Compiling...', userFn_1, userFn_2);
         // console.log('compiling...');
         // const compiledObjectJson = this.compile_to_json(src);
-        // DeferredCall.schedule(() => {
+        // DeferredCall.scheduuserFnle(() => {
         //     toast.hide();
         //     console.log('hide');
         // });
