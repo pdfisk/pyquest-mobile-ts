@@ -19,6 +19,7 @@ export class SizeConstants {
     static DefaultWindowContentPadding: number = 0;
     static DefaultWindowHeight: number = 275;
     static DefaultWindowWidth: number = 325;
+    static DrawerSize: number = 40;
     static DrawerTapOffset: number = 100;
     static LabelSize24: number = 24;
     static LoginPanelColOneWidth: number = 175;

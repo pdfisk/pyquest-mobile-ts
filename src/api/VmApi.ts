@@ -1,6 +1,8 @@
 import { VmApiConstants } from "../constants/VmApiConstants";
 import { ActionHandler } from "../handlers/ActionHandler";
 import { ResultHandler } from "../handlers/ResultHandler";
+import { Toast } from "../ui/widgets/Toast";
+import { DeferredCall } from "../util";
 
 export class VmApi {
 
@@ -116,16 +118,27 @@ export class VmApi {
     }
 
     run_with_toast(src: string, inputId: number, outputId: number): number {
-        const compiledObjectJson = this.compile_to_json(src);
-        if (!compiledObjectJson) return -1;
-        const runCompiledFn: Function = this.getVmApiRunCompiledFn();
-        if (runCompiledFn) {
-            const resultJsonStr = this.callVmApiFn(runCompiledFn, compiledObjectJson);
-            const data: any = JSON.parse(resultJsonStr);
-            return data.id;
-        }
-        else
-            return -1;
+        const onAppearFn = () => {
+            console.log('onAppearFn');
+            const compiledObjectJson = this.compile_to_json(src);
+            console.log('after compile', compiledObjectJson);
+        };
+        Toast.showNoClose('Compiling...', onAppearFn);
+        // console.log('compiling...');
+        // const compiledObjectJson = this.compile_to_json(src);
+        // DeferredCall.schedule(() => {
+        //     toast.hide();
+        //     console.log('hide');
+        // });
+        // if (!compiledObjectJson) return -1;
+        // const runCompiledFn: Function = this.getVmApiRunCompiledFn();
+        // if (runCompiledFn) {
+        //     const resultJsonStr = this.callVmApiFn(runCompiledFn, compiledObjectJson);
+        //     const data: any = JSON.parse(resultJsonStr);
+        //     return data.id;
+        // }
+        // else
+        return -1;
     }
 
     setAction(src: string, inputId: number, outputId: number) {

@@ -73,7 +73,7 @@ export class QxFactory {
     }
 
     static timerManager(): any {
-        return new (window as any).qx.util.TimerManager.getInstance();
+        return (window as any).qx.util.TimerManager.getInstance();
     }
 
 }
