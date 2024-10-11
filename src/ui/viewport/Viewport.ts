@@ -1,9 +1,9 @@
 import { PageConstants } from '../../constants/PageConstants';
 import { QxMobileApplication } from '../../qx/application/QxMobileApplication';
 import { QxMobileRouting } from '../../qx/application/QxMobileRouting';
-import { QxComposite } from '../../qx/mobile/container/QxComposite';
-import { QxRoot } from '../../qx/mobile/core/QxRoot';
-import { QxPageManager } from '../../qx/mobile/page/QxPageManager';
+import { QxComposite } from '../../qx/ui/mobile/container/QxComposite';
+import { QxRoot } from '../../qx/ui/mobile/core/QxRoot';
+import { QxPageManager } from '../../qx/ui/mobile/page/QxPageManager';
 import { BoardPage } from '../pages/BoardPage';
 import { EditorPage } from '../pages/EditorPage';
 import { HomePage } from '../pages/HomePage';

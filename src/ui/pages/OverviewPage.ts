@@ -1,8 +1,8 @@
 import { EventConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
-import { QxScroll } from "../../qx/mobile/container/QxScroll";
-import { QxList } from "../../qx/mobile/list/QxList";
+import { QxScroll } from "../../qx/ui/mobile/container/QxScroll";
+import { QxList } from "../../qx/ui/mobile/list/QxList";
 import { AbstractRoutingPage } from "./AbstractRoutingPage";
 
 export class OverviewPage extends AbstractRoutingPage {

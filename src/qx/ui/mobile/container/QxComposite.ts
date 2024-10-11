@@ -1,4 +1,4 @@
-import { QxFactory } from "../../factory";
+import { QxFactory } from "../../../factory";
 import { QxWidget } from "../core/QxWidget";
 import { QxAbstractBox } from "../layout/QxAbstractBox";
 

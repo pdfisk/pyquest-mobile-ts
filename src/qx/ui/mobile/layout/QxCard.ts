@@ -1,4 +1,4 @@
-import { QxFactory } from "../../factory";
+import { QxFactory } from "../../../factory";
 import { QxAbstractLayout } from "./QxAbstractLayout";
 
 export  class QxCard extends QxAbstractLayout {

@@ -1,6 +1,6 @@
 import { QxConstants } from "../../constants";
 import { QxWidgetUtil } from "../../util";
-import { QxWidget } from "../mobile/core/QxWidget";
+import { QxWidget } from "../ui/mobile/core/QxWidget";
 
 export abstract class QxObject {
     id: number;

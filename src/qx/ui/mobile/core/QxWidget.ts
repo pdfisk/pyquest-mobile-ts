@@ -1,8 +1,8 @@
-import { EventConstants, SizeConstants, StyleConstants } from "../../../constants";
-import { QxWidgetUtil } from "../../../util";
-import { StringUtil } from "../../../util/StringUtil";
-import { QxObject } from "../../core";
-import { QxFactory } from "../../factory";
+import { EventConstants, SizeConstants, StyleConstants } from "../../../../constants";
+import { QxWidgetUtil } from "../../../../util";
+import { StringUtil } from "../../../../util/StringUtil";
+import { QxObject } from "../../../core";
+import { QxFactory } from "../../../factory";
 
 export class QxWidget extends QxObject {
     hasAppeared: boolean = false;

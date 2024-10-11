@@ -1,4 +1,4 @@
-import { QxMobileApplication } from "../../application/QxMobileApplication";
+import { QxMobileApplication } from "../../../application/QxMobileApplication";
 import { QxComposite } from "../container/QxComposite";
 
 export class QxRoot extends QxComposite {

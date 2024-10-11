@@ -1,5 +1,5 @@
-import { ResizeManager } from "../../../util/ResizeManager";
-import { QxFactory } from "../../factory";
+import { ResizeManager } from "../../../../util/ResizeManager";
+import { QxFactory } from "../../../factory";
 import { QxRoot } from "../core/QxRoot";
 import { QxPage } from "./QxPage";
 

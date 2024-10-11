@@ -1,5 +1,5 @@
-import { EventConstants } from "../../../constants";
-import { QxFactory } from "../../factory";
+import { EventConstants } from "../../../../constants";
+import { QxFactory } from "../../../factory";
 import { QxAtom } from "../basic/QxAtom";
 
 export class QxButton extends QxAtom {

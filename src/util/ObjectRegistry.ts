@@ -1,4 +1,4 @@
-import { QxWidget } from "../qx/mobile/core/QxWidget";
+import { QxWidget } from "../qx/ui/mobile/core/QxWidget";
 
 export class ObjectRegistry {
     objectMap: Map<number, any>;

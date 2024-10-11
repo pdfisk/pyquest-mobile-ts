@@ -1,5 +1,5 @@
 import { SizeConstants } from "../../constants";
-import { QxTextArea } from "../../qx/mobile/form/QxTextArea";
+import { QxTextArea } from "../../qx/ui/mobile/form/QxTextArea";
 import { StringUtil } from "../../util/StringUtil";
 import { AbstractPage } from "./AbstractPage";
 

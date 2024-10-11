@@ -1,4 +1,4 @@
-import { QxObject } from "../../core";
+import { QxObject } from "../../../core";
 
 export abstract class QxAbstractLayout extends QxObject {
 

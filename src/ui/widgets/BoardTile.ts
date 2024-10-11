@@ -2,7 +2,7 @@ import { VmApi } from "../../api";
 import { ActionConstants, ColorConstants, EventConstants, FontConstants, QxConstants, StyleConstants } from "../../constants";
 import { DeferredConstants } from "../../constants/DeferredConstants";
 import { MessageBus } from "../../messages";
-import { QxAtom } from "../../qx/mobile/basic/QxAtom";
+import { QxAtom } from "../../qx/ui/mobile/basic/QxAtom";
 import { DeferredCommand } from "../../util/DeferredCommand";
 import { StringUtil } from "../../util/StringUtil";
 import { BoardPanel } from "./BoardPanel";

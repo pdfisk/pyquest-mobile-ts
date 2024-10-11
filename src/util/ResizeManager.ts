@@ -1,5 +1,5 @@
 import { EventConstants } from "../constants";
-import { QxNavigationPage } from "../qx/mobile/page/QxNavigationPage";
+import { QxNavigationPage } from "../qx/ui/mobile/page/QxNavigationPage";
 
 export class ResizeManager {
     subscribers: QxNavigationPage[];

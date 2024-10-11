@@ -1,6 +1,6 @@
 import { QxConstants } from "../../constants";
-import { QxDrawer } from "../../qx/mobile/container/QxDrawer";
-import { QxWidget } from "../../qx/mobile/core/QxWidget";
+import { QxDrawer } from "../../qx/ui/mobile/container/QxDrawer";
+import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { TimerManager } from "../../util/TimerManager";
 
 export class Toast extends QxWidget {

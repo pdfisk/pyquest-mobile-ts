@@ -1,5 +1,5 @@
 import { QxObject } from "../core";
-import { QxNavigationPage } from "../mobile/page/QxNavigationPage";
+import { QxNavigationPage } from "../ui/mobile/page/QxNavigationPage";
 import { QxMobileApplication } from "./QxMobileApplication";
 
 export class QxMobileRouting extends QxObject {

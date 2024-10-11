@@ -1,6 +1,6 @@
-import { AbstractPage } from "../../../ui/pages/AbstractPage";
-import { QxObject } from "../../core";
-import { QxFactory } from "../../factory";
+import { AbstractPage } from "../../../../ui/pages/AbstractPage";
+import { QxObject } from "../../../core";
+import { QxFactory } from "../../../factory";
 import { QxNavigationPage } from "./QxNavigationPage";
 
 export class QxPageManager extends QxObject {

@@ -1,5 +1,5 @@
-import { SizeConstants } from "../../../constants";
-import { QxFactory } from "../../factory";
+import { SizeConstants } from "../../../../constants";
+import { QxFactory } from "../../../factory";
 import { QxButton } from "../form/QxButton";
 import { QxCard } from "../layout/QxCard";
 import { QxComposite } from "./QxComposite";

@@ -1,6 +1,6 @@
 import { ActionConstants, ColorConstants, SizeConstants } from "../../constants";
 import { ActionRec } from "../../handlers";
-import { QxVBox } from "../../qx/mobile/container/QxVBox";
+import { QxVBox } from "../../qx/ui/mobile/container/QxVBox";
 import { ResizeManager } from "../../util/ResizeManager";
 import { StringUtil } from "../../util/StringUtil";
 import { BoardRow } from "./BoardRow";

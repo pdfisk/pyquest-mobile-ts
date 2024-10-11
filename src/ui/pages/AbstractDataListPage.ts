@@ -1,7 +1,7 @@
 import { EventConstants } from "../../constants";
 import { AbstractStore } from "../../data";
-import { QxScroll } from "../../qx/mobile/container/QxScroll";
-import { QxList } from "../../qx/mobile/list/QxList";
+import { QxScroll } from "../../qx/ui/mobile/container/QxScroll";
+import { QxList } from "../../qx/ui/mobile/list/QxList";
 import { AbstractPage } from "./AbstractPage";
 
 export abstract class AbstractDataListPage extends AbstractPage {

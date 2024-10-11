@@ -1,6 +1,6 @@
-import { QxConstants, StyleConstants } from "../../../constants";
-import { StringUtil } from "../../../util/StringUtil";
-import { QxFactory } from "../../factory";
+import { QxConstants, StyleConstants } from "../../../../constants";
+import { StringUtil } from "../../../../util/StringUtil";
+import { QxFactory } from "../../../factory";
 import { QxWidget } from "../core/QxWidget";
 
 export class QxAtom extends QxWidget {

@@ -1,5 +1,5 @@
 import { SizeConstants } from "../../constants";
-import { QxHBox } from "../../qx/mobile/container/QxHBox";
+import { QxHBox } from "../../qx/ui/mobile/container/QxHBox";
 import { BoardPanel } from "./BoardPanel";
 import { BoardTile } from "./BoardTile";
 

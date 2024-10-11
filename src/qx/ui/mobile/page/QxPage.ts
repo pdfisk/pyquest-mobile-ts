@@ -1,4 +1,4 @@
-import { QxFactory } from "../../factory";
+import { QxFactory } from "../../../factory";
 import { QxComposite } from "../container/QxComposite";
 
 export class QxPage extends QxComposite {

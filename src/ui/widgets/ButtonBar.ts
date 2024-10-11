@@ -1,6 +1,6 @@
 import { ColorConstants, SizeConstants } from "../../constants";
-import { QxHBox } from "../../qx/mobile/container/QxHBox";
-import { QxButton } from "../../qx/mobile/form/QxButton";
+import { QxHBox } from "../../qx/ui/mobile/container/QxHBox";
+import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 
 export class ButtonBar extends QxHBox {
 
