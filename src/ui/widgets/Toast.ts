@@ -11,12 +11,12 @@ export class Toast extends QxWidget {
     userResult_1: any = null;
     userResult_2: any = null;
 
-    static show(message: string, userFn_1: Function|null, userFn_2: Function|null, duration: number = QxConstants.DrawerDuration): Toast {
-        return new Toast(message, userFn_1, userFn_2,duration);
+    static show(message: string, userFn_1: Function | null, userFn_2: Function | null, duration: number = QxConstants.DrawerDuration): Toast {
+        return new Toast(message, userFn_1, userFn_2, duration);
     }
 
-    static showNoClose(message: string, userFn_1: Function|null, userFn_2:Function|null): Toast {
-        return this.show(message, userFn_1, userFn_2,0);
+    static showNoClose(message: string, userFn_1: Function | null, userFn_2: Function | null): Toast {
+        return this.show(message, userFn_1, userFn_2, 0);
     }
 
     private constructor(message: string, userFn_1: Function | null, userFn_2: Function | null, duration: number, orientation: string = QxConstants.DrawerOrientionTop) {
@@ -34,7 +34,7 @@ export class Toast extends QxWidget {
             this.drawer.hide();
             this.userResult_2 = this.userFn_2(this);
         };
-        TimerManager.start(fn, 3000);
+        TimerManager.start(fn, QxConstants.ToastDelay);
     }
 
 }

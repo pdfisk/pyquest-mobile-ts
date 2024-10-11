@@ -122,24 +122,18 @@ export class VmApi {
             return this.compile_to_json(src);
         };
         const userFn_2 = (toast: Toast) => {
-            console.log('userResult_1', toast.userResult_1);
+            const compiledObjectJson = toast.userResult_1;
+            if (!compiledObjectJson) return null;
+            const runCompiledFn: Function = this.getVmApiRunCompiledFn();
+            if (runCompiledFn) {
+                const resultJsonStr = this.callVmApiFn(runCompiledFn, compiledObjectJson);
+                const data = JSON.parse(resultJsonStr);
+                console.log(data);
+                return data;
+            }
             return null;
         };
         Toast.showNoClose('Compiling...', userFn_1, userFn_2);
-        // console.log('compiling...');
-        // const compiledObjectJson = this.compile_to_json(src);
-        // DeferredCall.scheduuserFnle(() => {
-        //     toast.hide();
-        //     console.log('hide');
-        // });
-        // if (!compiledObjectJson) return -1;
-        // const runCompiledFn: Function = this.getVmApiRunCompiledFn();
-        // if (runCompiledFn) {
-        //     const resultJsonStr = this.callVmApiFn(runCompiledFn, compiledObjectJson);
-        //     const data: any = JSON.parse(resultJsonStr);
-        //     return data.id;
-        // }
-        // else
         return -1;
     }
 
