@@ -10,7 +10,8 @@ export abstract class AbstractFormPage extends AbstractPage {
     protected constructor() {
         super();
         this.form = new QxForm;
-        this.single = new QxSingle;
+        this.single = new QxSingle(this.form);
+        this.single.setBackgroundColor('red');
     }
 
     addContent() {

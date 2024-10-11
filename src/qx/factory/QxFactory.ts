@@ -68,8 +68,8 @@ export class QxFactory {
         return new (window as any).qx.ui.mobile.container.Scroll;
     }
 
-    static mobileSingle(): any {
-        return new (window as any).qx.ui.mobile.form.renderer.Single;
+    static mobileSingle(form: any): any {
+        return new (window as any).qx.ui.mobile.form.renderer.Single(form);
     }
 
     static mobileSinglePlaceholder(): any {

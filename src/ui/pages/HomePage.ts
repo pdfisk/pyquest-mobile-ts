@@ -1,7 +1,7 @@
 import { LabelConstants } from "../../constants/LabelConstants";
-import { AbstractTextPage } from "./AbstractTextPage";
+import { AbstractFormPage } from "./AbstractFormPage";
 
-export class HomePage extends AbstractTextPage {
+export class HomePage extends AbstractFormPage {
     static instance: HomePage;
 
     static getInstance(): HomePage {
