@@ -24,6 +24,10 @@ export class QxFactory {
         return new (window as any).qx.ui.mobile.container.Drawer;
     }
 
+    static mobileFormInput(): any {
+        return new (window as any).qx.ui.mobile.form.Input;
+    }
+
     static mobileHBox(): any {
         return new (window as any).qx.ui.mobile.layout.HBox;
     }
@@ -62,6 +66,10 @@ export class QxFactory {
 
     static mobileTextArea(): any {
         return new (window as any).qx.ui.mobile.form.TextArea;
+    }
+
+    static mobileTextField(): any {
+        return new (window as any).qx.ui.mobile.form.TextField;
     }
 
     static mobileVBox(): any {
