@@ -15,7 +15,7 @@ export class Toast extends QxWidget {
         return new Toast(message, userFn_1, userFn_2, duration);
     }
 
-    static showNoClose(message: string, userFn_1: Function | null, userFn_2: Function | null): Toast {
+    static showNoClose(message: string, userFn_1: Function | null = null, userFn_2: Function | null = null): Toast {
         return this.show(message, userFn_1, userFn_2, 0);
     }
 

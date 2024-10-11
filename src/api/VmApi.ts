@@ -2,7 +2,6 @@ import { VmApiConstants } from "../constants/VmApiConstants";
 import { ActionHandler } from "../handlers/ActionHandler";
 import { ResultHandler } from "../handlers/ResultHandler";
 import { Toast } from "../ui/widgets/Toast";
-import { DeferredCall } from "../util";
 
 export class VmApi {
 
@@ -127,9 +126,7 @@ export class VmApi {
             const runCompiledFn: Function = this.getVmApiRunCompiledFn();
             if (runCompiledFn) {
                 const resultJsonStr = this.callVmApiFn(runCompiledFn, compiledObjectJson);
-                const data = JSON.parse(resultJsonStr);
-                console.log(data);
-                return data;
+                return JSON.parse(resultJsonStr);
             }
             return null;
         };

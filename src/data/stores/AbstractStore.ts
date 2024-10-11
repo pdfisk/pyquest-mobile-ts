@@ -1,6 +1,7 @@
 import { EventConstants } from "../../constants/EventConstants";
 import { Server } from "../../server/Server";
 import { ServerUtil } from "../../server/ServerUtil";
+import { Toast } from "../../ui/widgets/Toast";
 
 export abstract class AbstractStore {
     dataLoaded: boolean;
@@ -25,7 +26,7 @@ export abstract class AbstractStore {
         return key;
     }
 
-    abstract createNewRecord():any;
+    abstract createNewRecord(): any;
 
     deleteRecord(data: any) {
         if (!data) return;
@@ -45,11 +46,14 @@ export abstract class AbstractStore {
     }
 
     loadData() {
-        if (this.dataLoaded) {
-            this.dataStore.reload();
-        }
-        else
-            this.dataStore.setUrl(ServerUtil.getUrl(this.serviceName()));
+        const userFn_1 = (toast: Toast) => {
+            if (this.dataLoaded) {
+                this.dataStore.reload();
+            }
+            else
+                this.dataStore.setUrl(ServerUtil.getUrl(this.serviceName()));
+        };
+        Toast.showNoClose('Loading data...', userFn_1);
     }
 
     newRecord() {
