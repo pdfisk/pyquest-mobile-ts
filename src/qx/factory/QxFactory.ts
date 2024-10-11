@@ -24,8 +24,8 @@ export class QxFactory {
         return new (window as any).qx.ui.mobile.container.Drawer;
     }
 
-    static mobileFormInput(): any {
-        return new (window as any).qx.ui.mobile.form.Input;
+    static mobileForm(): any {
+        return new (window as any).qx.ui.mobile.form.Form;
     }
 
     static mobileHBox(): any {
@@ -34,6 +34,10 @@ export class QxFactory {
 
     static mobileImage(path: string): any {
         return new (window as any).qx.ui.mobile.basic.Image(path);
+    }
+
+    static mobileInput(): any {
+        return new (window as any).qx.ui.mobile.form.Input;
     }
 
     static mobileLabel(value: string): any {
