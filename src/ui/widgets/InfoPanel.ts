@@ -11,36 +11,31 @@ export class InfoPanel extends QxVBox {
         (window as any).X = this;
     }
 
-    addButton(label: string, fn: Function | undefined = undefined):QxButton {
+    addButton(label: string, fn: Function | undefined = undefined): QxButton {
         const button = new QxButton(label, fn);
-        this.add(button);
-        button.resetHeight();
+        this.addReset(button);
         return button;
     }
 
-    addFiller(height: number = -1):QxWidget {
+    addFiller(height: number = -1): QxWidget {
         const widget = new QxWidget;
         if (height > 0) {
             widget.setHeightPx(height);
-            this.add(widget);
+            return this.addReset(widget);
         }
-        else this.addFlex(widget);
-        widget.resetHeight();
-        return widget;
+        else return this.addFlexReset(widget);
     }
 
-    addForm(items: QxWidget[], names: string[], title: string | null = null):FormPanel {
+    addForm(items: QxWidget[], names: string[], title: string | null = null): FormPanel {
         const formPanel = new FormPanel;
         formPanel.addItems(items, names, title);
-        this.add(formPanel);
-        formPanel.resetHeight();
+        this.addReset(formPanel);
         return formPanel;
     }
 
-    addLabel(text: string):QxLabel {
+    addLabel(text: string): QxLabel {
         const label = new QxLabel(text);
-        this.add(label);
-        label.resetHeight();
+        this.addReset(label);
         return label;
     }
 

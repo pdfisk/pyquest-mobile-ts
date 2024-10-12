@@ -9,13 +9,27 @@ export class QxComposite extends QxWidget {
         super(widget ? widget : QxFactory.mobileComposite());
     }
 
-    add(child: QxWidget, options: any = { flex: 0 }) {
+    add(child: QxWidget, options: any = {}): QxWidget {
         this.children.push(child);
         this.widget.add(child.widget, options);
+        return child;
     }
 
-    addFlex(child: QxWidget, flex: number = 1) {
-        this.add(child, { flex: flex });
+    addFlex(child: QxWidget, flex: number = 1): QxWidget {
+        return this.add(child, { flex: flex });
+    }
+
+    addFlexReset(child: QxWidget, flex: number = 1): QxWidget {
+        this.addFlex(child, flex);
+        child.resetHeight();
+        return child;
+    }
+
+
+    addReset(child: QxWidget, options: any = {}): QxWidget {
+        this.add(child, options);
+        child.resetHeight();
+        return child;
     }
 
     getChild(index: number): QxWidget | null {
