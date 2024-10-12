@@ -1,6 +1,5 @@
 import { SizeConstants } from "../../constants";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
-import { QxForm } from "../../qx/ui/mobile/form/QxForm";
 import { FormPanel } from "../widgets/FormPanel";
 import { AbstractPage } from "./AbstractPage";
 
@@ -21,7 +20,7 @@ export abstract class AbstractFormPage extends AbstractPage {
     }
 
     isContentReady(): boolean {
-        return this.formPanel instanceof QxForm;
+        return this.formPanel instanceof FormPanel;
     }
 
     resizeWidthAndHeight(adjustedWidth: number, adjustedHeight: number) {

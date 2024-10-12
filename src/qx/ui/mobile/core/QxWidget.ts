@@ -85,6 +85,10 @@ export class QxWidget extends QxObject {
     onTap(arg?: string) {
     }
 
+    resetHeight() {
+        this.setHeight(undefined);
+    }
+
     setBackgroundColor(color: string) {
         this.setStyle(StyleConstants.BackgroundColor, color);
     }

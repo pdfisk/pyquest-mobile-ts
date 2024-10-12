@@ -9,7 +9,7 @@ export class QxComposite extends QxWidget {
         super(widget ? widget : QxFactory.mobileComposite());
     }
 
-    add(child: QxWidget, options: any = {}) {
+    add(child: QxWidget, options: any = { flex: 0 }) {
         this.children.push(child);
         this.widget.add(child.widget, options);
     }

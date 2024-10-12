@@ -1,9 +1,7 @@
 import { LabelConstants } from "../../constants/LabelConstants";
-import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
-import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
-import { AbstractFormPage } from "./AbstractFormPage";
+import { AbstractInfoPage } from "./AbstractInfoPage";
 
-export class HomePage extends AbstractFormPage {
+export class HomePage extends AbstractInfoPage {
     static instance: HomePage;
 
     static getInstance(): HomePage {
@@ -17,23 +15,15 @@ export class HomePage extends AbstractFormPage {
         this.setTitle(LabelConstants.PageHome);
     }
 
-    createItems(): QxWidget[] {
-        const items: QxWidget[] = [];
-        items.push(new QxTextField);
-        return items;
-    }
-
-    createNames(): string[] {
-        const names: string[] = [];
-        names.push('Text');
-        return names;
+    addPageContent() {
+        this.addLabel('PyQuest');
+        this.addButton('Patreon');
+        this.addFiller();
     }
 
     onAppear() {
         super.onAppear();
-        const items = this.createItems();
-        const names = this.createNames();
-        this.addItems(items, names);
+        this.addPageContent();
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
