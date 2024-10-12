@@ -1,25 +1,27 @@
 import { SizeConstants } from "../../constants";
+import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxForm } from "../../qx/ui/mobile/form/QxForm";
-import { QxSingle } from "../../qx/ui/mobile/form/renderer/QxSingle";
+import { FormPanel } from "../widgets/FormPanel";
 import { AbstractPage } from "./AbstractPage";
 
 export abstract class AbstractFormPage extends AbstractPage {
-    form: QxForm;
-    single: QxSingle;
+    formPanel: FormPanel;
 
     protected constructor() {
         super();
-        this.form = new QxForm;
-        this.single = new QxSingle(this.form);
-        this.single.setBackgroundColor('red');
+        this.formPanel = new FormPanel;
     }
 
     addContent() {
-        this.addContentWidget(this.single);
+        this.addContentWidget(this.formPanel);
+    }
+
+    addItems(items: QxWidget[], names: string[], title: string | null = null) {
+        this.formPanel.addItems(items, names, title);
     }
 
     isContentReady(): boolean {
-        return this.form instanceof QxForm;
+        return this.formPanel instanceof QxForm;
     }
 
     resizeWidthAndHeight(adjustedWidth: number, adjustedHeight: number) {
@@ -27,7 +29,7 @@ export abstract class AbstractFormPage extends AbstractPage {
     }
 
     setFormHeight(adjustedHeight: number) {
-        this.single?.setHeightPx(adjustedHeight);
+        this.formPanel?.setHeightPx(adjustedHeight);
     }
 
 }
