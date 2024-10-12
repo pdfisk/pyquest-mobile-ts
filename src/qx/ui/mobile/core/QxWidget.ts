@@ -103,6 +103,22 @@ export class QxWidget extends QxObject {
         this.setStyle(StyleConstants.BorderTop, borderTop);
     }
 
+    setFontSize(size: string | undefined) {
+        this.setStyle(StyleConstants.FontSize, size);
+    }
+
+    setFontSizePx(size: number) {
+        this.setFontSize(StringUtil.asPixels(size));
+    }
+
+    setFontWeight(weight: string | undefined) {
+        this.setStyle(StyleConstants.FontWeight, weight);
+    }
+
+    setFontWeightBold() {
+        this.setStyle(StyleConstants.FontWeight, StyleConstants.FontWeightBold);
+    }
+
     setHeight(height: string | undefined) {
         this.setStyle(StyleConstants.Height, height);
     }
@@ -124,19 +140,29 @@ export class QxWidget extends QxObject {
         this.setStyle(StyleConstants.MarginBottom, marginBottom);
     }
 
-    setMarginLeftPx(height: number) {
-        const marginLeft = StringUtil.asPixels(height);
+    setMarginLeftPx(width: number) {
+        const marginLeft = StringUtil.asPixels(width);
         this.setStyle(StyleConstants.MarginLeft, marginLeft);
     }
 
-    setMarginRightPx(height: number) {
-        const marginRight = StringUtil.asPixels(height);
+    setMarginLeftAndRightPx(width: number) {
+        this.setMarginLeftPx(width);
+        this.setMarginRightPx(width);
+    }
+
+    setMarginRightPx(width: number) {
+        const marginRight = StringUtil.asPixels(width);
         this.setStyle(StyleConstants.MarginRight, marginRight);
     }
 
     setMarginTopPx(height: number) {
         const marginTop = StringUtil.asPixels(height);
         this.setStyle(StyleConstants.MarginTop, marginTop);
+    }
+
+    setMarginTopAndBottomPx(height: number) {
+        this.setMarginTopPx(height);
+        this.setMarginBottomPx(height);
     }
 
     setMaxHeight(height: string | undefined) {

@@ -1,5 +1,8 @@
 import { SizeConstants } from "../../constants";
+import { QxLabel } from "../../qx/ui/mobile/basic/QxLabel";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
+import { QxButton } from "../../qx/ui/mobile/form/QxButton";
+import { FormPanel } from "../widgets/FormPanel";
 import { InfoPanel } from "../widgets/InfoPanel";
 import { AbstractPage } from "./AbstractPage";
 
@@ -15,20 +18,24 @@ export abstract class AbstractInfoPage extends AbstractPage {
         this.addContentWidget(this.infoPanel);
     }
 
-    addButton(label: string, fn: Function | undefined = undefined) {
-        this.infoPanel.addButton(label, fn);
+    addButton(label: string, fn: Function | undefined = undefined): QxButton {
+        return this.infoPanel.addButton(label, fn);
     }
 
-    addFiller(height: number = -1) {
-        this.infoPanel.addFiller(height);
+    addFiller(height: number = -1): QxWidget {
+        return this.infoPanel.addFiller(height);
     }
 
-    addForm(items: QxWidget[], names: string[], title: string | null = null) {
-        this.infoPanel.addForm(items, names, title);
+    addForm(items: QxWidget[], names: string[], title: string | null = null): FormPanel {
+        return this.infoPanel.addForm(items, names, title);
     }
 
-    addLabel(text: string) {
-        this.infoPanel.addLabel(text);
+    addLabel(text: string): QxLabel {
+        return this.infoPanel.addLabel(text);
+    }
+
+    addSpacer(size: number = 5): QxWidget {
+        return this.infoPanel.addSpacer(size);
     }
 
     isContentReady(): boolean {
