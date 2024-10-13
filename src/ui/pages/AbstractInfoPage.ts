@@ -55,12 +55,16 @@ export abstract class AbstractInfoPage extends AbstractPage {
         return this.infoPanel.addSpacer(size);
     }
 
+    hasButtonBar(): boolean {
+        return false;
+    }
+
     isContentReady(): boolean {
         return this.infoPanel instanceof InfoPanel;
     }
 
     resizeWidthAndHeight(adjustedWidth: number, adjustedHeight: number) {
-        this.setInfoHeight(adjustedHeight - SizeConstants.TextPanelHeightAdjust);
+        this.setInfoHeight(adjustedHeight - SizeConstants.NoButtonsPageHeightAdjust);
     }
 
     setInfoHeight(adjustedHeight: number) {

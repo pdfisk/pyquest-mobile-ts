@@ -1,4 +1,3 @@
-import { ColorConstants, StyleConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { AbstractInfoPage } from "./AbstractInfoPage";
 
@@ -21,10 +20,6 @@ export class HomePage extends AbstractInfoPage {
         const news = this.addNews();
         this.addButtonNoMargin(LabelConstants.ButtonLabelReddit);
         this.addButtonNoMargin(LabelConstants.ButtonLabelPatreon);
-    }
-
-    hasButtonBar(): boolean {
-        return false;
     }
 
     onAppear() {

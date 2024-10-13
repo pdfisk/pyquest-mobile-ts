@@ -53,7 +53,7 @@ export abstract class AbstractPage extends AbstractRoutingPage {
 
     resizeWidthAndHeight(width: number, height: number) {
         const adjustedWidth: number = width - SizeConstants.ButtonBarWidthOffset;
-        const adjustedHeight: number = height - SizeConstants.ButtonBarButtonHeight - SizeConstants.ButtonBarHeightOffset;
+        const adjustedHeight: number = height - (this.hasButtonBar() ? (SizeConstants.ButtonBarButtonHeight + SizeConstants.ButtonBarHeightOffset) : 0);
         if (this.isContentReady()) {
             this.setAdjustedWidthAndHeight(adjustedWidth, adjustedHeight);
         }
