@@ -34,8 +34,16 @@ export abstract class AbstractInfoPage extends AbstractPage {
         return this.infoPanel.addForm(items, names, title);
     }
 
+    addFormNoMargin(items: QxWidget[], names: string[], title: string | null = null): FormPanel {
+        return this.infoPanel.addForm(items, names, title,false);
+    }
+
     addLabel(text: string): QxLabel {
         return this.infoPanel.addLabel(text);
+    }
+
+    addScroll(height: number = -1): QxWidget {
+        return this.infoPanel.addScroll(height);
     }
 
     addSpacer(size: number = 5): QxWidget {

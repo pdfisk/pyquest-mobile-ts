@@ -4,7 +4,7 @@ import { QxWidget } from "../core/QxWidget";
 export class QxScroll extends QxWidget {
 
     constructor() {
-        super(QxFactory.mobileComposite());
+        super(QxFactory.mobileScroll());
     }
 
     add(child: QxWidget, options: any = {}) {

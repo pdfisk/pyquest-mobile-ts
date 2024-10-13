@@ -8,7 +8,9 @@ export class LabelConstants {
     static ButtonLabelLogin: string = 'Login';
     static ButtonLabelLogout: string = 'Logout';
     static ButtonLabelNew: string = 'New';
+    static ButtonLabelPatreon: string = 'Patreon';
     static ButtonLabelProjects: string = 'Projects';
+    static ButtonLabelReddit: string = 'Reddit';
     static ButtonLabelRefresh: string = 'Refresh';
     static ButtonLabelRegister: string = 'Register';
     static ButtonLabelRename: string = 'Rename';
@@ -31,6 +33,8 @@ export class LabelConstants {
     static FieldLabelName: string = 'Name';
     static FieldLabelPassword: string = 'Password';
     static FieldLabelUpdatedAt: string = 'Updated At';
+
+    static LabelPyQuestMobile: string = 'PyQuest Mobile';
 
     static PageBoard: string = 'Board';
     static PageEditor: string = 'Editor';

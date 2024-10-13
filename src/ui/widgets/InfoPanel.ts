@@ -1,5 +1,6 @@
 import { FontConstants, SizeConstants } from "../../constants";
 import { QxLabel } from "../../qx/ui/mobile/basic/QxLabel";
+import { QxScroll } from "../../qx/ui/mobile/container/QxScroll";
 import { QxVBox } from "../../qx/ui/mobile/container/QxVBox";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
@@ -29,22 +30,36 @@ export class InfoPanel extends QxVBox {
         else return this.addFlexReset(widget);
     }
 
-    addForm(items: QxWidget[], names: string[], title: string | null = null): FormPanel {
+    addForm(items: QxWidget[], names: string[], title: string | null = null, withMargin: boolean = true): FormPanel {
         const formPanel = new FormPanel;
-        formPanel.setMarginBottomPx(SizeConstants.InfoPanelBottomMargin);
+        if (withMargin)
+            formPanel.setMarginBottomPx(SizeConstants.InfoPanelBottomMargin);
         formPanel.addItems(items, names, title);
         this.addReset(formPanel);
         return formPanel;
     }
 
-    addLabel(text: string): QxLabel {
+    addLabel(text: string, withMargin: boolean = true): QxLabel {
         const label = new QxLabel(text);
         label.setMarginLeftAndRightPx(SizeConstants.InfoPanelLeftAndRightMargins);
-        label.setMarginBottomPx(SizeConstants.InfoPanelBottomMargin);
+        if (withMargin)
+            label.setMarginBottomPx(SizeConstants.InfoPanelBottomMargin);
         label.setFontWeightBold();
         label.setFontSize(FontConstants.FontSize1_5Em);
         this.addReset(label);
         return label;
+    }
+
+    addScroll(size: number = -1, withMargin: boolean = true): QxWidget {
+        const scroll = new QxScroll;
+        if (size > 0) {
+            scroll.setHeightPx(size);
+            this.add(scroll);
+        }
+        else this.addFlexReset(scroll);
+        if (withMargin)
+            scroll.setMarginBottomPx(SizeConstants.InfoPanelBottomMargin);
+        return scroll;
     }
 
     addSpacer(size: number = 5): QxWidget {
