@@ -18,10 +18,13 @@ export class HomePage extends AbstractInfoPage {
 
     addPageContent() {
         this.addLabel(LabelConstants.LabelPyQuestMobile);
-        const scroll = this.addScroll();
-        scroll.setBorderPx(ColorConstants.ColorGray, StyleConstants.BorderRadius15);
+        const news = this.addNews();
         this.addButtonNoMargin(LabelConstants.ButtonLabelReddit);
         this.addButtonNoMargin(LabelConstants.ButtonLabelPatreon);
+    }
+
+    hasButtonBar(): boolean {
+        return false;
     }
 
     onAppear() {

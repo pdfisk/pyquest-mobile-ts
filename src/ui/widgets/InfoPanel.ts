@@ -5,6 +5,7 @@ import { QxVBox } from "../../qx/ui/mobile/container/QxVBox";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { FormPanel } from "./FormPanel";
+import { NewsPanel } from "./NewsPanel";
 
 export class InfoPanel extends QxVBox {
 
@@ -48,6 +49,18 @@ export class InfoPanel extends QxVBox {
         label.setFontSize(FontConstants.FontSize1_5Em);
         this.addReset(label);
         return label;
+    }
+
+    addNews(size: number = -1, withMargin: boolean = true): NewsPanel {
+        const news = new NewsPanel;
+        if (size > 0) {
+            news.setHeightPx(size);
+            this.add(news);
+        }
+        else this.addFlexReset(news);
+        if (withMargin)
+            news.setMarginBottomPx(SizeConstants.InfoPanelBottomMargin);
+        return news;
     }
 
     addScroll(size: number = -1, withMargin: boolean = true): QxWidget {

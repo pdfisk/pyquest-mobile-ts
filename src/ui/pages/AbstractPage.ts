@@ -32,6 +32,10 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         return [];
     }
 
+    hasButtonBar(): boolean {
+        return true;
+    }
+
     abstract isContentReady(): boolean;
 
     onAppear() {
@@ -39,7 +43,8 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         this.setBackButtonText(LabelConstants.ButtonLabelBack);
         this.setShowBackButton(true);
         this.widget._back = () => { this.onBack(); };
-        this.addButtonBar();
+        if (this.hasButtonBar())
+            this.addButtonBar();
     }
 
     onBack() {
