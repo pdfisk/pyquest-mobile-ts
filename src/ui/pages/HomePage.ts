@@ -1,3 +1,4 @@
+import { ColorConstants, StyleConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { AbstractInfoPage } from "./AbstractInfoPage";
 
@@ -18,7 +19,7 @@ export class HomePage extends AbstractInfoPage {
     addPageContent() {
         this.addLabel(LabelConstants.LabelPyQuestMobile);
         const scroll = this.addScroll();
-        scroll.setBackgroundColor('red');
+        scroll.setBorderPx(ColorConstants.ColorGray, StyleConstants.BorderRadius15);
         this.addButtonNoMargin(LabelConstants.ButtonLabelReddit);
         this.addButtonNoMargin(LabelConstants.ButtonLabelPatreon);
     }

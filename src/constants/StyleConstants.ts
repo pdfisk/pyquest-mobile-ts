@@ -1,6 +1,7 @@
 export class StyleConstants {
     static BackgroundColor: string = 'backgroundColor';
     static Border: string = 'border';
+    static BorderRadius: string = 'borderRadius';
     static BorderTop: string = 'borderTop';
     static FontFamily: string = 'fontFamily';
     static FontSize: string = 'fontSize';
@@ -28,6 +29,7 @@ export class StyleConstants {
     static TextAlign: string = 'textAlign';
     static Width: string = 'width';
 
+    static BorderRadius15: number = 15; 
     static BorderSlateGray2: string = '2px solid slategray';
     static TextAlignCenter: string = 'center';
 }

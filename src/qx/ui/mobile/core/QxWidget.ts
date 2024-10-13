@@ -93,9 +93,15 @@ export class QxWidget extends QxObject {
         this.setStyle(StyleConstants.BackgroundColor, color);
     }
 
-    setBorderPx(color: string, width: number = 1) {
+    setBorderPx(color: string, borderRadius: number = -1, width: number = 1) {
         const border = `${StringUtil.asPixels(width)} solid ${color}`;
         this.setStyle(StyleConstants.Border, border);
+        if (borderRadius > 0)
+            this.setBorderRadiusPx(borderRadius);
+    }
+
+    setBorderRadiusPx(radius:number) {
+         this.setStyle(StyleConstants.BorderRadius, StringUtil.asPixels(radius));
     }
 
     setBorderTopPx(color: string, width: number) {
