@@ -1,11 +1,11 @@
-import { FontConstants, SizeConstants } from "../../constants";
-import { QxLabel } from "../../qx/ui/mobile/basic/QxLabel";
-import { QxScroll } from "../../qx/ui/mobile/container/QxScroll";
-import { QxVBox } from "../../qx/ui/mobile/container/QxVBox";
-import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
-import { QxButton } from "../../qx/ui/mobile/form/QxButton";
-import { FormPanel } from "./FormPanel";
-import { NewsPanel } from "./NewsPanel";
+import { FontConstants, SizeConstants } from "../../../constants";
+import { QxLabel } from "../../../qx/ui/mobile/basic/QxLabel";
+import { QxScroll } from "../../../qx/ui/mobile/container/QxScroll";
+import { QxVBox } from "../../../qx/ui/mobile/container/QxVBox";
+import { QxWidget } from "../../../qx/ui/mobile/core/QxWidget";
+import { QxButton } from "../../../qx/ui/mobile/form/QxButton";
+import { FormPanel } from "../FormPanel";
+import { NewsPanel } from "./widgets/NewsPanel";
 
 export class InfoPanel extends QxVBox {
 

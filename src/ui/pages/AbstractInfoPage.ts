@@ -3,8 +3,8 @@ import { QxLabel } from "../../qx/ui/mobile/basic/QxLabel";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { FormPanel } from "../widgets/FormPanel";
-import { InfoPanel } from "../widgets/InfoPanel";
-import { NewsPanel } from "../widgets/NewsPanel";
+import { InfoPanel } from "../widgets/infoPanel/InfoPanel";
+import { NewsPanel } from "../widgets/infoPanel/widgets/NewsPanel";
 import { AbstractPage } from "./AbstractPage";
 
 export abstract class AbstractInfoPage extends AbstractPage {
