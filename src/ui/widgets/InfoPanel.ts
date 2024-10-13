@@ -12,9 +12,10 @@ export class InfoPanel extends QxVBox {
         (window as any).X = this;
     }
 
-    addButton(label: string, fn: Function | undefined = undefined): QxButton {
+    addButton(label: string, fn: Function | null = null, withMargin: boolean = true): QxButton {
         const button = new QxButton(label, fn);
-        button.setMarginBottomPx(SizeConstants.InfoPanelBottomMargin);
+        if (withMargin)
+            button.setMarginBottomPx(SizeConstants.InfoPanelBottomMargin);
         this.addReset(button);
         return button;
     }

@@ -16,12 +16,10 @@ export class HomePage extends AbstractInfoPage {
     }
 
     addPageContent() {
-        this.addLabel('PyQuest');
-        this.addSpacer();
-        this.addButton('Reddit');
-        this.addSpacer();
-        this.addButton('Patreon');
+        this.addLabel('PyQuest Mobile');
         this.addFiller();
+        this.addButton('Reddit');
+        this.addButtonNoMargin('Patreon');
     }
 
     onAppear() {

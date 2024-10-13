@@ -18,8 +18,12 @@ export abstract class AbstractInfoPage extends AbstractPage {
         this.addContentWidget(this.infoPanel);
     }
 
-    addButton(label: string, fn: Function | undefined = undefined): QxButton {
-        return this.infoPanel.addButton(label, fn);
+    addButton(label: string, fn: Function | null = null, withMargin: boolean = true): QxButton {
+        return this.infoPanel.addButton(label, fn, withMargin);
+    }
+
+    addButtonNoMargin(label: string, fn: Function | null = null): QxButton {
+        return this.addButton(label, fn, false);
     }
 
     addFiller(height: number = -1): QxWidget {
