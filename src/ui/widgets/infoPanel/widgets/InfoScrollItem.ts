@@ -5,9 +5,12 @@ export class InfoScrollItem extends QxHtml {
 
     constructor() {
         super();
-        this.setHtml('<h3>News Item</h3>')
-        this.setBorderBottomPx();
-        this.setMarginBottomPx(SizeConstants.InfoPanelBottomMargin);
+        this.setBackgroundColor('red');
+        this.setHeightPx(100);
+        (window as any).X = this;
+        // this.setHtml('<h3>News Item</h3>')
+        // this.setBorderBottomPx();
+        // this.setMarginBottomPx(SizeConstants.InfoPanelBottomMargin);
     }
 
 }

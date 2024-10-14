@@ -5,14 +5,15 @@ export class InfoItemsPanel extends QxVBox {
 
     constructor() {
         super();
-        (window as any).X = this;
-        this.setBackgroundColor('red');
-        this.setHeightPx(100);
     }
 
-    // initialize() {
-    //     for (let i = 0;i< 25;i++)
-    //         this.add(new InfoScrollItem);
-    // }
+    handlesOnAppear(): boolean {
+        return true;
+    }
+
+    onAppear() {
+        for (let i = 0; i < 10; i++)
+            this.add(new InfoScrollItem);
+    }
 
 }
