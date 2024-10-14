@@ -210,6 +210,11 @@ export class QxWidget extends QxObject {
         this.setStyle(StyleConstants.PaddingLeft, paddingLeft);
     }
 
+    setPaddingLeftAndRightPx(width: number) {
+        this.setPaddingLeftPx(width);
+        this.setPaddingRightPx(width);
+    }
+
     setPaddingRightPx(padding: number) {
         const paddingRight = StringUtil.asPixels(padding);
         this.setStyle(StyleConstants.PaddingRight, paddingRight);
@@ -218,6 +223,11 @@ export class QxWidget extends QxObject {
     setPaddingTopPx(padding: number) {
         const paddingTop = StringUtil.asPixels(padding);
         this.setStyle(StyleConstants.PaddingTop, paddingTop);
+    }
+
+    setPaddingTopAndBottomPx(width: number) {
+        this.setPaddingTopPx(width);
+        this.setPaddingBottomPx(width);
     }
 
     setStyle(key: string, value: any) {
