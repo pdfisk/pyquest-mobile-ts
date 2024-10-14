@@ -5,7 +5,7 @@ import { QxVBox } from "../../../qx/ui/mobile/container/QxVBox";
 import { QxWidget } from "../../../qx/ui/mobile/core/QxWidget";
 import { QxButton } from "../../../qx/ui/mobile/form/QxButton";
 import { FormPanel } from "../FormPanel";
-import { NewsPanel } from "./widgets/NewsPanel";
+import { InfoScrollPanel } from "./widgets/InfoScrollPanel";
 
 export class InfoPanel extends QxVBox {
 
@@ -51,8 +51,8 @@ export class InfoPanel extends QxVBox {
         return label;
     }
 
-    addNews(size: number = -1, withMargin: boolean = true): NewsPanel {
-        const news = new NewsPanel;
+    addNews(size: number = -1, withMargin: boolean = true): InfoScrollPanel {
+        const news = new InfoScrollPanel;
         if (size > 0) {
             news.setHeightPx(size);
             this.add(news);

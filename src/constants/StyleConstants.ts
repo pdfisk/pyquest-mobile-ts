@@ -1,6 +1,7 @@
 export class StyleConstants {
     static BackgroundColor: string = 'backgroundColor';
     static Border: string = 'border';
+    static BorderBottom: string = 'borderBottom';
     static BorderRadius: string = 'borderRadius';
     static BorderTop: string = 'borderTop';
     static FontFamily: string = 'fontFamily';

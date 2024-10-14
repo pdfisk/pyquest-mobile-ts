@@ -23,6 +23,7 @@ export class SizeConstants {
     static DrawerTapOffset: number = 100;
     static InfoPanelBottomMargin = 4;
     static InfoPanelLeftAndRightMargins = 3;
+    static InfoRowSeparatorWidth: number = 2;
     static LabelSize24: number = 24;
     static LoginPanelColOneWidth: number = 175;
     static LoginPanelColZeroWidth: number = 60;

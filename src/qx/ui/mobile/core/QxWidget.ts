@@ -1,4 +1,4 @@
-import { EventConstants, SizeConstants, StyleConstants } from "../../../../constants";
+import { ColorConstants, EventConstants, SizeConstants, StyleConstants } from "../../../../constants";
 import { QxWidgetUtil } from "../../../../util";
 import { StringUtil } from "../../../../util/StringUtil";
 import { QxObject } from "../../../core";
@@ -91,6 +91,11 @@ export class QxWidget extends QxObject {
 
     setBackgroundColor(color: string) {
         this.setStyle(StyleConstants.BackgroundColor, color);
+    }
+
+    setBorderBottomPx(color: string=ColorConstants.ColorGray, width: number = 1) {
+        const border = `${StringUtil.asPixels(width)} solid ${color}`;
+        this.setStyle(StyleConstants.BorderBottom, border);
     }
 
     setBorderPx(color: string, borderRadius: number = -1, width: number = 1) {

@@ -32,6 +32,10 @@ export class QxFactory {
         return new (window as any).qx.ui.mobile.layout.HBox;
     }
 
+    static mobileHtml(): any {
+        return new (window as any).qx.ui.mobile.embed.Html;
+    }
+
     static mobileImage(path: string): any {
         return new (window as any).qx.ui.mobile.basic.Image(path);
     }

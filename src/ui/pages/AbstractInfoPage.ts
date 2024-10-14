@@ -4,7 +4,7 @@ import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { FormPanel } from "../widgets/FormPanel";
 import { InfoPanel } from "../widgets/infoPanel/InfoPanel";
-import { NewsPanel } from "../widgets/infoPanel/widgets/NewsPanel";
+import { InfoScrollPanel } from "../widgets/infoPanel/widgets/InfoScrollPanel";
 import { AbstractPage } from "./AbstractPage";
 
 export abstract class AbstractInfoPage extends AbstractPage {
@@ -43,7 +43,7 @@ export abstract class AbstractInfoPage extends AbstractPage {
         return this.infoPanel.addLabel(text);
     }
 
-    addNews(height: number = -1): NewsPanel {
+    addNews(height: number = -1): InfoScrollPanel {
         return this.infoPanel.addNews(height);
     }
 

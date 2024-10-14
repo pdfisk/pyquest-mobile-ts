@@ -1,15 +1,14 @@
 import { ColorConstants, StyleConstants } from "../../../../constants";
 import { QxScroll } from "../../../../qx/ui/mobile/container/QxScroll";
-import { QxVBox } from "../../../../qx/ui/mobile/container/QxVBox";
+import { InfoItemsPanel } from "./InfoItemsPanel";
 
-export class NewsPanel extends QxScroll {
+export class InfoScrollPanel extends QxScroll {
 
     constructor() {
         super();
         this.setBorderPx(ColorConstants.ColorGray, StyleConstants.BorderRadius15);
-        const itemsPanel = new QxVBox;
-        this.add(itemsPanel);
-        itemsPanel.setBackgroundColor('red');
+        // const itemsPanel = new InfoItemsPanel;
+        // this.add(itemsPanel);
     }
 
 }
