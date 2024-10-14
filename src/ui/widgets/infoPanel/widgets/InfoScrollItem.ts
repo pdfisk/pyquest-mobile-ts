@@ -1,16 +1,25 @@
 import { SizeConstants } from "../../../../constants";
 import { QxHtml } from "../../../../qx/ui/mobile/embed/QxHtml";
+import { StringWriter } from "../../../../util/StringWriter";
 
 export class InfoScrollItem extends QxHtml {
 
-    constructor() {
+    constructor(itemData: string[]) {
         super();
-        this.setBackgroundColor('red');
-        this.setHeightPx(100);
-        (window as any).X = this;
-        // this.setHtml('<h3>News Item</h3>')
-        // this.setBorderBottomPx();
-        // this.setMarginBottomPx(SizeConstants.InfoPanelBottomMargin);
+        this.setHtml(this.createHtml(itemData));
+        this.setBorderBottomPx();
+        this.setMarginBottomPx(SizeConstants.InfoPanelBottomMargin);
+    }
+
+    createHtml(itemData: string[]): string {
+        if (itemData.length == 0)
+            itemData.push('-- no data --');
+        const sw = new StringWriter;
+        sw.prn(`<h3>${itemData.shift()}</h3>`);
+        while (itemData.length > 0) {
+            sw.prn(`<p>${itemData.shift()}</p>`)
+        }
+        return sw.asString();
     }
 
 }

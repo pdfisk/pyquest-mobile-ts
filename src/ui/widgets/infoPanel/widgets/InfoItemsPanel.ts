@@ -7,13 +7,26 @@ export class InfoItemsPanel extends QxVBox {
         super();
     }
 
+    getItemData():string[][] {
+        const items:string[][] = [];
+        for (let i=0;i<100;i++) {
+            const item:string[] = [];
+            item.push( `Item ${i}`);
+            for(let j=0;j<7;j++)
+                item.push(`Paragraph ${j}`);
+            items.push(item);
+        }
+        return items;
+    }
+
     handlesOnAppear(): boolean {
         return true;
     }
 
     onAppear() {
-        for (let i = 0; i < 10; i++)
-            this.add(new InfoScrollItem);
+        const itemsData:string[][]= this.getItemData();
+        for(let i = 0;i<itemsData.length;i++)
+            this.add(new InfoScrollItem(itemsData[i]));
     }
 
 }
