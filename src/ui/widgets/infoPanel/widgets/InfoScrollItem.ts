@@ -6,6 +6,7 @@ export class InfoScrollItem extends QxHtml {
 
     constructor(itemData: string[]) {
         super();
+        this.setHeightAuto();
         this.setHtml(this.createHtml(itemData));
         this.setPaddingLeftAndRightPx(SizeConstants.InfoItemLeftAndRightPadding);
         this.setPaddingTopAndBottomPx(SizeConstants.InfoItemTopAndBottomPadding);

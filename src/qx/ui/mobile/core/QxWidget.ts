@@ -93,7 +93,7 @@ export class QxWidget extends QxObject {
         this.setStyle(StyleConstants.BackgroundColor, color);
     }
 
-    setBorderBottomPx(color: string=ColorConstants.ColorGray, width: number = 1) {
+    setBorderBottomPx(color: string = ColorConstants.ColorGray, width: number = 1) {
         const border = `${StringUtil.asPixels(width)} solid ${color}`;
         this.setStyle(StyleConstants.BorderBottom, border);
     }
@@ -105,8 +105,8 @@ export class QxWidget extends QxObject {
             this.setBorderRadiusPx(borderRadius);
     }
 
-    setBorderRadiusPx(radius:number) {
-         this.setStyle(StyleConstants.BorderRadius, StringUtil.asPixels(radius));
+    setBorderRadiusPx(radius: number) {
+        this.setStyle(StyleConstants.BorderRadius, StringUtil.asPixels(radius));
     }
 
     setBorderTopPx(color: string, width: number) {
@@ -132,6 +132,10 @@ export class QxWidget extends QxObject {
 
     setHeight(height: string | undefined) {
         this.setStyle(StyleConstants.Height, height);
+    }
+
+    setHeightAuto() {
+        this.setHeight(StyleConstants.Auto);
     }
 
     setHeightPx(height: number) {

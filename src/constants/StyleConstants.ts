@@ -30,7 +30,8 @@ export class StyleConstants {
     static TextAlign: string = 'textAlign';
     static Width: string = 'width';
 
-    static BorderRadius15: number = 15; 
+    static Auto: string = 'auto';
+    static BorderRadius15: number = 15;
     static BorderSlateGray2: string = '2px solid slategray';
     static TextAlignCenter: string = 'center';
 }
