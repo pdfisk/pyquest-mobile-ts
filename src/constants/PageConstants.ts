@@ -8,12 +8,12 @@ export class PageConstants {
     static pathStatus = 'status';
     static pathTranscript = 'transcript';
 
-    static routeOverview = '/';
     static routeBoard = '/board';
     static routeEditor = '/editor';
-    static routeHome = '/home';
+    static routeHome = '/';
     static routeProjects = '/projects';
     static routeStatus = '/status';
+    static routeTopMenu = '/topmenu';
     static routeTranscript = '/transcript';
 
     static subtitleBoard = 'Game board';

@@ -45,7 +45,7 @@ export class NavigationUtil {
     }
 
     static showOverview() {
-        QxMobileApplication.executeGet(PageConstants.routeOverview);
+        QxMobileApplication.executeGet(PageConstants.routeTopMenu);
     }
 
     static showProjects() {

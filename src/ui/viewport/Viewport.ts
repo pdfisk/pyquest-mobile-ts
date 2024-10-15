@@ -62,7 +62,7 @@ export class Viewport extends QxComposite {
     }
 
     buildRouting() {
-        this.routing.onGet(PageConstants.routeOverview, this.pageOverview);
+        this.routing.onGet(PageConstants.routeTopMenu, this.pageOverview);
         this.routing.onGet(PageConstants.routeHome, this.pageHome);
         this.routing.onGet(PageConstants.routeBoard, this.pageBoard);
         this.routing.onGet(PageConstants.routeEditor, this.pageEditor);

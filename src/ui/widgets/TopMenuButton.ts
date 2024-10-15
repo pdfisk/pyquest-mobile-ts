@@ -7,7 +7,7 @@ import { PageConstants } from "../../constants/PageConstants";
 export class TopMenuButton extends QxNavigationBarButton {
 
     constructor() {
-        const fn = () => { QxMobileApplication.executeGet(PageConstants.routeOverview); };
+        const fn = () => { QxMobileApplication.executeGet(PageConstants.routeTopMenu); };
         super(LabelConstants.ButtonLabelTopMenu, fn);
     }
 
