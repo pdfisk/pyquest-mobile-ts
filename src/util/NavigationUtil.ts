@@ -5,25 +5,25 @@ export class NavigationUtil {
 
     static showPage(page: string) {
         switch (page) {
-            case PageConstants.tagBoard:
+            case PageConstants.pathBoard:
                 this.showBoard();
                 break;
-            case PageConstants.tagEditor:
+            case PageConstants.pathEditor:
                 this.showEditor();
                 break;
-            case PageConstants.tagHome:
+            case PageConstants.pathHome:
                 this.showHome();
                 break;
-            case PageConstants.tagOverview:
+            case PageConstants.pathOverview:
                 this.showOverview();
                 break;
-            case PageConstants.tagProjects:
+            case PageConstants.pathProjects:
                 this.showProjects();
                 break;
-            case PageConstants.tagStatus:
+            case PageConstants.pathStatus:
                 this.showStatus();
                 break;
-            case PageConstants.tagTranscript:
+            case PageConstants.pathTranscript:
                 this.showTranscript();
                 break;
             default:

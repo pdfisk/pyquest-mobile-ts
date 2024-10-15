@@ -1,5 +1,6 @@
 import { EventConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
+import { PageConstants } from "../../constants/PageConstants";
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { QxScroll } from "../../qx/ui/mobile/container/QxScroll";
 import { QxList } from "../../qx/ui/mobile/list/QxList";
@@ -51,12 +52,12 @@ export class OverviewPage extends AbstractRoutingPage {
 
     getData(): any[] {
         return [
-            { title: 'Home', subtitle: 'Home', path: 'home', },
-            { title: 'Projects', subtitle: 'Python projects', path: 'projects', },
-            { title: 'Editor', subtitle: 'Python editor', path: 'editor', },
-            { title: 'Transcript', subtitle: 'Text output', path: 'transcript', },
-            { title: 'Board', subtitle: 'Game board', path: 'board', },
-            { title: 'Status', subtitle: 'Status information', path: 'status' },
+            { title: PageConstants.titleHome, subtitle: PageConstants.subtitleHome, path: PageConstants.pathHome, },
+            { title: PageConstants.titleProjects, subtitle: PageConstants.subtitleProjects, path: PageConstants.pathProjects, },
+            { title: PageConstants.titleEditor, subtitle: PageConstants.subtitleEditor, path: PageConstants.pathEditor, },
+            { title: PageConstants.titleTranscript, subtitle: PageConstants.subtitleTranscript, path: PageConstants.pathTranscript, },
+            { title: PageConstants.titleBoard, subtitle: PageConstants.subtitleBoard, path: PageConstants.pathBoard, },
+            { title: PageConstants.titleStatus, subtitle: PageConstants.subtitleStatus, path: PageConstants.pathStatus },
         ];
     }
 
