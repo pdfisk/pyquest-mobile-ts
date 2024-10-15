@@ -1,5 +1,6 @@
 export class UrlConstants {
     static heroku: string = 'https://vistapython-7ee93adc9411.herokuapp.com';
+    static infoData:string = 'http://resource/data/info.json'
     static ipify: string = 'https://api.ipify.org?format=json';
     static local8080: string = 'localhost:8080';
     static local8081: string = 'localhost:8081';
