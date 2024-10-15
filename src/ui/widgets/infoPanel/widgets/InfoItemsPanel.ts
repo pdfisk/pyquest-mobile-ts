@@ -10,8 +10,8 @@ export class InfoItemsPanel extends QxVBox {
         (window as any).X = this;
     }
 
-    getItemData(): string[][] {
-        return InfoData.allInfoData;
+    getItemData(fn: Function) {
+        fn(InfoData.allInfoData);
     }
 
     handlesOnAppear(): boolean {
@@ -19,10 +19,12 @@ export class InfoItemsPanel extends QxVBox {
     }
 
     onAppear() {
-        const itemsData: string[][] = this.getItemData();
-        for (let i = 0; i < itemsData.length; i++)
-            this.add(new InfoScrollItem(itemsData[i]));
-        this.addFlex(new InfoScrollFiller);
+        const fn = (itemsData: string[][]) => {
+            for (let i = 0; i < itemsData.length; i++)
+                this.add(new InfoScrollItem(itemsData[i]));
+            this.addFlex(new InfoScrollFiller);
+        };
+        this.getItemData(fn);
     }
 
 }
