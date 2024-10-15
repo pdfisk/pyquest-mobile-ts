@@ -1,9 +1,11 @@
-import { InfoData } from "../static/InfoData";
+import { UrlConstants } from "../../constants";
 
 export class InfoDataReader {
 
     static readData(fn: Function) {
-        fn(InfoData.allInfoData);
+        fetch(UrlConstants.infoData)
+            .then(response => response.json())
+            .then(data => fn(data));
     }
 
 }
