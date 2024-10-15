@@ -1,4 +1,4 @@
-import { UrlConstants } from "../../constants";
+import { ColorConstants, StyleConstants, UrlConstants, Version } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { BrowserUtil } from "../../util/BrowserUtil";
 import { AbstractInfoPage } from "./AbstractInfoPage";
@@ -18,8 +18,14 @@ export class HomePage extends AbstractInfoPage {
     }
 
     addPageContent() {
-        this.addLabel(LabelConstants.LabelPyQuestMobile);
-        const news = this.addNews();
+        const text = `${LabelConstants.LabelPyQuestMobile}-Version: ${Version.version}-${Version.timestamp}`;
+        const topLabel = this.addLabel(text);
+        topLabel.setBackgroundColor(ColorConstants.HomePageLabelBackground);
+        topLabel.setFontWeight(StyleConstants.FontWeight500);
+        topLabel.setPaddingLeftAndRightPx(7);
+        topLabel.setPaddingBottomPx(3);
+        topLabel.setBorderRadiusPx(7);
+        this.addNews();
         if (BrowserUtil.detectDesktopBrowser())
             this.addButtonNoMargin(LabelConstants.ButtonLabelDesktop,
                 () => { BrowserUtil.openNewTab(UrlConstants.desktop) });

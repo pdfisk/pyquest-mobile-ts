@@ -130,6 +130,10 @@ export class QxWidget extends QxObject {
         this.setStyle(StyleConstants.FontWeight, weight);
     }
 
+    setFontStyleItalic() {
+        this.setStyle(StyleConstants.FontStyle, StyleConstants.Italic);
+    }
+
     setFontWeightBold() {
         this.setStyle(StyleConstants.FontWeight, StyleConstants.FontWeightBold);
     }

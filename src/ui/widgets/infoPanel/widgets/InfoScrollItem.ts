@@ -18,7 +18,7 @@ export class InfoScrollItem extends QxHtml {
         if (itemData.length == 0)
             itemData.push('-- no data --');
         const sw = new StringWriter;
-        sw.prn(`<h3>${itemData.shift()}</h3>`);
+        sw.prn(`<h5>${itemData.shift()}</h5>`);
         while (itemData.length > 0) {
             sw.prn(`<p>${itemData.shift()}</p>`)
         }

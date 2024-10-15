@@ -6,8 +6,11 @@ export class StyleConstants {
     static BorderTop: string = 'borderTop';
     static FontFamily: string = 'fontFamily';
     static FontSize: string = 'fontSize';
+    static FontStyle: string = 'fontStyle';
     static FontWeight: string = 'fontWeight';
     static FontWeightBold: string = 'bold';
+    static FontWeight450: string = '450';
+    static FontWeight500: string = '500';
     static Height: string = 'height';
     static ImagePercentSize: number = 0.9;
     static LineHeight: string = 'lineHeight';
@@ -33,6 +36,7 @@ export class StyleConstants {
     static Auto: string = 'auto';
     static BorderRadius15: number = 15;
     static BorderSlateGray2: string = '2px solid slategray';
+    static Italic: string = 'italic';
     static TextAlignCenter: string = 'center';
 
     static CssNavbarButton: string = 'navigationbar-backbutton';

@@ -44,8 +44,8 @@ export class InfoPanel extends QxVBox {
         label.setMarginLeftAndRightPx(SizeConstants.InfoPanelLeftAndRightMargins);
         if (withMargin)
             label.setMarginBottomPx(SizeConstants.InfoPanelBottomMargin);
-        label.setFontWeightBold();
-        label.setFontSize(FontConstants.FontSize1_5Em);
+        label.setFontStyleItalic();
+        label.setFontSize(FontConstants.FontSize1_2Em);
         this.addReset(label);
         return label;
     }
