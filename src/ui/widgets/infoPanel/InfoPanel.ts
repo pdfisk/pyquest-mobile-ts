@@ -11,7 +11,6 @@ export class InfoPanel extends QxVBox {
 
     constructor() {
         super();
-        (window as any).X = this;
     }
 
     addButton(label: string, fn: Function | null = null, withMargin: boolean = true): QxButton {

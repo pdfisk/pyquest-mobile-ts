@@ -52,6 +52,10 @@ export class QxFactory {
         return new (window as any).qx.ui.mobile.list.List(config);
     }
 
+    static mobileNavigationBarButton(): any {
+        return new (window as any).qx.ui.mobile.navigationbar.Button;
+    }
+
     static mobileNavigationPage(): any {
         return new (window as any).qx.ui.mobile.page.NavigationPage;
     }

@@ -2,6 +2,7 @@ import { ColorConstants, LabelConstants, SizeConstants } from "../../constants";
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { StringUtil } from "../../util/StringUtil";
 import { ButtonBar } from "../widgets/ButtonBar";
+import { TopMenuButton } from "../widgets/TopMenuButton";
 import { AbstractRoutingPage } from "./AbstractRoutingPage";
 
 export abstract class AbstractPage extends AbstractRoutingPage {
@@ -28,11 +29,24 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         });
     }
 
+    addTopMenuButton() {
+        const topMenuButton = new TopMenuButton;
+        this.getLeftContainer().add(topMenuButton.widget);
+    }
+
     defaultButtons(): string[] {
         return [];
     }
 
+    getLeftContainer(): any {
+        return this.widget.getLeftContainer();
+    }
+
     hasButtonBar(): boolean {
+        return true;
+    }
+
+    hasTopMenuMenu(): boolean {
         return true;
     }
 
@@ -43,6 +57,8 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         this.setBackButtonText(LabelConstants.ButtonLabelBack);
         this.setShowBackButton(true);
         this.widget._back = () => { this.onBack(); };
+        if (this.hasTopMenuMenu())
+            this.addTopMenuButton();
         if (this.hasButtonBar())
             this.addButtonBar();
     }

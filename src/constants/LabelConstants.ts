@@ -21,6 +21,7 @@ export class LabelConstants {
     static ButtonLabelRunStepping: string = 'Run Stepping';
     static ButtonLabelSave: string = 'Save';
     static ButtonLabelStatus: string = 'Status';
+    static ButtonLabelTopMenu: string = 'Top Menu';
     static ButtonLabelTranscript: string = 'Transcript';
     static ButtonLabelUsers: string = 'Users';
     static ButtonLabelViews: string = 'Views';

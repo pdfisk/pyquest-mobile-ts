@@ -3,7 +3,7 @@ export class PageConstants {
     static pathBoard = 'board';
     static pathEditor = 'editor';
     static pathHome = 'home';
-    static pathOverview = 'overview';
+    static pathOverview = '';
     static pathProjects = 'projects';
     static pathStatus = 'status';
     static pathTranscript = 'transcript';

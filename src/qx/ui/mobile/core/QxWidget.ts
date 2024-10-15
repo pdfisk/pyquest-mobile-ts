@@ -12,6 +12,10 @@ export class QxWidget extends QxObject {
         this.setHeight(SizeConstants.Size100Pct);
     }
 
+    addCssClass(cssClass: string) {
+        this.widget.addCssClass(cssClass);
+    }
+
     addListener(eventName: string, fn: Function, context: any = this) {
         this.widget.addListener(eventName, fn, context);
     }

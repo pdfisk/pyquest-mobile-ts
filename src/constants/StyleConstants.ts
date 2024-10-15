@@ -34,4 +34,7 @@ export class StyleConstants {
     static BorderRadius15: number = 15;
     static BorderSlateGray2: string = '2px solid slategray';
     static TextAlignCenter: string = 'center';
+
+    static CssNavbarButton: string = 'navigationbar-backbutton';
+
 }
