@@ -29,6 +29,10 @@ export class HomePage extends AbstractInfoPage {
             () => { BrowserUtil.openNewTab(UrlConstants.patreon) });
     }
 
+    hasBackButton(): boolean {
+        return false;
+    }
+
     onAppear() {
         super.onAppear();
         this.addPageContent();

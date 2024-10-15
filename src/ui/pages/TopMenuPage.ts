@@ -6,20 +6,20 @@ import { QxScroll } from "../../qx/ui/mobile/container/QxScroll";
 import { QxList } from "../../qx/ui/mobile/list/QxList";
 import { AbstractRoutingPage } from "./AbstractRoutingPage";
 
-export class OverviewPage extends AbstractRoutingPage {
+export class TopMenuPage extends AbstractRoutingPage {
     list: QxList;
     scroll: QxScroll;
-    static instance: OverviewPage;
+    static instance: TopMenuPage;
 
-    static getInstance(): OverviewPage {
+    static getInstance(): TopMenuPage {
         if (!this.instance)
-            this.instance = new OverviewPage();
+            this.instance = new TopMenuPage();
         return this.instance;
     }
 
     private constructor() {
         super();
-        this.setTitle(LabelConstants.PageOverview);
+        this.setTitle(LabelConstants.PageTopMenu);
         const config = {
             configureItem(item: any, data: any) {
                 item.setTitle(data.title);

@@ -2,34 +2,34 @@ export class PageConstants {
 
     static pathBoard = 'board';
     static pathEditor = 'editor';
-    static pathHome = 'home';
-    static pathOverview = '';
+    static pathHome = '';
     static pathProjects = 'projects';
     static pathStatus = 'status';
+    static pathTopMenu = 'topmenu';
     static pathTranscript = 'transcript';
 
-    static routeBoard = '/board';
-    static routeEditor = '/editor';
-    static routeHome = '/';
-    static routeProjects = '/projects';
-    static routeStatus = '/status';
-    static routeTopMenu = '/topmenu';
-    static routeTranscript = '/transcript';
+    static routeBoard = '/' + this.pathBoard;
+    static routeEditor = '/' + this.pathEditor;
+    static routeHome = '/' + this.pathHome;
+    static routeProjects = '/' + this.pathProjects;
+    static routeStatus = '/' + this.pathStatus;
+    static routeTopMenu = '/' + this.pathTopMenu;
+    static routeTranscript = '/' + this.pathTranscript;
 
     static subtitleBoard = 'Game board';
     static subtitleEditor = 'Python editor';
     static subtitleHome = 'Home';
-    static subtitleOverview = 'Overview';
     static subtitleProjects = 'Python projects';
     static subtitleStatus = 'Status information';
+    static subtitleTopMenu = 'App pages menu';
     static subtitleTranscript = 'Text output';
 
     static titleBoard = 'Board';
     static titleEditor = 'Editor';
     static titleHome = 'Home';
-    static titleOverview = 'Overview';
     static titleProjects = 'Projects';
     static titleStatus = 'Status';
+    static titleTopMenu = 'Top Menu';
     static titleTranscript = 'Transcript';
 
 }

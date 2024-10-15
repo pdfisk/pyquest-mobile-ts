@@ -14,14 +14,14 @@ export class NavigationUtil {
             case PageConstants.pathHome:
                 this.showHome();
                 break;
-            case PageConstants.pathOverview:
-                this.showOverview();
-                break;
             case PageConstants.pathProjects:
                 this.showProjects();
                 break;
             case PageConstants.pathStatus:
                 this.showStatus();
+                break;
+            case PageConstants.pathTopMenu:
+                this.showTopMenu();
                 break;
             case PageConstants.pathTranscript:
                 this.showTranscript();
@@ -44,7 +44,7 @@ export class NavigationUtil {
         QxMobileApplication.executeGet(PageConstants.routeHome);
     }
 
-    static showOverview() {
+    static showTopMenu() {
         QxMobileApplication.executeGet(PageConstants.routeTopMenu);
     }
 

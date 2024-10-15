@@ -10,6 +10,10 @@ export abstract class AbstractPage extends AbstractRoutingPage {
     deferredHeight: number = 0;
     deferredWidth: number = 0;
 
+    addBackButton() {
+        this.widget._back = () => { this.onBack(); };
+    }
+
     addButton(label: string, fn: Function) {
         this.buttonbar.addButton(label, fn);
     }
@@ -42,6 +46,10 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         return this.widget.getLeftContainer();
     }
 
+    hasBackButton(): boolean {
+        return true;
+    }
+
     hasButtonBar(): boolean {
         return true;
     }
@@ -56,7 +64,8 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         super.onAppear();
         this.setBackButtonText(LabelConstants.ButtonLabelBack);
         this.setShowBackButton(true);
-        this.widget._back = () => { this.onBack(); };
+        if (this.hasBackButton())
+            this.addBackButton();
         if (this.hasTopMenuMenu())
             this.addTopMenuButton();
         if (this.hasButtonBar())
