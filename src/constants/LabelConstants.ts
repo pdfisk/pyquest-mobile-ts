@@ -5,6 +5,7 @@ export class LabelConstants {
     static ButtonLabelClearOut: string = 'Clear Out';
     static ButtonLabelConsole: string = 'Console';
     static ButtonLabelDelete: string = 'Delete';
+    static ButtonLabelDesktop: string = 'Desktop';
     static ButtonLabelLogin: string = 'Login';
     static ButtonLabelLogout: string = 'Logout';
     static ButtonLabelNew: string = 'New';

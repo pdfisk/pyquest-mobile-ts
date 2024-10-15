@@ -1,4 +1,6 @@
+import { UrlConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
+import { BrowserUtil } from "../../util/BrowserUtil";
 import { AbstractInfoPage } from "./AbstractInfoPage";
 
 export class HomePage extends AbstractInfoPage {
@@ -18,8 +20,13 @@ export class HomePage extends AbstractInfoPage {
     addPageContent() {
         this.addLabel(LabelConstants.LabelPyQuestMobile);
         const news = this.addNews();
-        this.addButtonNoMargin(LabelConstants.ButtonLabelReddit);
-        this.addButtonNoMargin(LabelConstants.ButtonLabelPatreon);
+        if (BrowserUtil.detectDesktopBrowser())
+            this.addButtonNoMargin(LabelConstants.ButtonLabelDesktop,
+                () => { BrowserUtil.openNewTab(UrlConstants.desktop) });
+        this.addButtonNoMargin(LabelConstants.ButtonLabelReddit,
+            () => { BrowserUtil.openNewTab(UrlConstants.reddit) });
+        this.addButtonNoMargin(LabelConstants.ButtonLabelPatreon,
+            () => { BrowserUtil.openNewTab(UrlConstants.patreon) });
     }
 
     onAppear() {
