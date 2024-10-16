@@ -17,6 +17,7 @@ export class UrlConstants {
     static reddit: string = 'https://www.reddit.com/r/PyQuest/';
 
     // info
+    static yt_cpm = 'https://www.youtube.com/watch?v=NoiKvV3WFyY';
     static yt_javascript_tasks = 'https://www.youtube.com/watch?v=eiC58R16hb8&t=617s';
     static yt_multithreading = 'https://www.youtube.com/watch?v=PgDaJEjlBuI';
 }

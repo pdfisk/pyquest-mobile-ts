@@ -64,7 +64,7 @@ export abstract class AbstractTextPage extends AbstractPage {
     }
 
     space(count: number = 1): AbstractTextPage {
-        this.pr(StringUtil.spaces(count));
+        this.pr(StringUtil.space(count));
         return this;
     }
 

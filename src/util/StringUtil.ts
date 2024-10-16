@@ -1,6 +1,13 @@
+import { StyleConstants, TextConstants } from "../constants";
 import { ImageConstants } from "../constants/ImageConstants";
 
 export class StringUtil {
+
+    static adjustHrefValue(value: string): string {
+        if (value.startsWith(StyleConstants.Http) || value.startsWith(StyleConstants.Https))
+            return value;
+        return `${StyleConstants.Https}${TextConstants.COLON}${TextConstants.DOUBLE_SLASH}${value}`;
+    }
 
     static asImagePath(imageFileName: string): string {
         if (!imageFileName.includes('.'))
@@ -20,6 +27,10 @@ export class StringUtil {
         return (window as any).qx.lang.String.format(template, args);
     }
 
+    static inDoubleQuotes(text: string) {
+        return `${TextConstants.DOUBLE_QUOTE}${text}${TextConstants.DOUBLE_QUOTE}`;
+    }
+
     static padSpace(text: string, len: number = 1): string {
         let value: string = text.toString();
         while (value.length < len)
@@ -34,7 +45,7 @@ export class StringUtil {
         return value;
     }
 
-    static spaces(len: number = 1): string {
+    static space(len: number = 1): string {
         return this.padSpace('', len);
     }
 
@@ -44,10 +55,21 @@ export class StringUtil {
 
     static tagOpen(tag: string, attributes: string[] = []): string {
         let result: string = `<${tag}`;
+        if (attributes.length > 0 && attributes[0].startsWith(StyleConstants.AttributeHref))
+            attributes.push(`${StyleConstants.AttributeTarget}${TextConstants.COLON}${StyleConstants.Blank}`);
         attributes.forEach((attribute) => {
-            result = this.spaces();
-            result += attribute;
-        })
+            const parts = attribute.split(TextConstants.COLON);
+            if (parts.length == 2) {
+                const name = parts[0];
+                let value = parts[1];
+                if (name == StyleConstants.AttributeHref)
+                    value = this.adjustHrefValue(value);
+                result += this.space();
+                result += name;
+                result += TextConstants.EQUAL;
+                result += this.inDoubleQuotes(value);
+            }
+        });
         return `${result}>`;
     }
 

@@ -12,7 +12,11 @@ export class StringWriter {
         this.buffer.push(text);
     }
 
-    closeTag( tag:string) {
+    asString(): string {
+        return this.buffer.join('');
+    }
+
+    closeTag(tag: string) {
         this.append(StringUtil.tagClose(tag));
     }
 
@@ -28,12 +32,12 @@ export class StringWriter {
         this.append(TextConstants.NEWLINE);
     }
 
-    openTag( tag:string,  attributes: string[] = []) {
+    openTag(tag: string, attributes: string[] = []) {
         this.append(StringUtil.tagOpen(tag, attributes));
     }
 
     openTagA(attributes: string[] = []) {
-        this.openTag(StyleConstants.TagA);
+        this.openTag(StyleConstants.TagA, attributes);
     }
 
     pr(text: string, tag: string | null = null, attributes: string[] = []) {
@@ -63,10 +67,6 @@ export class StringWriter {
 
     space() {
         this.append(TextConstants.SPACE);
-    }
-
-    asString(): string {
-        return this.buffer.join('');
     }
 
 }

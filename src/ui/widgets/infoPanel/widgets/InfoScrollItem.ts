@@ -21,7 +21,6 @@ export class InfoScrollItem extends QxHtml {
         this.createHtmlTitle(sw, `${itemData.shift()}`);
         while (itemData.length > 0)
             this.createHtmlParagraph(sw, `${itemData.shift()}`);
-        console.log('createHtml', sw.asString());
         return sw.asString();
     }
 
@@ -34,7 +33,6 @@ export class InfoScrollItem extends QxHtml {
         const title = parts[0];
         const attributes: string[] = parts.length > 1 ? parts[1].split(',') : [];
         if (attributes.length > 0 && attributes[0].startsWith(StyleConstants.AttributeHref)) {
-            attributes.shift();
             sw.openTagA(attributes);
             sw.pr_h5(title);
             sw.closeTagA();
