@@ -38,11 +38,11 @@ export class StringUtil {
         return this.padSpace('', len);
     }
 
-    static tagClose(tag:string):string {
+    static tagClose(tag: string): string {
         return `</${tag}>`;
     }
 
-    static tagOpen(tag:string):string {
+    static tagOpen(tag: string, attributes: string[] = []): string {
         return `<${tag}>`;
     }
 

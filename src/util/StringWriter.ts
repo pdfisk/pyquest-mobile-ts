@@ -12,13 +12,17 @@ export class StringWriter {
         this.buffer.push(text);
     }
 
+    equal() {
+        this.append(TextConstants.EQUAL);
+    }
+
     newline() {
         this.append(TextConstants.NEWLINE);
     }
 
-    pr(text: string, tag: string | null = null) {
+    pr(text: string, tag: string | null = null, attributes: string[] = []) {
         if (tag)
-            this.append(StringUtil.tagOpen(tag));
+            this.append(StringUtil.tagOpen(tag, attributes));
         this.append(text);
         if (tag)
             this.append(StringUtil.tagClose(tag));
