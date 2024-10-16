@@ -6,6 +6,7 @@ export class StyleConstants {
     static BorderTop: string = 'borderTop';
     static FontFamily: string = 'fontFamily';
     static FontSize: string = 'fontSize';
+    static FontSize_09em: string = '0.9em';
     static FontStyle: string = 'fontStyle';
     static FontWeight: string = 'fontWeight';
     static FontWeightBold: string = 'bold';

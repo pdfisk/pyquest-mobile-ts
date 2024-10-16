@@ -18,10 +18,11 @@ export class HomePage extends AbstractInfoPage {
     }
 
     addPageContent() {
-        const text = `${LabelConstants.LabelPyQuestMobile}-Version: ${Version.version}-${Version.timestamp}`;
+        const text = `${LabelConstants.LabelPyQuestMobile}-${Version.timestamp}`;
         const topLabel = this.addLabel(text);
         topLabel.setBackgroundColor(ColorConstants.HomePageLabelBackground);
-        topLabel.setFontWeight(StyleConstants.FontWeight500);
+        topLabel.setFontSize(StyleConstants.FontSize_09em);
+        topLabel.setFontWeight(StyleConstants.FontWeight450);
         topLabel.setPaddingLeftAndRightPx(7);
         topLabel.setPaddingBottomPx(3);
         topLabel.setBorderRadiusPx(7);
