@@ -18,7 +18,7 @@ export class HomePage extends AbstractInfoPage {
     }
 
     addPageContent() {
-        const text = `${LabelConstants.LabelPyQuestMobile}-${Version.timestamp}`;
+        const text = `${LabelConstants.LabelPyQuestMobile} ${Version.timestamp}`;
         const topLabel = this.addLabel(text);
         topLabel.setBackgroundColor(ColorConstants.HomePageLabelBackground);
         topLabel.setFontSize(StyleConstants.FontSize_09em);

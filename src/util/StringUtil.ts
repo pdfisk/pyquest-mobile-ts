@@ -38,6 +38,14 @@ export class StringUtil {
         return this.padSpace('', len);
     }
 
+    static tagClose(tag:string):string {
+        return `</${tag}>`;
+    }
+
+    static tagOpen(tag:string):string {
+        return `<${tag}>`;
+    }
+
     static tileMapKey(row: number, column: number): string {
         return `tile-${row}-${column}`;
     }

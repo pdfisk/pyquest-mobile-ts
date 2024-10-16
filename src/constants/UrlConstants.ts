@@ -1,5 +1,5 @@
 export class UrlConstants {
-    static desktop: string = 'https://desktop.pyquest.com';
+    // services
     static heroku: string = 'https://vistapython-7ee93adc9411.herokuapp.com';
     static infoData: string = 'resource/data/info.json';
     static ipify: string = 'https://api.ipify.org?format=json';
@@ -10,6 +10,13 @@ export class UrlConstants {
     static local9080: string = 'http://localhost:9080';
     static local9081: string = 'http://localhost:9081';
     static myip: string = '96.20.115.27';
+
+    // pyquest
+    static desktop: string = 'https://desktop.pyquest.com';
     static patreon: string = 'https://www.patreon.com/pyquest';
     static reddit: string = 'https://www.reddit.com/r/PyQuest/';
+
+    // info
+    static yt_javascript_tasks = 'https://www.youtube.com/watch?v=eiC58R16hb8&t=617s';
+    static yt_multithreading = 'https://www.youtube.com/watch?v=PgDaJEjlBuI';
 }

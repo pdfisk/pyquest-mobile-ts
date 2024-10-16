@@ -1,4 +1,5 @@
-import { TextConstants } from "../constants";
+import { StyleConstants, TextConstants } from "../constants";
+import { StringUtil } from "./StringUtil";
 
 export class StringWriter {
     buffer: string[];
@@ -15,13 +16,25 @@ export class StringWriter {
         this.append(TextConstants.NEWLINE);
     }
 
-    pr(text: string) {
+    pr(text: string, tag: string | null = null) {
+        if (tag)
+            this.append(StringUtil.tagOpen(tag));
         this.append(text);
+        if (tag)
+            this.append(StringUtil.tagClose(tag));
     }
 
-    prn(text: string) {
-        this.pr(text);
+    prn(text: string, tag: string | null = null) {
+        this.pr(text, tag);
         this.newline();
+    }
+
+    prn_h5(text: string) {
+        this.prn(text, StyleConstants.TagH5);
+    }
+
+    prn_p(text: string) {
+        this.prn(text, StyleConstants.TagP);
     }
 
     space() {
