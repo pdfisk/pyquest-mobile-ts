@@ -42,6 +42,9 @@ export class StyleConstants {
 
     static CssNavbarButton: string = 'navigationbar-backbutton';
 
+    static AttributeHref: string = 'href';
+
+    static TagA: string = 'a';
     static TagH5: string = 'h5';
     static TagP: string = 'p';
 

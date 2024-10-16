@@ -24,6 +24,10 @@ export class StringWriter {
             this.append(StringUtil.tagClose(tag));
     }
 
+    pr_h5(text: string) {
+        this.pr(text, StyleConstants.TagH5);
+    }
+
     prn(text: string, tag: string | null = null) {
         this.pr(text, tag);
         this.newline();
