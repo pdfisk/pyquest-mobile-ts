@@ -12,6 +12,14 @@ export class StringWriter {
         this.buffer.push(text);
     }
 
+    closeTag( tag:string) {
+        this.append(StringUtil.tagClose(tag));
+    }
+
+    closeTagA() {
+        this.closeTag(StyleConstants.TagA);
+    }
+
     equal() {
         this.append(TextConstants.EQUAL);
     }
@@ -20,25 +28,33 @@ export class StringWriter {
         this.append(TextConstants.NEWLINE);
     }
 
+    openTag( tag:string,  attributes: string[] = []) {
+        this.append(StringUtil.tagOpen(tag, attributes));
+    }
+
+    openTagA(attributes: string[] = []) {
+        this.openTag(StyleConstants.TagA);
+    }
+
     pr(text: string, tag: string | null = null, attributes: string[] = []) {
         if (tag)
-            this.append(StringUtil.tagOpen(tag, attributes));
+            this.openTag(tag, attributes);
         this.append(text);
         if (tag)
-            this.append(StringUtil.tagClose(tag));
+            this.closeTag(tag);
     }
 
-    pr_h5(text: string) {
-        this.pr(text, StyleConstants.TagH5);
+    pr_h5(text: string, attributes: string[] = []) {
+        this.pr(text, StyleConstants.TagH5, attributes);
     }
 
-    prn(text: string, tag: string | null = null) {
-        this.pr(text, tag);
+    prn(text: string, tag: string | null = null, attributes: string[] = []) {
+        this.pr(text, tag, attributes);
         this.newline();
     }
 
-    prn_h5(text: string) {
-        this.prn(text, StyleConstants.TagH5);
+    prn_h5(text: string, attributes: string[] = []) {
+        this.prn(text, StyleConstants.TagH5, attributes);
     }
 
     prn_p(text: string) {

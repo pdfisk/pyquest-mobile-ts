@@ -20,7 +20,7 @@ export class StringUtil {
         return (window as any).qx.lang.String.format(template, args);
     }
 
-    static padSpace(text: string, len: number): string {
+    static padSpace(text: string, len: number = 1): string {
         let value: string = text.toString();
         while (value.length < len)
             value = ' ' + value;
@@ -34,7 +34,7 @@ export class StringUtil {
         return value;
     }
 
-    static spaces(len: number): string {
+    static spaces(len: number = 1): string {
         return this.padSpace('', len);
     }
 
@@ -43,7 +43,12 @@ export class StringUtil {
     }
 
     static tagOpen(tag: string, attributes: string[] = []): string {
-        return `<${tag}>`;
+        let result: string = `<${tag}`;
+        attributes.forEach((attribute) => {
+            result = this.spaces();
+            result += attribute;
+        })
+        return `${result}>`;
     }
 
     static tileMapKey(row: number, column: number): string {
