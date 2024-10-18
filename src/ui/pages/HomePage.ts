@@ -27,9 +27,6 @@ export class HomePage extends AbstractInfoPage {
         topLabel.setPaddingBottomPx(3);
         topLabel.setBorderRadiusPx(7);
         this.addNews();
-        if (BrowserUtil.detectDesktopBrowser())
-            this.addButtonNoMargin(LabelConstants.ButtonLabelDesktop,
-                () => { BrowserUtil.openNewTab(UrlConstants.desktop) });
         this.addButtonNoMargin(LabelConstants.ButtonLabelReddit,
             () => { BrowserUtil.openNewTab(UrlConstants.reddit) });
         this.addButtonNoMargin(LabelConstants.ButtonLabelPatreon,

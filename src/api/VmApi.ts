@@ -29,6 +29,10 @@ export class VmApi {
         return this.getInstance().run_with_toast(src, inputId, outputId);
     }
 
+    static runCompiled(compiledCodeObjectJson: string, inputId: number = 0, outputId: number = 0): any {
+        return this.getInstance().run_compiled(compiledCodeObjectJson, inputId, outputId);
+    }
+
     private constructor() {
         const setActionHandlerFn: Function = this.getVmApiSetActionHandlerFn();
         const setResultHandlerFn: Function = this.getVmApiSetResultHandlerFn();
@@ -116,7 +120,18 @@ export class VmApi {
             return -1;
     }
 
-    run_with_toast(src: string, inputId: number, outputId: number): number {
+    run_compiled(compiledObjectJson: string, inputId: number, outputId: any) {
+        const runCompiledFn: Function = this.getVmApiRunCompiledFn();
+        console.log('run_compiled');
+        (window as any).X = [runCompiledFn, compiledObjectJson];
+        if (runCompiledFn) {
+            const resultJsonStr = this.callVmApiFn(runCompiledFn, compiledObjectJson);
+            return JSON.parse(resultJsonStr);
+        }
+        return null;
+    }
+
+    run_with_toast(src: string, inputId: number, outputId: number): any {
         const userFn_1 = (toast: Toast) => {
             return this.compile_to_json(src);
         };
@@ -124,6 +139,8 @@ export class VmApi {
             const compiledObjectJson = toast.userResult_1;
             if (!compiledObjectJson) return null;
             const runCompiledFn: Function = this.getVmApiRunCompiledFn();
+            console.log('run_with_toast');
+            (window as any).X = [runCompiledFn, compiledObjectJson];
             if (runCompiledFn) {
                 const resultJsonStr = this.callVmApiFn(runCompiledFn, compiledObjectJson);
                 return JSON.parse(resultJsonStr);

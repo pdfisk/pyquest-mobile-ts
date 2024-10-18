@@ -4,9 +4,10 @@ import { PageConstants } from "../../constants/PageConstants";
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { QxScroll } from "../../qx/ui/mobile/container/QxScroll";
 import { QxList } from "../../qx/ui/mobile/list/QxList";
+import { AbstractPage } from "./AbstractPage";
 import { AbstractRoutingPage } from "./AbstractRoutingPage";
 
-export class TopMenuPage extends AbstractRoutingPage {
+export class TopMenuPage extends AbstractPage {
     list: QxList;
     scroll: QxScroll;
     static instance: TopMenuPage;
@@ -61,8 +62,20 @@ export class TopMenuPage extends AbstractRoutingPage {
         ];
     }
 
+    hasButtonBar(): boolean {
+        return false;
+    }
+
+    hasTopMenuMenu(): boolean {
+        return false;
+    }
+
     initialize() {
         super.initialize();
+    }
+
+    isContentReady():boolean {
+        return true;
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {

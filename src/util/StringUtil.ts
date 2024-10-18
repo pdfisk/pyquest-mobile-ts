@@ -58,7 +58,7 @@ export class StringUtil {
         if (attributes.length > 0 && attributes[0].startsWith(StyleConstants.AttributeHref))
             attributes.push(`${StyleConstants.AttributeTarget}${TextConstants.COLON}${StyleConstants.Blank}`);
         attributes.forEach((attribute) => {
-            const parts = attribute.split(TextConstants.COLON);
+            const parts = attribute.split(TextConstants.EQUAL);
             if (parts.length == 2) {
                 const name = parts[0];
                 let value = parts[1];

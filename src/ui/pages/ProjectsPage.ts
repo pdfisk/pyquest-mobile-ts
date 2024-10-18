@@ -27,7 +27,9 @@ export class ProjectsPage extends AbstractDataListPage {
             const index: number = evt.getData();
             const record = this.list.getItem(index);
             const code = record.getCode();
+            const codeObject = record.getCode_object();
             EditorPage.setCode(code);
+            EditorPage.setCodeObject(codeObject);
             this.showEditor();
         };
     }

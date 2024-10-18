@@ -38,7 +38,7 @@ export class WorkbenchHandler extends HandlerBase {
     }
 
     actionSync(ownerId: number, args: any[]) {
-        console.log('actionSync', ownerId, args);
+        // console.log('actionSync', ownerId, args);
     }
 
 }

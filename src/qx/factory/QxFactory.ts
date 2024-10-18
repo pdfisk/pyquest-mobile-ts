@@ -68,6 +68,10 @@ export class QxFactory {
         return new (window as any).qx.ui.mobile.page.Manager(false);
     }
 
+    static mobilePopup(): any {
+        return new (window as any).qx.ui.mobile.dialog.Popup;
+    }
+
     static mobileRoot(): any {
         return new (window as any).qx.ui.mobile.core.Root;
     }

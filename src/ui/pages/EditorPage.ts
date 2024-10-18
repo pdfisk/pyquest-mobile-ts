@@ -7,6 +7,7 @@ import { AbstractPage } from "./AbstractPage";
 
 export class EditorPage extends AbstractPage {
     ace: any;
+    codeObject: string | null;
     editor: any = undefined;
     initValue: string = '';
     static instance: EditorPage;
@@ -18,12 +19,17 @@ export class EditorPage extends AbstractPage {
     }
 
     static setCode(code: string) {
-        this.getInstance().setValue(code);
+        this.getInstance().setCode(code);
+    }
+
+    static setCodeObject(codeObject: string | null) {
+        this.getInstance().setCodeObject(codeObject);
     }
 
     private constructor() {
         super();
         this.ace = (window as any).ace;
+        this.codeObject = null;
         this.setTitle(LabelConstants.PageEditor);
     }
 
@@ -31,10 +37,14 @@ export class EditorPage extends AbstractPage {
         return [LabelConstants.ButtonLabelRun, LabelConstants.ButtonLabelClear];
     }
 
-    getValue(): string {
+    getCode(): string {
         if (this.editor)
             return this.editor.getValue();
         return '';
+    }
+
+    getCodeObject(): string | null {
+        return this.codeObject;
     }
 
     isContentReady(): boolean {
@@ -45,18 +55,25 @@ export class EditorPage extends AbstractPage {
         super.onAppear();
         const cfg: any = { mode: EditorConstants.ModePython };
         this.editor = this.ace.edit(this.getContentElement(), cfg);
-        this.setValue(this.initValue);
+        this.setCode(this.initValue);
         if (this.deferredHeight > 0)
             this.setEditorHeight(this.deferredHeight);;
     }
 
     onClear() {
-        this.setValue('');
+        this.setCode('');
+        this.setCodeObject(null);
     }
 
     onRun() {
-        const code = this.getValue();
-        VmApi.run(code);
+        const codeObject = this.getCodeObject();
+        if (codeObject) {
+            VmApi.runCompiled(codeObject);
+        }
+        else {
+            const code = this.getCode();
+            VmApi.run(code);
+        }
     }
 
     onTap(action: string) {
@@ -83,6 +100,20 @@ export class EditorPage extends AbstractPage {
     setAdjustedWidth(adjustedHeight: number): void {
     }
 
+    setCode(value: string) {
+        if (this.editor) {
+            this.editor.setValue(value);
+            this.setLine(0);
+        }
+        else
+            this.initValue = value;
+        this.setRange(0, 0, 0, 0);
+    }
+
+    setCodeObject(value: string | null) {
+        this.codeObject = value;
+    }
+
     setEditorHeight(height: number) {
         this.editor.container.style.height = StringUtil.asPixels(height);
     }
@@ -95,16 +126,6 @@ export class EditorPage extends AbstractPage {
     setRange(startRow: number, startCol: number, endRow: number, endCol: number) {
         if (this.editor)
             this.editor.selection.setRange(new this.ace.Range(startRow, startCol, endRow, endCol));
-    }
-
-    setValue(value: string) {
-        if (this.editor) {
-            this.editor.setValue(value);
-            this.setLine(0);
-        }
-        else
-            this.initValue = value;
-        this.setRange(0, 0, 0, 0);
     }
 
 }

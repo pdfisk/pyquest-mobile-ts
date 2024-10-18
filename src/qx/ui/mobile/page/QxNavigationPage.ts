@@ -56,4 +56,8 @@ export class QxNavigationPage extends QxPage {
         this.widget.setTitle(title);
     }
 
+    showBackButton(value: boolean) {
+        this.widget.showBackButton(value);
+    }
+
 }
