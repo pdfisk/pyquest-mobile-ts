@@ -10,6 +10,13 @@ export class BrowserUtil {
         }
     }
 
+    static getAppNameOrNull(): string | null {
+        const map: any = (window as any).qx.util.Uri.parseUri(document.baseURI);
+        if (!map.queryKey) return null;
+        const app = map.queryKey.app;
+        return app ? app : null;
+    }
+
     static openNewTab(url: string) {
         window.open(url, '_blank');
     }

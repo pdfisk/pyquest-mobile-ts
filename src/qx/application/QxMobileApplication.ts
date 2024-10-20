@@ -1,4 +1,6 @@
+import { ProjectsStore } from "../../data";
 import { SessionStatus } from "../../session";
+import { BrowserUtil } from "../../util/BrowserUtil";
 import { QxObject } from "../core";
 import { QxInit } from "../core/QxInit";
 
@@ -26,6 +28,14 @@ export class QxMobileApplication extends QxObject {
 
     private constructor() {
         super(QxInit.getApplication());
+        const appName = BrowserUtil.getAppNameOrNull();
+        if (appName) {
+            const fn = (records: any[]) => {
+                console.log('[', records, ']');
+            }
+            ProjectsStore.addLoadHandlerFn(fn);
+            ProjectsStore.loadSilently();
+        }
     }
 
     initialize() {

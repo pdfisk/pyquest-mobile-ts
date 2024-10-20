@@ -5,10 +5,18 @@ export class ProjectsStore extends AbstractStore {
 
     static instance: ProjectsStore;
 
+    static addLoadHandlerFn(fn: Function) {
+        this.getInstance().addLoaderHandlerFn(fn);
+    }
+
     static getInstance() {
         if (!this.instance)
             this.instance = new ProjectsStore();
         return this.instance;
+    }
+
+    static loadSilently() {
+        this.getInstance().loadData(false);
     }
 
     private constructor() {
@@ -32,7 +40,7 @@ export class ProjectsStore extends AbstractStore {
             const code_object_json = item.$$user_code_object;
             const created_at = item.$$user_created_at;
             const updated_at = item.$$user_updated_at;
-             let code_object = null;
+            let code_object = null;
             if (typeof (code_object_json) === 'string')
                 code_object = JSON.parse(code_object_json);
             const projectRecord: any = {};

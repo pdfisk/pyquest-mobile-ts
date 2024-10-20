@@ -10,11 +10,7 @@ export class UrlConstants {
     static local9080: string = 'http://localhost:9080';
     static local9081: string = 'http://localhost:9081';
     static myip: string = '96.20.115.27';
-
-    // pyquest
-    static desktop: string = 'https://desktop.pyquest.com';
-    static patreon: string = 'https://www.patreon.com/pyquest';
-    static reddit: string = 'https://www.reddit.com/r/PyQuest/';
+    static pyquest_forum: string = 'https://pyquest.boards.net/';
 
     // info
     static yt_cpm = 'https://www.youtube.com/watch?v=NoiKvV3WFyY';

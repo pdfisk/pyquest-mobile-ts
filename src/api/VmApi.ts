@@ -122,8 +122,6 @@ export class VmApi {
 
     run_compiled(compiledObjectJson: string, inputId: number, outputId: any) {
         const runCompiledFn: Function = this.getVmApiRunCompiledFn();
-        console.log('run_compiled');
-        (window as any).X = [runCompiledFn, compiledObjectJson];
         if (runCompiledFn) {
             const resultJsonStr = this.callVmApiFn(runCompiledFn, compiledObjectJson);
             return JSON.parse(resultJsonStr);

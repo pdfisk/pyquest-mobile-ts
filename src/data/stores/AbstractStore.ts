@@ -45,7 +45,7 @@ export abstract class AbstractStore {
             handlerFn(this.dataRecords);
     }
 
-    loadData() {
+    loadData(showToast: boolean = true) {
         const userFn_1 = (toast: Toast) => {
             if (this.dataLoaded) {
                 this.dataStore.reload();
@@ -53,7 +53,8 @@ export abstract class AbstractStore {
             else
                 this.dataStore.setUrl(ServerUtil.getUrl(this.serviceName()));
         };
-        Toast.showNoClose('Loading data...', userFn_1);
+        if (showToast)
+            Toast.showNoClose('Loading data...', userFn_1);
     }
 
     newRecord() {
@@ -63,6 +64,7 @@ export abstract class AbstractStore {
     }
 
     onLoaded() {
+        console.log('onLoaded');
         this.dataLoaded = true;
         this.handleLoadedData();
     }
