@@ -18,6 +18,7 @@ export class PageConstants {
 
     static subtitleBoard = 'Game board';
     static subtitleEditor = 'Python editor';
+    static subtitleForm = 'Support forum';
     static subtitleHome = 'Home';
     static subtitleProjects = 'Python projects';
     static subtitleStatus = 'Status information';
@@ -29,6 +30,7 @@ export class PageConstants {
     static titleHome = 'Home';
     static titleProjects = 'Projects';
     static titleStatus = 'Status';
+    static titleSupport = 'Support';
     static titleTopMenu = 'Top Menu';
     static titleTranscript = 'Transcript';
 

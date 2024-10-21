@@ -1,11 +1,11 @@
-import { EventConstants } from "../../constants";
+import { EventConstants, UrlConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { PageConstants } from "../../constants/PageConstants";
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { QxScroll } from "../../qx/ui/mobile/container/QxScroll";
 import { QxList } from "../../qx/ui/mobile/list/QxList";
+import { BrowserUtil } from "../../util/BrowserUtil";
 import { AbstractPage } from "./AbstractPage";
-import { AbstractRoutingPage } from "./AbstractRoutingPage";
 
 export class TopMenuPage extends AbstractPage {
     list: QxList;
@@ -44,8 +44,11 @@ export class TopMenuPage extends AbstractPage {
         this.list.addListener(
             EventConstants.QxEventChangeSelection,
             function (evt: any) {
-                const path = data[evt.getData()].path;
-                QxMobileApplication.executeGet('/' + path);
+                const path: string = data[evt.getData()].path;
+                if (path.startsWith(UrlConstants.https))
+                    BrowserUtil.openNewTab(path);
+                else
+                    QxMobileApplication.executeGet('/' + path);
             },
             this
         );
@@ -59,6 +62,7 @@ export class TopMenuPage extends AbstractPage {
             { title: PageConstants.titleTranscript, subtitle: PageConstants.subtitleTranscript, path: PageConstants.pathTranscript, },
             { title: PageConstants.titleBoard, subtitle: PageConstants.subtitleBoard, path: PageConstants.pathBoard, },
             { title: PageConstants.titleStatus, subtitle: PageConstants.subtitleStatus, path: PageConstants.pathStatus },
+            { title: PageConstants.titleSupport, subtitle: PageConstants.subtitleForm, path: UrlConstants.pyquest_forum },
         ];
     }
 
@@ -74,7 +78,7 @@ export class TopMenuPage extends AbstractPage {
         super.initialize();
     }
 
-    isContentReady():boolean {
+    isContentReady(): boolean {
         return true;
     }
 
