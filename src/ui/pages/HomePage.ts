@@ -1,6 +1,5 @@
-import { ColorConstants, StyleConstants, UrlConstants, Version } from "../../constants";
+import { ColorConstants, StyleConstants, Version } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
-import { BrowserUtil } from "../../util/BrowserUtil";
 import { AbstractInfoPage } from "./AbstractInfoPage";
 
 export class HomePage extends AbstractInfoPage {

@@ -56,7 +56,6 @@ export class TopMenuPage extends AbstractPage {
 
     getData(): any[] {
         return [
-            { title: PageConstants.titleHome, subtitle: PageConstants.subtitleHome, path: PageConstants.pathHome, },
             { title: PageConstants.titleProjects, subtitle: PageConstants.subtitleProjects, path: PageConstants.pathProjects, },
             { title: PageConstants.titleEditor, subtitle: PageConstants.subtitleEditor, path: PageConstants.pathEditor, },
             { title: PageConstants.titleTranscript, subtitle: PageConstants.subtitleTranscript, path: PageConstants.pathTranscript, },

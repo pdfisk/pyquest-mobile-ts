@@ -6,10 +6,9 @@ import { QxRoot } from '../../qx/ui/mobile/core/QxRoot';
 import { QxPageManager } from '../../qx/ui/mobile/page/QxPageManager';
 import { BoardPage } from '../pages/BoardPage';
 import { EditorPage } from '../pages/EditorPage';
-import { HomePage } from '../pages/HomePage';
-import { TopMenuPage } from '../pages/TopMenuPage';
 import { ProjectsPage } from '../pages/ProjectsPage';
 import { StatusPage } from '../pages/StatusPage';
+import { TopMenuPage } from '../pages/TopMenuPage';
 import { TranscriptPage } from '../pages/TranscriptPage';
 
 export class Viewport extends QxComposite {
@@ -17,8 +16,7 @@ export class Viewport extends QxComposite {
     manager: QxPageManager;
     pageBoard: BoardPage;
     pageEditor: EditorPage;
-    pageHome: HomePage;
-    pageOverview: TopMenuPage;
+    pageTopMenu: TopMenuPage;
     pageProjects: ProjectsPage;
     pageStatus: StatusPage;
     pageTranscript: TranscriptPage;
@@ -40,8 +38,7 @@ export class Viewport extends QxComposite {
         this.routing = QxMobileRouting.getInstance();
         this.pageBoard = BoardPage.getInstance();
         this.pageEditor = EditorPage.getInstance();
-        this.pageHome = HomePage.getInstance();
-        this.pageOverview = TopMenuPage.getInstance();
+        this.pageTopMenu = TopMenuPage.getInstance();
         this.pageProjects = ProjectsPage.getInstance();
         this.pageStatus = StatusPage.getInstance();
         this.pageTranscript = TranscriptPage.getInstance();
@@ -52,22 +49,20 @@ export class Viewport extends QxComposite {
 
     addDetailPages() {
         this.manager.addDetailPages([
-            this.pageBoard, this.pageEditor, this.pageHome,
-            this.pageProjects, this.pageStatus, this.pageTranscript
+            this.pageBoard, this.pageEditor,this.pageProjects, this.pageStatus, this.pageTranscript
         ]);
     }
 
     addMasterPage() {
-        this.manager.addMaster(this.pageOverview);
+        this.manager.addMaster(this.pageTopMenu);
     }
 
     buildRouting() {
         this.routing.onGet(PageConstants.routeBoard, this.pageBoard);
         this.routing.onGet(PageConstants.routeEditor, this.pageEditor);
-        this.routing.onGet(PageConstants.routeHome, this.pageHome);
         this.routing.onGet(PageConstants.routeProjects, this.pageProjects);
         this.routing.onGet(PageConstants.routeStatus, this.pageStatus);
-        this.routing.onGet(PageConstants.routeTopMenu, this.pageOverview);
+        this.routing.onGet(PageConstants.routeTopMenu, this.pageTopMenu);
         this.routing.onGet(PageConstants.routeTranscript, this.pageTranscript);
         this.routing.init();
     }
@@ -81,7 +76,7 @@ export class Viewport extends QxComposite {
     }
 
     onAppear() {
-        QxMobileApplication.executeGet(PageConstants.routeHome);
+        QxMobileApplication.executeGet(PageConstants.routeTopMenu);
     }
 
 }

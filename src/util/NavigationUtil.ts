@@ -11,9 +11,6 @@ export class NavigationUtil {
             case PageConstants.pathEditor:
                 this.showEditor();
                 break;
-            case PageConstants.pathHome:
-                this.showHome();
-                break;
             case PageConstants.pathProjects:
                 this.showProjects();
                 break;
@@ -38,10 +35,6 @@ export class NavigationUtil {
 
     static showEditor() {
         QxMobileApplication.executeGet(PageConstants.routeEditor);
-    }
-
-    static showHome() {
-        QxMobileApplication.executeGet(PageConstants.routeHome);
     }
 
     static showTopMenu() {
