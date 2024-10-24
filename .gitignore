@@ -10,6 +10,7 @@
 
 # Built Visual Studio Code Extensions
 *.vsix
+android/
 dist/
 lib/
 node_modules/
