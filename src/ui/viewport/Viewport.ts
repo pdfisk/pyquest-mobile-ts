@@ -6,6 +6,7 @@ import { QxRoot } from '../../qx/ui/mobile/core/QxRoot';
 import { QxPageManager } from '../../qx/ui/mobile/page/QxPageManager';
 import { BoardPage } from '../pages/BoardPage';
 import { EditorPage } from '../pages/EditorPage';
+import { LoginPage } from '../pages/LoginPage';
 import { ProjectsPage } from '../pages/ProjectsPage';
 import { StatusPage } from '../pages/StatusPage';
 import { TopMenuPage } from '../pages/TopMenuPage';
@@ -16,9 +17,10 @@ export class Viewport extends QxComposite {
     manager: QxPageManager;
     pageBoard: BoardPage;
     pageEditor: EditorPage;
-    pageTopMenu: TopMenuPage;
+    pageLogin: LoginPage;
     pageProjects: ProjectsPage;
     pageStatus: StatusPage;
+    pageTopMenu: TopMenuPage;
     pageTranscript: TranscriptPage;
     root: QxRoot;
     routing: QxMobileRouting;
@@ -38,9 +40,10 @@ export class Viewport extends QxComposite {
         this.routing = QxMobileRouting.getInstance();
         this.pageBoard = BoardPage.getInstance();
         this.pageEditor = EditorPage.getInstance();
-        this.pageTopMenu = TopMenuPage.getInstance();
+        this.pageLogin = LoginPage.getInstance();
         this.pageProjects = ProjectsPage.getInstance();
         this.pageStatus = StatusPage.getInstance();
+        this.pageTopMenu = TopMenuPage.getInstance();
         this.pageTranscript = TranscriptPage.getInstance();
         this.addMasterPage();
         this.addDetailPages();
@@ -49,7 +52,7 @@ export class Viewport extends QxComposite {
 
     addDetailPages() {
         this.manager.addDetailPages([
-            this.pageBoard, this.pageEditor,this.pageProjects, this.pageStatus, this.pageTranscript
+            this.pageBoard, this.pageEditor, this.pageLogin, this.pageProjects, this.pageStatus, this.pageTranscript
         ]);
     }
 
@@ -60,6 +63,7 @@ export class Viewport extends QxComposite {
     buildRouting() {
         this.routing.onGet(PageConstants.routeBoard, this.pageBoard);
         this.routing.onGet(PageConstants.routeEditor, this.pageEditor);
+        this.routing.onGet(PageConstants.routeLogin, this.pageLogin);
         this.routing.onGet(PageConstants.routeProjects, this.pageProjects);
         this.routing.onGet(PageConstants.routeStatus, this.pageStatus);
         this.routing.onGet(PageConstants.routeTopMenu, this.pageTopMenu);

@@ -61,7 +61,8 @@ export class TopMenuPage extends AbstractPage {
             { title: PageConstants.titleTranscript, subtitle: PageConstants.subtitleTranscript, path: PageConstants.pathTranscript, },
             { title: PageConstants.titleBoard, subtitle: PageConstants.subtitleBoard, path: PageConstants.pathBoard, },
             { title: PageConstants.titleStatus, subtitle: PageConstants.subtitleStatus, path: PageConstants.pathStatus },
-            { title: PageConstants.titleSupport, subtitle: PageConstants.subtitleForm, path: UrlConstants.pyquest_forum },
+            { title: PageConstants.titleLogin, subtitle: PageConstants.subtitleLogin, path: PageConstants.pathLogin },
+            { title: PageConstants.titleSupport, subtitle: PageConstants.subtitleForum, path: UrlConstants.pyquest_forum },
         ];
     }
 

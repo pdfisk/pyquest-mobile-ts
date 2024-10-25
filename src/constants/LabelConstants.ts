@@ -40,7 +40,7 @@ export class LabelConstants {
 
     static PageBoard: string = 'Board';
     static PageEditor: string = 'Editor';
-    static PageHome: string = 'Home';
+    static PageLogin: string = 'Login';
     static PageProjects: string = 'Projects';
     static PageStatus: string = 'Status';
     static PageTopMenu: string = 'Top Menu';
