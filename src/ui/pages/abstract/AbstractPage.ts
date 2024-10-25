@@ -1,3 +1,4 @@
+import { QxComposite } from "../../../qx/ui/mobile/container/QxComposite";
 import { ColorConstants, LabelConstants, SizeConstants } from "../../../constants";
 import { QxMobileApplication } from "../../../qx/application/QxMobileApplication";
 import { StringUtil } from "../../../util/StringUtil";
@@ -9,6 +10,7 @@ export abstract class AbstractPage extends AbstractRoutingPage {
     buttonbar: ButtonBar = new ButtonBar;
     deferredHeight: number = 0;
     deferredWidth: number = 0;
+    leftContainer: QxComposite | null = null;
 
     addBackButton() {
         this.widget._back = () => { this.onBack(); };
@@ -37,15 +39,17 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         console.log('addTopManuButton');
         (window as any).X = this;
         const topMenuButton = new TopMenuButton;
-        this.getLeftContainer().add(topMenuButton.widget);
+        this.getLeftContainer().add(topMenuButton);
     }
 
     defaultButtons(): string[] {
         return [];
     }
 
-    getLeftContainer(): any {
-        return this.widget.getLeftContainer();
+    getLeftContainer(): QxComposite {
+        if (this.leftContainer == null)
+            this.leftContainer = new QxComposite(this.widget.getLeftContainer());
+        return this.leftContainer;
     }
 
     hasBackButton(): boolean {

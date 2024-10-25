@@ -1,8 +1,7 @@
-import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { LabelConstants } from "../../constants";
-import { QxNavigationBarButton } from "../../qx/ui/mobile/navigationBar/QxNavigationBarButton";
-import { AbstractRoutingPage } from "../pages/abstract/AbstractRoutingPage";
 import { PageConstants } from "../../constants/PageConstants";
+import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
+import { QxNavigationBarButton } from "../../qx/ui/mobile/navigationBar/QxNavigationBarButton";
 
 export class TopMenuButton extends QxNavigationBarButton {
 
