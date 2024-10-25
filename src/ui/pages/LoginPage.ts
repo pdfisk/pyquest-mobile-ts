@@ -1,5 +1,5 @@
 import { LabelConstants } from "../../constants/LabelConstants";
-import { AbstractFormPage } from "./AbstractFormPage";
+import { AbstractFormPage } from "./abstract/AbstractFormPage";
 
 export class LoginPage extends AbstractFormPage {
     static instance: LoginPage;

@@ -5,7 +5,7 @@ import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { QxScroll } from "../../qx/ui/mobile/container/QxScroll";
 import { QxList } from "../../qx/ui/mobile/list/QxList";
 import { BrowserUtil } from "../../util/BrowserUtil";
-import { AbstractPage } from "./AbstractPage";
+import { AbstractPage } from "./abstract/AbstractPage";
 
 export class TopMenuPage extends AbstractPage {
     list: QxList;

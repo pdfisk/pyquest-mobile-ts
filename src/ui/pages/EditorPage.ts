@@ -3,7 +3,7 @@ import { ActionConstants } from "../../constants";
 import { EditorConstants } from "../../constants/EditorConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { StringUtil } from "../../util/StringUtil";
-import { AbstractPage } from "./AbstractPage";
+import { AbstractPage } from "./abstract/AbstractPage";
 
 export class EditorPage extends AbstractPage {
     ace: any;

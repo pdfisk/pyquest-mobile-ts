@@ -1,4 +1,4 @@
-import { AbstractPage } from "../../../../ui/pages/AbstractPage";
+import { AbstractPage } from "../../../../ui/pages/abstract/AbstractPage";
 import { QxObject } from "../../../core";
 import { QxFactory } from "../../../factory";
 import { QxNavigationPage } from "./QxNavigationPage";

@@ -1,6 +1,6 @@
-import { SizeConstants } from "../../constants";
-import { QxTextArea } from "../../qx/ui/mobile/form/QxTextArea";
-import { StringUtil } from "../../util/StringUtil";
+import { SizeConstants } from "../../../constants";
+import { QxTextArea } from "../../../qx/ui/mobile/form/QxTextArea";
+import { StringUtil } from "../../../util/StringUtil";
 import { AbstractPage } from "./AbstractPage";
 
 export abstract class AbstractTextPage extends AbstractPage {

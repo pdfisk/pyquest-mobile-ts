@@ -1,7 +1,7 @@
 import { VmApi } from "../../api";
 import { Version } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
-import { AbstractTextPage } from "./AbstractTextPage";
+import { AbstractTextPage } from "./abstract/AbstractTextPage";
 
 export class StatusPage extends AbstractTextPage {
     static instance: StatusPage;

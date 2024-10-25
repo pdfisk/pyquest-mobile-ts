@@ -1,7 +1,7 @@
 import { SizeConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { BoardPanel } from "../widgets/BoardPanel";
-import { AbstractPage } from "./AbstractPage";
+import { AbstractPage } from "./abstract/AbstractPage";
 
 export class BoardPage extends AbstractPage {
     boardPanel: BoardPanel;

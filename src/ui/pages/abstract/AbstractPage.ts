@@ -1,9 +1,9 @@
-import { ColorConstants, LabelConstants, SizeConstants } from "../../constants";
-import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
-import { StringUtil } from "../../util/StringUtil";
-import { ButtonBar } from "../widgets/ButtonBar";
-import { TopMenuButton } from "../widgets/TopMenuButton";
-import { AbstractRoutingPage } from "./abstract/AbstractRoutingPage";
+import { ColorConstants, LabelConstants, SizeConstants } from "../../../constants";
+import { QxMobileApplication } from "../../../qx/application/QxMobileApplication";
+import { StringUtil } from "../../../util/StringUtil";
+import { ButtonBar } from "../../widgets/ButtonBar";
+import { TopMenuButton } from "../../widgets/TopMenuButton";
+import { AbstractRoutingPage } from "./AbstractRoutingPage";
 
 export abstract class AbstractPage extends AbstractRoutingPage {
     buttonbar: ButtonBar = new ButtonBar;

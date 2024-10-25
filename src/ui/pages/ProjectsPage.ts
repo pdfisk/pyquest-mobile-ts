@@ -1,7 +1,7 @@
 import { ActionConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { AbstractStore, ProjectsStore } from "../../data";
-import { AbstractDataListPage } from "./AbstractDataListPage";
+import { AbstractDataListPage } from "./abstract/AbstractDataListPage";
 import { EditorPage } from "./EditorPage";
 
 export class ProjectsPage extends AbstractDataListPage {

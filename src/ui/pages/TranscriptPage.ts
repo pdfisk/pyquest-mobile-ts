@@ -1,6 +1,6 @@
 import { ActionConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
-import { AbstractTextPage } from "./AbstractTextPage";
+import { AbstractTextPage } from "./abstract/AbstractTextPage";
 
 export class TranscriptPage extends AbstractTextPage {
     static instance: TranscriptPage;

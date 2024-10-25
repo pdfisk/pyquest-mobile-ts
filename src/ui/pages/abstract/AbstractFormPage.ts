@@ -1,6 +1,6 @@
-import { SizeConstants } from "../../constants";
-import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
-import { FormPanel } from "../widgets/FormPanel";
+import { SizeConstants } from "../../../constants";
+import { QxWidget } from "../../../qx/ui/mobile/core/QxWidget";
+import { FormPanel } from "../../widgets/FormPanel";
 import { AbstractPage } from "./AbstractPage";
 
 export abstract class AbstractFormPage extends AbstractPage {
