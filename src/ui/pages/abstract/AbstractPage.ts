@@ -34,6 +34,8 @@ export abstract class AbstractPage extends AbstractRoutingPage {
     }
 
     addTopMenuButton() {
+        console.log('addTopManuButton');
+        (window as any).X = this;
         const topMenuButton = new TopMenuButton;
         this.getLeftContainer().add(topMenuButton.widget);
     }
