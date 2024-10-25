@@ -3,7 +3,7 @@ import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { StringUtil } from "../../util/StringUtil";
 import { ButtonBar } from "../widgets/ButtonBar";
 import { TopMenuButton } from "../widgets/TopMenuButton";
-import { AbstractRoutingPage } from "./AbstractRoutingPage";
+import { AbstractRoutingPage } from "./abstract/AbstractRoutingPage";
 
 export abstract class AbstractPage extends AbstractRoutingPage {
     buttonbar: ButtonBar = new ButtonBar;

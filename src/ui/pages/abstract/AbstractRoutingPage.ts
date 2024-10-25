@@ -1,6 +1,6 @@
-import { PageConstants } from "../../constants/PageConstants";
-import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
-import { QxNavigationPage } from "../../qx/ui/mobile/page/QxNavigationPage";
+import { PageConstants } from "../../../constants/PageConstants";
+import { QxMobileApplication } from "../../../qx/application/QxMobileApplication";
+import { QxNavigationPage } from "../../../qx/ui/mobile/page/QxNavigationPage";
 
 export abstract class AbstractRoutingPage extends QxNavigationPage {
 
