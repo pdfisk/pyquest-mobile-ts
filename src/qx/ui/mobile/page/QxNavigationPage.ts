@@ -8,6 +8,7 @@ export class QxNavigationPage extends QxPage {
     constructor() {
         super(QxFactory.mobileNavigationPage());
         ResizeManager.subscribe(this);
+        (window as any).X = this;
     }
 
     addContent() {

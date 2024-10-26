@@ -5,12 +5,16 @@ import { StringUtil } from "../../../util/StringUtil";
 import { ButtonBar } from "../../widgets/ButtonBar";
 import { TopMenuButton } from "../../widgets/TopMenuButton";
 import { AbstractRoutingPage } from "./AbstractRoutingPage";
+import { NavigationBar } from "../../widgets/NavigationBar";
+import { QxFactory } from "../../../qx";
 
 export abstract class AbstractPage extends AbstractRoutingPage {
     buttonbar: ButtonBar = new ButtonBar;
     deferredHeight: number = 0;
     deferredWidth: number = 0;
     leftContainer: QxComposite | null = null;
+    rightContainer: QxComposite | null = null;
+    navigationBar: NavigationBar | null = null;
 
     addBackButton() {
         this.widget._back = () => { this.onBack(); };
@@ -36,10 +40,12 @@ export abstract class AbstractPage extends AbstractRoutingPage {
     }
 
     addTopMenuButton() {
-        console.log('addTopManuButton');
-        (window as any).X = this;
         const topMenuButton = new TopMenuButton;
-        this.getLeftContainer().add(topMenuButton);
+        this.getRightContainer().add(topMenuButton);
+        // const rightContainerWidget = QxFactory.mobileComposite();
+        // const navBar = this.widget.getLayoutParent().getLayoutParent().getNavigationBar();
+        // rightContainerWidget.add(topMenuButton.widget);
+        // navBar.add(rightContainerWidget);
     }
 
     defaultButtons(): string[] {
@@ -50,6 +56,22 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         if (this.leftContainer == null)
             this.leftContainer = new QxComposite(this.widget.getLeftContainer());
         return this.leftContainer;
+    }
+
+    getNavigationBar(): NavigationBar {
+        if (this.navigationBar == null)
+            this.navigationBar = new NavigationBar(this.widget.getLeftContainer().getLayoutParent());
+        return this.navigationBar;
+    }
+
+    getRightContainer(): QxComposite {
+        if (this.rightContainer == null)
+            this.rightContainer = new QxComposite(this.widget.getRightContainer());
+        return this.rightContainer;
+    }
+
+    getNavBarWidget() : any {
+        return this.widget.getLeftContainer().getLayoutParent();
     }
 
     hasBackButton(): boolean {
