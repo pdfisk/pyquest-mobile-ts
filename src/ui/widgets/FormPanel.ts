@@ -12,8 +12,8 @@ export class FormPanel extends QxWidget {
         this.single = new QxSingle(this.form);
     }
 
-    addItems(items: QxWidget[], names: string[], title: string | null = null) {
-        this.single.addItems(items, names, title);
+    addItems(items: QxWidget[], names: string[]) {
+        this.single.addItems(items, names);
     }
 
 }

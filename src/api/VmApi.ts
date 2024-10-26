@@ -138,7 +138,6 @@ export class VmApi {
             if (!compiledObjectJson) return null;
             const runCompiledFn: Function = this.getVmApiRunCompiledFn();
             console.log('run_with_toast');
-            (window as any).X = [runCompiledFn, compiledObjectJson];
             if (runCompiledFn) {
                 const resultJsonStr = this.callVmApiFn(runCompiledFn, compiledObjectJson);
                 return JSON.parse(resultJsonStr);

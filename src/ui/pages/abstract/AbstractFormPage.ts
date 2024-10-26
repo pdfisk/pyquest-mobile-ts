@@ -16,7 +16,7 @@ export abstract class AbstractFormPage extends AbstractPage {
     }
 
     addItems(items: QxWidget[], names: string[], title: string | null = null) {
-        this.formPanel.addItems(items, names, title);
+        this.formPanel.addItems(items, names);
     }
 
     isContentReady(): boolean {

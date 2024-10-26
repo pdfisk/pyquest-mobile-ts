@@ -34,7 +34,7 @@ export class InfoPanel extends QxVBox {
         const formPanel = new FormPanel;
         if (withMargin)
             formPanel.setMarginBottomPx(SizeConstants.InfoPanelBottomMargin);
-        formPanel.addItems(items, names, title);
+        formPanel.addItems(items, names);
         this.addReset(formPanel);
         return formPanel;
     }
