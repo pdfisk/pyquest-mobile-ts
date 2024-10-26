@@ -68,6 +68,10 @@ export class QxFactory {
         return new (window as any).qx.ui.mobile.page.Manager(false);
     }
 
+    static mobilePassowrdField(): any {
+        return new (window as any).qx.ui.mobile.form.PasswordField;
+    }
+
     static mobilePopup(): any {
         return new (window as any).qx.ui.mobile.dialog.Popup;
     }

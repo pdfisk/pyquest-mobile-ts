@@ -2,7 +2,7 @@ export class PageConstants {
 
     static pathBoard = 'board';
     static pathEditor = 'editor';
-    static pathLogin = 'logom';
+    static pathLogin = 'login';
     static pathProjects = 'projects';
     static pathStatus = 'status';
     static pathTopMenu = '';

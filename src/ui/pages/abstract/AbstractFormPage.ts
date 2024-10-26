@@ -12,7 +12,7 @@ export abstract class AbstractFormPage extends AbstractPage {
     }
 
     addContent() {
-        this.addContentWidget(this.formPanel);
+        this.addContentWidget(this.formPanel.single);
     }
 
     addItems(items: QxWidget[], names: string[], title: string | null = null) {
