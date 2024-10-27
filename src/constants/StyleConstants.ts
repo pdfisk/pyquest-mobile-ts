@@ -50,7 +50,7 @@ export class StyleConstants {
     static AttributeTarget: string = 'target';
 
     static FormRowField: string = '1 1 auto';
-    static FormRowLabel: string = '0 0 150px';
+    static FormRowLabel: string = '0 0 6em';
 
     static Blank: string = '_blank';
     static Http: string = 'http';
