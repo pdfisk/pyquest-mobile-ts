@@ -28,6 +28,13 @@ export class LoginPage extends AbstractFormPage {
         this.addItems(items, names);
     }
 
+    defaultButtons(): string[] {
+        return [
+            LabelConstants.ButtonLabelSave,
+            LabelConstants.ButtonLabelClear
+        ];
+    }
+
     onAppear() {
         super.onAppear();
         this.addPageContent();
