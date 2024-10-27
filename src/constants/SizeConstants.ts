@@ -30,7 +30,7 @@ export class SizeConstants {
     static LoginPanelColOneWidth: number = 175;
     static LoginPanelColZeroWidth: number = 60;
     static LoginPanelSpacingX: number = 2;
-    static LoginPanelSpacingY: number = 10;
+    static LoginPanelSpacingY: number = 5;
     static LoginWindowHeight: number = 135;
     static LoginWindowWidth: number = 235;
     static LogoPanelWidth: number = 125;

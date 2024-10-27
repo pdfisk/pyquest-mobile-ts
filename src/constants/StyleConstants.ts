@@ -6,6 +6,7 @@ export class StyleConstants {
     static BorderRadius: string = 'borderRadius';
     static BorderRight: string = 'borderRight';
     static BorderTop: string = 'borderTop';
+    static Flex: string = 'flex';
     static FontFamily: string = 'fontFamily';
     static FontSize: string = 'fontSize';
     static FontSize_09em: string = '0.9em';
@@ -47,6 +48,9 @@ export class StyleConstants {
 
     static AttributeHref: string = 'href';
     static AttributeTarget: string = 'target';
+
+    static FormRowField: string = '1 1 auto';
+    static FormRowLabel: string = '0 0 150px';
 
     static Blank: string = '_blank';
     static Http: string = 'http';
