@@ -17,7 +17,7 @@ export class QxSingle extends QxAbstractRenderer {
             widgets.push(item.widget);
         });
         this.widget.addItems(widgets, names);
-     }
+    }
 
     handlesOnAppear(): boolean {
         return true;
@@ -26,10 +26,12 @@ export class QxSingle extends QxAbstractRenderer {
     onAppear() {
         super.onAppear();
         const rows = this.widget._getChildren();
-        for (let i = 3; i < rows.length-1; i += 2) {
+        for (let i = 3; i < rows.length - 1; i += 2) {
             const row = rows[i];
             row._setStyle(StyleConstants.Height, StringUtil.asPixels(SizeConstants.LoginPanelSpacingY));
             row._setStyle(StyleConstants.BackgroundColor, ColorConstants.ColorWhite);
+            row._setStyle(StyleConstants.BorderLeft, StyleConstants.BorderFormRow);
+            row._setStyle(StyleConstants.BorderRight, StyleConstants.BorderFormRow);
         }
     }
 

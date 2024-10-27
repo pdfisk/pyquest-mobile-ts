@@ -2,7 +2,9 @@ export class StyleConstants {
     static BackgroundColor: string = 'backgroundColor';
     static Border: string = 'border';
     static BorderBottom: string = 'borderBottom';
+    static BorderLeft: string = 'borderLeft';
     static BorderRadius: string = 'borderRadius';
+    static BorderRight: string = 'borderRight';
     static BorderTop: string = 'borderTop';
     static FontFamily: string = 'fontFamily';
     static FontSize: string = 'fontSize';
@@ -35,6 +37,7 @@ export class StyleConstants {
     static Width: string = 'width';
 
     static Auto: string = 'auto';
+    static BorderFormRow: string = '.0625rem solid #bdbdbd';
     static BorderRadius15: number = 15;
     static BorderSlateGray2: string = '2px solid slategray';
     static Italic: string = 'italic';
