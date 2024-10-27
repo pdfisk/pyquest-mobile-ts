@@ -8,6 +8,7 @@ import { BoardPage } from '../pages/BoardPage';
 import { EditorPage } from '../pages/EditorPage';
 import { LoginPage } from '../pages/LoginPage';
 import { ProjectsPage } from '../pages/ProjectsPage';
+import { RegisterPage } from '../pages/RegisterPage';
 import { StatusPage } from '../pages/StatusPage';
 import { TopMenuPage } from '../pages/TopMenuPage';
 import { TranscriptPage } from '../pages/TranscriptPage';
@@ -19,6 +20,7 @@ export class Viewport extends QxComposite {
     pageEditor: EditorPage;
     pageLogin: LoginPage;
     pageProjects: ProjectsPage;
+    pageRegister: RegisterPage;
     pageStatus: StatusPage;
     pageTopMenu: TopMenuPage;
     pageTranscript: TranscriptPage;
@@ -42,6 +44,7 @@ export class Viewport extends QxComposite {
         this.pageEditor = EditorPage.getInstance();
         this.pageLogin = LoginPage.getInstance();
         this.pageProjects = ProjectsPage.getInstance();
+        this.pageRegister = RegisterPage.getInstance();
         this.pageStatus = StatusPage.getInstance();
         this.pageTopMenu = TopMenuPage.getInstance();
         this.pageTranscript = TranscriptPage.getInstance();
@@ -52,7 +55,7 @@ export class Viewport extends QxComposite {
 
     addDetailPages() {
         this.manager.addDetailPages([
-            this.pageBoard, this.pageEditor, this.pageLogin, this.pageProjects, this.pageStatus, this.pageTranscript
+            this.pageBoard, this.pageEditor, this.pageLogin, this.pageProjects, this.pageRegister, this.pageStatus, this.pageTranscript
         ]);
     }
 
@@ -65,6 +68,7 @@ export class Viewport extends QxComposite {
         this.routing.onGet(PageConstants.routeEditor, this.pageEditor);
         this.routing.onGet(PageConstants.routeLogin, this.pageLogin);
         this.routing.onGet(PageConstants.routeProjects, this.pageProjects);
+        this.routing.onGet(PageConstants.routeRegister, this.pageRegister);
         this.routing.onGet(PageConstants.routeStatus, this.pageStatus);
         this.routing.onGet(PageConstants.routeTopMenu, this.pageTopMenu);
         this.routing.onGet(PageConstants.routeTranscript, this.pageTranscript);

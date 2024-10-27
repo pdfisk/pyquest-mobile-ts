@@ -5,18 +5,18 @@ import { QxPasswordField } from "../../qx/ui/mobile/form/QxPasswordField";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 
-export class LoginPage extends AbstractFormPage {
-    static instance: LoginPage;
+export class RegisterPage extends AbstractFormPage {
+    static instance: RegisterPage;
 
-    static getInstance(): LoginPage {
+    static getInstance(): RegisterPage {
         if (!this.instance)
-            this.instance = new LoginPage();
+            this.instance = new RegisterPage();
         return this.instance;
     }
 
     private constructor() {
         super();
-        this.setTitle(LabelConstants.PageLogin);
+        this.setTitle(LabelConstants.PageRegister);
     }
 
     addPageContent() {
@@ -33,7 +33,7 @@ export class LoginPage extends AbstractFormPage {
         return [
             LabelConstants.ButtonLabelSave,
             LabelConstants.ButtonLabelClear,
-            LabelConstants.ButtonLabelRegister
+            LabelConstants.ButtonLabelLogin
         ];
     }
 
@@ -44,11 +44,11 @@ export class LoginPage extends AbstractFormPage {
 
     onTap(action: string) {
         switch (action) {
-            case ActionConstants.ActionRegister:
-                this.showRegister();
+            case ActionConstants.ActionLogin:
+                this.showLogin();
                 break;
             default:
-                console.log('LoginPage onTap', action);
+                console.log('RegisterPage onTap', action);
                 break;
         }
     }

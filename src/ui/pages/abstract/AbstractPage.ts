@@ -42,10 +42,6 @@ export abstract class AbstractPage extends AbstractRoutingPage {
     addTopMenuButton() {
         const topMenuButton = new TopMenuButton;
         this.getRightContainer().add(topMenuButton);
-        // const rightContainerWidget = QxFactory.mobileComposite();
-        // const navBar = this.widget.getLayoutParent().getLayoutParent().getNavigationBar();
-        // rightContainerWidget.add(topMenuButton.widget);
-        // navBar.add(rightContainerWidget);
     }
 
     defaultButtons(): string[] {
