@@ -12,8 +12,10 @@
 *.vsix
 android/
 dist/
+docs/
 lib/
 node_modules/
 obj/
 site/
 tmp/
+work/tasks.txt
