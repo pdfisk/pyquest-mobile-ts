@@ -9,7 +9,6 @@ export class QxSingle extends QxAbstractRenderer {
 
     constructor(form: QxForm) {
         super(QxFactory.mobileSingle(form.widget));
-        (window as any).X = this;
     }
 
     addItems(items: QxWidget[], names: string[]) {

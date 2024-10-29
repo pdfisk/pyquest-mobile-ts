@@ -26,6 +26,10 @@ export abstract class AbstractStore {
         return key;
     }
 
+    closeToast() {
+        Toast.hide();
+    }
+
     abstract createNewRecord(): any;
 
     deleteRecord(data: any) {
@@ -40,21 +44,22 @@ export abstract class AbstractStore {
     }
 
     handleLoadedData() {
+        this.closeToast();
         this.dataRecords = this.getDataRecords();
         for (let handlerFn of this.loadHandlerFns.values())
             handlerFn(this.dataRecords);
     }
 
     loadData(showToast: boolean = true) {
-        const userFn_1 = (toast: Toast) => {
-            if (this.dataLoaded) {
-                this.dataStore.reload();
-            }
-            else
-                this.dataStore.setUrl(ServerUtil.getUrl(this.serviceName()));
-        };
-        if (showToast)
-            Toast.showNoClose('Loading data...', userFn_1);
+        this.closeToast();
+        if (this.dataLoaded) {
+            this.dataStore.reload();
+        }
+        else {
+            this.dataStore.setUrl(ServerUtil.getUrl(this.serviceName()));
+            if (showToast)
+                Toast.openTop('Loading data...');
+        }
     }
 
     newRecord() {
@@ -64,7 +69,7 @@ export abstract class AbstractStore {
     }
 
     onLoaded() {
-        console.log('onLoaded');
+        this.closeToast()
         this.dataLoaded = true;
         this.handleLoadedData();
     }

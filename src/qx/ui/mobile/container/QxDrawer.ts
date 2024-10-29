@@ -1,12 +1,13 @@
-import { SizeConstants } from "../../../../constants";
+import { QxConstants, SizeConstants } from "../../../../constants";
 import { QxFactory } from "../../../factory";
 import { QxButton } from "../form/QxButton";
 import { QxCard } from "../layout/QxCard";
 import { QxComposite } from "./QxComposite";
 
 export class QxDrawer extends QxComposite {
+    button: QxButton;
 
-    constructor(message: string, orientation: string) {
+    constructor(message: string = '', orientation: string = QxConstants.DrawerOrientionTop) {
         super(QxFactory.mobileDrawer());
         this.setLayout(new QxCard);
         this.setOrientation(orientation);
@@ -14,22 +15,21 @@ export class QxDrawer extends QxComposite {
         this.setHideOnBack();
         this.setHideOnParentTap();
         this.setSize(SizeConstants.DrawerSize);
-        this.addButton(message);
+        this.button = new QxButton(message);
+        this.add(this.button);
         this.show();
     }
 
-    addButton(message: string) {
-        const button = new QxButton(message);
-        this.add(button);
-        button.show();
-    }
-
-    setHideOnBack(value:boolean = true) {
+    setHideOnBack(value: boolean = true) {
         this.widget.setHideOnBack(value);
     }
 
-    setHideOnParentTap(value:boolean = true) {
+    setHideOnParentTap(value: boolean = true) {
         this.widget.setHideOnParentTap(value);
+    }
+
+    setLabel(label: string) {
+        this.button.setLabel(label);
     }
 
     setOrientation(orientation: string) {
@@ -40,8 +40,12 @@ export class QxDrawer extends QxComposite {
         this.widget.setTapOffset(offset);
     }
 
-    setSize(value:number) {
+    setSize(value: number) {
         this.widget.setSize(value);
+    }
+
+    show() {
+        this.button.show();
     }
 
 }

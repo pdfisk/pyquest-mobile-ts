@@ -5,36 +5,90 @@ import { TimerManager } from "../../util/TimerManager";
 
 export class Toast extends QxWidget {
     drawer: QxDrawer;
-    startTime: number;
-    userFn_1: Function;
-    userFn_2: Function;
-    userResult_1: any = null;
-    userResult_2: any = null;
+    static instance: Toast | null = null;
 
-    static show(message: string, userFn_1: Function | null, userFn_2: Function | null, duration: number = QxConstants.DrawerDuration): Toast {
-        return new Toast(message, userFn_1, userFn_2, duration);
+    static getInstance(): Toast {
+        if (this.instance == null)
+            this.instance = new Toast();
+        return this.instance;
     }
 
-    static showNoClose(message: string, userFn_1: Function | null = null, userFn_2: Function | null = null): Toast {
-        return this.show(message, userFn_1, userFn_2, 0);
+    static hide() {
+        this.getInstance().hide();
     }
 
-    private constructor(message: string, userFn_1: Function | null, userFn_2: Function | null, duration: number, orientation: string = QxConstants.DrawerOrientionTop) {
+    static openBottom(message: string, duration: number = QxConstants.DrawerDuration) {
+        this.showBottom(message, QxConstants.DrawerDurationMax);
+    }
+
+    static openLeft(message: string, duration: number = QxConstants.DrawerDuration) {
+        this.showLeft(message, QxConstants.DrawerDurationMax);
+    }
+
+    static openRight(message: string, duration: number = QxConstants.DrawerDuration) {
+        this.showRight(message, QxConstants.DrawerDurationMax);
+    }
+
+    static openTop(message: string, duration: number = QxConstants.DrawerDuration) {
+        this.showTop(message, QxConstants.DrawerDurationMax);
+    }
+
+    static showBottom(message: string, duration: number = QxConstants.DrawerDuration) {
+        this.showMessage(message, duration, QxConstants.DrawerOrientionBottom)
+    }
+
+    static showLeft(message: string, duration: number = QxConstants.DrawerDuration) {
+        this.showMessage(message, duration, QxConstants.DrawerOrientionLeft)
+    }
+
+    static showRight(message: string, duration: number = QxConstants.DrawerDuration) {
+        this.showMessage(message, duration, QxConstants.DrawerOrientionRight)
+    }
+
+    static showTop(message: string, duration: number = QxConstants.DrawerDuration) {
+        this.showMessage(message, duration, QxConstants.DrawerOrientionTop)
+    }
+
+    static showMessage(message: string, duration: number, orientation: string) {
+        const toast = this.getInstance();
+        toast.setMessage(message);
+        toast.setDuration(duration);
+        toast.setOrientation(orientation);
+        toast.show();
+    }
+
+    private constructor() {
         super();
-        this.startTime = Date.now();
-        this.userFn_1 = userFn_1 == null ? function () { } : userFn_1;
-        this.userFn_2 = userFn_2 == null ? function () { } : userFn_2;
-        this.drawer = new QxDrawer(message, QxConstants.DrawerOrientionTop);
-        this.startCountDown();
+        this.drawer = new QxDrawer();
+        this.show();
     }
 
-    startCountDown() {
-        const fn = () => {
-            this.userResult_1 = this.userFn_1(this);
-            this.drawer.hide();
-            this.userResult_2 = this.userFn_2(this);
-        };
-        TimerManager.start(fn, QxConstants.ToastDelay);
+    hide() {
+        super.hide();
+        this.drawer.hide();
     }
+
+    setDuration(duration: number) {
+    }
+
+    setMessage(message: string) {
+        this.drawer.setLabel(message);
+    }
+
+    setOrientation(orientation: string) {
+        this.drawer.setOrientation(orientation);
+    }
+
+    show() {
+        super.show();
+        this.drawer.show();
+    }
+
+    // startCountDown(duration: number) {
+    //     const fn = () => {
+    //         this.close
+    //     };
+    //     TimerManager.start(fn, duration);
+    // }
 
 }

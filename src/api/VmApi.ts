@@ -130,22 +130,16 @@ export class VmApi {
     }
 
     run_with_toast(src: string, inputId: number, outputId: number): any {
-        const userFn_1 = (toast: Toast) => {
-            return this.compile_to_json(src);
-        };
-        const userFn_2 = (toast: Toast) => {
-            const compiledObjectJson = toast.userResult_1;
-            if (!compiledObjectJson) return null;
-            const runCompiledFn: Function = this.getVmApiRunCompiledFn();
-            console.log('run_with_toast');
-            if (runCompiledFn) {
-                const resultJsonStr = this.callVmApiFn(runCompiledFn, compiledObjectJson);
-                return JSON.parse(resultJsonStr);
-            }
-            return null;
-        };
-        Toast.showNoClose('Compiling...', userFn_1, userFn_2);
-        return -1;
+        const toast_1 = Toast.showTop('Compiling...');
+        const compiledObjectJson = this.compile_to_json(src);
+        Toast.hide();
+        if (!compiledObjectJson) return null;
+        const runCompiledFn: Function = this.getVmApiRunCompiledFn();
+        if (runCompiledFn) {
+            const resultJsonStr = this.callVmApiFn(runCompiledFn, compiledObjectJson);
+            return JSON.parse(resultJsonStr);
+        }
+        return null;
     }
 
     setAction(src: string, inputId: number, outputId: number) {
