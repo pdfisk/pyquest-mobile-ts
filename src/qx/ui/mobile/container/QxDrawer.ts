@@ -19,8 +19,7 @@ export class QxDrawer extends QxComposite {
     }
 
     forceHide() {
-        if (!this.isHidden())
-            this.widget.forceHide();
+        this.widget.forceHide();
     }
 
     getLabel(): string {
