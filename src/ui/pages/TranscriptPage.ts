@@ -1,5 +1,6 @@
-import { ActionConstants } from "../../constants";
+import { ActionConstants, EventConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
+import { MessageBus } from "../../messages";
 import { AbstractTextPage } from "./abstract/AbstractTextPage";
 
 export class TranscriptPage extends AbstractTextPage {
@@ -30,6 +31,7 @@ export class TranscriptPage extends AbstractTextPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageTranscript);
+        MessageBus.subscribe(EventConstants.TranscriptClear, this.clear, this);
     }
 
     defaultButtons(): string[] {

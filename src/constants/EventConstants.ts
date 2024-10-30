@@ -8,6 +8,7 @@ export class EventConstants {
     static QxEventOrientationChange: string = 'orientationchange';
     static QxEventResize: string = 'resize';
     static QxEventTap: string = 'tap';
+    static TranscriptClear:string = 'transcript_clear';
     static WindowEventClose: string = 'close';
     static WindowEventMaximize: string = 'maximize';
     static WindowEventMinimize: string = 'minimize';
