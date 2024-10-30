@@ -50,6 +50,7 @@ export class Toast extends QxWidget {
     }
 
     static showMessage(message: string, duration: number, orientation: string) {
+        console.log('SHOW', message);
         const toast = this.getInstance();
         toast.setMessage(message);
         toast.setDuration(duration);
@@ -64,6 +65,7 @@ export class Toast extends QxWidget {
     }
 
     hide() {
+        console.log('HIDE');
         super.hide();
         this.drawer.hide();
     }

@@ -130,7 +130,7 @@ export class VmApi {
     }
 
     run_with_toast(src: string, inputId: number, outputId: number): any {
-        const toast_1 = Toast.showTop('Compiling...');
+        Toast.openTop('Compiling...');
         const compiledObjectJson = this.compile_to_json(src);
         Toast.hide();
         if (!compiledObjectJson) return null;
