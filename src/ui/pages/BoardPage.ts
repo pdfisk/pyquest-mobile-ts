@@ -1,5 +1,6 @@
-import { SizeConstants } from "../../constants";
+import { EventConstants, SizeConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
+import { MessageBus } from "../../messages";
 import { BoardPanel } from "../widgets/BoardPanel";
 import { AbstractPage } from "./abstract/AbstractPage";
 
@@ -21,6 +22,7 @@ export class BoardPage extends AbstractPage {
         super();
         this.boardPanel = new BoardPanel;
         this.setTitle(LabelConstants.PageBoard);
+        MessageBus.subscribe(EventConstants.BoardClear, this.boardPanel.clear, this.boardPanel);
     }
 
     addContent() {

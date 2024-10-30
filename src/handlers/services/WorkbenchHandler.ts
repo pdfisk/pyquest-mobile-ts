@@ -1,4 +1,4 @@
-import { EventConstants } from "../../constants";
+import { EventConstants, PageConstants } from "../../constants";
 import { ActionConstants } from "../../constants/ActionConstants";
 import { ErrorConstants } from "../../constants/ErrorConstants";
 import { MessageBus } from "../../messages";
@@ -37,7 +37,14 @@ export class WorkbenchHandler extends HandlerBase {
     actionAutotab(ownerId: number, args: any) {
         const tag: string = args.shift();
         NavigationUtil.showPage(tag);
-        MessageBus.dispatch(EventConstants.TranscriptClear, {});
+        switch (tag) {
+            case PageConstants.pathBoard:
+                MessageBus.dispatch(EventConstants.BoardClear, {});
+                break;
+            case PageConstants.pathTranscript:
+                MessageBus.dispatch(EventConstants.TranscriptClear, {});
+                break;
+        }
     }
 
     actionSync(ownerId: number, args: any[]) {

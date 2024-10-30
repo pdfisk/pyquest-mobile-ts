@@ -8,7 +8,7 @@ export class MessageBus {
         return this.instance;
     }
 
-    static dispatch(name: string, data: any) {
+    static dispatch(name: string, data: any = {}) {
         this.getInstance().dispatch(name, data);
     }
 
