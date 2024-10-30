@@ -1,9 +1,8 @@
 import { QxConstants } from "../../constants";
+import { QxComposite } from "../../qx/ui/mobile/container/QxComposite";
 import { QxDrawer } from "../../qx/ui/mobile/container/QxDrawer";
-import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
-import { TimerManager } from "../../util/TimerManager";
 
-export class Toast extends QxWidget {
+export class Toast extends QxComposite {
     drawer: QxDrawer;
     static instance: Toast | null = null;
 
@@ -50,7 +49,6 @@ export class Toast extends QxWidget {
     }
 
     static showMessage(message: string, duration: number, orientation: string) {
-        console.log('SHOW', message);
         const toast = this.getInstance();
         toast.setMessage(message);
         toast.setDuration(duration);
@@ -65,8 +63,6 @@ export class Toast extends QxWidget {
     }
 
     hide() {
-        console.log('HIDE');
-        super.hide();
         this.drawer.hide();
     }
 
@@ -82,7 +78,6 @@ export class Toast extends QxWidget {
     }
 
     show() {
-        super.show();
         this.drawer.show();
     }
 

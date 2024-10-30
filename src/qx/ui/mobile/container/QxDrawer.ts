@@ -1,7 +1,6 @@
 import { QxConstants, SizeConstants } from "../../../../constants";
 import { QxFactory } from "../../../factory";
 import { QxButton } from "../form/QxButton";
-import { QxCard } from "../layout/QxCard";
 import { QxComposite } from "./QxComposite";
 
 export class QxDrawer extends QxComposite {
@@ -9,7 +8,6 @@ export class QxDrawer extends QxComposite {
 
     constructor(message: string = '', orientation: string = QxConstants.DrawerOrientionTop) {
         super(QxFactory.mobileDrawer());
-        this.setLayout(new QxCard);
         this.setOrientation(orientation);
         this.setTapOffset(SizeConstants.DrawerTapOffset);
         this.setHideOnBack();
@@ -18,6 +16,23 @@ export class QxDrawer extends QxComposite {
         this.button = new QxButton(message);
         this.add(this.button);
         this.show();
+    }
+
+    forceHide() {
+        if (!this.isHidden())
+            this.widget.forceHide();
+    }
+
+    getLabel(): string {
+        return this.button.getLabel();
+    }
+
+    hide() {
+        this.forceHide();
+    }
+
+    isHidden(): boolean {
+        return this.widget.isHidden();
     }
 
     setHideOnBack(value: boolean = true) {
@@ -45,7 +60,8 @@ export class QxDrawer extends QxComposite {
     }
 
     show() {
-        this.button.show();
+        if (this.isHidden())
+            super.show();
     }
 
 }
