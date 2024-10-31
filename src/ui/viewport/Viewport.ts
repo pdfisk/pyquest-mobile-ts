@@ -12,7 +12,7 @@ import { RegisterPage } from '../pages/RegisterPage';
 import { StatusPage } from '../pages/StatusPage';
 import { TopMenuPage } from '../pages/TopMenuPage';
 import { TranscriptPage } from '../pages/TranscriptPage';
-import { Toast } from '../widgets/Toast';
+import { NotificationManager } from '../../util/NotificationManager';
 
 export class Viewport extends QxComposite {
     application: QxMobileApplication;
@@ -37,7 +37,7 @@ export class Viewport extends QxComposite {
 
     constructor() {
         super();
-        Toast.init();
+        NotificationManager.init();
         this.application = QxMobileApplication.getInstance();
         this.manager = QxPageManager.getInstance();
         this.root = QxRoot.getInstance();

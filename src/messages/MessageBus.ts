@@ -1,4 +1,4 @@
-import { Toast } from "../ui/widgets/Toast";
+import { NotificationManager } from "../util/NotificationManager";
 
 export class MessageBus {
     messageBus: any = null;
@@ -6,7 +6,7 @@ export class MessageBus {
 
     static getInstance(): MessageBus {
         if (!this.instance) {
-            Toast.getInstance();
+            NotificationManager.getInstance();
             this.instance = new MessageBus;
         }
         return this.instance;

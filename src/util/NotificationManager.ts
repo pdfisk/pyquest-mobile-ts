@@ -1,15 +1,14 @@
-import { EventConstants, QxConstants } from "../../constants";
-import { MessageBus } from "../../messages";
-import { QxComposite } from "../../qx/ui/mobile/container/QxComposite";
-import { QxDrawer } from "../../qx/ui/mobile/container/QxDrawer";
+import { EventConstants, QxConstants } from "../constants";
+import { MessageBus } from "../messages";
+import { QxDrawer } from "../qx/ui/mobile/container/QxDrawer";
 
-export class Toast extends QxComposite {
+export class NotificationManager {
     static topDrawer: QxDrawer;
-    static instance: Toast | null = null;
+    static instance: NotificationManager | null = null;
 
-    static getInstance(): Toast {
+    static getInstance(): NotificationManager {
         if (this.instance == null)
-            this.instance = new Toast();
+            this.instance = new NotificationManager();
         return this.instance;
     }
 
@@ -25,7 +24,7 @@ export class Toast extends QxComposite {
 
     static onOpenTop(args: any) {
         const data: any[] = args.getData();
-        const message:string = data[0];
+        const message: string = data[0];
         this.topDrawer.setLabel(message);
         this.topDrawer.show();
     }
