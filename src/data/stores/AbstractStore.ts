@@ -58,9 +58,8 @@ export abstract class AbstractStore {
         }
         else {
             this.dataStore.setUrl(ServerUtil.getUrl(this.serviceName()));
-            if (showToast) {
+            if (showToast)
                 MessageBus.dispatch(EventConstants.ToastOpenTop, MessageConstants.LoadingData);
-            }
         }
     }
 

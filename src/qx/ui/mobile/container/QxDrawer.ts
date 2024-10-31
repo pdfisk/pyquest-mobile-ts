@@ -25,10 +25,6 @@ export class QxDrawer extends QxComposite {
         return this.button.getLabel();
     }
 
-    hide() {
-        this.forceHide();
-    }
-
     isHidden(): boolean {
         return this.widget.isHidden();
     }
