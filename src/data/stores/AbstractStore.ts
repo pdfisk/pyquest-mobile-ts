@@ -1,4 +1,5 @@
 import { EventConstants } from "../../constants/EventConstants";
+import { MessageConstants } from "../../constants/MessageConstants";
 import { MessageBus } from "../../messages";
 import { Server } from "../../server/Server";
 import { ServerUtil } from "../../server/ServerUtil";
@@ -29,6 +30,7 @@ export abstract class AbstractStore {
 
     closeToast() {
         Toast.hide();
+        MessageBus.dispatch(EventConstants.ToastHide);
     }
 
     abstract createNewRecord(): any;
@@ -60,7 +62,7 @@ export abstract class AbstractStore {
             this.dataStore.setUrl(ServerUtil.getUrl(this.serviceName()));
             if (showToast) {
                 Toast.openTop('Loading data...');
-                MessageBus.dispatch(EventConstants.ToastOpenTop,  'Loading data...' );
+                MessageBus.dispatch(EventConstants.ToastOpenTop,  MessageConstants.LoadingData );
             }
         }
     }
