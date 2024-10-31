@@ -8,8 +8,8 @@ export class MessageBus {
         return this.instance;
     }
 
-    static dispatch(name: string, data: any = {}) {
-        this.getInstance().dispatch(name, data);
+    static dispatch(name: string, ...args: any[]) {
+        this.getInstance().dispatch(name, args);
     }
 
     static subscribe(name: string, fn: Function, context: any) {
@@ -20,8 +20,8 @@ export class MessageBus {
         this.getInstance().unsubscribe(name, fn, context);
     }
 
-    dispatch(name: string, data: any) {
-        const message = new (window as any).qx.event.message.Message(name, data);
+    dispatch(name: string, args: any[]) {
+        const message = new (window as any).qx.event.message.Message(name, args);
         this.getMessageBus().dispatch(message);
     }
 

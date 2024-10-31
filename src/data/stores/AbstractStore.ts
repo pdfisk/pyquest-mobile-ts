@@ -60,7 +60,7 @@ export abstract class AbstractStore {
             this.dataStore.setUrl(ServerUtil.getUrl(this.serviceName()));
             if (showToast) {
                 Toast.openTop('Loading data...');
-                MessageBus.dispatch(EventConstants.ToastOpenTop, { message: 'Loading data...' });
+                MessageBus.dispatch(EventConstants.ToastOpenTop,  'Loading data...' );
             }
         }
     }
