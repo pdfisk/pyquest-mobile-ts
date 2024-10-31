@@ -5,13 +5,14 @@ export class MessageBus {
     static instance: MessageBus;
 
     static getInstance(): MessageBus {
-        if (!this.instance)
+        if (!this.instance) {
+            Toast.getInstance();
             this.instance = new MessageBus;
+        }
         return this.instance;
     }
 
     static dispatch(name: string, ...args: any[]) {
-        Toast.getInstance();
         this.getInstance().dispatch(name, args);
     }
 

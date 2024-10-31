@@ -5,7 +5,7 @@ import { QxDrawer } from "../../qx/ui/mobile/container/QxDrawer";
 
 export class Toast extends QxComposite {
     drawer: QxDrawer;
-    static topDrawer:QxDrawer;
+    static topDrawer: QxDrawer;
     static instance: Toast | null = null;
 
     static getInstance(): Toast {
@@ -25,7 +25,8 @@ export class Toast extends QxComposite {
     }
 
     static onOpenTop(args: any) {
-        console.log('onOpenTop', args);
+        const data: any[] = args.getData();
+        console.log('onOpenTop', data);
     }
 
     static openBottom(message: string, duration: number = QxConstants.DrawerDuration) {
