@@ -3,7 +3,6 @@ import { MessageConstants } from "../../constants/MessageConstants";
 import { MessageBus } from "../../messages";
 import { Server } from "../../server/Server";
 import { ServerUtil } from "../../server/ServerUtil";
-import { Toast } from "../../ui/widgets/Toast";
 
 export abstract class AbstractStore {
     dataLoaded: boolean;
@@ -29,7 +28,6 @@ export abstract class AbstractStore {
     }
 
     closeToast() {
-        Toast.getInstance();
         MessageBus.dispatch(EventConstants.ToastHide);
     }
 
@@ -61,8 +59,7 @@ export abstract class AbstractStore {
         else {
             this.dataStore.setUrl(ServerUtil.getUrl(this.serviceName()));
             if (showToast) {
-                Toast.getInstance();
-                MessageBus.dispatch(EventConstants.ToastOpenTop,  MessageConstants.LoadingData );
+                MessageBus.dispatch(EventConstants.ToastOpenTop, MessageConstants.LoadingData);
             }
         }
     }

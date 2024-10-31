@@ -1,3 +1,5 @@
+import { Toast } from "../ui/widgets/Toast";
+
 export class MessageBus {
     messageBus: any = null;
     static instance: MessageBus;
@@ -9,6 +11,7 @@ export class MessageBus {
     }
 
     static dispatch(name: string, ...args: any[]) {
+        Toast.getInstance();
         this.getInstance().dispatch(name, args);
     }
 
