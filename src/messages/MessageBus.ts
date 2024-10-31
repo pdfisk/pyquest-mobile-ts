@@ -1,5 +1,5 @@
 export class MessageBus {
-    messageBus: any;
+    messageBus: any = null;
     static instance: MessageBus;
 
     static getInstance(): MessageBus {

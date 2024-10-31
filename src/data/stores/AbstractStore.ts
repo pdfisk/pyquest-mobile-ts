@@ -29,7 +29,7 @@ export abstract class AbstractStore {
     }
 
     closeToast() {
-        Toast.hide();
+        Toast.getInstance();
         MessageBus.dispatch(EventConstants.ToastHide);
     }
 
@@ -61,7 +61,7 @@ export abstract class AbstractStore {
         else {
             this.dataStore.setUrl(ServerUtil.getUrl(this.serviceName()));
             if (showToast) {
-                // Toast.openTop('Loading data...');
+                Toast.getInstance();
                 MessageBus.dispatch(EventConstants.ToastOpenTop,  MessageConstants.LoadingData );
             }
         }

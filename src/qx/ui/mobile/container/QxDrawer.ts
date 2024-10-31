@@ -15,7 +15,6 @@ export class QxDrawer extends QxComposite {
         this.setSize(SizeConstants.DrawerSize);
         this.button = new QxButton(message);
         this.add(this.button);
-        this.show();
     }
 
     forceHide() {

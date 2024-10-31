@@ -5,6 +5,7 @@ import { QxDrawer } from "../../qx/ui/mobile/container/QxDrawer";
 
 export class Toast extends QxComposite {
     drawer: QxDrawer;
+    static topDrawer:QxDrawer;
     static instance: Toast | null = null;
 
     static getInstance(): Toast {
@@ -14,16 +15,13 @@ export class Toast extends QxComposite {
     }
 
     static init() {
+        this.topDrawer = new QxDrawer('', QxConstants.DrawerOrientionTop);
         MessageBus.subscribe(EventConstants.ToastHide, this.onHide, this);
         MessageBus.subscribe(EventConstants.ToastOpenTop, this.onOpenTop, this);
     }
 
-    static hide() {
-        this.getInstance().hide();
-    }
-
     static onHide() {
-        console.log('onHide');
+        this.getInstance().hide();
     }
 
     static onOpenTop(args: any) {
