@@ -12,6 +12,7 @@ import { RegisterPage } from '../pages/RegisterPage';
 import { StatusPage } from '../pages/StatusPage';
 import { TopMenuPage } from '../pages/TopMenuPage';
 import { TranscriptPage } from '../pages/TranscriptPage';
+import { Toast } from '../widgets/Toast';
 
 export class Viewport extends QxComposite {
     application: QxMobileApplication;
@@ -81,6 +82,7 @@ export class Viewport extends QxComposite {
 
     initialize() {
         super.initialize();
+        Toast.getInstance();
     }
 
     onAppear() {
