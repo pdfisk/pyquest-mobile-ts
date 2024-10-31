@@ -37,6 +37,7 @@ export class Viewport extends QxComposite {
 
     constructor() {
         super();
+        Toast.init();
         this.application = QxMobileApplication.getInstance();
         this.manager = QxPageManager.getInstance();
         this.root = QxRoot.getInstance();
@@ -82,7 +83,6 @@ export class Viewport extends QxComposite {
 
     initialize() {
         super.initialize();
-        Toast.getInstance();
     }
 
     onAppear() {

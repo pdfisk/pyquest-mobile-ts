@@ -1,7 +1,9 @@
+import { EventConstants } from "../constants";
+import { MessageConstants } from "../constants/MessageConstants";
 import { VmApiConstants } from "../constants/VmApiConstants";
 import { ActionHandler } from "../handlers/ActionHandler";
 import { ResultHandler } from "../handlers/ResultHandler";
-import { Toast } from "../ui/widgets/Toast";
+import { MessageBus } from "../messages";
 
 export class VmApi {
 
@@ -130,9 +132,9 @@ export class VmApi {
     }
 
     run_with_toast(src: string, inputId: number, outputId: number): any {
-        Toast.openTop('Compiling...');
+        MessageBus.dispatch(EventConstants.ToastOpenTop, MessageConstants.Compiling);
         const compiledObjectJson = this.compile_to_json(src);
-        Toast.hide();
+        MessageBus.dispatch(EventConstants.ToastHide);
         if (!compiledObjectJson) return null;
         const runCompiledFn: Function = this.getVmApiRunCompiledFn();
         if (runCompiledFn) {

@@ -13,8 +13,21 @@ export class Toast extends QxComposite {
         return this.instance;
     }
 
+    static init() {
+        MessageBus.subscribe(EventConstants.ToastHide, this.onHide, this);
+        MessageBus.subscribe(EventConstants.ToastOpenTop, this.onOpenTop, this);
+    }
+
     static hide() {
         this.getInstance().hide();
+    }
+
+    static onHide() {
+        console.log('onHide');
+    }
+
+    static onOpenTop(args: any) {
+        console.log('onOpenTop', args);
     }
 
     static openBottom(message: string, duration: number = QxConstants.DrawerDuration) {
@@ -60,20 +73,10 @@ export class Toast extends QxComposite {
     private constructor() {
         super();
         this.drawer = new QxDrawer();
-        MessageBus.subscribe(EventConstants.ToastHide, this.onHide, this);
-        MessageBus.subscribe(EventConstants.ToastOpenTop, this.onOpenTop, this);
     }
 
     hide() {
         this.drawer.hide();
-    }
-
-    onHide() {
-        console.log('onHide');
-    }
-
-    onOpenTop(args: any) {
-        console.log('onOpenTop', args);
     }
 
     setDuration(duration: number) {
