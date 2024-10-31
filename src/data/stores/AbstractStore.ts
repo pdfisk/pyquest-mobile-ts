@@ -1,4 +1,5 @@
 import { EventConstants } from "../../constants/EventConstants";
+import { MessageBus } from "../../messages";
 import { Server } from "../../server/Server";
 import { ServerUtil } from "../../server/ServerUtil";
 import { Toast } from "../../ui/widgets/Toast";
@@ -57,8 +58,10 @@ export abstract class AbstractStore {
         }
         else {
             this.dataStore.setUrl(ServerUtil.getUrl(this.serviceName()));
-            if (showToast)
+            if (showToast) {
                 Toast.openTop('Loading data...');
+                MessageBus.dispatch(EventConstants.ToastOpenTop, { message: 'Loading data...' });
+            }
         }
     }
 

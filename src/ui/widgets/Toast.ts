@@ -1,4 +1,5 @@
-import { QxConstants } from "../../constants";
+import { EventConstants, QxConstants } from "../../constants";
+import { MessageBus } from "../../messages";
 import { QxComposite } from "../../qx/ui/mobile/container/QxComposite";
 import { QxDrawer } from "../../qx/ui/mobile/container/QxDrawer";
 
@@ -59,11 +60,15 @@ export class Toast extends QxComposite {
     private constructor() {
         super();
         this.drawer = new QxDrawer();
-        this.show();
+        MessageBus.subscribe(EventConstants.ToastOpenTop, this.onOpenTop, this);
     }
 
     hide() {
         this.drawer.hide();
+    }
+
+    onOpenTop(message: any) {
+        console.log('onOpenTop', message);
     }
 
     setDuration(duration: number) {
