@@ -34,7 +34,7 @@ export class QxMobileApplication extends QxObject {
                 console.log('[', records, ']');
             }
             ProjectsStore.addLoadHandlerFn(fn);
-            ProjectsStore.loadSilently();
+            // ProjectsStore.loadSilently();
         }
     }
 

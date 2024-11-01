@@ -54,9 +54,9 @@ export abstract class AbstractStore {
         if (this.dataLoaded)
             this.dataStore.reload();
         else {
-            this.dataStore.setUrl(ServerUtil.getUrl(this.serviceName()));
             if (showToast)
                 this.openToast();
+            this.setUrl();
         }
     }
 
@@ -89,6 +89,13 @@ export abstract class AbstractStore {
         const id = data.id;
         const fn = () => { this.reload(); }
         Server.sendPutRequest(this.serviceName(), id, data, fn);
+    }
+
+    setUrl() {
+        const fn = () => {
+            this.dataStore.setUrl(ServerUtil.getUrl(this.serviceName()));
+        };
+        MessageBus.dispatch(EventConstants.FunctionCall, fn);
     }
 
     abstract serviceName(): string
