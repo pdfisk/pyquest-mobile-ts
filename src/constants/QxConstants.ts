@@ -1,6 +1,7 @@
 export class QxConstants {
     static AtomShowIcon: string = 'icon';
     static AtomShowLabel: string = 'label';
+    static DrawerCloseDelay: number = 1000;
     static DrawerDuration: number = 3;
     static DrawerDurationMax: number = 1000;
     static DrawerOrientionBottom: string = 'bottom';

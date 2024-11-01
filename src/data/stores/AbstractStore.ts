@@ -45,16 +45,14 @@ export abstract class AbstractStore {
     }
 
     handleLoadedData() {
-        this.closeToast();
         this.dataRecords = this.getDataRecords();
         for (let handlerFn of this.loadHandlerFns.values())
             handlerFn(this.dataRecords);
     }
 
     loadData(showToast: boolean = true) {
-        if (this.dataLoaded) {
+        if (this.dataLoaded)
             this.dataStore.reload();
-        }
         else {
             this.dataStore.setUrl(ServerUtil.getUrl(this.serviceName()));
             if (showToast)

@@ -3,7 +3,7 @@ import { QxFactory, QxObject } from "../qx";
 export class TimerManager extends QxObject {
     timerId: number = 0;
 
-    static start(callback: Function, delay: number) {
+    static start(callback: Function, delay: number=0) {
         const timer = new TimerManager();
         timer.start(callback, delay);
         return timer;
