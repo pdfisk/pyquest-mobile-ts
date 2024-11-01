@@ -132,9 +132,9 @@ export class VmApi {
     }
 
     run_with_toast(src: string, inputId: number, outputId: number): any {
-        MessageBus.dispatch(EventConstants.ToastOpenTop, MessageConstants.Compiling);
+        MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.Compiling);
         const compiledObjectJson = this.compile_to_json(src);
-        MessageBus.dispatch(EventConstants.ToastHide);
+        MessageBus.dispatch(EventConstants.DrawerCloseTop);
         if (!compiledObjectJson) return null;
         const runCompiledFn: Function = this.getVmApiRunCompiledFn();
         if (runCompiledFn) {

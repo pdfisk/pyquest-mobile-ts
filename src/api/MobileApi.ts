@@ -1,7 +1,10 @@
 import { UrlConstants } from '../constants';
 import { Version } from '../constants/Version';
+import { MessageBus } from '../messages';
 import { Server } from '../server/Server';
 import { Viewport } from '../ui';
+import { FunctionManager } from '../util/FunctionManager';
+import { NotificationManager } from '../util/NotificationManager';
 
 export class MobileApi {
     /**
@@ -27,6 +30,10 @@ export class MobileApi {
         return Version.version;
     }
 
+    dispatch(name:string, ...args:any[]) {
+        MessageBus.dispatch(name, ...args);
+    }
+
     getIpAddress() {
         fetch(UrlConstants.ipify)
             .then(response => response.json())
@@ -40,6 +47,8 @@ export class MobileApi {
     }
 
     start() {
+        FunctionManager.init();
+        NotificationManager.init();
         this.getIpAddress();
         Viewport.getInstance();
     }

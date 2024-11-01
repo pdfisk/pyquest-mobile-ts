@@ -28,7 +28,7 @@ export abstract class AbstractStore {
     }
 
     closeToast() {
-        MessageBus.dispatch(EventConstants.ToastHide);
+        MessageBus.dispatch(EventConstants.DrawerCloseTop);
     }
 
     abstract createNewRecord(): any;
@@ -52,14 +52,13 @@ export abstract class AbstractStore {
     }
 
     loadData(showToast: boolean = true) {
-        this.closeToast();
         if (this.dataLoaded) {
             this.dataStore.reload();
         }
         else {
             this.dataStore.setUrl(ServerUtil.getUrl(this.serviceName()));
             if (showToast)
-                MessageBus.dispatch(EventConstants.ToastOpenTop, MessageConstants.LoadingData);
+                this.openToast();
         }
     }
 
@@ -73,6 +72,10 @@ export abstract class AbstractStore {
         this.closeToast()
         this.dataLoaded = true;
         this.handleLoadedData();
+    }
+
+    openToast() {
+        MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.LoadingData);
     }
 
     reload() {
