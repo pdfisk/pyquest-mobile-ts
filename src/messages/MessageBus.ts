@@ -25,7 +25,6 @@ export class MessageBus {
     }
 
     dispatch(name: string, args: any[]) {
-        console.log('DISPATCH', name, args);
         const message = new (window as any).qx.event.message.Message(name, args);
         this.getMessageBus().dispatch(message);
     }

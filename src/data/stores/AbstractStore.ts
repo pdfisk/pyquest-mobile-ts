@@ -55,8 +55,9 @@ export abstract class AbstractStore {
             this.dataStore.reload();
         else {
             if (showToast)
-                this.openToast();
-            this.setUrl();
+                this.openToast(() => { this.setUrl(); });
+            else
+                this.setUrl();
         }
     }
 
@@ -72,8 +73,8 @@ export abstract class AbstractStore {
         this.handleLoadedData();
     }
 
-    openToast() {
-        MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.LoadingData);
+    openToast(fn: Function | null = null) {
+        MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.LoadingData, fn);
     }
 
     reload() {

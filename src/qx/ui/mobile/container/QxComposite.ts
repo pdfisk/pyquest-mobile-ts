@@ -49,7 +49,7 @@ export class QxComposite extends QxWidget {
     }
 
     getChildCount(): number {
-        return this.widget.getChildCount();
+        return this.widget.getChildren().length;
     }
 
     removeAll() {

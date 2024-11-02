@@ -132,30 +132,25 @@ export class VmApi {
 
     run_with_notification(src: string, inputId: number, outputId: number): void {
         const resultHolder = { compiledObjectJson: null, result: null, resultStrJson: null };
-        const fn1 = (src: string, resultHolder: any) => {
-            MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.Compiling);
-            console.log('before compile');
+        const fn1 = () => {
             this.compile_to_json(src, resultHolder);
-            console.log('after compile');
             MessageBus.dispatch(EventConstants.DrawerCloseTop);
+            if (!resultHolder.compiledObjectJson) {
+                MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.CompileErrors);
+                return;
+            }
+            const runCompiledFn: Function = this.getVmApiRunCompiledFn();
+            if (runCompiledFn) {
+                const fn2 = () => {
+                    resultHolder.resultStrJson = this.callVmApiFn(runCompiledFn, resultHolder.compiledObjectJson);
+                    if (resultHolder.resultStrJson)
+                        resultHolder.result = JSON.parse(resultHolder.resultStrJson);
+                    MessageBus.dispatch(EventConstants.DrawerCloseTop);
+                };
+                MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.Compiling, fn2);
+            }
         };
-        MessageBus.dispatch(EventConstants.FunctionCall, fn1, src, resultHolder);
-        // const fn2 = (resultHolder: any) => {
-        //     if (!resultHolder.compiledObjectJson) {
-        //         MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.CompileErrors);
-        //         return;
-        //     }
-        //     const runCompiledFn: Function = this.getVmApiRunCompiledFn();
-        //     if (runCompiledFn) {
-        //         MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.Running);
-        //         resultHolder.resultStrJson = this.callVmApiFn(runCompiledFn, resultHolder.compiledObjectJson);
-        //         resultHolder.result = JSON.parse(resultHolder.resultStrJson);
-        //     }
-        // }
-        // const fn3 = (resultHolder: any) => { console.log('resultHolder', resultHolder); }
-        // MessageBus.dispatch(EventConstants.DrawerCloseTop);
-        // MessageBus.dispatch(EventConstants.FunctionCall, fn2, resultHolder);
-        // MessageBus.dispatch(EventConstants.FunctionCall, fn3, resultHolder);
+        MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.Compiling, fn1);
     }
 
     setAction(src: string, inputId: number, outputId: number) {

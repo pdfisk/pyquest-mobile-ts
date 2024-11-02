@@ -15,6 +15,7 @@ export abstract class AbstractPage extends AbstractRoutingPage {
     leftContainer: QxComposite | null = null;
     rightContainer: QxComposite | null = null;
     navigationBar: NavigationBar | null = null;
+    topMenuButton: TopMenuButton | null = null;
 
     addBackButton() {
         this.widget._back = () => { this.onBack(); };
@@ -40,18 +41,17 @@ export abstract class AbstractPage extends AbstractRoutingPage {
     }
 
     addTopMenuButton() {
-        const topMenuButton = new TopMenuButton;
-        this.getRightContainer().add(topMenuButton);
+        if (this.topMenuButton !== null)
+            return;
+        this.getRightContainer().removeAll();
+        if (this.getRightContainer().getChildCount() > 0)
+            return;
+        this.topMenuButton = new TopMenuButton;
+        this.getRightContainer().add(this.topMenuButton);
     }
 
     defaultButtons(): string[] {
         return [];
-    }
-
-    getLeftContainer(): QxComposite {
-        if (this.leftContainer == null)
-            this.leftContainer = new QxComposite(this.widget.getLeftContainer());
-        return this.leftContainer;
     }
 
     getNavigationBar(): NavigationBar {
