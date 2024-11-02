@@ -27,7 +27,7 @@ export class QxWidget extends QxObject {
     initialize() {
         super.initialize();
         if (this.handlesOnAppear())
-            this.widget.addListenerOnce(EventConstants.QxEventAppear, this.onAppear, this);
+            this.widget.addListener(EventConstants.QxEventAppear, this.onAppear, this);
         if (this.handlesOnClick())
             this.widget.addListener(EventConstants.QxEventClick, this.onClick, this);
         if (this.handlesOnTap())

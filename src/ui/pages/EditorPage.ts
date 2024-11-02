@@ -67,9 +67,8 @@ export class EditorPage extends AbstractPage {
 
     onRun() {
         const codeObject = this.getCodeObject();
-        if (codeObject) {
+        if (codeObject)
             VmApi.runCompiled(codeObject);
-        }
         else {
             const code = this.getCode();
             VmApi.run(code);

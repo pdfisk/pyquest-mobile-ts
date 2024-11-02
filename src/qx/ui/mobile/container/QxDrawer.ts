@@ -1,10 +1,12 @@
 import { QxConstants, SizeConstants } from "../../../../constants";
+import { TimerManager } from "../../../../util";
 import { QxFactory } from "../../../factory";
 import { QxButton } from "../form/QxButton";
 import { QxComposite } from "./QxComposite";
 
 export class QxDrawer extends QxComposite {
     button: QxButton;
+    fn: Function | null = null;
 
     constructor(message: string = '', orientation: string = QxConstants.DrawerOrientionTop) {
         super(QxFactory.mobileDrawer());
@@ -17,6 +19,10 @@ export class QxDrawer extends QxComposite {
         this.add(this.button);
     }
 
+    handlesOnAppear(): boolean {
+        return true;
+    }
+
     forceHide() {
         this.widget.forceHide();
     }
@@ -27,6 +33,14 @@ export class QxDrawer extends QxComposite {
 
     isHidden(): boolean {
         return this.widget.isHidden();
+    }
+
+    onAppear() {
+        console.log('QxDrawer onAppear');
+    }
+
+    setFn(arg: Function | null) {
+        this.fn = arg;
     }
 
     setHideOnBack(value: boolean = true) {
@@ -54,8 +68,11 @@ export class QxDrawer extends QxComposite {
     }
 
     show() {
-        if (this.isHidden())
-            super.show();
+        super.show();
+        if (this.fn) {
+            TimerManager.start(this.fn, 1000);
+            this.fn = null;
+        }
     }
 
 }

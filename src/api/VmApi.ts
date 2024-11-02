@@ -27,8 +27,8 @@ export class VmApi {
         this.getInstance().postEvent(eventName, args);
     }
 
-    static run(src: string, inputId: number = 0, outputId: number = 0): number {
-        return this.getInstance().run_with_toast(src, inputId, outputId);
+    static run(src: string, inputId: number = 0, outputId: number = 0): void {
+        this.getInstance().run_with_notification(src, inputId, outputId);
     }
 
     static runCompiled(compiledCodeObjectJson: string, inputId: number = 0, outputId: number = 0): any {
@@ -46,11 +46,10 @@ export class VmApi {
         return fn.call(this.getOpalVmApi(), ...args);
     }
 
-    compile_to_json(src: string): string | null {
+    compile_to_json(src: string, resultHolder: any): void {
         const compileFn: Function = this.getVmApiCompileToJsonFn();
         if (compileFn)
-            return this.callVmApiFn(compileFn, src);
-        return null;
+            resultHolder.compiledObjectJson = this.callVmApiFn(compileFn, src);
     }
 
     getOpalVmApi(): any {
@@ -131,17 +130,32 @@ export class VmApi {
         return null;
     }
 
-    run_with_toast(src: string, inputId: number, outputId: number): any {
-        MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.Compiling);
-        const compiledObjectJson = this.compile_to_json(src);
-        MessageBus.dispatch(EventConstants.DrawerCloseTop);
-        if (!compiledObjectJson) return null;
-        const runCompiledFn: Function = this.getVmApiRunCompiledFn();
-        if (runCompiledFn) {
-            const resultJsonStr = this.callVmApiFn(runCompiledFn, compiledObjectJson);
-            return JSON.parse(resultJsonStr);
-        }
-        return null;
+    run_with_notification(src: string, inputId: number, outputId: number): void {
+        const resultHolder = { compiledObjectJson: null, result: null, resultStrJson: null };
+        const fn1 = (src: string, resultHolder: any) => {
+            MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.Compiling);
+            console.log('before compile');
+            this.compile_to_json(src, resultHolder);
+            console.log('after compile');
+            MessageBus.dispatch(EventConstants.DrawerCloseTop);
+        };
+        MessageBus.dispatch(EventConstants.FunctionCall, fn1, src, resultHolder);
+        // const fn2 = (resultHolder: any) => {
+        //     if (!resultHolder.compiledObjectJson) {
+        //         MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.CompileErrors);
+        //         return;
+        //     }
+        //     const runCompiledFn: Function = this.getVmApiRunCompiledFn();
+        //     if (runCompiledFn) {
+        //         MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.Running);
+        //         resultHolder.resultStrJson = this.callVmApiFn(runCompiledFn, resultHolder.compiledObjectJson);
+        //         resultHolder.result = JSON.parse(resultHolder.resultStrJson);
+        //     }
+        // }
+        // const fn3 = (resultHolder: any) => { console.log('resultHolder', resultHolder); }
+        // MessageBus.dispatch(EventConstants.DrawerCloseTop);
+        // MessageBus.dispatch(EventConstants.FunctionCall, fn2, resultHolder);
+        // MessageBus.dispatch(EventConstants.FunctionCall, fn3, resultHolder);
     }
 
     setAction(src: string, inputId: number, outputId: number) {

@@ -2,7 +2,6 @@ import { EventConstants, QxConstants } from "../constants";
 import { MessageConstants } from "../constants/MessageConstants";
 import { MessageBus } from "../messages";
 import { QxDrawer } from "../qx/ui/mobile/container/QxDrawer";
-import { TimerManager } from "./TimerManager";
 
 export class NotificationManager {
     static topDrawer: QxDrawer;
@@ -21,16 +20,15 @@ export class NotificationManager {
     }
 
     static onCloseTop() {
-        const fn = () => {
-            this.topDrawer.hide();
-        };
-        TimerManager.start(fn, QxConstants.DrawerCloseDelay);
+        this.topDrawer.hide();
     }
 
     static onOpenTop(args: any) {
         const data: any[] = args.getData();
         const message: string = data[0];
+        const fn = data.length > 1 ? data[1] : null;
         this.topDrawer.setLabel(message);
+        this.topDrawer.setFn(fn);
         this.topDrawer.show();
     }
 

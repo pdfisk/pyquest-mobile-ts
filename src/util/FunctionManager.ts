@@ -7,10 +7,13 @@ export class FunctionManager {
         MessageBus.subscribe(EventConstants.FunctionCall, this.callFunction, this);
     }
 
-    static callFunction(args: any) {
-        const data: any[] = args.getData();
-        const fn: Function = data[0];
-        fn.call(null);
+    static callFunction(args: any, delay: number = 0) {
+        const fn: Function = () => {
+            const data: any[] = args.getData();
+            const fn: Function = data.shift();
+            fn.call(null, ...data);
+        }
+        setTimeout(fn, delay);
     }
 
 }

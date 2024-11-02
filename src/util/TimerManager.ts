@@ -1,20 +1,25 @@
 import { QxFactory, QxObject } from "../qx";
 
 export class TimerManager extends QxObject {
-    timerId: number = 0;
+    static instance: TimerManager;
 
-    static start(callback: Function, delay: number=0) {
-        const timer = new TimerManager();
-        timer.start(callback, delay);
-        return timer;
+    static getInstance(): TimerManager {
+        if (!this.instance)
+            this.instance = new TimerManager;
+        return this.instance;
     }
 
-    constructor() {
+    static start(callback: Function, delay: number = 0): number {
+        const timer = this.getInstance();
+        return timer.start(callback, delay);
+    }
+
+    private constructor() {
         super(QxFactory.timerManager());
     }
 
-    start(callback: Function, delay: number) {
-        this.timerId = this.widget.start(
+    start(callback: Function, delay: number): number {
+        return this.widget.start(
             callback,
             null,
             null,
@@ -23,8 +28,8 @@ export class TimerManager extends QxObject {
         );
     }
 
-    stop() {
-        this.widget.stop(this.timerId);
+    stop(timerId: number) {
+        this.widget.stop(timerId);
     }
 
 }
