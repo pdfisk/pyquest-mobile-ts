@@ -33,6 +33,7 @@ export class QxNavigationPage extends QxPage {
     }
 
     onAppear() {
+        super.onAppear();
         this.addContent();
         this.resize();
     }

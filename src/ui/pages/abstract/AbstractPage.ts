@@ -1,12 +1,11 @@
-import { QxComposite } from "../../../qx/ui/mobile/container/QxComposite";
 import { ColorConstants, LabelConstants, SizeConstants } from "../../../constants";
 import { QxMobileApplication } from "../../../qx/application/QxMobileApplication";
+import { QxComposite } from "../../../qx/ui/mobile/container/QxComposite";
 import { StringUtil } from "../../../util/StringUtil";
 import { ButtonBar } from "../../widgets/ButtonBar";
+import { NavigationBar } from "../../widgets/NavigationBar";
 import { TopMenuButton } from "../../widgets/TopMenuButton";
 import { AbstractRoutingPage } from "./AbstractRoutingPage";
-import { NavigationBar } from "../../widgets/NavigationBar";
-import { QxFactory } from "../../../qx";
 
 export abstract class AbstractPage extends AbstractRoutingPage {
     buttonbar: ButtonBar = new ButtonBar;
@@ -26,6 +25,7 @@ export abstract class AbstractPage extends AbstractRoutingPage {
     }
 
     addButtonBar() {
+        console.log('addButtonBar', this.getTitle());
         this.buttonbar.setBorderTopPx(ColorConstants.ButtonBarBorder, SizeConstants.ButtonBarBorderTopWidth);
         this.buttonbar.setMarginTopPx(SizeConstants.ButtonBarMarginTopWidth);
         this.add(this.buttonbar);
@@ -33,6 +33,7 @@ export abstract class AbstractPage extends AbstractRoutingPage {
     }
 
     addButtons() {
+        console.log('addButtons', this.getTitle());
         const buttons: string[] = this.defaultButtons();
         buttons.forEach((label: string) => {
             const fn: Function = () => { this.onTap(StringUtil.asTag(label)); }
@@ -43,13 +44,7 @@ export abstract class AbstractPage extends AbstractRoutingPage {
     addTopMenuButton() {
         if (this.topMenuButton !== null)
             return;
-        console.log('addTopMenuButton', this.widget._getButton());
-        (window as any).X = this;
-        // if (this.getRightContainer().getChildCount() > 0)
-        //     return;
-        // this.getRightContainer().removeAll();
         this.topMenuButton = new TopMenuButton(this.widget._getButton());
-        // this.getRightContainer().add(this.topMenuButton);
     }
 
     defaultButtons(): string[] {
@@ -68,7 +63,7 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         return this.rightContainer;
     }
 
-    getNavBarWidget() : any {
+    getNavBarWidget(): any {
         return this.widget.getLeftContainer().getLayoutParent();
     }
 
