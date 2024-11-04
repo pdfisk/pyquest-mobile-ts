@@ -43,11 +43,13 @@ export abstract class AbstractPage extends AbstractRoutingPage {
     addTopMenuButton() {
         if (this.topMenuButton !== null)
             return;
-        this.getRightContainer().removeAll();
-        if (this.getRightContainer().getChildCount() > 0)
-            return;
-        this.topMenuButton = new TopMenuButton;
-        this.getRightContainer().add(this.topMenuButton);
+        console.log('addTopMenuButton', this.widget._getButton());
+        (window as any).X = this;
+        // if (this.getRightContainer().getChildCount() > 0)
+        //     return;
+        // this.getRightContainer().removeAll();
+        this.topMenuButton = new TopMenuButton(this.widget._getButton());
+        // this.getRightContainer().add(this.topMenuButton);
     }
 
     defaultButtons(): string[] {
@@ -85,6 +87,8 @@ export abstract class AbstractPage extends AbstractRoutingPage {
     abstract isContentReady(): boolean;
 
     onAppear() {
+        if (this.hasAppeared)
+            return;
         super.onAppear();
         this.setBackButtonText(LabelConstants.ButtonLabelBack);
         this.setShowBackButton(true);

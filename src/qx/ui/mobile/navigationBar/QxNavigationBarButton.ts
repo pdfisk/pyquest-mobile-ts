@@ -4,12 +4,10 @@ import { QxButton } from "../form/QxButton";
 
 export class QxNavigationBarButton extends QxButton {
 
-    constructor(label: string, fn: Function | null = null) {
-        super(QxFactory.mobileNavigationBarButton());
-        this.setLabel(label);
-        this.addCssClass(StyleConstants.CssNavbarButton);   
-        if (fn)
-            this.addListener(EventConstants.QxEventTap, fn);
+    protected constructor(label: string, fn: Function | null = null, widget: any = null) {
+        super(label, fn, widget ? widget : QxFactory.mobileNavigationBarButton());
+        if (!widget)
+            this.addCssClass(StyleConstants.CssNavbarButton);
     }
 
 }

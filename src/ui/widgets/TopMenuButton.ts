@@ -5,9 +5,10 @@ import { QxNavigationBarButton } from "../../qx/ui/mobile/navigationBar/QxNaviga
 
 export class TopMenuButton extends QxNavigationBarButton {
 
-    constructor() {
+    constructor(widget: any) {
         const fn = () => { QxMobileApplication.executeGet(PageConstants.routeTopMenu); };
-        super(LabelConstants.ButtonLabelTopMenu, fn);
+        super(LabelConstants.ButtonLabelTopMenu, fn, widget);
+        this.show();
     }
 
 }
