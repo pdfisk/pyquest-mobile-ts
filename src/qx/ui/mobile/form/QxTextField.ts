@@ -7,4 +7,19 @@ export class QxTextField extends QxInput {
         super(QxFactory.mobileTextField());
     }
 
+    clear() {
+        this.setValue('');
+    }
+
+    getValue(): string {
+        if (this.widget)
+            return this.widget.getValue();
+        return '';
+    }
+
+    setValue(text: string) {
+        if (this.widget)
+            this.widget.setValue(text);
+    }
+
 }

@@ -44,10 +44,17 @@ export class RegisterPage extends AbstractFormPage {
         this.addPageContent();
     }
 
+    onSave() {
+        console.log('RegisterPage onSave');
+    }
+
     onTap(action: string) {
         switch (action) {
             case ActionConstants.ActionLogin:
                 this.showLogin();
+                break;
+            case ActionConstants.ActionSave:
+                this.onSave();
                 break;
             default:
                 console.log('RegisterPage onTap', action);

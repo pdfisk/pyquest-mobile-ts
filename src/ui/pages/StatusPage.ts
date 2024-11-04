@@ -18,6 +18,8 @@ export class StatusPage extends AbstractTextPage {
     }
 
     onAppear() {
+        if (this.hasAppeared)
+            return;
         super.onAppear();
         this.showStatus();
     }

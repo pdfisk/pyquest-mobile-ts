@@ -7,4 +7,19 @@ export class QxPasswordField extends QxInput {
         super(QxFactory.mobilePassowrdField());
     }
 
+    clear() {
+        this.setValue('');
+    }
+
+    getValue(): string {
+        if (this.widget)
+            return this.widget.getValue();
+        return '';
+    }
+
+    setValue(text: string) {
+        if (this.widget)
+            this.widget.setValue(text);
+    }
+
 }

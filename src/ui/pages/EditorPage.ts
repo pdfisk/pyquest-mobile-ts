@@ -52,6 +52,8 @@ export class EditorPage extends AbstractPage {
     }
 
     onAppear() {
+        if (this.hasAppeared)
+            return;
         super.onAppear();
         const cfg: any = { mode: EditorConstants.ModePython };
         this.editor = this.ace.edit(this.getContentElement(), cfg);
