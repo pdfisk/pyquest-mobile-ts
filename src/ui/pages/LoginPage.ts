@@ -1,8 +1,10 @@
-import { ActionConstants } from "../../constants";
+import { ActionConstants, EventConstants, ServerConstants, SessionConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
+import { MessageBus } from "../../messages";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxPasswordField } from "../../qx/ui/mobile/form/QxPasswordField";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
+import { Server } from "../../server/Server";
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 
 export class LoginPage extends AbstractFormPage {
@@ -21,6 +23,7 @@ export class LoginPage extends AbstractFormPage {
         this.setTitle(LabelConstants.PageLogin);
         this.nameField = new QxTextField;
         this.passwordField = new QxPasswordField;
+        MessageBus.subscribe(EventConstants.EventSessionStatusChanged, this.onSessionStatusChanged, this);
     }
 
     addPageContent() {
@@ -35,7 +38,7 @@ export class LoginPage extends AbstractFormPage {
 
     defaultButtons(): string[] {
         return [
-            LabelConstants.ButtonLabelSave,
+            LabelConstants.ButtonLabelLogin,
             LabelConstants.ButtonLabelClear,
             LabelConstants.ButtonLabelRegister
         ];
@@ -56,19 +59,81 @@ export class LoginPage extends AbstractFormPage {
         this.addPageContent();
     }
 
-    onSave() {
+    onClear() {
+        this.nameField.clear();
+        this.passwordField.clear();
+    }
+
+    onLoginOrLogout() {
+        const currentLabel = this.buttonbar.getButtonLabel(LabelConstants.ButtonLabelLogin);
+        if (currentLabel === LabelConstants.ButtonLabelLogout) {
+            MessageBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedOut });
+            return;
+        }
         const name: string = this.getName();
         const password: string = this.getPassword();
-        console.log('LoginPage onSave', name, password);
+        const fn: Function = (reply: any) => {
+            const response = reply.getResponse();
+            const level = response[SessionConstants.ServerResponseLevel];
+            switch (level) {
+                case ServerConstants.LevelAdmin:
+                    MessageBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedInAsAdmin });
+                    break;
+                case ServerConstants.LevelUser:
+                    MessageBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedInAsUser });
+                    break;
+                default:
+                    MessageBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedOut });
+                    break;
+            };
+        }
+        Server.login(name, password, fn);
+    }
+
+    onSessionLoggedInAsAdmin() {
+        this.buttonbar.setButtonLabel(LabelConstants.ButtonLabelLogin, LabelConstants.ButtonLabelLogout);
+        this.showTopMenu();
+    }
+
+    onSessionLoggedInAsUser() {
+        this.buttonbar.setButtonLabel(LabelConstants.ButtonLabelLogin, LabelConstants.ButtonLabelLogout);
+        this.showTopMenu();
+    }
+
+    onSessionLoggedOut() {
+        this.buttonbar.setButtonLabel(LabelConstants.ButtonLabelLogin, LabelConstants.ButtonLabelLogin);
+        this.showTopMenu();
+    }
+
+    onSessionStatusChanged(message: any) {
+        (window as any).X = message;
+        const data: any = message.getData();
+        const statusObj: any = data[0];
+        const status: string = statusObj.status;
+        switch (status) {
+            case SessionConstants.SessionLoggedInAsAdmin:
+                this.onSessionLoggedInAsAdmin();
+                break;
+            case SessionConstants.SessionLoggedInAsUser:
+                this.onSessionLoggedInAsUser();
+                break;
+            default:
+                this.onSessionLoggedOut();
+                break;
+        }
+        console.log('onSessionStatusChanged', `status: [${status}]`);
     }
 
     onTap(action: string) {
         switch (action) {
+            case ActionConstants.ActionClear:
+                this.onClear();
+                break;
+            case ActionConstants.ActionLogin:
+                this.onLoginOrLogout();
+                break;
             case ActionConstants.ActionRegister:
                 this.showRegister();
-                break;
-            case ActionConstants.ActionSave:
-                this.onSave();
                 break;
             default:
                 console.log('LoginPage onTap', action);

@@ -3,5 +3,6 @@ export class MessageConstants {
     static Compiling: string = 'Compiling...';
     static Empty: string = '';
     static LoadingData: string = 'Loading data...';
+    static NotFound: string = '--- not found ---';
     static Running: string = 'Running...';
 }

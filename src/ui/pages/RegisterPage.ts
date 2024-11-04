@@ -6,6 +6,8 @@ import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 
 export class RegisterPage extends AbstractFormPage {
+    nameField: QxTextField;
+    passwordField: QxPasswordField;
     static instance: RegisterPage;
 
     static getInstance(): RegisterPage {
@@ -17,13 +19,15 @@ export class RegisterPage extends AbstractFormPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageRegister);
-    }
+        this.nameField = new QxTextField;
+        this.passwordField = new QxPasswordField;
+   }
 
     addPageContent() {
         const items: QxWidget[] = [];
         const names: string[] = [];
-        items.push(new QxTextField());
-        items.push(new QxPasswordField());
+        items.push(this.nameField);
+        items.push(this.passwordField);
         names.push(LabelConstants.FieldLabelName);
         names.push(LabelConstants.FieldLabelPassword);
         this.addItems(items, names);
@@ -37,6 +41,14 @@ export class RegisterPage extends AbstractFormPage {
         ];
     }
 
+    getName(): string {
+        return this.nameField.getValue();
+    }
+
+    getPassword(): string {
+        return this.passwordField.getValue();
+    }
+
     onAppear() {
         if (this.hasAppeared)
             return;
@@ -45,7 +57,9 @@ export class RegisterPage extends AbstractFormPage {
     }
 
     onSave() {
-        console.log('RegisterPage onSave');
+        const name: string = this.getName();
+        const password: string = this.getPassword();
+        console.log('RegisterPage onSave', name, password);
     }
 
     onTap(action: string) {

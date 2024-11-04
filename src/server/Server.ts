@@ -1,4 +1,3 @@
-import { UrlConstants } from "../constants";
 import { ServerConstants } from "../constants/ServerConstants";
 import { ServerUtil } from "./ServerUtil";
 
