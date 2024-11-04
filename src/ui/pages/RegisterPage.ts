@@ -38,6 +38,8 @@ export class RegisterPage extends AbstractFormPage {
     }
 
     onAppear() {
+        if (this.hasAppeared)
+            return;
         super.onAppear();
         this.addPageContent();
     }
