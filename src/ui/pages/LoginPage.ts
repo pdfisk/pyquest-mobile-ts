@@ -106,7 +106,6 @@ export class LoginPage extends AbstractFormPage {
     }
 
     onSessionStatusChanged(message: any) {
-        (window as any).X = message;
         const data: any = message.getData();
         const statusObj: any = data[0];
         const status: string = statusObj.status;

@@ -1,4 +1,4 @@
-import { EventConstants, UrlConstants } from "../../constants";
+import { EventConstants, SessionConstants, UrlConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { PageConstants } from "../../constants/PageConstants";
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
@@ -30,7 +30,10 @@ export class TopMenuPage extends AbstractPage {
         };
         this.list = new QxList(config);
         this.scroll = new QxScroll();
-        this.buildList();
+        const data = this.getData();
+        this.buildList(data);
+        this.addListListener(data);
+        (window as any).X = this;
     }
 
     addContent() {
@@ -38,9 +41,7 @@ export class TopMenuPage extends AbstractPage {
         this.addContentWidget(this.scroll);
     }
 
-    buildList() {
-        const data = this.getData();
-        this.list.setModel(new (window as any).qx.data.Array(data));
+    addListListener(data: any[]) {
         this.list.addListener(
             EventConstants.QxEventChangeSelection,
             function (evt: any) {
@@ -52,6 +53,10 @@ export class TopMenuPage extends AbstractPage {
             },
             this
         );
+    }
+
+    buildList(data: any[]) {
+        this.list.setModel(new (window as any).qx.data.Array(data));
     }
 
     getData(): any[] {
@@ -82,7 +87,31 @@ export class TopMenuPage extends AbstractPage {
         return true;
     }
 
+    onSessionStatusChanged(message: any) {
+        const data: any = message.getData();
+        const statusObj: any = data[0];
+        const status: string = statusObj.status;
+        switch (status) {
+            case SessionConstants.SessionLoggedInAsAdmin:
+            case SessionConstants.SessionLoggedInAsUser:
+                this.setLogout();
+                break;
+            default:
+                this.setLogin();
+                break;
+        }
+        console.log('onSessionStatusChanged', `status: [${status}]`);
+    }
+
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+    }
+
+    setLogin() {
+
+    }
+
+    setLogout() {
+
     }
 
 }

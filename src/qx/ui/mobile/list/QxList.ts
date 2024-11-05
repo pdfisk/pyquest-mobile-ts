@@ -11,8 +11,23 @@ export class QxList extends QxWidget {
         return this.getModel().getItem(index);
     }
 
+    getItemCount(): number {
+        return this.widget.getItemCount();
+    }
+
+    getItems(): any[] {
+        const items: any[] = [];
+        for (let i = 0; i < this.getItemCount(); i++)
+            items.push(this.getItem(i));
+        return items;
+    }
+
     getModel(): any {
         return this.widget.getModel();
+    }
+
+    render() {
+        this.widget.render();
     }
 
     setData(labels: string[]) {
