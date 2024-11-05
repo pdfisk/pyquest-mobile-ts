@@ -120,7 +120,6 @@ export class LoginPage extends AbstractFormPage {
                 this.onSessionLoggedOut();
                 break;
         }
-        console.log('onSessionStatusChanged', `status: [${status}]`);
     }
 
     onTap(action: string) {

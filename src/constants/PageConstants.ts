@@ -22,6 +22,7 @@ export class PageConstants {
     static subtitleEditor = 'Python editor';
     static subtitleForum = 'Support forum';
     static subtitleLogin = 'Login or register';
+    static subtitleLogout = 'Logout';
     static subtitleProjects = 'Python projects';
     static subtitleRegister = 'Register new account';
     static subtitleStatus = 'Status information';
@@ -31,6 +32,7 @@ export class PageConstants {
     static titleBoard = 'Board';
     static titleEditor = 'Editor';
     static titleLogin = 'Login';
+    static titleLogout = 'Logout';
     static titleProjects = 'Projects';
     static titleRegister = 'Register';
     static titleStatus = 'Status';

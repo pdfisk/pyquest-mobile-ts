@@ -1,6 +1,7 @@
 import { EventConstants, SessionConstants, UrlConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { PageConstants } from "../../constants/PageConstants";
+import { MessageBus } from "../../messages";
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { QxScroll } from "../../qx/ui/mobile/container/QxScroll";
 import { QxList } from "../../qx/ui/mobile/list/QxList";
@@ -9,6 +10,8 @@ import { AbstractPage } from "./abstract/AbstractPage";
 
 export class TopMenuPage extends AbstractPage {
     list: QxList;
+    loginSubtitle: string = PageConstants.subtitleLogin;
+    loginTitle: string = PageConstants.titleLogin;
     scroll: QxScroll;
     static instance: TopMenuPage;
 
@@ -20,6 +23,7 @@ export class TopMenuPage extends AbstractPage {
 
     private constructor() {
         super();
+        MessageBus.subscribe(EventConstants.EventSessionStatusChanged, this.onSessionStatusChanged, this);
         this.setTitle(LabelConstants.PageTopMenu);
         const config = {
             configureItem(item: any, data: any) {
@@ -66,7 +70,7 @@ export class TopMenuPage extends AbstractPage {
             { title: PageConstants.titleTranscript, subtitle: PageConstants.subtitleTranscript, path: PageConstants.pathTranscript, },
             { title: PageConstants.titleBoard, subtitle: PageConstants.subtitleBoard, path: PageConstants.pathBoard, },
             { title: PageConstants.titleStatus, subtitle: PageConstants.subtitleStatus, path: PageConstants.pathStatus },
-            { title: PageConstants.titleLogin, subtitle: PageConstants.subtitleLogin, path: PageConstants.pathLogin },
+            { title: this.loginTitle, subtitle: this.loginSubtitle, path: PageConstants.pathLogin },
             { title: PageConstants.titleSupport, subtitle: PageConstants.subtitleForum, path: UrlConstants.pyquest_forum },
         ];
     }
@@ -100,18 +104,24 @@ export class TopMenuPage extends AbstractPage {
                 this.setLogin();
                 break;
         }
-        console.log('onSessionStatusChanged', `status: [${status}]`);
+        this.list.render();
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
     }
 
     setLogin() {
-
+        console.log('setLogin');
+        this.loginTitle = PageConstants.titleLogin;
+        this.loginSubtitle = PageConstants.subtitleLogin;
+        this.buildList(this.getData());
     }
 
     setLogout() {
-
+        console.log('setLogout');
+        this.loginTitle = PageConstants.titleLogout;
+        this.loginSubtitle = PageConstants.subtitleLogout;
+        this.buildList(this.getData());
     }
 
 }
