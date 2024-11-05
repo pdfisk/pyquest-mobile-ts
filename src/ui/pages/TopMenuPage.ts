@@ -37,7 +37,6 @@ export class TopMenuPage extends AbstractPage {
         const data = this.getData();
         this.buildList(data);
         this.addListListener(data);
-        (window as any).X = this;
     }
 
     addContent() {

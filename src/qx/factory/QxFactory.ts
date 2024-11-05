@@ -1,3 +1,6 @@
+import { QxLabel } from "../ui/mobile/basic/QxLabel";
+import { QxButton } from "../ui/mobile/form/QxButton";
+
 export class QxFactory {
 
     static mobileAbstract(): any {
@@ -72,8 +75,8 @@ export class QxFactory {
         return new (window as any).qx.ui.mobile.form.PasswordField;
     }
 
-    static mobilePopup(): any {
-        return new (window as any).qx.ui.mobile.dialog.Popup;
+    static mobilePopup(message: QxButton, title: QxLabel) {
+        return new (window as any).qx.ui.mobile.dialog.Popup(message.widget, title.widget);
     }
 
     static mobileRoot(): any {

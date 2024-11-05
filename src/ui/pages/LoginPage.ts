@@ -2,9 +2,11 @@ import { ActionConstants, EventConstants, ServerConstants, SessionConstants } fr
 import { LabelConstants } from "../../constants/LabelConstants";
 import { MessageBus } from "../../messages";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
+import { QxDialogManager } from "../../qx/ui/mobile/dialog/QxDialogManager";
 import { QxPasswordField } from "../../qx/ui/mobile/form/QxPasswordField";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { Server } from "../../server/Server";
+import { LoginPopup } from "../dialog/LoginPopup";
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 
 export class LoginPage extends AbstractFormPage {
@@ -93,16 +95,19 @@ export class LoginPage extends AbstractFormPage {
     onSessionLoggedInAsAdmin() {
         this.buttonbar.setButtonLabel(LabelConstants.ButtonLabelLogin, LabelConstants.ButtonLabelLogout);
         this.showTopMenu();
+        LoginPopup.open('Logged In', 'You are now logged in as admin');
     }
 
     onSessionLoggedInAsUser() {
         this.buttonbar.setButtonLabel(LabelConstants.ButtonLabelLogin, LabelConstants.ButtonLabelLogout);
         this.showTopMenu();
+        LoginPopup.open('Logged In', 'You are now logged in');
     }
 
     onSessionLoggedOut() {
         this.buttonbar.setButtonLabel(LabelConstants.ButtonLabelLogin, LabelConstants.ButtonLabelLogin);
         this.showTopMenu();
+        LoginPopup.open('Logged Out', 'You are now logged out');
     }
 
     onSessionStatusChanged(message: any) {
