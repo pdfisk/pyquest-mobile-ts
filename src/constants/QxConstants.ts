@@ -9,6 +9,7 @@ export class QxConstants {
     static DrawerOrientionRight: string = 'right';
     static DrawerOrientionTop: string = 'top';
     static QxObjectName: string = 'QxObject';
+    static PopupDelay:number = 5000;
     static ToastDelay: number = 3000;
     static TsObject: string = 'tsobject';
 }

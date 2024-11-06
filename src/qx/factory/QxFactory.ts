@@ -75,8 +75,8 @@ export class QxFactory {
         return new (window as any).qx.ui.mobile.form.PasswordField;
     }
 
-    static mobilePopup(message: QxButton, title: QxLabel) {
-        return new (window as any).qx.ui.mobile.dialog.Popup(message.widget, title.widget);
+    static mobilePopup(): any {
+        return new (window as any).qx.ui.mobile.dialog.Popup;
     }
 
     static mobileRoot(): any {
