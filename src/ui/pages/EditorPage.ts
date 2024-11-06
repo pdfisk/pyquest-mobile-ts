@@ -34,7 +34,7 @@ export class EditorPage extends AbstractPage {
     }
 
     defaultButtons(): string[] {
-        return [LabelConstants.ButtonLabelRun, LabelConstants.ButtonLabelClear];
+        return [LabelConstants.ButtonLabelRun, LabelConstants.ButtonLabelClear, LabelConstants.ButtonLabelSave];
     }
 
     getCode(): string {
@@ -77,6 +77,10 @@ export class EditorPage extends AbstractPage {
         }
     }
 
+    onSave() {
+        console.log('SAVE');
+    }
+
     onTap(action: string) {
         switch (action) {
             case ActionConstants.ActionClear:
@@ -84,6 +88,9 @@ export class EditorPage extends AbstractPage {
                 break;
             case ActionConstants.ActionRun:
                 this.onRun();
+                break;
+            case ActionConstants.ActionSave:
+                this.onSave();
                 break;
             default:
                 console.log('EditorPage onTap', action);
