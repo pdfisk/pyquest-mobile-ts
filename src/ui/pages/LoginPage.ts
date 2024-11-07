@@ -2,7 +2,6 @@ import { ActionConstants, EventConstants, ServerConstants, SessionConstants } fr
 import { LabelConstants } from "../../constants/LabelConstants";
 import { MessageBus } from "../../messages";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
-import { QxDialogManager } from "../../qx/ui/mobile/dialog/QxDialogManager";
 import { QxPasswordField } from "../../qx/ui/mobile/form/QxPasswordField";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { Server } from "../../server/Server";

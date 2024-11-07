@@ -18,20 +18,21 @@ export class ProjectsPage extends AbstractDataListPage {
         this.setTitle(LabelConstants.PageProjects);
     }
 
-    defaultButtons(): string[] {
-        return [LabelConstants.ButtonLabelRefresh];
+    addExtraButtons() {
+        super.addExtraButtons();
+        const items = [
+            LabelConstants.ButtonLabelOpen,
+            LabelConstants.ButtonLabelRename,
+            LabelConstants.ButtonLabelNew,
+            LabelConstants.ButtonLabelDelete
+        ]
+        const fn = (evt: any) => { this.onChangeSelectBoxSelection(evt) };
+        this.addSelectBox(items, fn);
+        this.setSelectionBoxSelection(LabelConstants.SelectBoxOpenIndex);
     }
 
-    getOnChangeFn(): Function {
-        return (evt: any) => {
-            const index: number = evt.getData();
-            const record = this.list.getItem(index);
-            const code = record.getCode();
-            const codeObject = record.getCode_object();
-            EditorPage.setCode(code);
-            EditorPage.setCodeObject(codeObject);
-            this.showEditor();
-        };
+    defaultButtons(): string[] {
+        return [LabelConstants.ButtonLabelRefresh];
     }
 
     getListConfig(): any {
@@ -47,12 +48,78 @@ export class ProjectsPage extends AbstractDataListPage {
         return data.name;
     }
 
+    getOnChangeFn(): Function {
+        return (evt: any) => {
+            const index: number = evt.getData();
+            this.onChangeSelection(index);
+        };
+    }
+
+    getSelectBoxIndex(): number {
+        if (this.selectBox)
+            return this.selectBox.getSelection();
+        return -1;
+    }
+
     getStore(): AbstractStore {
         return ProjectsStore.getInstance();
     }
 
+    onChangeSelectBoxSelection(evt: any) {
+        const data = evt.getData();
+        const index: number = data.index;
+        switch (index) {
+            case LabelConstants.SelectBoxNewIndex:
+                this.onNew();
+                break;
+        }
+    }
+
+    onChangeSelection(index: number) {
+        switch (this.getSelectBoxIndex()) {
+            case LabelConstants.SelectBoxDeleteIndex:
+                this.onDelete(index);
+                break;
+                case LabelConstants.SelectBoxNewIndex:
+                    case LabelConstants.SelectBoxOpenIndex:
+                this.onOpen(index);
+                break;
+            case LabelConstants.SelectBoxRenameIndex:
+                this.onRename(index);
+                break;
+            default:
+                console.log('unknown selectbox selection');
+                break;
+        }
+    }
+
+    onDelete(index: number) {
+        console.log('onDelete', index);
+        this.setSelectionBoxSelection(LabelConstants.SelectBoxOpenIndex);
+    }
+
+    onNew() {
+        console.log('onNew');
+        this.setSelectionBoxSelection(LabelConstants.SelectBoxOpenIndex);
+    }
+
+    onOpen(index: number) {
+        console.log('onOpen', index);
+        const record = this.list.getItem(index);
+        const code = record.getCode();
+        const codeObject = record.getCode_object();
+        EditorPage.setCode(code);
+        EditorPage.setCodeObject(codeObject);
+        this.showEditor();
+    }
+
     onRefresh() {
         this.getStore().reload();
+    }
+
+    onRename(index: number) {
+        console.log('onRename', index);
+        this.setSelectionBoxSelection(LabelConstants.SelectBoxOpenIndex);
     }
 
     onTap(action: string) {

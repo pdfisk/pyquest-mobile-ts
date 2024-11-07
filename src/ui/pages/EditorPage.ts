@@ -1,7 +1,9 @@
 import { VmApi } from "../../api";
-import { ActionConstants } from "../../constants";
+import { ActionConstants, EventConstants, SessionConstants } from "../../constants";
 import { EditorConstants } from "../../constants/EditorConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
+import { MessageBus } from "../../messages";
+import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { StringUtil } from "../../util/StringUtil";
 import { AbstractPage } from "./abstract/AbstractPage";
 
@@ -10,6 +12,7 @@ export class EditorPage extends AbstractPage {
     codeObject: string | null;
     editor: any = undefined;
     initValue: string = '';
+    saveButton:QxButton|null = null;
     static instance: EditorPage;
 
     static getInstance(): EditorPage {
@@ -31,10 +34,20 @@ export class EditorPage extends AbstractPage {
         this.ace = (window as any).ace;
         this.codeObject = null;
         this.setTitle(LabelConstants.PageEditor);
+        MessageBus.subscribe(EventConstants.EventSessionStatusChanged, this.onSessionStatusChanged, this);
+        (window as any).X = this;
     }
 
     defaultButtons(): string[] {
         return [LabelConstants.ButtonLabelRun, LabelConstants.ButtonLabelClear, LabelConstants.ButtonLabelSave];
+    }
+
+    disableSave() {
+        this.saveButton?.setEnabled(false);
+    }
+
+    enableSave() {
+        this.saveButton?.setEnabled(true);
     }
 
     getCode(): string {
@@ -55,6 +68,8 @@ export class EditorPage extends AbstractPage {
         if (this.hasAppeared)
             return;
         super.onAppear();
+        this.saveButton = this.buttonbar.getButtonFromLabel(LabelConstants.ButtonLabelSave);
+        this.disableSave();
         const cfg: any = { mode: EditorConstants.ModePython };
         this.editor = this.ace.edit(this.getContentElement(), cfg);
         this.setCode(this.initValue);
@@ -79,6 +94,20 @@ export class EditorPage extends AbstractPage {
 
     onSave() {
         console.log('SAVE');
+    }
+    
+    onSessionStatusChanged(message: any) {
+        const data: any = message.getData();
+        const statusObj: any = data[0];
+        const status: string = statusObj.status;
+        switch (status) {
+            case SessionConstants.SessionLoggedInAsAdmin:
+                this.enableSave();
+                break;
+            default:
+                this.disableSave();
+                break;
+        }
     }
 
     onTap(action: string) {

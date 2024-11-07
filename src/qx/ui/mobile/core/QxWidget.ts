@@ -46,6 +46,10 @@ export class QxWidget extends QxObject {
         return this.getBoundingRect().width;
     }
 
+    getEnabled(): boolean {
+        return this.widget.getEnabled();
+    }
+
     getHeight(): string {
         return this.getStyle(StyleConstants.Height);
     }
@@ -116,6 +120,10 @@ export class QxWidget extends QxObject {
     setBorderTopPx(color: string, width: number) {
         const borderTop = `${StringUtil.asPixels(width)} solid ${color}`;
         this.setStyle(StyleConstants.BorderTop, borderTop);
+    }
+
+    setEnabled(value: boolean) {
+        this.widget.setEnabled(value);
     }
 
     setFontSize(size: string | undefined) {

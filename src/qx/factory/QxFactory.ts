@@ -1,6 +1,3 @@
-import { QxLabel } from "../ui/mobile/basic/QxLabel";
-import { QxButton } from "../ui/mobile/form/QxButton";
-
 export class QxFactory {
 
     static mobileAbstract(): any {
@@ -85,6 +82,10 @@ export class QxFactory {
 
     static mobileScroll(): any {
         return new (window as any).qx.ui.mobile.container.Scroll;
+    }
+
+    static mobileSelectBox(): any {
+        return new (window as any).qx.ui.mobile.form.SelectBox;
     }
 
     static mobileSingle(form: any): any {

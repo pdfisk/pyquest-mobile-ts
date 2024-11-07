@@ -1,6 +1,7 @@
 import { ColorConstants, LabelConstants, SizeConstants } from "../../../constants";
 import { QxMobileApplication } from "../../../qx/application/QxMobileApplication";
 import { QxComposite } from "../../../qx/ui/mobile/container/QxComposite";
+import { QxSelectBox } from "../../../qx/ui/mobile/form/QxSelectBox";
 import { StringUtil } from "../../../util/StringUtil";
 import { ButtonBar } from "../../widgets/ButtonBar";
 import { NavigationBar } from "../../widgets/NavigationBar";
@@ -12,8 +13,9 @@ export abstract class AbstractPage extends AbstractRoutingPage {
     deferredHeight: number = 0;
     deferredWidth: number = 0;
     leftContainer: QxComposite | null = null;
-    rightContainer: QxComposite | null = null;
     navigationBar: NavigationBar | null = null;
+    rightContainer: QxComposite | null = null;
+    selectBox: QxSelectBox | null = null;
     topMenuButton: TopMenuButton | null = null;
 
     addBackButton() {
@@ -29,6 +31,7 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         this.buttonbar.setMarginTopPx(SizeConstants.ButtonBarMarginTopWidth);
         this.add(this.buttonbar);
         this.addButtons();
+        this.addExtraButtons();
     }
 
     addButtons() {
@@ -39,10 +42,19 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         });
     }
 
+    addSelectBox(items: string[], fn: Function | null = null): QxSelectBox {
+        this.selectBox = new QxSelectBox(items, fn);
+        this.buttonbar.add(this.selectBox);
+        return this.selectBox;
+    }
+
     addTopMenuButton() {
         if (this.topMenuButton !== null)
             return;
         this.topMenuButton = new TopMenuButton(this.widget._getButton());
+    }
+
+    addExtraButtons() {
     }
 
     defaultButtons(): string[] {
@@ -107,6 +119,11 @@ export abstract class AbstractPage extends AbstractRoutingPage {
             this.deferredWidth = adjustedWidth;
             this.deferredHeight = adjustedHeight;
         }
+    }
+
+    setSelectionBoxSelection(index: number) {
+        if (this.selectBox)
+            this.selectBox.setSelection(index);
     }
 
     abstract setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void;
