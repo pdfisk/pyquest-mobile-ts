@@ -110,14 +110,12 @@ export class TopMenuPage extends AbstractPage {
     }
 
     setLogin() {
-        console.log('setLogin');
         this.loginTitle = PageConstants.titleLogin;
         this.loginSubtitle = PageConstants.subtitleLogin;
         this.buildList(this.getData());
     }
 
     setLogout() {
-        console.log('setLogout');
         this.loginTitle = PageConstants.titleLogout;
         this.loginSubtitle = PageConstants.subtitleLogout;
         this.buildList(this.getData());

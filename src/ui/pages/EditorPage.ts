@@ -2,6 +2,7 @@ import { VmApi } from "../../api";
 import { ActionConstants, EventConstants, SessionConstants } from "../../constants";
 import { EditorConstants } from "../../constants/EditorConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
+import { MessageConstants } from "../../constants/MessageConstants";
 import { MessageBus } from "../../messages";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { StringUtil } from "../../util/StringUtil";
@@ -12,7 +13,7 @@ export class EditorPage extends AbstractPage {
     codeObject: string | null;
     editor: any = undefined;
     initValue: string = '';
-    saveButton:QxButton|null = null;
+    saveButton: QxButton | null = null;
     static instance: EditorPage;
 
     static getInstance(): EditorPage {
@@ -35,7 +36,6 @@ export class EditorPage extends AbstractPage {
         this.codeObject = null;
         this.setTitle(LabelConstants.PageEditor);
         MessageBus.subscribe(EventConstants.EventSessionStatusChanged, this.onSessionStatusChanged, this);
-        (window as any).X = this;
     }
 
     defaultButtons(): string[] {
@@ -88,14 +88,27 @@ export class EditorPage extends AbstractPage {
             VmApi.runCompiled(codeObject);
         else {
             const code = this.getCode();
-            VmApi.run(code);
+            const compiledObjectJson = VmApi.compileToJson(code);
+            VmApi.runCompiled(compiledObjectJson.compiledObjectJson);
+            // console.log('compiledObjectJson', compiledObjectJson);
+            // (window as any).X = compiledObjectJson;
+            // VmApi.run(code);
+            // const fn2 = () => {
+            //     const compiledObjectJson = VmApi.compileToJson(code);
+            //     if (compiledObjectJson) {
+            //         this.setCodeObject(compiledObjectJson.compiledObjectJson);
+            //         VmApi.runCompiled(compiledObjectJson.compiledObjectJson);
+            //     }
+            //     MessageBus.dispatch(EventConstants.DrawerCloseTop);
+            // };
+            // MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.Compiling, fn2);
         }
     }
 
     onSave() {
         console.log('SAVE');
     }
-    
+
     onSessionStatusChanged(message: any) {
         const data: any = message.getData();
         const statusObj: any = data[0];

@@ -59,6 +59,8 @@ export class LabelConstants {
 
     static SelectionLabelAll: string = '-- all --';
 
+    static SelectionUnselectedIndex: number = -1;
+
     static WindowLabelConsole: string = 'Console';
     static WindowLabelLogin: string = 'Login';
     static WindowLabelProjects: string = 'Projects';

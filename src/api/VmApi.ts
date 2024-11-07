@@ -9,6 +9,10 @@ export class VmApi {
 
     static instance: VmApi;
 
+    static compileToJson(code: string): any {
+        return this.getInstance().compile_to_json(code);
+    }
+
     static getInstance(): VmApi {
         if (!this.instance)
             this.instance = new VmApi;
@@ -46,10 +50,12 @@ export class VmApi {
         return fn.call(this.getOpalVmApi(), ...args);
     }
 
-    compile_to_json(src: string, resultHolder: any): void {
+    compile_to_json(src: string, resultHolder: any = {}): any {
+        resultHolder.compiledObjectJson = null;
         const compileFn: Function = this.getVmApiCompileToJsonFn();
         if (compileFn)
             resultHolder.compiledObjectJson = this.callVmApiFn(compileFn, src);
+        return resultHolder;
     }
 
     getOpalVmApi(): any {

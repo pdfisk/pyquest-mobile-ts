@@ -5,6 +5,7 @@ import { AbstractDataListPage } from "./abstract/AbstractDataListPage";
 import { EditorPage } from "./EditorPage";
 
 export class ProjectsPage extends AbstractDataListPage {
+    selectedIndex: number;
     static instance: ProjectsPage;
 
     static getInstance(): ProjectsPage {
@@ -16,6 +17,7 @@ export class ProjectsPage extends AbstractDataListPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageProjects);
+        this.selectedIndex = LabelConstants.SelectionUnselectedIndex;
     }
 
     addExtraButtons() {
@@ -76,12 +78,13 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     onChangeSelection(index: number) {
+        this.selectedIndex = index;
         switch (this.getSelectBoxIndex()) {
             case LabelConstants.SelectBoxDeleteIndex:
                 this.onDelete(index);
                 break;
-                case LabelConstants.SelectBoxNewIndex:
-                    case LabelConstants.SelectBoxOpenIndex:
+            case LabelConstants.SelectBoxNewIndex:
+            case LabelConstants.SelectBoxOpenIndex:
                 this.onOpen(index);
                 break;
             case LabelConstants.SelectBoxRenameIndex:
@@ -104,7 +107,7 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     onOpen(index: number) {
-        console.log('onOpen', index);
+        this.selectedIndex = index;
         const record = this.list.getItem(index);
         const code = record.getCode();
         const codeObject = record.getCode_object();
@@ -114,6 +117,7 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     onRefresh() {
+        this.selectedIndex = LabelConstants.SelectionUnselectedIndex;
         this.getStore().reload();
     }
 
@@ -131,6 +135,11 @@ export class ProjectsPage extends AbstractDataListPage {
                 console.log('ProjectsPage onTap', action);
                 break;
         }
+    }
+
+    save(code:string) {
+        console.log('ProjectPage SAVE');
+        
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
