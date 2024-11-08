@@ -88,12 +88,7 @@ export class EditorPage extends AbstractPage {
             VmApi.runCompiled(codeObject);
         else {
             const code = this.getCode();
-            // const compiledObjectJson = VmApi.compileToJson(code);
-            // VmApi.runCompiled(compiledObjectJson.compiledObjectJson);
-            // console.log('compiledObjectJson', compiledObjectJson);
-            // (window as any).X = compiledObjectJson;
-            // VmApi.run(code);
-            const fn2 = () => {
+            const fn = () => {
                 const compiledObjectJson = VmApi.compileToJson(code);
                 if (compiledObjectJson) {
                     this.setCodeObject(compiledObjectJson.compiledObjectJson);
@@ -101,7 +96,7 @@ export class EditorPage extends AbstractPage {
                 }
                 MessageBus.dispatch(EventConstants.DrawerCloseTop);
             };
-            MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.Compiling, fn2);
+            MessageBus.dispatch(EventConstants.DrawerOpenTop, MessageConstants.Compiling, fn);
         }
     }
 
