@@ -63,6 +63,26 @@ export class ProjectsPage extends AbstractDataListPage {
         return -1;
     }
 
+    getSelectedCode(): string {
+        const record = this.getSelectedRecord();
+        if (!record)
+            return '';
+        return record.getCode();
+    }
+
+    getSelectedCodeObject(): string {
+        const record = this.getSelectedRecord();
+        if (!record)
+            return '';
+        return record.getCode_object();
+    }
+
+    getSelectedRecord(): any {
+        if (this.selectedIndex === LabelConstants.SelectionUnselectedIndex)
+            return null;
+        return this.list.getItem(this.selectedIndex);
+    }
+
     getStore(): AbstractStore {
         return ProjectsStore.getInstance();
     }
@@ -108,9 +128,8 @@ export class ProjectsPage extends AbstractDataListPage {
 
     onOpen(index: number) {
         this.selectedIndex = index;
-        const record = this.list.getItem(index);
-        const code = record.getCode();
-        const codeObject = record.getCode_object();
+        const code = this.getSelectedCode()
+        const codeObject = this.getSelectedCodeObject();
         EditorPage.setCode(code);
         EditorPage.setCodeObject(codeObject);
         this.showEditor();
@@ -137,9 +156,9 @@ export class ProjectsPage extends AbstractDataListPage {
         }
     }
 
-    save(code:string) {
+    save(code: string) {
         console.log('ProjectPage SAVE');
-        
+
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
