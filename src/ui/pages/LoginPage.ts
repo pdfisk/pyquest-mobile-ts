@@ -5,7 +5,6 @@ import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxPasswordField } from "../../qx/ui/mobile/form/QxPasswordField";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { Server } from "../../server/Server";
-import { LoginPopup } from "../dialog/LoginPopup";
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 
 export class LoginPage extends AbstractFormPage {
@@ -94,19 +93,19 @@ export class LoginPage extends AbstractFormPage {
     onSessionLoggedInAsAdmin() {
         this.buttonbar.setButtonLabel(LabelConstants.ButtonLabelLogin, LabelConstants.ButtonLabelLogout);
         this.showTopMenu();
-        LoginPopup.open('Logged In', 'You are now logged in as admin');
+        MessageBus.dispatch(EventConstants.SessionLoggedInAsAdmin);
     }
 
     onSessionLoggedInAsUser() {
         this.buttonbar.setButtonLabel(LabelConstants.ButtonLabelLogin, LabelConstants.ButtonLabelLogout);
         this.showTopMenu();
-        LoginPopup.open('Logged In', 'You are now logged in');
+        MessageBus.dispatch(EventConstants.SessionLoggedInAsUser);
     }
 
     onSessionLoggedOut() {
         this.buttonbar.setButtonLabel(LabelConstants.ButtonLabelLogin, LabelConstants.ButtonLabelLogin);
         this.showTopMenu();
-        LoginPopup.open('Logged Out', 'You are now logged out');
+        MessageBus.dispatch(EventConstants.SessionLoggedOut);
     }
 
     onSessionStatusChanged(message: any) {

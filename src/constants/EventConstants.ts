@@ -12,6 +12,10 @@ export class EventConstants {
     static QxEventOrientationChange: string = 'orientationchange';
     static QxEventResize: string = 'resize';
     static QxEventTap: string = 'tap';
+    static ServerProjectSaved: string = 'project_saved';
+    static SessionLoggedInAsAdmin: string = 'logged_in_as_admin';
+    static SessionLoggedInAsUser: string = 'logged_in_as_user';
+    static SessionLoggedOut: string = 'logged_out';
     static TranscriptClear: string = 'transcript_clear';
     static WindowEventClose: string = 'close';
     static WindowEventMaximize: string = 'maximize';

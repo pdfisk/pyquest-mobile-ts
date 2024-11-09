@@ -80,11 +80,6 @@ export class ProjectsStore extends AbstractStore {
         super.handleLoadedData();
     }
 
-    save(record: any) {
-        console.log('SAVE', record);
-        (window as any).X = [record, this];
-    }
-
     serviceName(): string {
         return ServerConstants.ServiceProjects;
     }

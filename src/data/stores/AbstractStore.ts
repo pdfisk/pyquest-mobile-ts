@@ -1,3 +1,4 @@
+import { SessionConstants } from "../../constants";
 import { EventConstants } from "../../constants/EventConstants";
 import { MessageConstants } from "../../constants/MessageConstants";
 import { MessageBus } from "../../messages";
@@ -91,7 +92,10 @@ export abstract class AbstractStore {
         if (!record) return;
         const id = record.getId();
         const data = this.createRecordData(record);
-        const fn = () => { this.reload(); }
+        const fn = () => {
+            MessageBus.dispatch(EventConstants.ServerProjectSaved, { status: MessageConstants.ProjectSaved });
+            this.reload();
+        }
         Server.sendPutRequest(this.serviceName(), id, data, fn);
     }
 
