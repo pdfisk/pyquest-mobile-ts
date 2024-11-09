@@ -32,6 +32,8 @@ export class LabelConstants {
     static FieldLabelId: string = 'id';
     static FieldLabelIpAddress: string = 'IP Address';
     static FieldLabelName: string = 'Name';
+    static FieldLabelOldName: string = 'Old name';
+    static FieldLabelNewName: string = 'New name';
     static FieldLabelPassword: string = 'Password';
     static FieldLabelUpdatedAt: string = 'Updated At';
 
@@ -42,6 +44,7 @@ export class LabelConstants {
     static PageLogin: string = 'Login';
     static PageProjects: string = 'Projects';
     static PageRegister: string = 'Register';
+    static PageRename: string = 'Rename';
     static PageStatus: string = 'Status';
     static PageTopMenu: string = 'Top Menu';
     static PageTranscript: string = 'Transcript';

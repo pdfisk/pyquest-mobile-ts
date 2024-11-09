@@ -14,6 +14,9 @@ export class NavigationUtil {
             case PageConstants.pathProjects:
                 this.showProjects();
                 break;
+            case PageConstants.pathRename:
+                this.showRename();
+                break;
             case PageConstants.pathStatus:
                 this.showStatus();
                 break;
@@ -43,6 +46,10 @@ export class NavigationUtil {
 
     static showProjects() {
         QxMobileApplication.executeGet(PageConstants.routeProjects);
+    }
+
+    static showRename() {
+        QxMobileApplication.executeGet(PageConstants.routeRename);
     }
 
     static showStatus() {

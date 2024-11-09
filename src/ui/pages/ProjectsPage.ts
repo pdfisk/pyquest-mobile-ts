@@ -111,7 +111,6 @@ export class ProjectsPage extends AbstractDataListPage {
             case LabelConstants.SelectBoxDeleteIndex:
                 this.onDelete(index);
                 break;
-            case LabelConstants.SelectBoxNewIndex:
             case LabelConstants.SelectBoxOpenIndex:
                 this.onOpen(index);
                 break;
@@ -150,7 +149,7 @@ export class ProjectsPage extends AbstractDataListPage {
 
     onRename(index: number) {
         console.log('onRename', index);
-        this.setSelectionBoxSelection(LabelConstants.SelectBoxOpenIndex);
+        this.showRename();
     }
 
     onTap(action: string) {
