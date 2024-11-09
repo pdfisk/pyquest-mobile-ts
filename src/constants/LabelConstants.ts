@@ -41,8 +41,9 @@ export class LabelConstants {
 
     static PageBoard: string = 'Board';
     static PageDelete: string = 'Delete';
-   static PageEditor: string = 'Editor';
+    static PageEditor: string = 'Editor';
     static PageLogin: string = 'Login';
+    static PageNew: string = 'New';
     static PageProjects: string = 'Projects';
     static PageRegister: string = 'Register';
     static PageRename: string = 'Rename';

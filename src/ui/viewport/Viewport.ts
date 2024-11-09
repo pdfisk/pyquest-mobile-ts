@@ -8,6 +8,7 @@ import { BoardPage } from '../pages/BoardPage';
 import { DeletePage } from '../pages/DeletePage';
 import { EditorPage } from '../pages/EditorPage';
 import { LoginPage } from '../pages/LoginPage';
+import { NewPage } from '../pages/NewPage';
 import { ProjectsPage } from '../pages/ProjectsPage';
 import { RegisterPage } from '../pages/RegisterPage';
 import { RenamePage } from '../pages/RenamePage';
@@ -22,6 +23,7 @@ export class Viewport extends QxComposite {
     pageDelete: DeletePage;
     pageEditor: EditorPage;
     pageLogin: LoginPage;
+    pageNew: NewPage;
     pageProjects: ProjectsPage;
     pageRegister: RegisterPage;
     pageRename: RenamePage;
@@ -48,6 +50,7 @@ export class Viewport extends QxComposite {
         this.pageDelete = DeletePage.getInstance();
         this.pageEditor = EditorPage.getInstance();
         this.pageLogin = LoginPage.getInstance();
+        this.pageNew = NewPage.getInstance();
         this.pageProjects = ProjectsPage.getInstance();
         this.pageRegister = RegisterPage.getInstance();
         this.pageRename = RenamePage.getInstance();
@@ -62,8 +65,9 @@ export class Viewport extends QxComposite {
     addDetailPages() {
         this.manager.addDetailPages([
             this.pageBoard, this.pageDelete, this.pageEditor,
-            this.pageLogin, this.pageProjects, this.pageRegister,
-            this.pageRename, this.pageStatus, this.pageTranscript
+            this.pageLogin, this.pageNew, this.pageProjects,
+            this.pageRegister, this.pageRename, this.pageStatus,
+            this.pageTranscript
         ]);
     }
 
@@ -76,6 +80,7 @@ export class Viewport extends QxComposite {
         this.routing.onGet(PageConstants.routeDelete, this.pageDelete);
         this.routing.onGet(PageConstants.routeEditor, this.pageEditor);
         this.routing.onGet(PageConstants.routeLogin, this.pageLogin);
+        this.routing.onGet(PageConstants.routeNew, this.pageNew);
         this.routing.onGet(PageConstants.routeProjects, this.pageProjects);
         this.routing.onGet(PageConstants.routeRegister, this.pageRegister);
         this.routing.onGet(PageConstants.routeRename, this.pageRename);

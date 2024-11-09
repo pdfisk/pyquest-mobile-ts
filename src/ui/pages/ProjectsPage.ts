@@ -130,7 +130,7 @@ export class ProjectsPage extends AbstractDataListPage {
 
     onNew() {
         console.log('onNew');
-        this.setSelectionBoxSelection(LabelConstants.SelectBoxOpenIndex);
+        this.showNew();
     }
 
     onOpen(index: number) {
