@@ -7,6 +7,7 @@ import { MessageBus } from "../../messages";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { StringUtil } from "../../util/StringUtil";
 import { AbstractPage } from "./abstract/AbstractPage";
+import { ProjectsPage } from "./ProjectsPage";
 
 export class EditorPage extends AbstractPage {
     ace: any;
@@ -101,7 +102,9 @@ export class EditorPage extends AbstractPage {
     }
 
     onSave() {
-        console.log('SAVE');
+        const code = this.getCode();
+        const codeObject = this.getCodeObject();
+        ProjectsPage.save(code, codeObject);
     }
 
     onSessionStatusChanged(message: any) {

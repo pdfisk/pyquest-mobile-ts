@@ -14,6 +14,14 @@ export class ProjectsPage extends AbstractDataListPage {
         return this.instance;
     }
 
+    static getSelectedRecord(): any {
+        return this.getInstance().getSelectedRecord();
+    }
+
+    static save(code: string, codeObject: string | null) {
+        this.getInstance().save(code, codeObject);
+    }
+
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageProjects);
@@ -156,9 +164,11 @@ export class ProjectsPage extends AbstractDataListPage {
         }
     }
 
-    save(code: string) {
-        console.log('ProjectPage SAVE');
-
+    save(code: string, codeObject: string | null) {
+        const record = this.getSelectedRecord();
+        record.setCode(code);
+        record.setCode_object(codeObject);
+        this.dataStore.saveRecord(record);
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {

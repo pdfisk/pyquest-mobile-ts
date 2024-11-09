@@ -33,6 +33,8 @@ export abstract class AbstractStore {
 
     abstract createNewRecord(): any;
 
+    abstract createRecordData(record: any): any;
+
     deleteRecord(data: any) {
         if (!data) return;
         const id = data.id;
@@ -85,9 +87,10 @@ export abstract class AbstractStore {
         this.loadHandlerFns.delete(key);
     }
 
-    saveRecord(data: any) {
-        if (!data) return;
-        const id = data.id;
+    saveRecord(record: any) {
+        if (!record) return;
+        const id = record.getId();
+        const data = this.createRecordData(record);
         const fn = () => { this.reload(); }
         Server.sendPutRequest(this.serviceName(), id, data, fn);
     }

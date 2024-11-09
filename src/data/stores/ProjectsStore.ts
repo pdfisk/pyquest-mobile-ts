@@ -27,6 +27,17 @@ export class ProjectsStore extends AbstractStore {
         return { name: '-- new project --', description: '', details: '', author: '', code: '' };
     }
 
+    createRecordData(record: any): any {
+        const data: any = {};
+        data.author = '<unknown>';
+        data.description = record.getDescription();
+        data.details = record.getDetails();
+        data.code = record.getCode();
+        data.code_object = JSON.stringify(record.getCode_object());
+        data.name = record.getName();
+        return data;
+    }
+
     getDataRecords(): any[] {
         const model = this.dataStore.$$user_model;
         const projectsData: any[] = [];
@@ -57,7 +68,7 @@ export class ProjectsStore extends AbstractStore {
         return projectsData;
     }
 
-    getProjectsItem(n: number) {
+    getProjectsItem(n: number): any {
         return this.dataStore.$$user_model.getItem(n);
     }
 
@@ -67,6 +78,11 @@ export class ProjectsStore extends AbstractStore {
 
     handleLoadedData() {
         super.handleLoadedData();
+    }
+
+    save(record: any) {
+        console.log('SAVE', record);
+        (window as any).X = [record, this];
     }
 
     serviceName(): string {

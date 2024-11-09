@@ -19,6 +19,10 @@ export class VisitorsStore extends AbstractStore {
         return { ip_address: '0.0.0.0' };
     }
 
+    createRecordData(record:any): any {
+        return record;
+    }
+
     getDataRecords(): any[] {
         const model = this.dataStore.$$user_model;
         const visitorsData: any[] = [];

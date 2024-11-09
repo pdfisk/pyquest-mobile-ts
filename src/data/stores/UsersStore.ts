@@ -19,6 +19,10 @@ export class UsersStore extends AbstractStore {
         return { name: '-- new user --', passwd: '', level: '1' };
     }
 
+    createRecordData(record:any): any {
+        return record;
+    }
+
     getDataRecords(): any[] {
         const model = this.dataStore.$$user_model;
         const usersData: any[] = [];
