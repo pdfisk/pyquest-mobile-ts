@@ -125,7 +125,7 @@ export class ProjectsPage extends AbstractDataListPage {
 
     onDelete(index: number) {
         console.log('onDelete', index);
-        this.setSelectionBoxSelection(LabelConstants.SelectBoxOpenIndex);
+        this.showDelete();
     }
 
     onNew() {

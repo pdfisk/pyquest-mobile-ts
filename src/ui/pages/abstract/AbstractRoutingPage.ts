@@ -8,6 +8,10 @@ export abstract class AbstractRoutingPage extends QxNavigationPage {
         QxMobileApplication.executeGet(PageConstants.routeBoard);
     }
 
+    showDelete() {
+        QxMobileApplication.executeGet(PageConstants.routeDelete);
+    }
+
     showEditor() {
         QxMobileApplication.executeGet(PageConstants.routeEditor);
     }

@@ -40,7 +40,8 @@ export class LabelConstants {
     static LabelPyQuestMobile: string = 'PyQuest Mobile';
 
     static PageBoard: string = 'Board';
-    static PageEditor: string = 'Editor';
+    static PageDelete: string = 'Delete';
+   static PageEditor: string = 'Editor';
     static PageLogin: string = 'Login';
     static PageProjects: string = 'Projects';
     static PageRegister: string = 'Register';

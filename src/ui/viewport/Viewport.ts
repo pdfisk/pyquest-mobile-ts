@@ -5,6 +5,7 @@ import { QxComposite } from '../../qx/ui/mobile/container/QxComposite';
 import { QxRoot } from '../../qx/ui/mobile/core/QxRoot';
 import { QxPageManager } from '../../qx/ui/mobile/page/QxPageManager';
 import { BoardPage } from '../pages/BoardPage';
+import { DeletePage } from '../pages/DeletePage';
 import { EditorPage } from '../pages/EditorPage';
 import { LoginPage } from '../pages/LoginPage';
 import { ProjectsPage } from '../pages/ProjectsPage';
@@ -18,6 +19,7 @@ export class Viewport extends QxComposite {
     application: QxMobileApplication;
     manager: QxPageManager;
     pageBoard: BoardPage;
+    pageDelete: DeletePage;
     pageEditor: EditorPage;
     pageLogin: LoginPage;
     pageProjects: ProjectsPage;
@@ -43,6 +45,7 @@ export class Viewport extends QxComposite {
         this.root = QxRoot.getInstance();
         this.routing = QxMobileRouting.getInstance();
         this.pageBoard = BoardPage.getInstance();
+        this.pageDelete = DeletePage.getInstance();
         this.pageEditor = EditorPage.getInstance();
         this.pageLogin = LoginPage.getInstance();
         this.pageProjects = ProjectsPage.getInstance();
@@ -58,9 +61,9 @@ export class Viewport extends QxComposite {
 
     addDetailPages() {
         this.manager.addDetailPages([
-            this.pageBoard, this.pageEditor, this.pageLogin,
-            this.pageProjects, this.pageRegister, this.pageRename,
-            this.pageStatus, this.pageTranscript
+            this.pageBoard, this.pageDelete, this.pageEditor,
+            this.pageLogin, this.pageProjects, this.pageRegister,
+            this.pageRename, this.pageStatus, this.pageTranscript
         ]);
     }
 
@@ -70,6 +73,7 @@ export class Viewport extends QxComposite {
 
     buildRouting() {
         this.routing.onGet(PageConstants.routeBoard, this.pageBoard);
+        this.routing.onGet(PageConstants.routeDelete, this.pageDelete);
         this.routing.onGet(PageConstants.routeEditor, this.pageEditor);
         this.routing.onGet(PageConstants.routeLogin, this.pageLogin);
         this.routing.onGet(PageConstants.routeProjects, this.pageProjects);
