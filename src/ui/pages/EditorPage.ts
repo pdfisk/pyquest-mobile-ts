@@ -15,6 +15,7 @@ export class EditorPage extends AbstractPage {
     editor: any = undefined;
     initValue: string = '';
     saveButton: QxButton | null = null;
+    storedCode: string = '';
     static instance: EditorPage;
 
     static getInstance(): EditorPage {
@@ -58,6 +59,10 @@ export class EditorPage extends AbstractPage {
     }
 
     getCodeObject(): string | null {
+        if (this.storedCode != this.getCode()) {
+            this.codeObject = null;
+            this.storedCode = this.getCode();
+        }
         return this.codeObject;
     }
 
@@ -149,6 +154,7 @@ export class EditorPage extends AbstractPage {
     }
 
     setCode(value: string) {
+        this.storedCode = value;
         if (this.editor) {
             this.editor.setValue(value);
             this.setLine(0);
