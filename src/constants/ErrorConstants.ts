@@ -3,6 +3,7 @@ export class ErrorConstants {
     static BoardHandlerMissingAction: string = 'BoardHandler missing action';
     static ConsoleWindowOnButtonClick: string = 'ConsoleWindow onButtonClick';
     static LoginWindowOnButtonClick: string = 'LoginWindow onButtonClick';
+    static ProjectNameError:string = 'Project name must be at least five characters long';
     static ProjectsTabsUnknownTab: string = 'ProjectsTabs unknown tab';
     static ProjectsWindowOnButtonClick: string = 'ProjectsWindow onButtonClick';
     static RegisterWindowOnButtonClick: string = 'RegisterWindow onButtonClick';

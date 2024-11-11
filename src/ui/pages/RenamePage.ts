@@ -1,9 +1,11 @@
-import { ActionConstants, EventConstants } from "../../constants";
+import { ActionConstants, ErrorConstants, EventConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { MessageBus } from "../../messages";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
+import { NotificationManager } from "../../util/NotificationManager";
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
+import { ProjectsPage } from "./ProjectsPage";
 
 export class RenamePage extends AbstractFormPage {
     oldNameField: QxTextField;
@@ -67,7 +69,13 @@ export class RenamePage extends AbstractFormPage {
     }
 
     onRename() {
-        console.log('onRename');
+        const newName = this.getNewName();
+        const oldName = this.getOldName();
+        if (newName.length < 5) {
+            NotificationManager.onError(ErrorConstants.ProjectNameError);
+            return;
+        }
+        ProjectsPage.rename(oldName, newName);
     }
 
     onSessionStatusChanged(message: any) {

@@ -19,6 +19,10 @@ export class ProjectsPage extends AbstractDataListPage {
         return this.getInstance().getSelectedRecord();
     }
 
+    static rename(oldName: string, newName: string) {
+        this.getInstance().rename(oldName, newName);
+    }
+
     static save(code: string, codeObject: string | null) {
         this.getInstance().save(code, codeObject);
     }
@@ -172,6 +176,10 @@ export class ProjectsPage extends AbstractDataListPage {
                 console.log('ProjectsPage onTap', action);
                 break;
         }
+    }
+
+    rename(oldName: string, newName: string) {
+        console.log('RENAME', oldName, newName);
     }
 
     save(code: string, codeObject: string | null) {

@@ -33,6 +33,10 @@ export class NotificationManager {
         this.topDrawer.hide();
     }
 
+    static onError(message:string) {
+        console.log('onError', message);
+    }
+
     static onLoggedInAsAdmin() {
         LoginPopup.open(MessageConstants.LoggedIn, MessageConstants.LoggedInAdmin);
     }
