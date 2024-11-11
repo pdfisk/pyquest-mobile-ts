@@ -3,6 +3,7 @@ import { LabelConstants } from "../../constants/LabelConstants";
 import { AbstractStore, ProjectsStore } from "../../data";
 import { AbstractDataListPage } from "./abstract/AbstractDataListPage";
 import { EditorPage } from "./EditorPage";
+import { RenamePage } from "./RenamePage";
 
 export class ProjectsPage extends AbstractDataListPage {
     selectedIndex: number;
@@ -85,6 +86,13 @@ export class ProjectsPage extends AbstractDataListPage {
         return record.getCode_object();
     }
 
+    getSelectedName(): string | null {
+        const record = this.getSelectedRecord();
+        if (!record)
+            return null;
+        return record.getName();
+    }
+
     getSelectedRecord(): any {
         if (this.selectedIndex === LabelConstants.SelectionUnselectedIndex)
             return null;
@@ -148,7 +156,10 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     onRename(index: number) {
-        console.log('onRename', index);
+        this.selectedIndex = index;
+        const name = this.getSelectedName()
+        if (!name) return;
+        RenamePage.setOldName(name);
         this.showRename();
     }
 
