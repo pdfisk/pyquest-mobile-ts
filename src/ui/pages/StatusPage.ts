@@ -1,6 +1,7 @@
 import { VmApi } from "../../api";
-import { Version } from "../../constants";
+import { ServerConstants, Version } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
+import { Server } from "../../server/Server";
 import { AbstractTextPage } from "./abstract/AbstractTextPage";
 
 export class StatusPage extends AbstractTextPage {
@@ -22,6 +23,13 @@ export class StatusPage extends AbstractTextPage {
             return;
         super.onAppear();
         this.showStatus();
+        const fn = (reply: any) => {
+            const response = reply.getResponse();
+            const version = response.version;
+            const timestamp = response.updated;
+            this.showServerStatus(version, timestamp);
+        };
+        Server.sendGetRequest(ServerConstants.ServerStatus, {}, fn);
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
@@ -35,6 +43,13 @@ export class StatusPage extends AbstractTextPage {
         this.prn('Vm:');
         this.space(3).prn(`  Version: ${VmApi.getVersion()}`);
         this.space(3).prn(`Timestamp: ${VmApi.getTimestamp()}`);
+        this.newline();
+    }
+
+    showServerStatus(version: string, timestamp:string) {
+        this.prn('Server:');
+        this.space(3).prn(`  Version: ${version}`);
+        this.space(3).prn(`Timestamp: ${timestamp}`);
         this.newline();
     }
 

@@ -12,5 +12,6 @@ export class ServerConstants {
     static ServiceLogin: string = 'login';
     static ServiceProjects: string = 'projects';
     static ServiceRegister: string = 'register';
+    static ServerStatus: string = 'status';
     static ServiceUsers: string = 'users';
 }
