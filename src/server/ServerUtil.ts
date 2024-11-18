@@ -3,12 +3,12 @@ import { UrlConstants } from "../constants/UrlConstants";
 export class ServerUtil {
 
     static getHost() {
-        if (window.location.host.startsWith(UrlConstants.local8080))
-            return UrlConstants.local9080;
-        else if (window.location.host.startsWith(UrlConstants.local8081))
-            return UrlConstants.local9081;
+        if (window.location.host.startsWith(UrlConstants.local9080))
+            return this.wrapHttpUrl(UrlConstants.local9080);
+        else if (window.location.host.startsWith(UrlConstants.local9081))
+            return this.wrapHttpUrl(UrlConstants.https);
         else
-            return UrlConstants.heroku;
+            return this.wrapHttpsUrl(UrlConstants.heroku);
     }
 
     static getUrl(service: string) {
@@ -26,6 +26,18 @@ export class ServerUtil {
 
     static serializeData(req: any, data: any): string {
         return req._serializeData(data);
+    }
+
+    static wrapHttpUrl(url: string): string {
+        return this.wrapUrl(UrlConstants.http, url);
+    }
+
+    static wrapHttpsUrl(url: string): string {
+        return this.wrapUrl(UrlConstants.https, url);
+    }
+
+    static wrapUrl(http: string, url: string): string {
+        return `${http}://${url}/api`;
     }
 
 }
