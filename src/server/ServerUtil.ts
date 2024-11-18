@@ -3,12 +3,10 @@ import { UrlConstants } from "../constants/UrlConstants";
 export class ServerUtil {
 
     static getHost() {
-        if (window.location.host.startsWith(UrlConstants.local9080))
-            return this.wrapHttpUrl(UrlConstants.local9080);
-        else if (window.location.host.startsWith(UrlConstants.local9081))
-            return this.wrapHttpUrl(UrlConstants.https);
-        else
+        if (window.location.origin.startsWith(UrlConstants.https))
             return this.wrapHttpsUrl(UrlConstants.heroku);
+        else
+            return this.wrapHttpUrl(UrlConstants.local9080);
     }
 
     static getUrl(service: string) {
