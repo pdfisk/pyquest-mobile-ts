@@ -74,6 +74,8 @@ export class LoginPage extends AbstractFormPage {
         const password: string = this.getPassword();
         const fn: Function = (reply: any) => {
             const response = reply.getResponse();
+            console.log('Login response', name, password);
+            (window as any).X = response;
             const level = response[SessionConstants.ServerResponseLevel];
             switch (level) {
                 case ServerConstants.LevelAdmin:

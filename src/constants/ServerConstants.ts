@@ -1,7 +1,7 @@
 export class ServerConstants {
-    static LevelAdmin: string = 'admin';
-    static LevelNone: string = 'none';
-    static LevelUser: string = 'user';
+    static LevelAdmin: number = 9;
+    static LevelNone: number = 0;
+    static LevelUser: number = 1;
 
     static MethodDelete: string = 'DELETE';
     static MethodGet: string = 'GET';
