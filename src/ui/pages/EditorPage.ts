@@ -5,6 +5,7 @@ import { LabelConstants } from "../../constants/LabelConstants";
 import { MessageConstants } from "../../constants/MessageConstants";
 import { MessageBus } from "../../messages";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
+import { SessionStatus } from "../../session";
 import { StringUtil } from "../../util/StringUtil";
 import { AbstractPage } from "./abstract/AbstractPage";
 import { ProjectsPage } from "./ProjectsPage";
@@ -75,7 +76,9 @@ export class EditorPage extends AbstractPage {
             return;
         super.onAppear();
         this.saveButton = this.buttonbar.getButtonFromLabel(LabelConstants.ButtonLabelSave);
-        this.disableSave();
+        console.log('EditorPage onAppear', SessionStatus.getInstance().loginStatus);
+        if (!SessionStatus.isLoggedIn())
+            this.disableSave();
         const cfg: any = { mode: EditorConstants.ModePython };
         this.editor = this.ace.edit(this.getContentElement(), cfg);
         this.setCode(this.initValue);

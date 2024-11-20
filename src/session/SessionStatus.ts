@@ -25,7 +25,7 @@ export class SessionStatus {
     }
 
     constructor() {
-        MessageBus.subscribe(EventConstants.EventSessionStatusChanged, this.onEventStatusChanged, this);
+        MessageBus.subscribe(EventConstants.EventSessionStatusChanged, this.onSessionStatusChanged, this);
     }
 
     isLoggedIn() {
@@ -40,8 +40,10 @@ export class SessionStatus {
         return this.loginStatus == SessionConstants.SessionLoggedInAsUser;
     }
 
-    onEventStatusChanged(message: any) {
-        const status = message.getData().status;
+    onSessionStatusChanged(message: any) {
+        const data: any = message.getData();
+        const statusObj: any = data[0];
+        const status: string = statusObj.status;
         switch (status) {
             case SessionConstants.SessionLoggedInAsAdmin:
                 this.setIsLoggedInAsAdmin();
