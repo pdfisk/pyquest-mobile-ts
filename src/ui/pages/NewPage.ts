@@ -61,8 +61,8 @@ export class NewPage extends AbstractFormPage {
         this.newNameField.clear();
     }
 
-    onDelete() {
-        console.log('onDelete');
+    onNew() {
+        console.log('onNew');
     }
 
     onSessionStatusChanged(message: any) {
@@ -74,7 +74,7 @@ export class NewPage extends AbstractFormPage {
                 this.onClear();
                 break;
             case ActionConstants.ActionNew:
-                this.onDelete();
+                this.onNew();
                 break;
             default:
                 console.log('NewPage onTap', action);
