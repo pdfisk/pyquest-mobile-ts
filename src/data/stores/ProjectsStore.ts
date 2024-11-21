@@ -19,16 +19,16 @@ export class ProjectsStore extends AbstractStore {
         this.getInstance().loadData(false);
     }
 
-    static newRecord() {
-        this.getInstance().newRecord();
+    static newRecord(name: string) {
+        this.getInstance().newRecord(name);
     }
 
     private constructor() {
         super();
     }
 
-    createNewRecord(): any {
-        return { name: '-- new project --', description: '', details: '', author: '', code: '' };
+    createNewRecord(name:string): any {
+        return { name: name, description: '', details: '', author: '', code: '' };
     }
 
     createRecordData(record: any): any {

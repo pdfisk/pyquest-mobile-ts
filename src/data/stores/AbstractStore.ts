@@ -32,7 +32,7 @@ export abstract class AbstractStore {
         MessageBus.dispatch(EventConstants.DrawerCloseTop);
     }
 
-    abstract createNewRecord(): any;
+    abstract createNewRecord(name: string): any;
 
     abstract createRecordData(record: any): any;
 
@@ -64,8 +64,8 @@ export abstract class AbstractStore {
         }
     }
 
-    newRecord() {
-        const data = this.createNewRecord();;
+    newRecord(name: string) {
+        const data = this.createNewRecord(name);;
         const fn = () => { this.reload(); }
         Server.sendPostRequest(this.serviceName(), data, fn);
     }

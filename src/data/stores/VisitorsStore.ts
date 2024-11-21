@@ -15,11 +15,11 @@ export class VisitorsStore extends AbstractStore {
         super();
     }
 
-    createNewRecord(): any {
+    createNewRecord(name: string): any {
         return { ip_address: '0.0.0.0' };
     }
 
-    createRecordData(record:any): any {
+    createRecordData(record: any): any {
         return record;
     }
 

@@ -54,8 +54,9 @@ export class NewPage extends AbstractFormPage {
     }
 
     onNew() {
-        ProjectsStore.newRecord();
+        ProjectsStore.newRecord(this.getNewName());
         ProjectsStore.loadSilently();
+        this.showProjects();
     }
 
     onSessionStatusChanged(message: any) {

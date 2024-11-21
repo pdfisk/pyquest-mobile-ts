@@ -15,8 +15,8 @@ export class UsersStore extends AbstractStore {
         super();
     }
 
-    createNewRecord(): any {
-        return { name: '-- new user --', passwd: '', level: '1' };
+    createNewRecord(name:string): any {
+        return { name: name, passwd: '', level: '1' };
     }
 
     createRecordData(record:any): any {
