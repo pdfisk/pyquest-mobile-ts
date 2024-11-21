@@ -57,10 +57,10 @@ export abstract class AbstractStore {
         if (this.dataLoaded)
             this.dataStore.reload();
         else {
-            if (showToast)
-                this.openToast(() => { this.setUrl(); });
-            else
-                this.setUrl();
+            // if (showToast)
+            //     this.openToast(() => { this.setUrl(); });
+            // else
+            this.setUrl();
         }
     }
 

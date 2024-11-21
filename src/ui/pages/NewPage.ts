@@ -1,5 +1,6 @@
 import { ActionConstants, EventConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
+import { ProjectsStore } from "../../data";
 import { MessageBus } from "../../messages";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
@@ -53,7 +54,8 @@ export class NewPage extends AbstractFormPage {
     }
 
     onNew() {
-        console.log('onNew');
+        ProjectsStore.newRecord();
+        ProjectsStore.loadSilently();
     }
 
     onSessionStatusChanged(message: any) {

@@ -19,6 +19,10 @@ export class ProjectsStore extends AbstractStore {
         this.getInstance().loadData(false);
     }
 
+    static newRecord() {
+        this.getInstance().newRecord();
+    }
+
     private constructor() {
         super();
     }
