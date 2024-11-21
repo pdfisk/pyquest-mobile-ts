@@ -24,6 +24,10 @@ export class ProjectsPage extends AbstractDataListPage {
         this.getInstance().rename(oldName, newName);
     }
 
+    static refresh() {
+        this.getInstance().refresh();
+    }
+
     static save(code: string, codeObject: string | null) {
         this.getInstance().save(code, codeObject);
     }
@@ -165,8 +169,7 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     onRefresh() {
-        this.selectedIndex = LabelConstants.SelectionUnselectedIndex;
-        this.getStore().reload();
+        this.refresh();
     }
 
     onRename(index: number) {
@@ -190,6 +193,12 @@ export class ProjectsPage extends AbstractDataListPage {
 
     rename(oldName: string, newName: string) {
         console.log('RENAME', oldName, newName);
+    }
+
+    refresh() {
+        this.selectedIndex = LabelConstants.SelectionUnselectedIndex;
+        this.setSelectionBoxSelection(LabelConstants.SelectBoxOpenIndex);
+        this.getStore().reload();
     }
 
     save(code: string, codeObject: string | null) {

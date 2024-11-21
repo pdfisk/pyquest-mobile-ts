@@ -5,6 +5,7 @@ import { MessageBus } from "../../messages";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
+import { ProjectsPage } from "./ProjectsPage";
 
 export class NewPage extends AbstractFormPage {
     newNameField: QxTextField;
@@ -55,8 +56,8 @@ export class NewPage extends AbstractFormPage {
 
     onNew() {
         ProjectsStore.newRecord(this.getNewName());
-        ProjectsStore.loadSilently();
         this.showProjects();
+        ProjectsPage.refresh();
     }
 
     onSessionStatusChanged(message: any) {
