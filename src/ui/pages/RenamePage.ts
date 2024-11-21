@@ -94,7 +94,9 @@ export class RenamePage extends AbstractFormPage {
             NotificationManager.onError(ErrorConstants.ProjectNameError);
             return;
         }
-        ProjectsPage.rename(oldName, newName);
+        ProjectsPage.rename(newName);
+        this.showProjects();
+        ProjectsPage.refresh();
     }
 
     onSessionStatusChanged(message: any) {

@@ -27,6 +27,10 @@ export class ProjectsStore extends AbstractStore {
         this.getInstance().newRecord(name);
     }
 
+    static renameRecord(id: number, newName:string) {
+        this.getInstance().renameRecord(id, newName);
+    }
+
     private constructor() {
         super();
     }
@@ -86,6 +90,10 @@ export class ProjectsStore extends AbstractStore {
 
     handleLoadedData() {
         super.handleLoadedData();
+    }
+
+    renameRecord(id:number, newName:string) {
+
     }
 
     serviceName(): string {
