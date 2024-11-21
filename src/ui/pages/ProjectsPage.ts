@@ -2,11 +2,12 @@ import { ActionConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { AbstractStore, ProjectsStore } from "../../data";
 import { AbstractDataListPage } from "./abstract/AbstractDataListPage";
+import { DeletePage } from "./DeletePage";
 import { EditorPage } from "./EditorPage";
 import { RenamePage } from "./RenamePage";
 
 export class ProjectsPage extends AbstractDataListPage {
-    selectedIndex: number;
+    selectedIndex: number = LabelConstants.SelectionUnselectedIndex;
     static instance: ProjectsPage;
 
     static getInstance(): ProjectsPage {
@@ -30,7 +31,6 @@ export class ProjectsPage extends AbstractDataListPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageProjects);
-        this.selectedIndex = LabelConstants.SelectionUnselectedIndex;
     }
 
     addExtraButtons() {
@@ -111,8 +111,14 @@ export class ProjectsPage extends AbstractDataListPage {
         const data = evt.getData();
         const index: number = data.index;
         switch (index) {
+            case LabelConstants.SelectBoxDeleteIndex:
+                this.onDelete(index);
+                break;
             case LabelConstants.SelectBoxNewIndex:
                 this.onNew();
+                break;
+            case LabelConstants.SelectBoxRenameIndex:
+                this.onRename(index);
                 break;
         }
     }
@@ -136,16 +142,20 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     onDelete(index: number) {
-        console.log('onDelete', index);
+        this.selectedIndex = index;
+        const name = this.getSelectedName()
+        if (!name) return;
+        DeletePage.setOldName(name);
         this.showDelete();
     }
 
     onNew() {
-        console.log('onNew');
         this.showNew();
     }
 
     onOpen(index: number) {
+        if (index === LabelConstants.SelectionUnselectedIndex)
+            return;
         this.selectedIndex = index;
         const code = this.getSelectedCode()
         const codeObject = this.getSelectedCodeObject();

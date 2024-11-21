@@ -16,6 +16,10 @@ export class DeletePage extends AbstractFormPage {
         return this.instance;
     }
 
+    static setOldName(oldName: string) {
+        this.getInstance().setOldName(oldName);
+    }
+
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageDelete);
@@ -83,6 +87,10 @@ export class DeletePage extends AbstractFormPage {
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+    }
+
+    setOldName(oldName: string) {
+        this.oldNameField.setValue(oldName);
     }
 
 }

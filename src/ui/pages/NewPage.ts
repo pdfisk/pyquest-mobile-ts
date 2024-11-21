@@ -6,7 +6,6 @@ import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 
 export class NewPage extends AbstractFormPage {
-    oldNameField: QxTextField;
     newNameField: QxTextField;
     static instance: NewPage;
 
@@ -19,7 +18,6 @@ export class NewPage extends AbstractFormPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageNew);
-        this.oldNameField = new QxTextField;
         this.newNameField = new QxTextField;
         MessageBus.subscribe(EventConstants.EventSessionStatusChanged, this.onSessionStatusChanged, this);
     }
@@ -27,9 +25,7 @@ export class NewPage extends AbstractFormPage {
     addPageContent() {
         const items: QxWidget[] = [];
         const names: string[] = [];
-        items.push(this.oldNameField);
         items.push(this.newNameField);
-        names.push(LabelConstants.FieldLabelOldName);
         names.push(LabelConstants.FieldLabelNewName);
         this.addItems(items, names);
     }
@@ -45,10 +41,6 @@ export class NewPage extends AbstractFormPage {
         return this.newNameField.getValue();
     }
 
-    getOldName(): string {
-        return this.oldNameField.getValue();
-    }
-
     onAppear() {
         if (this.hasAppeared)
             return;
@@ -57,7 +49,6 @@ export class NewPage extends AbstractFormPage {
     }
 
     onClear() {
-        this.oldNameField.clear();
         this.newNameField.clear();
     }
 
