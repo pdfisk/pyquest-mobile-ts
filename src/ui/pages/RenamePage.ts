@@ -1,21 +1,29 @@
-import { ActionConstants, ErrorConstants, EventConstants } from "../../constants";
+import { ActionConstants, ErrorConstants, EventConstants, SessionConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { MessageBus } from "../../messages";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
+import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
+import { SessionStatus } from "../../session";
 import { NotificationManager } from "../../util/NotificationManager";
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 import { ProjectsPage } from "./ProjectsPage";
 
 export class RenamePage extends AbstractFormPage {
-    oldNameField: QxTextField;
+    id: number = -1;
     newNameField: QxTextField;
+    oldNameField: QxTextField;
+    renameButton: QxButton | null = null;
     static instance: RenamePage;
 
     static getInstance(): RenamePage {
         if (!this.instance)
             this.instance = new RenamePage();
         return this.instance;
+    }
+
+    static setId(id: number) {
+        this.getInstance().setId(id);
     }
 
     static setOldName(oldName: string) {
@@ -48,6 +56,14 @@ export class RenamePage extends AbstractFormPage {
         ];
     }
 
+    disableRename() {
+        this.renameButton?.setEnabled(false);
+    }
+
+    enableRename() {
+        this.renameButton?.setEnabled(true);
+    }
+
     getNewName(): string {
         return this.newNameField.getValue();
     }
@@ -61,6 +77,9 @@ export class RenamePage extends AbstractFormPage {
             return;
         super.onAppear();
         this.addPageContent();
+        this.renameButton = this.buttonbar.getButtonFromLabel(LabelConstants.ButtonLabelRename);
+        if (!SessionStatus.isLoggedIn())
+            this.disableRename();
     }
 
     onClear() {
@@ -79,6 +98,17 @@ export class RenamePage extends AbstractFormPage {
     }
 
     onSessionStatusChanged(message: any) {
+        const data: any = message.getData();
+        const statusObj: any = data[0];
+        const status: string = statusObj.status;
+        switch (status) {
+            case SessionConstants.SessionLoggedInAsAdmin:
+                this.enableRename();
+                break;
+            default:
+                this.disableRename();
+                break;
+        }
     }
 
     onTap(action: string) {
@@ -96,6 +126,10 @@ export class RenamePage extends AbstractFormPage {
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+    }
+
+    setId(id: number) {
+        this.id = id;
     }
 
     setOldName(oldName: string) {

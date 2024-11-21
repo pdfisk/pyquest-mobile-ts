@@ -191,9 +191,11 @@ export class ProjectsPage extends AbstractDataListPage {
 
     onRename(index: number) {
         this.selectedIndex = index;
-        const name = this.getSelectedName()
+        const name = this.getSelectedName();
+        const id = this.getId();
         if (!name) return;
         RenamePage.setOldName(name);
+        RenamePage.setId(id);
         this.showRename();
     }
 
