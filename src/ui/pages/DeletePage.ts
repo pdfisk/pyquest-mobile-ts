@@ -1,13 +1,16 @@
-import { ActionConstants, EventConstants } from "../../constants";
+import { ActionConstants, EventConstants, SessionConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { ProjectsStore } from "../../data";
 import { MessageBus } from "../../messages";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
+import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
+import { SessionStatus } from "../../session/SessionStatus";
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 import { ProjectsPage } from "./ProjectsPage";
 
 export class DeletePage extends AbstractFormPage {
+    deleteButton: QxButton | null = null;
     id: number = -1;
     oldNameField: QxTextField;
     static instance: DeletePage;
@@ -48,6 +51,14 @@ export class DeletePage extends AbstractFormPage {
         ];
     }
 
+    disableDelete() {
+        this.deleteButton?.setEnabled(false);
+    }
+
+    enableDelete() {
+        this.deleteButton?.setEnabled(true);
+    }
+
     getOldName(): string {
         return this.oldNameField.getValue();
     }
@@ -55,8 +66,11 @@ export class DeletePage extends AbstractFormPage {
     onAppear() {
         if (this.hasAppeared)
             return;
-        super.onAppear();
+       super.onAppear();
         this.addPageContent();
+        this.deleteButton = this.buttonbar.getButtonFromLabel(LabelConstants.ButtonLabelDelete);
+        if (!SessionStatus.isLoggedIn())
+            this.disableDelete();
     }
 
     onClear() {
@@ -70,6 +84,17 @@ export class DeletePage extends AbstractFormPage {
     }
 
     onSessionStatusChanged(message: any) {
+        const data: any = message.getData();
+        const statusObj: any = data[0];
+        const status: string = statusObj.status;
+        switch (status) {
+            case SessionConstants.SessionLoggedInAsAdmin:
+                this.enableDelete();
+                break;
+            default:
+                this.disableDelete();
+                break;
+        }
     }
 
     onTap(action: string) {

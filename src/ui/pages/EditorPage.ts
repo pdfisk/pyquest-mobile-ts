@@ -76,7 +76,6 @@ export class EditorPage extends AbstractPage {
             return;
         super.onAppear();
         this.saveButton = this.buttonbar.getButtonFromLabel(LabelConstants.ButtonLabelSave);
-        console.log('EditorPage onAppear', SessionStatus.getInstance().loginStatus);
         if (!SessionStatus.isLoggedIn())
             this.disableSave();
         const cfg: any = { mode: EditorConstants.ModePython };
