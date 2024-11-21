@@ -1,19 +1,25 @@
 import { ActionConstants, EventConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
+import { ProjectsStore } from "../../data";
 import { MessageBus } from "../../messages";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
+import { ProjectsPage } from "./ProjectsPage";
 
 export class DeletePage extends AbstractFormPage {
+    id: number = -1;
     oldNameField: QxTextField;
-    newNameField: QxTextField;
     static instance: DeletePage;
 
     static getInstance(): DeletePage {
         if (!this.instance)
             this.instance = new DeletePage();
         return this.instance;
+    }
+
+    static setId(id: number) {
+        this.getInstance().setId(id);
     }
 
     static setOldName(oldName: string) {
@@ -24,7 +30,6 @@ export class DeletePage extends AbstractFormPage {
         super();
         this.setTitle(LabelConstants.PageDelete);
         this.oldNameField = new QxTextField;
-        this.newNameField = new QxTextField;
         MessageBus.subscribe(EventConstants.EventSessionStatusChanged, this.onSessionStatusChanged, this);
     }
 
@@ -32,9 +37,7 @@ export class DeletePage extends AbstractFormPage {
         const items: QxWidget[] = [];
         const names: string[] = [];
         items.push(this.oldNameField);
-        items.push(this.newNameField);
         names.push(LabelConstants.FieldLabelOldName);
-        names.push(LabelConstants.FieldLabelNewName);
         this.addItems(items, names);
     }
 
@@ -43,10 +46,6 @@ export class DeletePage extends AbstractFormPage {
             LabelConstants.ButtonLabelDelete,
             LabelConstants.ButtonLabelClear,
         ];
-    }
-
-    getNewName(): string {
-        return this.newNameField.getValue();
     }
 
     getOldName(): string {
@@ -62,11 +61,12 @@ export class DeletePage extends AbstractFormPage {
 
     onClear() {
         this.oldNameField.clear();
-        this.newNameField.clear();
     }
 
     onDelete() {
-        console.log('onDelete');
+        ProjectsStore.deleteRecord(this.id);
+        this.showProjects();
+        ProjectsPage.refresh();
     }
 
     onSessionStatusChanged(message: any) {
@@ -77,7 +77,7 @@ export class DeletePage extends AbstractFormPage {
             case ActionConstants.ActionClear:
                 this.onClear();
                 break;
-            case ActionConstants.ActionRename:
+            case ActionConstants.ActionDelete:
                 this.onDelete();
                 break;
             default:
@@ -87,6 +87,10 @@ export class DeletePage extends AbstractFormPage {
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+    }
+
+    setId(id: number) {
+        this.id = id;
     }
 
     setOldName(oldName: string) {

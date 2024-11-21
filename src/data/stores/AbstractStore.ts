@@ -36,11 +36,9 @@ export abstract class AbstractStore {
 
     abstract createRecordData(record: any): any;
 
-    deleteRecord(data: any) {
-        if (!data) return;
-        const id = data.id;
+    deleteRecord(id: number) {
         const fn = () => { this.reload(); }
-        Server.sendDeleteRequest(this.serviceName(), id, data, fn);
+        Server.sendDeleteRequest(this.serviceName(), id, {}, fn);
     }
 
     getDataRecords(): any[] {

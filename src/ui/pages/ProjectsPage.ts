@@ -16,6 +16,14 @@ export class ProjectsPage extends AbstractDataListPage {
         return this.instance;
     }
 
+    static getSelectedId(): number {
+        return this.getInstance().getSelectedId();
+    }
+
+    static getSelectedName(): string | null {
+        return this.getInstance().getSelectedName();
+    }
+
     static getSelectedRecord(): any {
         return this.getInstance().getSelectedRecord();
     }
@@ -94,6 +102,13 @@ export class ProjectsPage extends AbstractDataListPage {
         return record.getCode_object();
     }
 
+    getSelectedId(): number {
+        const record = this.getSelectedRecord();
+        if (!record)
+            return -1;
+        return record.getId();
+    }
+
     getSelectedName(): string | null {
         const record = this.getSelectedRecord();
         if (!record)
@@ -148,7 +163,9 @@ export class ProjectsPage extends AbstractDataListPage {
     onDelete(index: number) {
         this.selectedIndex = index;
         const name = this.getSelectedName()
+        const id = this.getSelectedId();
         if (!name) return;
+        DeletePage.setId(id);
         DeletePage.setOldName(name);
         this.showDelete();
     }

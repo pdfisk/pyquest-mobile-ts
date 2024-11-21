@@ -9,6 +9,10 @@ export class ProjectsStore extends AbstractStore {
         this.getInstance().addLoaderHandlerFn(fn);
     }
 
+    static deleteRecord(id: number) {
+        this.getInstance().deleteRecord(id);
+    }
+
     static getInstance() {
         if (!this.instance)
             this.instance = new ProjectsStore();
@@ -27,7 +31,7 @@ export class ProjectsStore extends AbstractStore {
         super();
     }
 
-    createNewRecord(name:string): any {
+    createNewRecord(name: string): any {
         return { name: name, description: '', details: '', author: '', code: '' };
     }
 
