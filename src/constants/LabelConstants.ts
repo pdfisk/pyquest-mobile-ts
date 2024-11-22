@@ -19,6 +19,7 @@ export class LabelConstants {
     static ButtonLabelRunSingleStep: string = 'Run Single Step';
     static ButtonLabelRunStepping: string = 'Run Stepping';
     static ButtonLabelSave: string = 'Save';
+    static ButtonLabelSelect: string = 'Select';
     static ButtonLabelStatus: string = 'Status';
     static ButtonLabelTopMenu: string = 'Top Menu';
     static ButtonLabelTranscript: string = 'Transcript';
@@ -47,14 +48,16 @@ export class LabelConstants {
     static PageProjects: string = 'Projects';
     static PageRegister: string = 'Register';
     static PageRename: string = 'Rename';
+    static PageSelect: string = 'Select';
     static PageStatus: string = 'Status';
     static PageTopMenu: string = 'Top Menu';
     static PageTranscript: string = 'Transcript';
 
-    static SelectBoxDeleteIndex = 3;
-    static SelectBoxNewIndex = 2;
-    static SelectBoxOpenIndex = 0;
-    static SelectBoxRenameIndex = 1;
+    static SelectBoxDeleteIndex = 4;
+    static SelectBoxNewIndex = 3;
+    static SelectBoxOpenIndex = 1;
+    static SelectBoxRenameIndex = 2;
+    static SelectBoxSelectIndex = 0;
 
     static TabPageBoard: string = 'Board';
     static TabPageCode: string = 'Code';

@@ -40,6 +40,10 @@ export abstract class AbstractRoutingPage extends QxNavigationPage {
         QxMobileApplication.executeGet(PageConstants.routeRename);
     }
 
+    showSelect() {
+        QxMobileApplication.executeGet(PageConstants.routeSelect);
+    }
+
     showStatus() {
         QxMobileApplication.executeGet(PageConstants.routeStatus);
     }

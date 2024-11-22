@@ -8,6 +8,7 @@ export class PageConstants {
     static pathProjects = 'projects';
     static pathRegister = 'register';
     static pathRename = 'rename';
+    static pathSelect = 'select';
     static pathStatus = 'status';
     static pathTopMenu = '';
     static pathTranscript = 'transcript';
@@ -20,6 +21,7 @@ export class PageConstants {
     static routeProjects = '/' + this.pathProjects;
     static routeRegister = '/' + this.pathRegister;
     static routeRename = '/' + this.pathRename;
+    static routeSelect = '/' + this.pathSelect;
     static routeStatus = '/' + this.pathStatus;
     static routeTopMenu = '/' + this.pathTopMenu;
     static routeTranscript = '/' + this.pathTranscript;
@@ -34,6 +36,7 @@ export class PageConstants {
     static subtitleProjects = 'Python projects';
     static subtitleRegister = 'Register new account';
     static subtitleRename = 'Rename project';
+    static subtitleSelect = 'Select projects';
     static subtitleStatus = 'Status information';
     static subtitleTopMenu = 'App pages menu';
     static subtitleTranscript = 'Text output';
@@ -47,6 +50,7 @@ export class PageConstants {
     static titleProjects = 'Projects';
     static titleRegister = 'Register';
     static titleRename = 'Rename';
+    static titleSelect = 'Select';
     static titleStatus = 'Status';
     static titleSupport = 'Support';
     static titleTopMenu = 'Top Menu';

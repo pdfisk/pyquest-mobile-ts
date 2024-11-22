@@ -48,6 +48,7 @@ export class ProjectsPage extends AbstractDataListPage {
     addExtraButtons() {
         super.addExtraButtons();
         const items = [
+            LabelConstants.ButtonLabelSelect,
             LabelConstants.ButtonLabelOpen,
             LabelConstants.ButtonLabelRename,
             LabelConstants.ButtonLabelNew,
@@ -139,11 +140,15 @@ export class ProjectsPage extends AbstractDataListPage {
             case LabelConstants.SelectBoxRenameIndex:
                 this.onRename(index);
                 break;
+            case LabelConstants.SelectBoxSelectIndex:
+                this.onSelect();
+                break;
         }
     }
 
     onChangeSelection(index: number) {
         this.selectedIndex = index;
+        console.log('onChangeSelection', index);
         switch (this.getSelectBoxIndex()) {
             case LabelConstants.SelectBoxDeleteIndex:
                 this.onDelete(index);
@@ -197,6 +202,11 @@ export class ProjectsPage extends AbstractDataListPage {
         RenamePage.setOldName(name);
         RenamePage.setId(id);
         this.showRename();
+    }
+
+    onSelect() {
+        console.log('onSelect');
+        this.showSelect();
     }
 
     onTap(action: string) {
