@@ -1,4 +1,5 @@
 import { SessionConstants } from "../../constants";
+import { CategoryConstants } from "../../constants/CategoryConstants";
 import { EventConstants } from "../../constants/EventConstants";
 import { MessageConstants } from "../../constants/MessageConstants";
 import { MessageBus } from "../../messages";
@@ -6,6 +7,7 @@ import { Server } from "../../server/Server";
 import { ServerUtil } from "../../server/ServerUtil";
 
 export abstract class AbstractStore {
+    categoryFilter: string;
     dataLoaded: boolean;
     dataRecords: any[];
     dataStore: any;
@@ -14,6 +16,7 @@ export abstract class AbstractStore {
     static fnCounter: number = 0;
 
     constructor() {
+        this.categoryFilter = CategoryConstants.CategoryTagAll;
         this.dataLoaded = false;
         this.dataRecords = [];
         this.dataStore = new (window.qx as any).data.store.Json;
@@ -47,8 +50,14 @@ export abstract class AbstractStore {
 
     handleLoadedData() {
         this.dataRecords = this.getDataRecords();
+        const filteredRecords: any[] = [];
+        for (let i = 0; i < this.dataRecords.length; i++) {
+            const dataRecord = this.dataRecords[i];
+            if (this.categoryFilter === CategoryConstants.CategoryTagAll || this.categoryFilter === dataRecord.category)
+                filteredRecords.push(dataRecord);
+        }
         for (let handlerFn of this.loadHandlerFns.values())
-            handlerFn(this.dataRecords);
+            handlerFn(filteredRecords);
     }
 
     loadData(showToast: boolean = true) {
@@ -95,6 +104,12 @@ export abstract class AbstractStore {
             this.reload();
         }
         Server.sendPutRequest(this.serviceName(), id, data, fn);
+    }
+
+    setCategoryFilter(tag: string) {
+        console.log('setCategoryFilter', tag);
+        this.categoryFilter = tag;
+        this.reload();
     }
 
     setUrl() {

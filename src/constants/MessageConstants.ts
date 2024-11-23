@@ -1,4 +1,6 @@
 export class MessageConstants {
+    static CategoryChanged: string = 'Category changed';
+    static CategoryChangedMessage: string = 'Selected category was changed';
     static CompileErrors: string = 'There were compile errors...';
     static Compiling: string = 'Compiling...';
     static Empty: string = '';

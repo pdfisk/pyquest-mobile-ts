@@ -2,7 +2,7 @@ import { EventConstants, QxConstants } from "../constants";
 import { MessageConstants } from "../constants/MessageConstants";
 import { MessageBus } from "../messages";
 import { QxDrawer } from "../qx/ui/mobile/container/QxDrawer";
-import { LoginPopup } from "../ui/dialog/LoginPopup";
+import { NotificationPopup } from "../ui/dialog/NotificationPopup";
 import { ServerPopup } from "../ui/dialog/ServerPopup";
 
 export class NotificationManager {
@@ -17,6 +17,7 @@ export class NotificationManager {
 
     static init() {
         this.initWidgets();
+        MessageBus.subscribe(EventConstants.CatagoryChanged, this.onCategoryChanged, this);
         MessageBus.subscribe(EventConstants.DrawerCloseTop, this.onCloseTop, this);
         MessageBus.subscribe(EventConstants.DrawerOpenTop, this.onOpenTop, this);
         MessageBus.subscribe(EventConstants.ServerProjectSaved, this.onProjectSaved, this);
@@ -29,6 +30,12 @@ export class NotificationManager {
         this.topDrawer = new QxDrawer(MessageConstants.Empty, QxConstants.DrawerOrientionTop);
     }
 
+    static onCategoryChanged() {
+        console.log('NotificationManager onCategoryChanged');
+        // NotificationPopup.open(MessageConstants.CategoryChanged, MessageConstants.CategoryChangedMessage);
+        NotificationPopup.open(MessageConstants.LoggedIn, MessageConstants.LoggedInAdmin);
+    }
+
     static onCloseTop() {
         this.topDrawer.hide();
     }
@@ -38,15 +45,15 @@ export class NotificationManager {
     }
 
     static onLoggedInAsAdmin() {
-        LoginPopup.open(MessageConstants.LoggedIn, MessageConstants.LoggedInAdmin);
+        NotificationPopup.open(MessageConstants.LoggedIn, MessageConstants.LoggedInAdmin);
     }
 
     static onLoggedInAsUser() {
-        LoginPopup.open(MessageConstants.LoggedIn, MessageConstants.LoggedInUser);
+        NotificationPopup.open(MessageConstants.LoggedIn, MessageConstants.LoggedInUser);
     }
 
     static onLoggedOut() {
-        LoginPopup.open(MessageConstants.LoggedOut, MessageConstants.LoggedOutAll);
+        NotificationPopup.open(MessageConstants.LoggedOut, MessageConstants.LoggedOutAll);
     }
 
     static onOpenTop(args: any) {

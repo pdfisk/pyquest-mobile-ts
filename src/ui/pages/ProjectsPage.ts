@@ -1,13 +1,15 @@
 import { ActionConstants } from "../../constants";
+import { CategoryConstants } from "../../constants/CategoryConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { AbstractStore, ProjectsStore } from "../../data";
+import { StringUtil } from "../../util";
 import { AbstractDataListPage } from "./abstract/AbstractDataListPage";
 import { DeletePage } from "./DeletePage";
 import { EditorPage } from "./EditorPage";
 import { RenamePage } from "./RenamePage";
 
 export class ProjectsPage extends AbstractDataListPage {
-    categoryTag: string = LabelConstants.CategoryTagAll;
+    categoryLabel: string = CategoryConstants.CategoryTagAll;
     selectedIndex: number = LabelConstants.SelectionUnselectedIndex;
     static instance: ProjectsPage;
 
@@ -49,8 +51,8 @@ export class ProjectsPage extends AbstractDataListPage {
         this.getInstance().save(code, codeObject);
     }
 
-    static setCategoryTag(tag: string) {
-        this.getInstance().setCategoryTag(tag);
+    static selectCategory(label: string) {
+        this.getInstance().selectCategory(label);
     }
 
     private constructor() {
@@ -77,7 +79,7 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     getCategoryTag(): string {
-        return this.categoryTag;
+        return this.categoryLabel;
     }
 
     getListConfig(): any {
@@ -261,9 +263,11 @@ export class ProjectsPage extends AbstractDataListPage {
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
     }
 
-    setCategoryTag(tag: string) {
-        console.log('setCategoryTag', tag);
-        this.categoryTag = tag;
+    selectCategory(label: string) {
+        this.categoryLabel = label;
+        const tag= StringUtil.asTag(label);
+        this.dataStore.setCategoryFilter(tag);
+        // MessageBus.dispatch(EventConstants.CatagoryChanged);
     }
 
 }

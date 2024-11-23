@@ -57,6 +57,7 @@ export class ProjectsStore extends AbstractStore {
             const item = model.getItem(i);
             const id = item.$$user_id;
             const name = item.$$user_name;
+            const category = item.$$user_category;
             const description = item.$$user_description;
             const details = item.$$user_details;
             const code = item.$$user_code;
@@ -69,6 +70,7 @@ export class ProjectsStore extends AbstractStore {
             const projectRecord: any = {};
             projectRecord.id = id;
             projectRecord.name = name;
+            projectRecord.category = category;
             projectRecord.description = description;
             projectRecord.details = details;
             projectRecord.code = code;

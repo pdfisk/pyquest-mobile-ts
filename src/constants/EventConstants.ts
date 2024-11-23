@@ -1,6 +1,7 @@
 export class EventConstants {
     static BoardClear: string = 'board_clear';
     static BoardTileClicked: string = 'tile_clicked';
+    static CatagoryChanged: string = 'category_changed';
     static DrawerCloseTop: string = 'drawer_close_top';
     static DrawerOpenTop: string = 'drawer_open_top';
     static EventSessionStatusChanged: string = 'session_status_changed';

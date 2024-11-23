@@ -1,4 +1,5 @@
 import { ActionConstants, EventConstants, FontConstants } from "../../constants";
+import { CategoryConstants } from "../../constants/CategoryConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { MessageBus } from "../../messages";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
@@ -23,18 +24,18 @@ export class SelectPage extends AbstractFormPage {
         this.setTitle(LabelConstants.PageSelect);
         this.currentSelection.setFontWeight(FontConstants.FontWeightBold);
         this.currentSelection.setReadOnly(true)
-        this.showCurrentCategory(LabelConstants.CategoryLabelAll);
+        this.showCurrentCategory(CategoryConstants.CategoryLabelAll);
         const items = [
-            LabelConstants.CategoryLabelAll,
-            LabelConstants.CategoryLabelGames,
-            LabelConstants.CategoryLabelStories,
-            LabelConstants.CategoryLabelTutorials
+            CategoryConstants.CategoryLabelAll,
+            CategoryConstants.CategoryLabelGames,
+            CategoryConstants.CategoryLabelStories,
+            CategoryConstants.CategoryLabelTutorials
         ]
         this.selectBox = new QxSelectBox;
         const fn = (evt: any) => { this.onChangeSelectBoxSelection(evt) };
         this.selectBox.setModel(items);
         this.selectBox.setChangeFunction(fn);
-        this.selectBox.setPlaceholder(LabelConstants.CategoryPlaceholder);
+        this.selectBox.setPlaceholder(CategoryConstants.CategoryPlaceholder);
         MessageBus.subscribe(EventConstants.EventSessionStatusChanged, this.onSessionStatusChanged, this);
     }
 
@@ -45,7 +46,7 @@ export class SelectPage extends AbstractFormPage {
             items.push(this.selectBox);
             names.push(LabelConstants.FieldLabelCategories);
             items.push(this.currentSelection);
-            names.push(LabelConstants.CategoryLabelCurrent);
+            names.push(CategoryConstants.CategoryLabelCurrent);
         }
         this.addItems(items, names);
     }
@@ -57,6 +58,10 @@ export class SelectPage extends AbstractFormPage {
         ];
     }
 
+    getCurrentSelection(): string {
+        return this.currentSelection.getValue();
+    }
+
     onAppear() {
         if (this.hasAppeared)
             return;
@@ -65,11 +70,8 @@ export class SelectPage extends AbstractFormPage {
     }
 
     onApply() {
-        console.log('onApply');
         this.showProjects();
-        // ProjectsStore.newRecord(this.getNewName());
-        // this.showProjects();
-        // ProjectsPage.refresh();
+        ProjectsPage.selectCategory(this.getCurrentSelection());
     }
 
     onCancel() {
@@ -77,35 +79,35 @@ export class SelectPage extends AbstractFormPage {
     }
 
     onCategoryAll() {
-        this.showCurrentCategory(LabelConstants.CategoryLabelAll);
+        this.showCurrentCategory(CategoryConstants.CategoryLabelAll);
     }
 
     onCategoryGames() {
-        this.showCurrentCategory(LabelConstants.CategoryLabelGames);
+        this.showCurrentCategory(CategoryConstants.CategoryLabelGames);
     }
 
     onCategoryStories() {
-        this.showCurrentCategory(LabelConstants.CategoryLabelStories);
+        this.showCurrentCategory(CategoryConstants.CategoryLabelStories);
     }
 
     onCategoryTutorials() {
-        this.showCurrentCategory(LabelConstants.CategoryLabelTutorials);
+        this.showCurrentCategory(CategoryConstants.CategoryLabelTutorials);
     }
 
     onChangeSelectBoxSelection(evt: any) {
         const data = evt.getData();
         const index: number = data.index;
         switch (index) {
-            case LabelConstants.CategoryIndexAll:
+            case CategoryConstants.CategoryIndexAll:
                 this.onCategoryAll();
                 break;
-            case LabelConstants.CategoryIndexGames:
+            case CategoryConstants.CategoryIndexGames:
                 this.onCategoryGames();
                 break;
-            case LabelConstants.CategoryIndexStories:
+            case CategoryConstants.CategoryIndexStories:
                 this.onCategoryStories();
                 break;
-            case LabelConstants.CategoryIndexTutorials:
+            case CategoryConstants.CategoryIndexTutorials:
                 this.onCategoryTutorials();
                 break;
         }
