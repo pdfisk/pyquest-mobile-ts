@@ -34,7 +34,7 @@ export class NewPage extends AbstractFormPage {
 
     defaultButtons(): string[] {
         return [
-            LabelConstants.ButtonLabelNew,
+            LabelConstants.ActionNewLabel,
             LabelConstants.ButtonLabelClear,
         ];
     }

@@ -1,14 +1,15 @@
-import { ActionConstants, EventConstants } from "../../constants";
+import { ActionConstants, EventConstants, FontConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
-import { ProjectsStore } from "../../data";
 import { MessageBus } from "../../messages";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
+import { QxSelectBox } from "../../qx/ui/mobile/form/QxSelectBox";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 import { ProjectsPage } from "./ProjectsPage";
 
 export class SelectPage extends AbstractFormPage {
-    newNameField: QxTextField;
+    currentSelection: QxTextField = new QxTextField;
+    selectBox: QxSelectBox;
     static instance: SelectPage;
 
     static getInstance(): SelectPage {
@@ -20,27 +21,40 @@ export class SelectPage extends AbstractFormPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageSelect);
-        this.newNameField = new QxTextField;
+        this.currentSelection.setFontWeight(FontConstants.FontWeightBold);
+        this.currentSelection.setReadOnly(true)
+        this.showCurrentCategory(LabelConstants.CategoryLabelAll);
+        const items = [
+            LabelConstants.CategoryLabelAll,
+            LabelConstants.CategoryLabelGames,
+            LabelConstants.CategoryLabelStories,
+            LabelConstants.CategoryLabelTutorials
+        ]
+        this.selectBox = new QxSelectBox;
+        const fn = (evt: any) => { this.onChangeSelectBoxSelection(evt) };
+        this.selectBox.setModel(items);
+        this.selectBox.setChangeFunction(fn);
+        this.selectBox.setPlaceholder(LabelConstants.CategoryPlaceholder);
         MessageBus.subscribe(EventConstants.EventSessionStatusChanged, this.onSessionStatusChanged, this);
     }
 
     addPageContent() {
         const items: QxWidget[] = [];
         const names: string[] = [];
-        items.push(this.newNameField);
-        names.push(LabelConstants.FieldLabelNewName);
+        if (this.selectBox !== null) {
+            items.push(this.selectBox);
+            names.push(LabelConstants.FieldLabelCategories);
+            items.push(this.currentSelection);
+            names.push(LabelConstants.CategoryLabelCurrent);
+        }
         this.addItems(items, names);
     }
 
     defaultButtons(): string[] {
         return [
-            LabelConstants.ButtonLabelNew,
-            LabelConstants.ButtonLabelClear,
+            LabelConstants.ActionApplyLabel,
+            LabelConstants.ButtonLabelCancel,
         ];
-    }
-
-    getNewName(): string {
-        return this.newNameField.getValue();
     }
 
     onAppear() {
@@ -50,14 +64,51 @@ export class SelectPage extends AbstractFormPage {
         this.addPageContent();
     }
 
-    onClear() {
-        this.newNameField.clear();
+    onApply() {
+        console.log('onApply');
+        this.showProjects();
+        // ProjectsStore.newRecord(this.getNewName());
+        // this.showProjects();
+        // ProjectsPage.refresh();
     }
 
-    onNew() {
-        ProjectsStore.newRecord(this.getNewName());
+    onCancel() {
         this.showProjects();
-        ProjectsPage.refresh();
+    }
+
+    onCategoryAll() {
+        this.showCurrentCategory(LabelConstants.CategoryLabelAll);
+    }
+
+    onCategoryGames() {
+        this.showCurrentCategory(LabelConstants.CategoryLabelGames);
+    }
+
+    onCategoryStories() {
+        this.showCurrentCategory(LabelConstants.CategoryLabelStories);
+    }
+
+    onCategoryTutorials() {
+        this.showCurrentCategory(LabelConstants.CategoryLabelTutorials);
+    }
+
+    onChangeSelectBoxSelection(evt: any) {
+        const data = evt.getData();
+        const index: number = data.index;
+        switch (index) {
+            case LabelConstants.CategoryIndexAll:
+                this.onCategoryAll();
+                break;
+            case LabelConstants.CategoryIndexGames:
+                this.onCategoryGames();
+                break;
+            case LabelConstants.CategoryIndexStories:
+                this.onCategoryStories();
+                break;
+            case LabelConstants.CategoryIndexTutorials:
+                this.onCategoryTutorials();
+                break;
+        }
     }
 
     onSessionStatusChanged(message: any) {
@@ -65,11 +116,11 @@ export class SelectPage extends AbstractFormPage {
 
     onTap(action: string) {
         switch (action) {
-            case ActionConstants.ActionClear:
-                this.onClear();
+            case ActionConstants.ActionApply:
+                this.onApply();
                 break;
-            case ActionConstants.ActionNew:
-                this.onNew();
+            case ActionConstants.ActionCancel:
+                this.onCancel();
                 break;
             default:
                 console.log('SelectPage onTap', action);
@@ -78,6 +129,15 @@ export class SelectPage extends AbstractFormPage {
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+    }
+
+    showCurrentCategory(category: string) {
+        this.currentSelection.setValue(category);
+    }
+
+    showProjects() {
+        ProjectsPage.resetSelectBox();
+        super.showProjects();
     }
 
 }

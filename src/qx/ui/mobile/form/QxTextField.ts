@@ -17,6 +17,10 @@ export class QxTextField extends QxInput {
         return '';
     }
 
+    setReadOnly(value: boolean) {
+        this.widget.setReadOnly(value);
+    }
+
     setValue(text: string) {
         if (this.widget)
             this.widget.setValue(text);

@@ -1,25 +1,34 @@
 export class LabelConstants {
+    static ActionDeleteIndex = 4;
+    static ActionNewIndex = 3;
+    static ActionOpenIndex = 1;
+    static ActionRenameIndex = 2;
+    static ActionSelectIndex = 0;
+
+    static ActionApplyLabel: string = 'Apply';
+    static ActionDeleteLabel: string = 'Delete';
+    static ActionNewLabel: string = 'New';
+    static ActionOpenLabel: string = 'Open';
+    static ActionRenameLabel: string = 'Rename';
+    static ActionSelectLabel: string = 'Select';
+
     static ButtonLabelBack: string = 'Back';
+    static ButtonLabelCancel: string = 'Cancel';
     static ButtonLabelClear: string = 'Clear';
     static ButtonLabelClearIn: string = 'Clear In';
     static ButtonLabelClearOut: string = 'Clear Out';
     static ButtonLabelConsole: string = 'Console';
-    static ButtonLabelDelete: string = 'Delete';
     static ButtonLabelDesktop: string = 'Desktop';
     static ButtonLabelLogin: string = 'Login';
     static ButtonLabelLogout: string = 'Logout';
-    static ButtonLabelNew: string = 'New';
-    static ButtonLabelOpen: string = 'Open';
     static ButtonLabelProjects: string = 'Projects';
     static ButtonLabelRefresh: string = 'Refresh';
     static ButtonLabelRegister: string = 'Register';
-    static ButtonLabelRename: string = 'Rename';
     static ButtonLabelRun: string = 'Run';
     static ButtonLabelRunContinuously: string = 'Run Continuously';
     static ButtonLabelRunSingleStep: string = 'Run Single Step';
     static ButtonLabelRunStepping: string = 'Run Stepping';
     static ButtonLabelSave: string = 'Save';
-    static ButtonLabelSelect: string = 'Select';
     static ButtonLabelStatus: string = 'Status';
     static ButtonLabelTopMenu: string = 'Top Menu';
     static ButtonLabelTranscript: string = 'Transcript';
@@ -27,7 +36,26 @@ export class LabelConstants {
     static ButtonLabelViews: string = 'Views';
     static ButtonLabelVisitors: string = 'Visitors';
 
+    static CategoryIndexAll = 0;
+    static CategoryIndexGames = 1;
+    static CategoryIndexStories = 2;
+    static CategoryIndexTutorials = 3;
+
+    static CategoryLabelAll: string = 'All';
+    static CategoryLabelCurrent: string = 'Current';
+    static CategoryLabelGames: string = 'Games';
+    static CategoryLabelStories: string = 'Stories';
+    static CategoryLabelTutorials: string = 'Tutorials';
+
+    static CategoryTagAll: string = 'all';
+    static CategoryTagGames: string = 'games';
+    static CategoryTagStories: string = 'stories';
+    static CategoryTagTutorials: string = 'tutorials';
+
+    static CategoryPlaceholder:string = 'Select a category';
+
     static FieldLabelAuthor: string = 'Author';
+    static FieldLabelCategories: string = 'Categories';
     static FieldLabelCategory: string = 'Category';
     static FieldLabelCreatedAt: string = 'Created At';
     static FieldLabelId: string = 'id';
@@ -52,12 +80,6 @@ export class LabelConstants {
     static PageStatus: string = 'Status';
     static PageTopMenu: string = 'Top Menu';
     static PageTranscript: string = 'Transcript';
-
-    static SelectBoxDeleteIndex = 4;
-    static SelectBoxNewIndex = 3;
-    static SelectBoxOpenIndex = 1;
-    static SelectBoxRenameIndex = 2;
-    static SelectBoxSelectIndex = 0;
 
     static TabPageBoard: string = 'Board';
     static TabPageCode: string = 'Code';

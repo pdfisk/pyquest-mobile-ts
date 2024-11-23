@@ -3,7 +3,9 @@
  * client actions requested by the Python vm.
  */
 export class ActionConstants {
+    static ActionApply: string = 'apply';
     static ActionAutotab: string = 'autotab';
+    static ActionCancel: string = 'cancel';
     static ActionClear: string = 'clear';
     static ActionClearIn: string = 'clear_in';
     static ActionClearOut: string = 'clear_out';
@@ -20,6 +22,7 @@ export class ActionConstants {
     static ActionRunSingleStep: string = 'run_single_step';
     static ActionRunStepping: string = 'run_stepping';
     static ActionSave: string = 'save';
+    static ActionSelect: string = 'select';
     static ActionSetSize: string = 'set_size';
     static ActionSetTileImage: string = 'set_tile_image';
     static ActionSetTileText: string = 'set_tile_text';

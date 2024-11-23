@@ -7,8 +7,13 @@ import { EditorPage } from "./EditorPage";
 import { RenamePage } from "./RenamePage";
 
 export class ProjectsPage extends AbstractDataListPage {
+    categoryTag: string = LabelConstants.CategoryTagAll;
     selectedIndex: number = LabelConstants.SelectionUnselectedIndex;
     static instance: ProjectsPage;
+
+    static getCategoryTag(): string {
+        return this.getInstance().getCategoryTag();
+    }
 
     static getInstance(): ProjectsPage {
         if (!this.instance)
@@ -36,8 +41,16 @@ export class ProjectsPage extends AbstractDataListPage {
         this.getInstance().refresh();
     }
 
+    static resetSelectBox() {
+        this.getInstance().resetSelectBox();
+    }
+
     static save(code: string, codeObject: string | null) {
         this.getInstance().save(code, codeObject);
+    }
+
+    static setCategoryTag(tag: string) {
+        this.getInstance().setCategoryTag(tag);
     }
 
     private constructor() {
@@ -48,19 +61,23 @@ export class ProjectsPage extends AbstractDataListPage {
     addExtraButtons() {
         super.addExtraButtons();
         const items = [
-            LabelConstants.ButtonLabelSelect,
-            LabelConstants.ButtonLabelOpen,
-            LabelConstants.ButtonLabelRename,
-            LabelConstants.ButtonLabelNew,
-            LabelConstants.ButtonLabelDelete
+            LabelConstants.ActionSelectLabel,
+            LabelConstants.ActionOpenLabel,
+            LabelConstants.ActionRenameLabel,
+            LabelConstants.ActionNewLabel,
+            LabelConstants.ActionDeleteLabel
         ]
         const fn = (evt: any) => { this.onChangeSelectBoxSelection(evt) };
         this.addSelectBox(items, fn);
-        this.setSelectionBoxSelection(LabelConstants.SelectBoxOpenIndex);
+        this.resetSelectBox();
     }
 
     defaultButtons(): string[] {
         return [LabelConstants.ButtonLabelRefresh];
+    }
+
+    getCategoryTag(): string {
+        return this.categoryTag;
     }
 
     getListConfig(): any {
@@ -78,7 +95,7 @@ export class ProjectsPage extends AbstractDataListPage {
 
     getOnChangeFn(): Function {
         return (evt: any) => {
-            const index: number = evt.getData();
+            const index: number = this.getSelectBoxIndex();
             this.onChangeSelection(index);
         };
     }
@@ -128,19 +145,18 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     onChangeSelectBoxSelection(evt: any) {
-        const data = evt.getData();
-        const index: number = data.index;
+        const index: number | undefined = this.selectBox?.getSelection();
         switch (index) {
-            case LabelConstants.SelectBoxDeleteIndex:
+            case LabelConstants.ActionDeleteIndex:
                 this.onDelete(index);
                 break;
-            case LabelConstants.SelectBoxNewIndex:
+            case LabelConstants.ActionNewIndex:
                 this.onNew();
                 break;
-            case LabelConstants.SelectBoxRenameIndex:
+            case LabelConstants.ActionRenameIndex:
                 this.onRename(index);
                 break;
-            case LabelConstants.SelectBoxSelectIndex:
+            case LabelConstants.ActionSelectIndex:
                 this.onSelect();
                 break;
         }
@@ -148,15 +164,14 @@ export class ProjectsPage extends AbstractDataListPage {
 
     onChangeSelection(index: number) {
         this.selectedIndex = index;
-        console.log('onChangeSelection', index);
         switch (this.getSelectBoxIndex()) {
-            case LabelConstants.SelectBoxDeleteIndex:
+            case LabelConstants.ActionDeleteIndex:
                 this.onDelete(index);
                 break;
-            case LabelConstants.SelectBoxOpenIndex:
+            case LabelConstants.ActionOpenIndex:
                 this.onOpen(index);
                 break;
-            case LabelConstants.SelectBoxRenameIndex:
+            case LabelConstants.ActionRenameIndex:
                 this.onRename(index);
                 break;
             default:
@@ -205,7 +220,6 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     onSelect() {
-        console.log('onSelect');
         this.showSelect();
     }
 
@@ -222,7 +236,7 @@ export class ProjectsPage extends AbstractDataListPage {
 
     refresh() {
         this.selectedIndex = LabelConstants.SelectionUnselectedIndex;
-        this.setSelectionBoxSelection(LabelConstants.SelectBoxOpenIndex);
+        this.setSelectionBoxSelection(LabelConstants.ActionOpenIndex);
         this.getStore().reload();
     }
 
@@ -233,6 +247,10 @@ export class ProjectsPage extends AbstractDataListPage {
         this.dataStore.saveRecord(record);
     }
 
+    resetSelectBox() {
+        this.setSelectionBoxSelection(LabelConstants.ActionOpenIndex);
+    }
+
     save(code: string, codeObject: string | null) {
         const record = this.getSelectedRecord();
         record.setCode(code);
@@ -241,6 +259,11 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+    }
+
+    setCategoryTag(tag: string) {
+        console.log('setCategoryTag', tag);
+        this.categoryTag = tag;
     }
 
 }

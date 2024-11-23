@@ -46,7 +46,7 @@ export class DeletePage extends AbstractFormPage {
 
     defaultButtons(): string[] {
         return [
-            LabelConstants.ButtonLabelDelete,
+            LabelConstants.ActionDeleteLabel,
             LabelConstants.ButtonLabelClear,
         ];
     }
@@ -68,7 +68,7 @@ export class DeletePage extends AbstractFormPage {
             return;
        super.onAppear();
         this.addPageContent();
-        this.deleteButton = this.buttonbar.getButtonFromLabel(LabelConstants.ButtonLabelDelete);
+        this.deleteButton = this.buttonbar.getButtonFromLabel(LabelConstants.ActionDeleteLabel);
         if (!SessionStatus.isLoggedIn())
             this.disableDelete();
     }

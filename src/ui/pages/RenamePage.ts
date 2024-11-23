@@ -51,7 +51,7 @@ export class RenamePage extends AbstractFormPage {
 
     defaultButtons(): string[] {
         return [
-            LabelConstants.ButtonLabelRename,
+            LabelConstants.ActionRenameLabel,
             LabelConstants.ButtonLabelClear,
         ];
     }
@@ -77,7 +77,7 @@ export class RenamePage extends AbstractFormPage {
             return;
         super.onAppear();
         this.addPageContent();
-        this.renameButton = this.buttonbar.getButtonFromLabel(LabelConstants.ButtonLabelRename);
+        this.renameButton = this.buttonbar.getButtonFromLabel(LabelConstants.ActionRenameLabel);
         if (!SessionStatus.isLoggedIn())
             this.disableRename();
     }
