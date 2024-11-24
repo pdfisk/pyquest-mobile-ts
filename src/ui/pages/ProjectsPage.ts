@@ -58,6 +58,7 @@ export class ProjectsPage extends AbstractDataListPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageProjects);
+        (window as any).X = this;
     }
 
     addExtraButtons() {
@@ -74,6 +75,11 @@ export class ProjectsPage extends AbstractDataListPage {
         this.resetSelectBox();
     }
 
+    addSelectionCss(index: number) {
+        const item = this.getSelectedRecordFromIndex(index);
+        if (!item) return;
+    }
+
     defaultButtons(): string[] {
         return [LabelConstants.ButtonLabelRefresh];
     }
@@ -83,8 +89,13 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     getListConfig(): any {
+        const me = this;
         return {
             configureItem(item: any, data: any) {
+                if (data.getId() === me.getSelectedId())
+                    item.setSelected(true);
+                else
+                    item.setSelected(false);
                 item.setTitle(data.getName());
                 item.setSubtitle(data.getUpdated_at());
             },
@@ -97,8 +108,8 @@ export class ProjectsPage extends AbstractDataListPage {
 
     getOnChangeFn(): Function {
         return (evt: any) => {
-            const index: number =  evt.getData();
-            this.onChangeSelection(index);
+            const index: number = evt.getData();
+            this.onChangeListSelection(index);
         };
     }
 
@@ -137,16 +148,44 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     getSelectedRecord(): any {
-        if (this.selectedIndex === LabelConstants.SelectionUnselectedIndex)
+        return this.getSelectedRecordFromIndex(this.selectedIndex);
+    }
+
+    getSelectedRecordFromIndex(index: number): any {
+        if (!this.list || index === LabelConstants.SelectionUnselectedIndex)
             return null;
-        return this.list.getItem(this.selectedIndex);
+        return this.list.getItem(index);
     }
 
     getStore(): AbstractStore {
         return ProjectsStore.getInstance();
     }
 
+    onChangeListSelection(index: number) {
+        this.removeSelectionCss(this.selectedIndex);
+        this.selectedIndex = index;
+        if (this.selectedIndex === LabelConstants.SelectionUnselectedIndex)
+            return;
+        this.addSelectionCss(this.selectedIndex);
+        switch (this.getSelectBoxIndex()) {
+            case LabelConstants.ActionDeleteIndex:
+                this.onDelete();
+                break;
+            case LabelConstants.ActionOpenIndex:
+                this.onOpen();
+                break;
+            case LabelConstants.ActionRenameIndex:
+                this.onRename();
+                break;
+            default:
+                console.log('unknown selectbox selection');
+                break;
+        }
+    }
+
     onChangeSelectBoxSelection(evt: any) {
+        if (this.selectedIndex === LabelConstants.SelectionUnselectedIndex)
+            return;
         const index: number | undefined = this.selectBox?.getSelection();
         switch (index) {
             case LabelConstants.ActionDeleteIndex:
@@ -156,28 +195,10 @@ export class ProjectsPage extends AbstractDataListPage {
                 this.onNew();
                 break;
             case LabelConstants.ActionRenameIndex:
-                this.onRename(index);
+                this.onRename();
                 break;
             case LabelConstants.ActionSelectIndex:
                 this.onSelect();
-                break;
-        }
-    }
-
-    onChangeSelection(index: number) {
-        this.selectedIndex = index;
-        switch (this.getSelectBoxIndex()) {
-            case LabelConstants.ActionDeleteIndex:
-                this.onDelete();
-                break;
-            case LabelConstants.ActionOpenIndex:
-                this.onOpen(index);
-                break;
-            case LabelConstants.ActionRenameIndex:
-                this.onRename(index);
-                break;
-            default:
-                console.log('unknown selectbox selection');
                 break;
         }
     }
@@ -195,10 +216,7 @@ export class ProjectsPage extends AbstractDataListPage {
         this.showNew();
     }
 
-    onOpen(index: number) {
-        if (index === LabelConstants.SelectionUnselectedIndex)
-            return;
-        this.selectedIndex = index;
+    onOpen() {
         const code = this.getSelectedCode()
         const codeObject = this.getSelectedCodeObject();
         EditorPage.setCode(code);
@@ -210,8 +228,7 @@ export class ProjectsPage extends AbstractDataListPage {
         this.refresh();
     }
 
-    onRename(index: number) {
-        this.selectedIndex = index;
+    onRename() {
         const name = this.getSelectedName();
         const id = this.getId();
         if (!name) return;
@@ -241,6 +258,12 @@ export class ProjectsPage extends AbstractDataListPage {
         this.getStore().reload();
     }
 
+    removeSelectionCss(index: number) {
+        const item = this.getSelectedRecordFromIndex(index);
+        if (!item) return;
+        console.log('addSelectionCss', item);
+    }
+
     rename(newName: string) {
         const record = this.getSelectedRecord();
         if (!record) return;
@@ -264,7 +287,7 @@ export class ProjectsPage extends AbstractDataListPage {
 
     selectCategory(label: string) {
         this.categoryLabel = label;
-        const tag= StringUtil.asTag(label);
+        const tag = StringUtil.asTag(label);
         this.dataStore.setCategoryFilter(tag);
         // MessageBus.dispatch(EventConstants.CatagoryChanged);
     }

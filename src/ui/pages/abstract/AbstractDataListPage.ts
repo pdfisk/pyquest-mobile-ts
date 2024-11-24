@@ -7,6 +7,7 @@ import { AbstractPage } from "./AbstractPage";
 export abstract class AbstractDataListPage extends AbstractPage {
     dataMap: Map<string, any> = new Map();
     dataStore: AbstractStore;
+    itemMap: Map<number, any> = new Map();
     list: QxList;
     scroll: QxScroll;
 
@@ -82,6 +83,7 @@ export abstract class AbstractDataListPage extends AbstractPage {
 
     updateMapData(data: any[]) {
         this.dataMap.clear();
+        this.itemMap.clear();
         for (let i = 0; i < data.length; i++) {
             const item: any = data[i];
             const key: string = this.getListKey(item);
