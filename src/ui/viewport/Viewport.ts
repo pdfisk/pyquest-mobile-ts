@@ -6,6 +6,7 @@ import { QxRoot } from '../../qx/ui/mobile/core/QxRoot';
 import { QxPageManager } from '../../qx/ui/mobile/page/QxPageManager';
 import { BoardPage } from '../pages/BoardPage';
 import { DeletePage } from '../pages/DeletePage';
+import { DetailsPage } from '../pages/DetailsPage';
 import { EditorPage } from '../pages/EditorPage';
 import { LoginPage } from '../pages/LoginPage';
 import { NewPage } from '../pages/NewPage';
@@ -22,6 +23,7 @@ export class Viewport extends QxComposite {
     manager: QxPageManager;
     pageBoard: BoardPage;
     pageDelete: DeletePage;
+    pageDetails: DetailsPage;
     pageEditor: EditorPage;
     pageLogin: LoginPage;
     pageNew: NewPage;
@@ -50,6 +52,7 @@ export class Viewport extends QxComposite {
         this.routing = QxMobileRouting.getInstance();
         this.pageBoard = BoardPage.getInstance();
         this.pageDelete = DeletePage.getInstance();
+        this.pageDetails = DetailsPage.getInstance();
         this.pageEditor = EditorPage.getInstance();
         this.pageLogin = LoginPage.getInstance();
         this.pageNew = NewPage.getInstance();
@@ -67,10 +70,9 @@ export class Viewport extends QxComposite {
 
     addDetailPages() {
         this.manager.addDetailPages([
-            this.pageBoard, this.pageDelete, this.pageEditor,
-            this.pageLogin, this.pageNew, this.pageProjects,
-            this.pageRegister, this.pageRename, this.pageSelect,
-            this.pageStatus, this.pageTranscript
+            this.pageBoard, this.pageDelete, this.pageDetails, this.pageEditor,
+            this.pageLogin, this.pageNew, this.pageProjects, this.pageRegister,
+            this.pageRename, this.pageSelect, this.pageStatus, this.pageTranscript
         ]);
     }
 
@@ -81,6 +83,7 @@ export class Viewport extends QxComposite {
     buildRouting() {
         this.routing.onGet(PageConstants.routeBoard, this.pageBoard);
         this.routing.onGet(PageConstants.routeDelete, this.pageDelete);
+        this.routing.onGet(PageConstants.routeDetails, this.pageDetails);
         this.routing.onGet(PageConstants.routeEditor, this.pageEditor);
         this.routing.onGet(PageConstants.routeLogin, this.pageLogin);
         this.routing.onGet(PageConstants.routeNew, this.pageNew);

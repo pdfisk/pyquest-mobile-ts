@@ -95,6 +95,10 @@ export class EditorPage extends AbstractPage {
         this.setCodeObject(null);
     }
 
+    onDetails() {
+        this.showDetails();
+    }
+
     onRun() {
         const codeObject = this.getCodeObject();
         if (codeObject)
@@ -137,6 +141,9 @@ export class EditorPage extends AbstractPage {
         switch (action) {
             case ActionConstants.ActionClear:
                 this.onClear();
+                break;
+            case ActionConstants.ActionDetails:
+                this.onDetails();
                 break;
             case ActionConstants.ActionRun:
                 this.onRun();

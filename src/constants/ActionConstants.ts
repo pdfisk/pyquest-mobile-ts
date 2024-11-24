@@ -10,6 +10,7 @@ export class ActionConstants {
     static ActionClearIn: string = 'clear_in';
     static ActionClearOut: string = 'clear_out';
     static ActionDelete: string = 'delete';
+    static ActionDetails: string = 'details';
     static ActionLogin: string = 'login';
     static ActionLogout: string = 'logout';
     static ActionMoveTile: string = 'move_tile';

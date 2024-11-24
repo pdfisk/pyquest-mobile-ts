@@ -2,6 +2,7 @@ export class PageConstants {
 
     static pathBoard = 'board';
     static pathDelete = 'delete';
+    static pathDetails = 'details';
     static pathEditor = 'editor';
     static pathLogin = 'login';
     static pathNew = 'new';
@@ -15,6 +16,7 @@ export class PageConstants {
 
     static routeBoard = '/' + this.pathBoard;
     static routeDelete = '/' + this.pathDelete;
+    static routeDetails = '/' + this.pathDetails;
     static routeEditor = '/' + this.pathEditor;
     static routeLogin = '/' + this.pathLogin;
     static routeNew = '/' + this.pathNew;
@@ -28,6 +30,7 @@ export class PageConstants {
 
     static subtitleBoard = 'Game board';
     static subtitleDelete = 'Delete project';
+    static subtitleDetails = 'Project details';
     static subtitleEditor = 'Python editor';
     static subtitleForum = 'Support forum';
     static subtitleLogin = 'Login or register';
@@ -43,6 +46,7 @@ export class PageConstants {
 
     static titleBoard = 'Board';
     static titleDelete = 'Delete';
+    static titleDetails = 'Details';
     static titleEditor = 'Editor';
     static titleLogin = 'Login';
     static titleLogout = 'Logout';
