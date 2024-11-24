@@ -42,7 +42,12 @@ export class EditorPage extends AbstractPage {
     }
 
     defaultButtons(): string[] {
-        return [LabelConstants.ButtonLabelRun, LabelConstants.ButtonLabelClear, LabelConstants.ButtonLabelSave];
+        return [
+            LabelConstants.ButtonLabelRun,
+            LabelConstants.ButtonLabelClear,
+            LabelConstants.ButtonLabelDetails,
+            LabelConstants.ButtonLabelSave
+        ];
     }
 
     disableSave() {

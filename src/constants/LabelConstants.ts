@@ -19,6 +19,7 @@ export class LabelConstants {
     static ButtonLabelClearOut: string = 'Clear Out';
     static ButtonLabelConsole: string = 'Console';
     static ButtonLabelDesktop: string = 'Desktop';
+    static ButtonLabelDetails: string = 'Details';
     static ButtonLabelLogin: string = 'Login';
     static ButtonLabelLogout: string = 'Logout';
     static ButtonLabelProjects: string = 'Projects';
