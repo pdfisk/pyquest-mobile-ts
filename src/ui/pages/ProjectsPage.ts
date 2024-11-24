@@ -97,7 +97,7 @@ export class ProjectsPage extends AbstractDataListPage {
 
     getOnChangeFn(): Function {
         return (evt: any) => {
-            const index: number = this.getSelectBoxIndex();
+            const index: number =  evt.getData();
             this.onChangeSelection(index);
         };
     }
@@ -150,7 +150,7 @@ export class ProjectsPage extends AbstractDataListPage {
         const index: number | undefined = this.selectBox?.getSelection();
         switch (index) {
             case LabelConstants.ActionDeleteIndex:
-                this.onDelete(index);
+                this.onDelete();
                 break;
             case LabelConstants.ActionNewIndex:
                 this.onNew();
@@ -168,7 +168,7 @@ export class ProjectsPage extends AbstractDataListPage {
         this.selectedIndex = index;
         switch (this.getSelectBoxIndex()) {
             case LabelConstants.ActionDeleteIndex:
-                this.onDelete(index);
+                this.onDelete();
                 break;
             case LabelConstants.ActionOpenIndex:
                 this.onOpen(index);
@@ -182,8 +182,7 @@ export class ProjectsPage extends AbstractDataListPage {
         }
     }
 
-    onDelete(index: number) {
-        this.selectedIndex = index;
+    onDelete() {
         const name = this.getSelectedName()
         const id = this.getSelectedId();
         if (!name) return;
