@@ -97,6 +97,10 @@ export class QxWidget extends QxObject {
         this.setHeight(undefined);
     }
 
+    setActivatable(value: boolean) {
+        this.widget.setActivatable(value);
+    }
+
     setBackgroundColor(color: string) {
         this.setStyle(StyleConstants.BackgroundColor, color);
     }

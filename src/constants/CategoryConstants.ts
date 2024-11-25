@@ -15,6 +15,6 @@ export class CategoryConstants {
     static CategoryTagStories: string = 'stories';
     static CategoryTagTutorials: string = 'tutorials';
 
-    static CategoryPlaceholder:string = 'Select a category';
+    static CategoryPlaceholder:string = 'Select a new category';
 
 }

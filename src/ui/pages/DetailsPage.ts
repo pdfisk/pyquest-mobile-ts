@@ -1,14 +1,18 @@
-import { ActionConstants, EventConstants } from "../../constants";
+import { ActionConstants, FontConstants } from "../../constants";
+import { CategoryConstants } from "../../constants/CategoryConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
-import { ProjectsStore } from "../../data";
-import { MessageBus } from "../../messages";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
+import { QxSelectBox } from "../../qx/ui/mobile/form/QxSelectBox";
+import { QxTextArea } from "../../qx/ui/mobile/form/QxTextArea";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
+import { CategoryUtil } from "../../util/CategoryUtil";
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
-import { ProjectsPage } from "./ProjectsPage";
 
 export class DetailsPage extends AbstractFormPage {
-    newNameField: QxTextField;
+    category: QxTextField = new QxTextField;
+    description: QxTextArea = new QxTextArea;
+    name: QxTextField = new QxTextField;
+    selectBox: QxSelectBox = new QxSelectBox;
     static instance: DetailsPage;
 
     static getInstance(): DetailsPage {
@@ -20,27 +24,40 @@ export class DetailsPage extends AbstractFormPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageDetails);
-        this.newNameField = new QxTextField;
-        MessageBus.subscribe(EventConstants.EventSessionStatusChanged, this.onSessionStatusChanged, this);
+        this.name.setFontWeight(FontConstants.FontWeightBold);
+        this.name.setReadOnly(true);
+        this.name.setActivatable(false);
+        this.category.setFontWeight(FontConstants.FontWeightBold);
+        this.category.setReadOnly(true);
+        this.category.setActivatable(false);
+        this.showCurrentCategory(CategoryConstants.CategoryLabelAll);
+        this.selectBox.setModel(CategoryUtil.getCategories());
+        this.selectBox.setPlaceholder(CategoryConstants.CategoryPlaceholder);
+        (window as any).X = this;
     }
 
     addPageContent() {
         const items: QxWidget[] = [];
         const names: string[] = [];
-        items.push(this.newNameField);
-        names.push(LabelConstants.FieldLabelNewName);
+        items.push(this.name);
+        items.push(this.category);
+        items.push(this.selectBox);
+        items.push(this.description);
+        names.push(LabelConstants.FieldLabelName);
+        names.push(LabelConstants.FieldLabelCategory);
+        names.push(LabelConstants.FieldLabelCategories);
+        names.push(LabelConstants.FieldLabelDescription);
         this.addItems(items, names);
     }
 
     defaultButtons(): string[] {
         return [
-            LabelConstants.ActionNewLabel,
-            LabelConstants.ButtonLabelClear,
+            LabelConstants.ButtonLabelClear
         ];
     }
 
     getNewName(): string {
-        return this.newNameField.getValue();
+        return this.name.getValue();
     }
 
     onAppear() {
@@ -51,13 +68,7 @@ export class DetailsPage extends AbstractFormPage {
     }
 
     onClear() {
-        this.newNameField.clear();
-    }
-
-    onNew() {
-        ProjectsStore.newRecord(this.getNewName());
-        this.showProjects();
-        ProjectsPage.refresh();
+        this.name.clear();
     }
 
     onSessionStatusChanged(message: any) {
@@ -68,9 +79,6 @@ export class DetailsPage extends AbstractFormPage {
             case ActionConstants.ActionClear:
                 this.onClear();
                 break;
-            case ActionConstants.ActionNew:
-                this.onNew();
-                break;
             default:
                 console.log('DetailsPage onTap', action);
                 break;
@@ -78,6 +86,10 @@ export class DetailsPage extends AbstractFormPage {
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+    }
+
+    showCurrentCategory(value: string) {
+        this.category.setValue(value);
     }
 
 }

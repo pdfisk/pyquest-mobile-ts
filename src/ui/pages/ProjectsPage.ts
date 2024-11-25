@@ -58,7 +58,6 @@ export class ProjectsPage extends AbstractDataListPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageProjects);
-        (window as any).X = this;
     }
 
     addExtraButtons() {

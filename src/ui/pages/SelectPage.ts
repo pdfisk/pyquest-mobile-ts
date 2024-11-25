@@ -5,12 +5,13 @@ import { MessageBus } from "../../messages";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxSelectBox } from "../../qx/ui/mobile/form/QxSelectBox";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
+import { CategoryUtil } from "../../util/CategoryUtil";
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 import { ProjectsPage } from "./ProjectsPage";
 
 export class SelectPage extends AbstractFormPage {
     currentSelection: QxTextField = new QxTextField;
-    selectBox: QxSelectBox;
+    selectBox: QxSelectBox= new QxSelectBox;
     static instance: SelectPage;
 
     static getInstance(): SelectPage {
@@ -25,13 +26,7 @@ export class SelectPage extends AbstractFormPage {
         this.currentSelection.setFontWeight(FontConstants.FontWeightBold);
         this.currentSelection.setReadOnly(true)
         this.showCurrentCategory(CategoryConstants.CategoryLabelAll);
-        const items = [
-            CategoryConstants.CategoryLabelAll,
-            CategoryConstants.CategoryLabelGames,
-            CategoryConstants.CategoryLabelStories,
-            CategoryConstants.CategoryLabelTutorials
-        ]
-        this.selectBox = new QxSelectBox;
+        const items = CategoryUtil.getCategories();
         const fn = (evt: any) => { this.onChangeSelectBoxSelection(evt) };
         this.selectBox.setModel(items);
         this.selectBox.setChangeFunction(fn);
