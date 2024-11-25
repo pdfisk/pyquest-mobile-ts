@@ -5,6 +5,7 @@ import { AbstractStore, ProjectsStore } from "../../data";
 import { StringUtil } from "../../util";
 import { AbstractDataListPage } from "./abstract/AbstractDataListPage";
 import { DeletePage } from "./DeletePage";
+import { DetailsPage } from "./DetailsPage";
 import { EditorPage } from "./EditorPage";
 import { RenamePage } from "./RenamePage";
 
@@ -118,6 +119,13 @@ export class ProjectsPage extends AbstractDataListPage {
         return -1;
     }
 
+    getSelectedCategory(): string {
+        const record = this.getSelectedRecord();
+        if (!record)
+            return CategoryConstants.CategoryLabelAll;
+        return record.getCategory();
+    }
+
     getSelectedCode(): string {
         const record = this.getSelectedRecord();
         if (!record)
@@ -132,6 +140,13 @@ export class ProjectsPage extends AbstractDataListPage {
         return record.getCode_object();
     }
 
+    getSelectedDescription(): string {
+        const record = this.getSelectedRecord();
+        if (!record)
+            return '';
+        return record.getDescription();
+    }
+
     getSelectedId(): number {
         const record = this.getSelectedRecord();
         if (!record)
@@ -139,10 +154,10 @@ export class ProjectsPage extends AbstractDataListPage {
         return record.getId();
     }
 
-    getSelectedName(): string | null {
+    getSelectedName(): string {
         const record = this.getSelectedRecord();
         if (!record)
-            return null;
+            return '';
         return record.getName();
     }
 
@@ -216,10 +231,16 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     onOpen() {
+        const category = this.getSelectedCategory();
         const code = this.getSelectedCode()
         const codeObject = this.getSelectedCodeObject();
+        const description = this.getSelectedDescription();
+        const name = this.getSelectedName();
         EditorPage.setCode(code);
         EditorPage.setCodeObject(codeObject);
+        DetailsPage.setCategory(category);
+        DetailsPage.setDescription(description);
+        DetailsPage.setName(name);
         this.showEditor();
     }
 

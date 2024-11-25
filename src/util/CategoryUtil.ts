@@ -1,4 +1,5 @@
 import { CategoryConstants } from "../constants/CategoryConstants";
+import { StringUtil } from "./StringUtil";
 
 export class CategoryUtil {
 
@@ -9,6 +10,10 @@ export class CategoryUtil {
             CategoryConstants.CategoryLabelStories,
             CategoryConstants.CategoryLabelTutorials
         ];
+    }
+
+    static getCategoryTag(index: number): string {
+        return StringUtil.asTag(this.getCategories()[index]);
     }
 
 }

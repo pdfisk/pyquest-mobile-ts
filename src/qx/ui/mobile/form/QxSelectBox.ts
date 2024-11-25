@@ -15,6 +15,10 @@ export class QxSelectBox extends QxWidget {
         return this.widget.getSelection();
     }
 
+    getValue(): string {
+        return this.widget.getValue();
+    }
+
     setChangeFunction(fn: Function) {
         this.addListener(EventConstants.QxEventChangeSelection, fn, this);
     }

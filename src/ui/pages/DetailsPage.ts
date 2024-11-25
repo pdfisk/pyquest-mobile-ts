@@ -1,19 +1,10 @@
-import { ActionConstants, FontConstants, SizeConstants } from "../../constants";
-import { CategoryConstants } from "../../constants/CategoryConstants";
+import { ActionConstants, SizeConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
-import { QxSelectBox } from "../../qx/ui/mobile/form/QxSelectBox";
-import { QxTextArea } from "../../qx/ui/mobile/form/QxTextArea";
-import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
-import { CategoryUtil } from "../../util/CategoryUtil";
 import { DetailsPanel } from "../widgets/DetailsPanel";
 import { AbstractPage } from "./abstract/AbstractPage";
 
 export class DetailsPage extends AbstractPage {
-    category: QxTextField = new QxTextField;
-    description: QxTextArea = new QxTextArea;
     detailsPanel: DetailsPanel = new DetailsPanel;
-    name: QxTextField = new QxTextField;
-    selectBox: QxSelectBox = new QxSelectBox;
     static instance: DetailsPage;
 
     static getInstance(): DetailsPage {
@@ -22,44 +13,31 @@ export class DetailsPage extends AbstractPage {
         return this.instance;
     }
 
+    static setCategory(category: string) {
+        this.getInstance().setCategory(category);
+    }
+
+    static setDescription(description: string) {
+        this.getInstance().setDescription(description);
+    }
+
+    static setName(name: string) {
+        this.getInstance().setName(name);
+    }
+
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageDetails);
-        this.name.setFontWeight(FontConstants.FontWeightBold);
-        this.name.setReadOnly(true);
-        this.name.setActivatable(false);
-        this.category.setFontWeight(FontConstants.FontWeightBold);
-        this.category.setReadOnly(true);
-        this.category.setActivatable(false);
-        this.showCurrentCategory(CategoryConstants.CategoryLabelAll);
-        this.selectBox.setModel(CategoryUtil.getCategories());
-        this.selectBox.setPlaceholder(CategoryConstants.CategoryPlaceholder);
-        (window as any).X = this;
     }
 
     addPageContent() {
         this.addContentWidget(this.detailsPanel);
-        // const items: QxWidget[] = [];
-        // const names: string[] = [];
-        // items.push(this.name);
-        // items.push(this.category);
-        // items.push(this.selectBox);
-        // items.push(this.description);
-        // names.push(LabelConstants.FieldLabelName);
-        // names.push(LabelConstants.FieldLabelCategory);
-        // names.push(LabelConstants.FieldLabelCategories);
-        // names.push(LabelConstants.FieldLabelDescription);
-        // this.addItems(items, names);
     }
 
     defaultButtons(): string[] {
         return [
             LabelConstants.ButtonLabelClear
         ];
-    }
-
-    getNewName(): string {
-        return this.name.getValue();
     }
 
     isContentReady(): boolean {
@@ -75,7 +53,7 @@ export class DetailsPage extends AbstractPage {
     }
 
     onClear() {
-        this.name.clear();
+        this.detailsPanel.clear();
     }
 
     onSessionStatusChanged(message: any) {
@@ -96,8 +74,16 @@ export class DetailsPage extends AbstractPage {
         this.detailsPanel.setHeightPx(adjustedHeight - SizeConstants.PageHeightOffset);
     }
 
-    showCurrentCategory(value: string) {
-        this.category.setValue(value);
+    setCategory(category: string) {
+        this.detailsPanel.setCategory(category);
+    }
+
+    setDescription(description: string) {
+        this.detailsPanel.setDescription(description);
+    }
+
+    setName(name: string) {
+        this.detailsPanel.setName(name);
     }
 
 }

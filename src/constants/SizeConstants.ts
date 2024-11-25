@@ -19,6 +19,10 @@ export class SizeConstants {
     static DefaultWindowContentPadding: number = 0;
     static DefaultWindowHeight: number = 275;
     static DefaultWindowWidth: number = 325;
+    static DetailsLabelWidth:number = 100;
+    static DetailsLeftMargin:number = 15;
+    static DetailsMarginBottom:number = 10;
+    static DetailsSelectionLeftMargin:number = 8;
     static DrawerSize: number = 35;
     static DrawerTapOffset: number = 100;
     static InfoItemLeftAndRightPadding = 5;
