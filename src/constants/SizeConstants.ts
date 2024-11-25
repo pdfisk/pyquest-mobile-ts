@@ -38,6 +38,7 @@ export class SizeConstants {
     static MediumWindowWidth: number = 525;
     static PanelPadding: number = 15;
     static NoButtonsPageHeightAdjust = 55;
+    static PageHeightOffset = 27;
     static PopupWidgetHeight: number = 65;
     static ProjectsWindowHeight: number = 435;
     static ProjectsWindowWidth: number = 575;

@@ -9,7 +9,7 @@ export class QxWidget extends QxObject {
 
     constructor(widget?: any) {
         super(widget ? widget : QxFactory.mobileComposite());
-        this.setHeight(SizeConstants.Size100Pct);
+        this.setHeight100Pct();
     }
 
     addCssClass(cssClass: string) {
@@ -160,6 +160,10 @@ export class QxWidget extends QxObject {
 
     setHeightPx(height: number) {
         this.setHeight(StringUtil.asPixels(height));
+    }
+
+    setHeight100Pct() {
+        this.setHeight(SizeConstants.Size100Pct);
     }
 
     setLineHeight(height: string) {

@@ -1,16 +1,17 @@
-import { ActionConstants, FontConstants } from "../../constants";
+import { ActionConstants, FontConstants, SizeConstants } from "../../constants";
 import { CategoryConstants } from "../../constants/CategoryConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
-import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxSelectBox } from "../../qx/ui/mobile/form/QxSelectBox";
 import { QxTextArea } from "../../qx/ui/mobile/form/QxTextArea";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { CategoryUtil } from "../../util/CategoryUtil";
-import { AbstractFormPage } from "./abstract/AbstractFormPage";
+import { DetailsPanel } from "../widgets/DetailsPanel";
+import { AbstractPage } from "./abstract/AbstractPage";
 
-export class DetailsPage extends AbstractFormPage {
+export class DetailsPage extends AbstractPage {
     category: QxTextField = new QxTextField;
     description: QxTextArea = new QxTextArea;
+    detailsPanel: DetailsPanel = new DetailsPanel;
     name: QxTextField = new QxTextField;
     selectBox: QxSelectBox = new QxSelectBox;
     static instance: DetailsPage;
@@ -37,17 +38,18 @@ export class DetailsPage extends AbstractFormPage {
     }
 
     addPageContent() {
-        const items: QxWidget[] = [];
-        const names: string[] = [];
-        items.push(this.name);
-        items.push(this.category);
-        items.push(this.selectBox);
-        items.push(this.description);
-        names.push(LabelConstants.FieldLabelName);
-        names.push(LabelConstants.FieldLabelCategory);
-        names.push(LabelConstants.FieldLabelCategories);
-        names.push(LabelConstants.FieldLabelDescription);
-        this.addItems(items, names);
+        this.addContentWidget(this.detailsPanel);
+        // const items: QxWidget[] = [];
+        // const names: string[] = [];
+        // items.push(this.name);
+        // items.push(this.category);
+        // items.push(this.selectBox);
+        // items.push(this.description);
+        // names.push(LabelConstants.FieldLabelName);
+        // names.push(LabelConstants.FieldLabelCategory);
+        // names.push(LabelConstants.FieldLabelCategories);
+        // names.push(LabelConstants.FieldLabelDescription);
+        // this.addItems(items, names);
     }
 
     defaultButtons(): string[] {
@@ -60,11 +62,16 @@ export class DetailsPage extends AbstractFormPage {
         return this.name.getValue();
     }
 
+    isContentReady(): boolean {
+        return true;
+    }
+
     onAppear() {
         if (this.hasAppeared)
             return;
         super.onAppear();
         this.addPageContent();
+        this.resize();
     }
 
     onClear() {
@@ -86,6 +93,7 @@ export class DetailsPage extends AbstractFormPage {
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+        this.detailsPanel.setHeightPx(adjustedHeight - SizeConstants.PageHeightOffset);
     }
 
     showCurrentCategory(value: string) {
