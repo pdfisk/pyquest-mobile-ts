@@ -7,6 +7,14 @@ export class DetailsPage extends AbstractPage {
     detailsPanel: DetailsPanel = new DetailsPanel;
     static instance: DetailsPage;
 
+    static getCategory(): string {
+        return this.getInstance().getCategory();
+    }
+
+    static getDescription(): string {
+        return this.getInstance().getDescription();
+    }
+
     static getInstance(): DetailsPage {
         if (!this.instance)
             this.instance = new DetailsPage();
@@ -39,6 +47,14 @@ export class DetailsPage extends AbstractPage {
             LabelConstants.ButtonLabelClear,
             LabelConstants.ButtonLabelEditor
         ];
+    }
+
+    getCategory(): string {
+        return this.detailsPanel.getCategory();
+    }
+
+    getDescription(): string {
+        return this.detailsPanel.getDescription();
     }
 
     isContentReady(): boolean {

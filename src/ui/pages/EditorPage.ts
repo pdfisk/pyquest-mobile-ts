@@ -8,6 +8,7 @@ import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { SessionStatus } from "../../session";
 import { StringUtil } from "../../util/StringUtil";
 import { AbstractPage } from "./abstract/AbstractPage";
+import { DetailsPage } from "./DetailsPage";
 import { ProjectsPage } from "./ProjectsPage";
 
 export class EditorPage extends AbstractPage {
@@ -118,9 +119,11 @@ export class EditorPage extends AbstractPage {
     }
 
     onSave() {
+        const category = DetailsPage.getCategory();
+        const description = DetailsPage.getDescription();
         const code = this.getCode();
         const codeObject = this.getCodeObject();
-        ProjectsPage.save(code, codeObject);
+        ProjectsPage.save(category, description, code, codeObject);
     }
 
     onSessionStatusChanged(message: any) {

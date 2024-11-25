@@ -48,8 +48,8 @@ export class ProjectsPage extends AbstractDataListPage {
         this.getInstance().resetSelectBox();
     }
 
-    static save(code: string, codeObject: string | null) {
-        this.getInstance().save(code, codeObject);
+    static save(category: string, description: string, code: string, codeObject: string | null) {
+        this.getInstance().save(category, description, code, codeObject);
     }
 
     static selectCategory(label: string) {
@@ -295,8 +295,10 @@ export class ProjectsPage extends AbstractDataListPage {
         this.setSelectionBoxSelection(LabelConstants.ActionOpenIndex);
     }
 
-    save(code: string, codeObject: string | null) {
+    save(category: string, description: string, code: string, codeObject: string | null) {
         const record = this.getSelectedRecord();
+        record.setCategory(category);
+        record.setDescription(description);
         record.setCode(code);
         record.setCode_object(codeObject);
         this.dataStore.saveRecord(record);
