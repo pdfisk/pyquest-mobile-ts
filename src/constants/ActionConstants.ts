@@ -11,6 +11,7 @@ export class ActionConstants {
     static ActionClearOut: string = 'clear_out';
     static ActionDelete: string = 'delete';
     static ActionDetails: string = 'details';
+    static ActionEditor: string = 'editor';
     static ActionLogin: string = 'login';
     static ActionLogout: string = 'logout';
     static ActionMoveTile: string = 'move_tile';

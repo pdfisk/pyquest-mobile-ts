@@ -36,7 +36,8 @@ export class DetailsPage extends AbstractPage {
 
     defaultButtons(): string[] {
         return [
-            LabelConstants.ButtonLabelClear
+            LabelConstants.ButtonLabelClear,
+            LabelConstants.ButtonLabelEditor
         ];
     }
 
@@ -56,6 +57,10 @@ export class DetailsPage extends AbstractPage {
         this.detailsPanel.clear();
     }
 
+    onEditor() {
+        this.showEditor();
+    }
+
     onSessionStatusChanged(message: any) {
     }
 
@@ -63,6 +68,9 @@ export class DetailsPage extends AbstractPage {
         switch (action) {
             case ActionConstants.ActionClear:
                 this.onClear();
+                break;
+            case ActionConstants.ActionEditor:
+                this.onEditor();
                 break;
             default:
                 console.log('DetailsPage onTap', action);
