@@ -198,8 +198,6 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     onChangeSelectBoxSelection(evt: any) {
-        if (this.selectedIndex === LabelConstants.SelectionUnselectedIndex)
-            return;
         const index: number | undefined = this.selectBox?.getSelection();
         switch (index) {
             case LabelConstants.ActionDeleteIndex:
@@ -218,7 +216,9 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     onDelete() {
-        const name = this.getSelectedName()
+        if (this.selectedIndex === LabelConstants.SelectionUnselectedIndex)
+            return;
+       const name = this.getSelectedName()
         const id = this.getSelectedId();
         if (!name) return;
         DeletePage.setId(id);
@@ -249,6 +249,8 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     onRename() {
+        if (this.selectedIndex === LabelConstants.SelectionUnselectedIndex)
+            return;
         const name = this.getSelectedName();
         const id = this.getId();
         if (!name) return;
