@@ -20,6 +20,14 @@ export class EditorPage extends AbstractPage {
     storedCode: string = '';
     static instance: EditorPage;
 
+    static getCode(): string {
+        return this.getInstance().getCode();
+    }
+
+    static getCodeObject(): string | null {
+        return this.getInstance().getCodeObject();
+    }
+
     static getInstance(): EditorPage {
         if (!this.instance)
             this.instance = new EditorPage();

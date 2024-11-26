@@ -1,4 +1,4 @@
-import { ActionConstants } from "../../constants";
+import { ActionConstants, SessionConstants } from "../../constants";
 import { CategoryConstants } from "../../constants/CategoryConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { AbstractStore, ProjectsStore } from "../../data";
@@ -218,7 +218,7 @@ export class ProjectsPage extends AbstractDataListPage {
     onDelete() {
         if (this.selectedIndex === LabelConstants.SelectionUnselectedIndex)
             return;
-       const name = this.getSelectedName()
+        const name = this.getSelectedName()
         const id = this.getSelectedId();
         if (!name) return;
         DeletePage.setId(id);

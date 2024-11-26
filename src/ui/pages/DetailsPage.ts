@@ -1,10 +1,15 @@
-import { ActionConstants, SizeConstants } from "../../constants";
+import { ActionConstants, EventConstants, SessionConstants, SizeConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
+import { MessageBus } from "../../messages";
+import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { DetailsPanel } from "../widgets/DetailsPanel";
 import { AbstractPage } from "./abstract/AbstractPage";
+import { EditorPage } from "./EditorPage";
+import { ProjectsPage } from "./ProjectsPage";
 
 export class DetailsPage extends AbstractPage {
     detailsPanel: DetailsPanel = new DetailsPanel;
+    saveButton: QxButton | null = null;
     static instance: DetailsPage;
 
     static getCategory(): string {
@@ -36,6 +41,7 @@ export class DetailsPage extends AbstractPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageDetails);
+        MessageBus.subscribe(EventConstants.EventSessionStatusChanged, this.onSessionStatusChanged, this);
     }
 
     addPageContent() {
@@ -45,8 +51,16 @@ export class DetailsPage extends AbstractPage {
     defaultButtons(): string[] {
         return [
             LabelConstants.ButtonLabelClear,
-            LabelConstants.ButtonLabelEditor
+            LabelConstants.ButtonLabelEditor,
+            LabelConstants.ButtonLabelSave
         ];
+    }
+    disableSave() {
+        this.saveButton?.setEnabled(false);
+    }
+
+    enableSave() {
+        this.saveButton?.setEnabled(true);
     }
 
     getCategory(): string {
@@ -67,6 +81,7 @@ export class DetailsPage extends AbstractPage {
         super.onAppear();
         this.addPageContent();
         this.resize();
+        this.saveButton = this.buttonbar.getButtonFromLabel(LabelConstants.ButtonLabelSave);
     }
 
     onClear() {
@@ -77,7 +92,26 @@ export class DetailsPage extends AbstractPage {
         this.showEditor();
     }
 
+    onSave() {
+        const category = this.getCategory();
+        const description = this.getDescription();
+        const code = EditorPage.getCode();
+        const codeObject = EditorPage.getCodeObject();
+        ProjectsPage.save(category, description, code, codeObject);
+    }
+
     onSessionStatusChanged(message: any) {
+        const data: any = message.getData();
+        const statusObj: any = data[0];
+        const status: string = statusObj.status;
+        switch (status) {
+            case SessionConstants.SessionLoggedInAsAdmin:
+                this.enableSave();
+                break;
+            default:
+                this.disableSave();
+                break;
+        }
     }
 
     onTap(action: string) {
@@ -87,6 +121,9 @@ export class DetailsPage extends AbstractPage {
                 break;
             case ActionConstants.ActionEditor:
                 this.onEditor();
+                break;
+            case ActionConstants.ActionSave:
+                this.onSave();
                 break;
             default:
                 console.log('DetailsPage onTap', action);
