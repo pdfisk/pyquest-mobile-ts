@@ -2,6 +2,7 @@ import { ActionConstants, EventConstants, SessionConstants, SizeConstants } from
 import { LabelConstants } from "../../constants/LabelConstants";
 import { MessageBus } from "../../messages";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
+import { SessionStatus } from "../../session";
 import { DetailsPanel } from "../widgets/DetailsPanel";
 import { AbstractPage } from "./abstract/AbstractPage";
 import { EditorPage } from "./EditorPage";
@@ -82,6 +83,8 @@ export class DetailsPage extends AbstractPage {
         this.addPageContent();
         this.resize();
         this.saveButton = this.buttonbar.getButtonFromLabel(LabelConstants.ButtonLabelSave);
+        if (!SessionStatus.isLoggedIn())
+            this.disableSave();
     }
 
     onClear() {
