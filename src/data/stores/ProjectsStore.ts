@@ -42,6 +42,7 @@ export class ProjectsStore extends AbstractStore {
     createRecordData(record: any): any {
         const data: any = {};
         data.author = '<unknown>';
+        data.category = record.getCategory();
         data.description = record.getDescription();
         data.details = record.getDetails();
         data.code = record.getCode();
