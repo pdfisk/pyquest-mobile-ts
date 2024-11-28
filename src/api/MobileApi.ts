@@ -6,6 +6,7 @@ import { SessionStatus } from '../session';
 import { Viewport } from '../ui';
 import { FunctionManager } from '../util/FunctionManager';
 import { NotificationManager } from '../util/NotificationManager';
+import { SoundUtil } from '../util/SoundUtil';
 
 export class MobileApi {
     /**
@@ -53,6 +54,7 @@ export class MobileApi {
         SessionStatus.getInstance();
         this.getIpAddress();
         Viewport.getInstance();
+        (window as any).X = SoundUtil;
     }
 
 }
