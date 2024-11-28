@@ -11,8 +11,8 @@ export class SoundUtil {
         return this.instance;
     }
 
-    static handleAction(args: any[]) {
-        this.getInstance().handleAction(args);
+    static playSound(sound: string) {
+        this.getInstance().playSound(sound);
     }
 
     private constructor() {
@@ -20,25 +20,13 @@ export class SoundUtil {
         this.chickSound = new Howl({ src: [SoundConstants.ChickSound] });
     }
 
-    handleAction(args: any[]) {
-        const action: string = args.shift();
-        switch (action) {
-            case ActionConstants.ActionPlay:
-                this.playSound(args);
-                break;
-            default:
-                console.log('SoundUtil performSoundAction', action, args);
-                break;
-        }
-    }
-
-    playSound(args: any[]) {
-        switch (args.shift()) {
+    playSound(sound: string) {
+        switch (sound) {
             case ActionConstants.SoundChick:
                 this.playChickSound();
                 break;
             default:
-                console.log('SoundUtil playSound', args);
+                console.log('SoundUtil playSound', sound);
                 break;
         }
     }

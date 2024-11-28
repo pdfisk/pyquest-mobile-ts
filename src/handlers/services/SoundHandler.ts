@@ -1,6 +1,4 @@
-import { BoardPage } from "../../ui/pages/BoardPage";
-import { BoardPanel } from "../../ui/widgets/BoardPanel";
-import { ActionRec } from "./ActionRec";
+import { ActionConstants } from "../../constants";
 import { HandlerBase } from "./HandlerBase";
 
 export class SoundHandler extends HandlerBase {
@@ -13,18 +11,25 @@ export class SoundHandler extends HandlerBase {
         return this.instance;
     }
 
-    static handleAction(ownerId: number, args: any[]) {
-        this.getInstance().handleAction(ownerId, args);
+    static handleAction(args: any[]) {
+        this.getInstance().handleAction(args);
     }
 
-    handleAction(ownerId: number, args: any[]) {
-        const action: string = args.shift();
-        const board: BoardPanel = BoardPage.getBoardPanel();
-        const actionRec = new ActionRec(board, action, args);
-        if (board.hasAppeared)
-            board.performAction(actionRec);
-        else
-            board.deferAction(actionRec);
+    handleAction(args: any[]) {
+        const action = args.shift();
+        switch(action) {
+            case ActionConstants.ActionPlay:
+                this.handleActionPlay(args);
+                break;
+                default:
+                    console.log('SoundHandler handleAction', action, args);
+                    break;
+        }
+    }
+
+    handleActionPlay(args: any[]) {
+const sound = args.shift();
+
     }
 
 }

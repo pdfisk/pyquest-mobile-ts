@@ -283,7 +283,6 @@ export class ProjectsPage extends AbstractDataListPage {
     removeSelectionCss(index: number) {
         const item = this.getSelectedRecordFromIndex(index);
         if (!item) return;
-        console.log('addSelectionCss', item);
     }
 
     rename(newName: string) {
