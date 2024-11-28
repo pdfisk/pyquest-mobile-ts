@@ -1,6 +1,5 @@
 import { UrlConstants } from '../constants';
 import { Version } from '../constants/Version';
-import { ActionHandler } from '../handlers';
 import { MessageBus } from '../messages';
 import { Server } from '../server/Server';
 import { SessionStatus } from '../session';
@@ -54,7 +53,6 @@ export class MobileApi {
         SessionStatus.getInstance();
         this.getIpAddress();
         Viewport.getInstance();
-        (window as any).X = ActionHandler;
     }
 
 }
