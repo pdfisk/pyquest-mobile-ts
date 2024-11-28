@@ -1,12 +1,12 @@
 import { UrlConstants } from '../constants';
 import { Version } from '../constants/Version';
+import { ActionHandler } from '../handlers';
 import { MessageBus } from '../messages';
 import { Server } from '../server/Server';
 import { SessionStatus } from '../session';
 import { Viewport } from '../ui';
 import { FunctionManager } from '../util/FunctionManager';
 import { NotificationManager } from '../util/NotificationManager';
-import { SoundUtil } from '../util/SoundUtil';
 
 export class MobileApi {
     /**
@@ -32,7 +32,7 @@ export class MobileApi {
         return Version.version;
     }
 
-    dispatch(name:string, ...args:any[]) {
+    dispatch(name: string, ...args: any[]) {
         MessageBus.dispatch(name, ...args);
     }
 
@@ -54,6 +54,7 @@ export class MobileApi {
         SessionStatus.getInstance();
         this.getIpAddress();
         Viewport.getInstance();
+        (window as any).X = ActionHandler;
     }
 
 }
