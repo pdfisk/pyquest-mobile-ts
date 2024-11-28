@@ -16,6 +16,7 @@ export class ActionConstants {
     static ActionLogout: string = 'logout';
     static ActionMoveTile: string = 'move_tile';
     static ActionNew: string = 'new';
+    static ActionPlay: string = 'play';
     static ActionRefresh: string = 'refresh';
     static ActionRegister: string = 'register';
     static ActionRename: string = 'rename';
@@ -28,6 +29,7 @@ export class ActionConstants {
     static ActionSetSize: string = 'set_size';
     static ActionSetTileImage: string = 'set_tile_image';
     static ActionSetTileText: string = 'set_tile_text';
+    static ActionSound: string = 'sound';
     static ActionStatus: string = 'status';
     static ActionSync: string = 'sync';
 
@@ -42,7 +44,10 @@ export class ActionConstants {
     static MoveDirectionUp: string = 'up';
 
     static ServiceBoard: string = 'board';
+    static ServiceSound: string = 'sound';
     static ServiceWorkbench: string = 'workbench';
+
+    static SoundChick: string = 'chick';
 
     static TabTranscript: string = 'transcript';
     static TabBoard: string = 'board';

@@ -54,7 +54,6 @@ export class MobileApi {
         SessionStatus.getInstance();
         this.getIpAddress();
         Viewport.getInstance();
-        (window as any).X = SoundUtil;
     }
 
 }
