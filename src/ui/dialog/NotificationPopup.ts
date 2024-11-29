@@ -7,4 +7,10 @@ export class NotificationPopup extends QxPopup {
         return new NotificationPopup(title, message, centered, delay);
     }
 
+    constructor(title: string, message: string = '', centered: boolean = false, delay: number = 0) {
+        super(title, message, centered, delay);
+        this.setModal();
+        this.show();
+    }
+
 }

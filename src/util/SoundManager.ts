@@ -1,13 +1,13 @@
 import { ActionConstants } from "../constants";
 import { SoundConstants } from "../constants/SoundConstants";
 
-export class SoundUtil {
+export class SoundManager {
     chickSound: any;
-    static instance: SoundUtil;
+    static instance: SoundManager;
 
-    static getInstance(): SoundUtil {
+    static getInstance(): SoundManager {
         if (!this.instance)
-            this.instance = new SoundUtil;
+            this.instance = new SoundManager;
         return this.instance;
     }
 
@@ -26,7 +26,7 @@ export class SoundUtil {
                 this.playChickSound();
                 break;
             default:
-                console.log('SoundUtil playSound', sound);
+                console.log('SoundManager playSound', sound);
                 break;
         }
     }

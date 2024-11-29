@@ -5,19 +5,20 @@ import { QxButton } from "../form/QxButton";
 
 export class QxPopup extends QxWidget {
 
-    constructor(title: string, message: string, centered: boolean, delay: number) {
+    constructor(title: string, message: string = '', centered: boolean = false, delay: number = 0) {
         super(QxFactory.mobilePopup());
         this.setTitle(title);
         this.setHeightPx(SizeConstants.PopupWidgetHeight);
-        const button = new QxButton(message);
-        this.addWidget(button);
+        this.addWidget(this.getLabelOrButton(message));
         if (centered)
             this.positionToCenter();
         if (delay > 0)
             this.hideWithDelay(delay);
-        this.setModal();
         this.setHideOnBlockerTap();
-        this.show();
+    }
+
+    getLabelOrButton(message: string): QxWidget {
+        return new QxButton(message);
     }
 
     addWidget(widget: QxWidget) {

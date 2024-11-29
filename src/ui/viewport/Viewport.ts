@@ -3,6 +3,7 @@ import { QxMobileApplication } from '../../qx/application/QxMobileApplication';
 import { QxMobileRouting } from '../../qx/application/QxMobileRouting';
 import { QxComposite } from '../../qx/ui/mobile/container/QxComposite';
 import { QxRoot } from '../../qx/ui/mobile/core/QxRoot';
+import { QxTooltip } from '../../qx/ui/mobile/dialog/QxTooltip';
 import { QxPageManager } from '../../qx/ui/mobile/page/QxPageManager';
 import { BoardPage } from '../pages/BoardPage';
 import { DeletePage } from '../pages/DeletePage';
@@ -66,6 +67,7 @@ export class Viewport extends QxComposite {
         this.addMasterPage();
         this.addDetailPages();
         this.buildRouting();
+        (window as any).X = QxTooltip;
     }
 
     addDetailPages() {

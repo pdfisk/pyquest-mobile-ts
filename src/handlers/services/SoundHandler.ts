@@ -1,5 +1,5 @@
 import { ActionConstants } from "../../constants";
-import { SoundUtil } from "../../util/SoundUtil";
+import { SoundManager } from "../../util/SoundManager";
 import { HandlerBase } from "./HandlerBase";
 
 export class SoundHandler extends HandlerBase {
@@ -30,7 +30,7 @@ export class SoundHandler extends HandlerBase {
 
     handleActionPlay(args: any[]) {
         const sound = args.shift();
-        SoundUtil.playSound(sound);
+        SoundManager.playSound(sound);
     }
 
 }
