@@ -52,7 +52,7 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         if (this.topMenuButton !== null)
             return;
         this.topMenuButton = new TopMenuButton(this.widget._getButton());
-    }
+     }
 
     addExtraButtons() {
     }

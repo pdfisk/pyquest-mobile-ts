@@ -9,12 +9,16 @@ export class QxPopup extends QxWidget {
         super(QxFactory.mobilePopup());
         this.setTitle(title);
         this.setHeightPx(SizeConstants.PopupWidgetHeight);
-        this.initializeChild(this.getLabelOrButton(message));
+        this.add(this.getLabelOrButton(message));
         if (centered)
             this.positionToCenter();
         if (delay > 0)
             this.hideWithDelay(delay);
         this.setHideOnBlockerTap();
+    }
+
+    add(child: QxWidget) {
+        this.widget.add(child.widget);
     }
 
     getLabelOrButton(message: string): QxWidget {
@@ -25,16 +29,16 @@ export class QxPopup extends QxWidget {
         this.widget.hideWithDelay(time);
     }
 
-    initializeChild(child: QxWidget) {
-        this.widget._initializeChild(child.widget);
-    }
-
     placeTo(left: number, top: number) {
         this.widget.placeTo(left, top);
     }
 
     positionToCenter() {
         this.widget._positionToCenter();
+    }
+
+    setAnchor(anchor: QxWidget) {
+        this.widget.setAnchor(anchor.widget);
     }
 
     setHideOnBlockerTap(value: boolean = true) {

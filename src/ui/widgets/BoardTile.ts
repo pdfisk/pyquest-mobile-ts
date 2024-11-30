@@ -138,7 +138,6 @@ export class BoardTile extends QxAtom {
     }
 
     onClick() {
-        console.log('tile onClick', this);
         this.postEvent();
     }
 

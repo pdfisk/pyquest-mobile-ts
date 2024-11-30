@@ -14,6 +14,7 @@ export class ActionConstants {
     static ActionEditor: string = 'editor';
     static ActionLogin: string = 'login';
     static ActionLogout: string = 'logout';
+    static ActionMessage: string = 'message';
     static ActionMoveTile: string = 'move_tile';
     static ActionNew: string = 'new';
     static ActionPlay: string = 'play';

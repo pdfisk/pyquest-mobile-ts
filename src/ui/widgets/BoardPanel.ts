@@ -1,6 +1,7 @@
 import { ActionConstants, ColorConstants, SizeConstants } from "../../constants";
 import { ActionRec } from "../../handlers";
 import { QxVBox } from "../../qx/ui/mobile/container/QxVBox";
+import { QxTooltip } from "../../qx/ui/mobile/dialog/QxTooltip";
 import { ResizeManager } from "../../util/ResizeManager";
 import { StringUtil } from "../../util/StringUtil";
 import { BoardRow } from "./BoardRow";
@@ -94,6 +95,9 @@ export class BoardPanel extends QxVBox {
             case ActionConstants.ActionClear:
                 this.performActionClear();
                 break;
+            case ActionConstants.ActionMessage:
+                this.performActionMessage(actionRec.args);
+                break;
             case ActionConstants.ActionMoveTile:
                 this.performActionMoveTile(actionRec.args);
                 break;
@@ -116,7 +120,17 @@ export class BoardPanel extends QxVBox {
         this.clear();
     }
 
-    performActionMoveTile(args: any) {
+    performActionMessage(args: any[]) {
+        if (args.length < 3)
+            return;
+        const message = args[0];
+        const row: number = args[1];
+        const column: number = args[2];
+        const tile = this.getTile(row, column);
+        QxTooltip.show(message, tile);
+    }
+
+    performActionMoveTile(args: any[]) {
         const row: number = args[0];
         const column: number = args[1];
         const direction: string = args[2];
