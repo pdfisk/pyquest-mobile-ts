@@ -4,8 +4,10 @@ import { QxPopup } from "./QxPopup";
 
 export class QxTooltip extends QxPopup {
 
-    static show(message: string) {
+    static show(message: string): QxTooltip {
         const popup = new QxTooltip(message);
+        popup.show();
+        return popup;
     }
 
     constructor(text: string) {
