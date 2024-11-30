@@ -9,7 +9,7 @@ export class QxPopup extends QxWidget {
         super(QxFactory.mobilePopup());
         this.setTitle(title);
         this.setHeightPx(SizeConstants.PopupWidgetHeight);
-        this.addWidget(this.getLabelOrButton(message));
+        this.initializeChild(this.getLabelOrButton(message));
         if (centered)
             this.positionToCenter();
         if (delay > 0)
@@ -21,12 +21,12 @@ export class QxPopup extends QxWidget {
         return new QxButton(message);
     }
 
-    addWidget(widget: QxWidget) {
-        this.widget.add(widget.widget);
-    }
-
     hideWithDelay(time: number) {
         this.widget.hideWithDelay(time);
+    }
+
+    initializeChild(child: QxWidget) {
+        this.widget._initializeChild(child.widget);
     }
 
     placeTo(left: number, top: number) {
