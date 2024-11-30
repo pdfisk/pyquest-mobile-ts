@@ -5,7 +5,7 @@ export  class QxHBox extends QxComposite {
  
     constructor() {
         super();
-        this.setLayout(new QxHBoxLayout)
+        this.setLayout(new QxHBoxLayout);
     }
 
 }
