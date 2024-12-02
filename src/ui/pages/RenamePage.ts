@@ -26,15 +26,16 @@ export class RenamePage extends AbstractFormPage {
         this.getInstance().setId(id);
     }
 
-    static setOldName(oldName: string) {
-        this.getInstance().setOldName(oldName);
+    static setOldName(name: string) {
+        this.getInstance().setNewName(name);
+        this.getInstance().setOldName(name);
     }
 
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageRename);
         this.oldNameField = new QxTextField;
-        this.oldNameField.setEnabled(false);
+        this.oldNameField.setReadOnly(true);
         this.newNameField = new QxTextField;
         MessageBus.subscribe(EventConstants.EventSessionStatusChanged, this.onSessionStatusChanged, this);
     }
@@ -132,6 +133,10 @@ export class RenamePage extends AbstractFormPage {
 
     setId(id: number) {
         this.id = id;
+    }
+
+    setNewName(newName: string) {
+        this.newNameField.setValue(newName);
     }
 
     setOldName(oldName: string) {
