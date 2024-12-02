@@ -236,6 +236,7 @@ export class ProjectsPage extends AbstractDataListPage {
         const codeObject = this.getSelectedCodeObject();
         const description = this.getSelectedDescription();
         const name = this.getSelectedName();
+        EditorPage.setName(name);
         EditorPage.setCode(code);
         EditorPage.setCodeObject(codeObject);
         DetailsPage.setCategory(category);

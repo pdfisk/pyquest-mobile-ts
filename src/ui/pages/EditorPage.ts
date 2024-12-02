@@ -8,6 +8,7 @@ import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { SessionStatus } from "../../session";
 import { StringUtil } from "../../util/StringUtil";
 import { AbstractPage } from "./abstract/AbstractPage";
+import { BoardPage } from "./BoardPage";
 import { DetailsPage } from "./DetailsPage";
 import { ProjectsPage } from "./ProjectsPage";
 
@@ -16,6 +17,7 @@ export class EditorPage extends AbstractPage {
     codeObject: string | null;
     editor: any = undefined;
     initValue: string = '';
+    name: string = '';
     saveButton: QxButton | null = null;
     storedCode: string = '';
     static instance: EditorPage;
@@ -40,6 +42,10 @@ export class EditorPage extends AbstractPage {
 
     static setCodeObject(codeObject: string | null) {
         this.getInstance().setCodeObject(codeObject);
+    }
+
+    static setName(name: string) {
+        this.getInstance().setName(name);
     }
 
     private constructor() {
@@ -100,6 +106,7 @@ export class EditorPage extends AbstractPage {
     }
 
     onClear() {
+        this.setName('');
         this.setCode('');
         this.setCodeObject(null);
     }
@@ -200,6 +207,15 @@ export class EditorPage extends AbstractPage {
     setLine(line: number) {
         if (this.editor)
             this.editor.moveCursorTo(line - 1, 0);
+    }
+
+    setName(name: string) {
+        BoardPage.setName(name);
+        this.name = name;
+        if (this.name.length > 0)
+            this.setTitle(`${LabelConstants.PageEditor} (${name})`);
+        else
+            this.setTitle(LabelConstants.PageEditor);
     }
 
     setRange(startRow: number, startCol: number, endRow: number, endCol: number) {

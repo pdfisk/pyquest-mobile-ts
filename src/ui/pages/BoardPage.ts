@@ -6,6 +6,7 @@ import { AbstractPage } from "./abstract/AbstractPage";
 
 export class BoardPage extends AbstractPage {
     boardPanel: BoardPanel;
+    name:string = '';
     static instance: BoardPage;
 
     static getBoardPanel(): BoardPanel {
@@ -16,6 +17,10 @@ export class BoardPage extends AbstractPage {
         if (!this.instance)
             this.instance = new BoardPage();
         return this.instance;
+    }
+
+    static setName(name:string) {
+        this.getInstance().setName(name);
     }
 
     private constructor() {
@@ -43,6 +48,14 @@ export class BoardPage extends AbstractPage {
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
         this.boardPanel.setAdjustedWidthAndHeight(adjustedWidth, adjustedHeight - SizeConstants.BoardPanelHeightAdjust);
+    }
+
+    setName(name: string) {
+        this.name = name;
+        if (this.name.length > 0)
+            this.setTitle(`${LabelConstants.PageBoard} (${name})`);
+        else
+            this.setTitle(LabelConstants.PageBoard);
     }
 
 }
