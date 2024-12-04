@@ -32,6 +32,7 @@ export class ActionConstants {
     static ActionSetTileText: string = 'set_tile_text';
     static ActionSound: string = 'sound';
     static ActionStatus: string = 'status';
+    static ActionStop: string = 'stop';
     static ActionSync: string = 'sync';
 
     static FunctionGetBoardPanel: string = 'getBoardPanel';

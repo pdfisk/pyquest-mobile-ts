@@ -1,4 +1,5 @@
-import { EventConstants, SizeConstants } from "../../constants";
+import { QxButton } from "../../../dist/mobile";
+import { ActionConstants, EventConstants, SizeConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { MessageBus } from "../../messages";
 import { BoardPanel } from "../widgets/BoardPanel";
@@ -7,6 +8,7 @@ import { AbstractPage } from "./abstract/AbstractPage";
 export class BoardPage extends AbstractPage {
     boardPanel: BoardPanel;
     name:string = '';
+    stopButton: QxButton | null = null;
     static instance: BoardPage;
 
     static getBoardPanel(): BoardPanel {
@@ -34,8 +36,52 @@ export class BoardPage extends AbstractPage {
         this.addContentWidget(this.boardPanel);
     }
 
+    defaultButtons(): string[] {
+        return [
+            LabelConstants.ButtonLabelClear,
+            LabelConstants.ButtonLabelDetails,
+            LabelConstants.ButtonLabelStop
+        ];
+    }
+
     isContentReady(): boolean {
         return this.boardPanel instanceof BoardPanel;
+    }
+
+    onAppear() {
+        if (this.hasAppeared)
+            return;
+        super.onAppear();
+        this.stopButton = this.buttonbar.getButtonFromLabel(LabelConstants.ButtonLabelStop);
+    }
+
+    onClear() {
+        this.boardPanel.clear();
+    }
+
+    onDetails() {
+        console.log('BoardPage onDetails');
+    }
+
+    onStop() {
+        console.log('BoardPage onStop');
+    }
+
+    onTap(action: string) {
+        switch (action) {
+            case ActionConstants.ActionClear:
+                this.onClear();
+                break;
+            case ActionConstants.ActionDetails:
+                this.onDetails();
+                break;
+            case ActionConstants.ActionStop:
+                this.onStop();
+                break;
+            default:
+                console.log('BoardPage onTap', action);
+                break;
+        }
     }
 
     resizeHeight(height: number) {

@@ -56,6 +56,7 @@ export class DetailsPage extends AbstractPage {
             LabelConstants.ButtonLabelSave
         ];
     }
+    
     disableSave() {
         this.saveButton?.setEnabled(false);
     }
