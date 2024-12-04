@@ -35,6 +35,7 @@ export abstract class AbstractPage extends AbstractRoutingPage {
     }
 
     addButtons() {
+        this.buttonbar.removeAll();
         const buttons: string[] = this.defaultButtons();
         buttons.forEach((label: string) => {
             const fn: Function = () => { this.onTap(StringUtil.asTag(label)); }

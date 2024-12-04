@@ -62,10 +62,12 @@ export class DetailsPage extends AbstractPage {
 
     disableSave() {
         this.saveButton?.setEnabled(false);
+        this.addButtons();
     }
 
     enableSave() {
         this.saveButton?.setEnabled(true);
+        this.addButtons();
     }
 
     getCategory(): string {
