@@ -1,7 +1,7 @@
-import { QxButton } from "../../../dist/mobile";
 import { ActionConstants, EventConstants, SizeConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { MessageBus } from "../../messages";
+import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { BoardPanel } from "../widgets/BoardPanel";
 import { AbstractPage } from "./abstract/AbstractPage";
 
@@ -60,7 +60,7 @@ export class BoardPage extends AbstractPage {
     }
 
     onDetails() {
-        console.log('BoardPage onDetails');
+        this.showDetails();
     }
 
     onStop() {

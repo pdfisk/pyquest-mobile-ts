@@ -5,6 +5,7 @@
 export class ActionConstants {
     static ActionApply: string = 'apply';
     static ActionAutotab: string = 'autotab';
+    static ActionBack: string = 'back';
     static ActionCancel: string = 'cancel';
     static ActionClear: string = 'clear';
     static ActionClearIn: string = 'clear_in';

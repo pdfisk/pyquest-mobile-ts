@@ -56,7 +56,7 @@ export class TranscriptPage extends AbstractTextPage {
     }
 
     onDetails() {
-        console.log('TranscriptPage onDetails');
+        this.showDetails();
     }
 
     onStop() {

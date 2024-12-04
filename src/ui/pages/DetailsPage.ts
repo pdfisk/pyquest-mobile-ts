@@ -50,13 +50,16 @@ export class DetailsPage extends AbstractPage {
     }
 
     defaultButtons(): string[] {
-        return [
-            LabelConstants.ButtonLabelClear,
-            LabelConstants.ButtonLabelEditor,
-            LabelConstants.ButtonLabelSave
-        ];
+        if (SessionStatus.isLoggedInAsAdmin())
+            return [
+                LabelConstants.ButtonLabelClear,
+                LabelConstants.ButtonLabelEditor,
+                LabelConstants.ButtonLabelSave
+            ]
+        else
+            return [LabelConstants.ButtonLabelBack];
     }
-    
+
     disableSave() {
         this.saveButton?.setEnabled(false);
     }
@@ -120,6 +123,9 @@ export class DetailsPage extends AbstractPage {
 
     onTap(action: string) {
         switch (action) {
+            case ActionConstants.ActionBack:
+                this.onBack();
+                break;
             case ActionConstants.ActionClear:
                 this.onClear();
                 break;
