@@ -31,8 +31,7 @@ export class MarkdownEditor extends QxComposite {
         super.onAppear();
         const cfg: any = { mode: EditorConstants.ModeMarkdown };
         this.editor = this.ace.edit(this.getContentElement(), cfg);
-        console.log('MarkdownEditor onAppear');
-        (window as any).X = this;
+        this.setValue(this.initValue);
     }
 
     setValue(value: string) {
