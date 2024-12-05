@@ -46,6 +46,10 @@ export class QxWidget extends QxObject {
         return this.getBoundingRect().width;
     }
 
+    getContentElement(): any {
+        return this.widget.getContentElement();
+    }
+
     getEnabled(): boolean {
         return this.widget.getEnabled();
     }

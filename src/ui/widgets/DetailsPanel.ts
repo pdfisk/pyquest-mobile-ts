@@ -5,13 +5,13 @@ import { QxHBox } from "../../qx/ui/mobile/container/QxHBox";
 import { QxVBox } from "../../qx/ui/mobile/container/QxVBox";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxSelectBox } from "../../qx/ui/mobile/form/QxSelectBox";
-import { QxTextArea } from "../../qx/ui/mobile/form/QxTextArea";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { CategoryUtil } from "../../util/CategoryUtil";
+import { MarkdownEditor } from "./markdown/widgets/MarkdownEditor";
 
 export class DetailsPanel extends QxVBox {
     category: QxTextField = new QxTextField;
-    description: QxTextArea = new QxTextArea;
+    description: MarkdownEditor = new MarkdownEditor;
     name: QxTextField = new QxTextField;
     selectBox: QxSelectBox = new QxSelectBox;
 
