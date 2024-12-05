@@ -24,6 +24,14 @@ export class QxWidget extends QxObject {
         this.widget.addListenerOnce(eventName, fn, context);
     }
 
+    blur() {
+        this.getContentElement().blur();
+    }
+
+    focus() {
+        this.getContentElement().focus();
+    }
+
     initialize() {
         super.initialize();
         if (this.handlesOnAppear())

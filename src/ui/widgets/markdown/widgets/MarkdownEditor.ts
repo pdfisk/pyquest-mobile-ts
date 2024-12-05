@@ -1,5 +1,7 @@
-import { EditorConstants } from "../../../../constants";
+import { EditorConstants, EventConstants } from "../../../../constants";
+import { MessageBus } from "../../../../messages";
 import { QxComposite } from "../../../../qx/ui/mobile/container/QxComposite";
+import { DeferredCall } from "../../../../util";
 
 export class MarkdownEditor extends QxComposite {
     ace: any;
@@ -34,9 +36,24 @@ export class MarkdownEditor extends QxComposite {
         this.setValue(this.initValue);
     }
 
-    setValue(value: string) {
+    resize() {
         if (this.editor)
+            setTimeout(() => {
+                this.editor.resize()
+                this.setLine(0);
+            }, EditorConstants.ResizeDelay);
+    }
+
+    setLine(line: number) {
+        if (this.editor)
+            this.editor.moveCursorTo(line - 1, 0);
+    }
+
+    setValue(value: string) {
+        if (this.editor) {
             this.editor.setValue(value);
+            this.resize();
+        }
         else
             this.initValue = value;
     }
