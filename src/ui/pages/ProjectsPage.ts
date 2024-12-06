@@ -313,7 +313,6 @@ export class ProjectsPage extends AbstractDataListPage {
         this.categoryLabel = label;
         const tag = StringUtil.asTag(label);
         this.dataStore.setCategoryFilter(tag);
-        // MessageBus.dispatch(EventConstants.CatagoryChanged);
     }
 
 }

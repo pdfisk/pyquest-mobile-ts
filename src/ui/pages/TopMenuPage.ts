@@ -70,6 +70,7 @@ export class TopMenuPage extends AbstractPage {
             { title: PageConstants.titleBoard, subtitle: PageConstants.subtitleBoard, path: PageConstants.pathBoard, },
             { title: PageConstants.titleStatus, subtitle: PageConstants.subtitleStatus, path: PageConstants.pathStatus },
             { title: this.loginTitle, subtitle: this.loginSubtitle, path: PageConstants.pathLogin },
+            { title: PageConstants.titleHelp, subtitle: PageConstants.subtitleHelp, path: PageConstants.pathHelp },
             { title: PageConstants.titleSupport, subtitle: PageConstants.subtitleForum, path: UrlConstants.pyquest_forum },
         ];
     }

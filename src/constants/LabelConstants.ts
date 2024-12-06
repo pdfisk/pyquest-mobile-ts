@@ -60,6 +60,7 @@ export class LabelConstants {
     static PageDelete: string = 'Delete';
     static PageDetails: string = 'Details';
     static PageEditor: string = 'Editor';
+    static PageHelpMenu: string = 'Help Menu';
     static PageLogin: string = 'Login';
     static PageNew: string = 'New';
     static PageProjects: string = 'Projects';

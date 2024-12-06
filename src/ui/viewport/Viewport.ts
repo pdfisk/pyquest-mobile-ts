@@ -8,6 +8,7 @@ import { BoardPage } from '../pages/BoardPage';
 import { DeletePage } from '../pages/DeletePage';
 import { DetailsPage } from '../pages/DetailsPage';
 import { EditorPage } from '../pages/EditorPage';
+import { HelpPage } from '../pages/HelpPage';
 import { LoginPage } from '../pages/LoginPage';
 import { NewPage } from '../pages/NewPage';
 import { ProjectsPage } from '../pages/ProjectsPage';
@@ -25,6 +26,7 @@ export class Viewport extends QxComposite {
     pageDelete: DeletePage;
     pageDetails: DetailsPage;
     pageEditor: EditorPage;
+    pageHelp: HelpPage;
     pageLogin: LoginPage;
     pageNew: NewPage;
     pageProjects: ProjectsPage;
@@ -54,6 +56,7 @@ export class Viewport extends QxComposite {
         this.pageDelete = DeletePage.getInstance();
         this.pageDetails = DetailsPage.getInstance();
         this.pageEditor = EditorPage.getInstance();
+        this.pageHelp = HelpPage.getInstance();
         this.pageLogin = LoginPage.getInstance();
         this.pageNew = NewPage.getInstance();
         this.pageProjects = ProjectsPage.getInstance();
@@ -71,7 +74,7 @@ export class Viewport extends QxComposite {
     addDetailPages() {
         this.manager.addDetailPages([
             this.pageBoard, this.pageDelete, this.pageDetails, this.pageEditor,
-            this.pageLogin, this.pageNew, this.pageProjects, this.pageRegister,
+            this.pageHelp, this.pageLogin, this.pageNew, this.pageProjects, this.pageRegister,
             this.pageRename, this.pageSelect, this.pageStatus, this.pageTranscript
         ]);
     }
@@ -85,6 +88,7 @@ export class Viewport extends QxComposite {
         this.routing.onGet(PageConstants.routeDelete, this.pageDelete);
         this.routing.onGet(PageConstants.routeDetails, this.pageDetails);
         this.routing.onGet(PageConstants.routeEditor, this.pageEditor);
+        this.routing.onGet(PageConstants.routeHelp, this.pageHelp);
         this.routing.onGet(PageConstants.routeLogin, this.pageLogin);
         this.routing.onGet(PageConstants.routeNew, this.pageNew);
         this.routing.onGet(PageConstants.routeProjects, this.pageProjects);
