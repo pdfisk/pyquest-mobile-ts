@@ -21,8 +21,10 @@ export class LabelConstants {
     static ButtonLabelDesktop: string = 'Desktop';
     static ButtonLabelDetails: string = 'Details';
     static ButtonLabelEditor: string = 'Editor';
+    static ButtonLabelHtml: string = 'Html';
     static ButtonLabelLogin: string = 'Login';
     static ButtonLabelLogout: string = 'Logout';
+    static ButtonLabelMarkdown: string = 'Markdown';
     static ButtonLabelProjects: string = 'Projects';
     static ButtonLabelRefresh: string = 'Refresh';
     static ButtonLabelRegister: string = 'Register';

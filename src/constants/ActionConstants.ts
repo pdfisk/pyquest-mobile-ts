@@ -13,9 +13,11 @@ export class ActionConstants {
     static ActionDelete: string = 'delete';
     static ActionDetails: string = 'details';
     static ActionEditor: string = 'editor';
+    static ActionHtml: string = 'html';
     static ActionLogin: string = 'login';
     static ActionLogout: string = 'logout';
     static ActionMessage: string = 'message';
+    static ActionMarkdown: string = 'markdown';
     static ActionMoveTile: string = 'move_tile';
     static ActionNew: string = 'new';
     static ActionPlay: string = 'play';

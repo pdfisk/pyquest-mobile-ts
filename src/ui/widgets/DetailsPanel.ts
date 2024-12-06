@@ -7,11 +7,11 @@ import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxSelectBox } from "../../qx/ui/mobile/form/QxSelectBox";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { CategoryUtil } from "../../util/CategoryUtil";
-import { MarkdownEditor } from "./markdown/widgets/MarkdownEditor";
+import { MarkdownPanel } from "./markdown/MarkdownPanel";
 
 export class DetailsPanel extends QxVBox {
     category: QxTextField = new QxTextField;
-    description: MarkdownEditor = new MarkdownEditor;
+    markdownPanel: MarkdownPanel = new MarkdownPanel;
     name: QxTextField = new QxTextField;
     selectBox: QxSelectBox = new QxSelectBox;
 
@@ -31,7 +31,7 @@ export class DetailsPanel extends QxVBox {
         this.selectBox.setModel(CategoryUtil.getCategories());
         this.selectBox.setPlaceholder(CategoryConstants.CategoryPlaceholder);
         this.addRow(LabelConstants.FieldLabelCategories, this.selectBox, false, SizeConstants.DetailsSelectionLeftMargin);
-        this.addRow(LabelConstants.FieldLabelDescription, this.description, true);
+        this.addRow(LabelConstants.FieldLabelDescription, this.markdownPanel, true);
     }
 
     addRow(name: string, item: QxWidget, fullWidth: boolean = false, leftMargin: number = SizeConstants.DetailsLeftMargin): QxHBox {
@@ -51,7 +51,7 @@ export class DetailsPanel extends QxVBox {
     }
 
     clear() {
-        this.description.clear();
+        this.markdownPanel.clear();
     }
 
     getCategory(): string {
@@ -59,7 +59,7 @@ export class DetailsPanel extends QxVBox {
     }
 
     getDescription(): string {
-        return this.description.getValue();
+        return this.markdownPanel.getValue();
     }
 
     onChangeSelectBoxSelection(evt: any) {
@@ -73,7 +73,7 @@ export class DetailsPanel extends QxVBox {
     }
 
     setDescription(description: string) {
-        this.description.setValue(description);
+        this.markdownPanel.setValue(description);
     }
 
     setName(name: string) {
@@ -82,6 +82,14 @@ export class DetailsPanel extends QxVBox {
 
     showCurrentCategory(value: string) {
         this.category.setValue(value);
+    }
+
+    showEditor() {
+        this.markdownPanel.showEditor();
+    }
+
+    showHtml() {
+        this.markdownPanel.showHtml();
     }
 
 }

@@ -1,7 +1,5 @@
-import { EditorConstants, EventConstants } from "../../../../constants";
-import { MessageBus } from "../../../../messages";
+import { EditorConstants } from "../../../../constants";
 import { QxComposite } from "../../../../qx/ui/mobile/container/QxComposite";
-import { DeferredCall } from "../../../../util";
 
 export class MarkdownEditor extends QxComposite {
     ace: any;

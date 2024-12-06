@@ -10,6 +10,7 @@ import { ProjectsPage } from "./ProjectsPage";
 
 export class DetailsPage extends AbstractPage {
     detailsPanel: DetailsPanel = new DetailsPanel;
+    editorButton: QxButton | null = null;
     saveButton: QxButton | null = null;
     static instance: DetailsPage;
 
@@ -52,12 +53,18 @@ export class DetailsPage extends AbstractPage {
     defaultButtons(): string[] {
         if (SessionStatus.isLoggedInAsAdmin())
             return [
+                LabelConstants.ButtonLabelBack,
                 LabelConstants.ButtonLabelClear,
-                LabelConstants.ButtonLabelEditor,
+                LabelConstants.ButtonLabelMarkdown,
+                LabelConstants.ButtonLabelHtml,
                 LabelConstants.ButtonLabelSave
-            ]
+            ];
         else
-            return [LabelConstants.ButtonLabelBack];
+            return [
+                LabelConstants.ButtonLabelBack,
+                LabelConstants.ButtonLabelMarkdown,
+                LabelConstants.ButtonLabelHtml
+            ];
     }
 
     disableSave() {
@@ -88,6 +95,7 @@ export class DetailsPage extends AbstractPage {
         super.onAppear();
         this.addPageContent();
         this.resize();
+        this.editorButton = this.buttonbar.getButtonFromLabel(LabelConstants.ButtonLabelEditor);
         this.saveButton = this.buttonbar.getButtonFromLabel(LabelConstants.ButtonLabelSave);
         if (!SessionStatus.isLoggedIn())
             this.disableSave();
@@ -97,8 +105,14 @@ export class DetailsPage extends AbstractPage {
         this.detailsPanel.clear();
     }
 
-    onEditor() {
-        this.showEditor();
+    onMarkdown() {
+        this.detailsPanel.showEditor();
+        this.editorButton?.setLabel(LabelConstants.ButtonLabelHtml)
+    }
+
+    onHtml() {
+        this.detailsPanel.showHtml();
+        this.editorButton?.setLabel(LabelConstants.ButtonLabelMarkdown)
     }
 
     onSave() {
@@ -131,8 +145,11 @@ export class DetailsPage extends AbstractPage {
             case ActionConstants.ActionClear:
                 this.onClear();
                 break;
-            case ActionConstants.ActionEditor:
-                this.onEditor();
+            case ActionConstants.ActionHtml:
+                this.onHtml();
+                break;
+            case ActionConstants.ActionMarkdown:
+                this.onMarkdown();
                 break;
             case ActionConstants.ActionSave:
                 this.onSave();
