@@ -1,6 +1,7 @@
 export class UrlConstants {
     // services
-    static helpIndex: string = 'resource/data/help/index.md';
+    static helpFolder: string = 'resource/data/help';
+    static helpIndex: string = 'index';
     static heroku: string = 'vistapython-7ee93adc9411.herokuapp.com';
     static http: string = 'http';
     static https: string = 'https';

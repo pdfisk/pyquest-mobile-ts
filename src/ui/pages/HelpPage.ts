@@ -16,18 +16,28 @@ export class HelpPage extends AbstractPage {
         return this.instance;
     }
 
+    static setHtml(html: string) {
+        this.getInstance().setHtml(html);
+    }
+
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageHelpMenu);
         this.htmlPanel = new QxHtml;
         this.scroll = new QxScroll();
+        (window as any).app.displayPage = this.displayPage;
     }
 
     addContent() {
-        const fn = (html: string) => { this.htmlPanel.setHtml(html) };
-        MarkdownUtil.readMarkdownPage(UrlConstants.helpIndex, fn);
         this.scroll.add(this.htmlPanel);
         this.addContentWidget(this.scroll);
+        this.displayPage(UrlConstants.helpIndex);
+    }
+
+    displayPage(page: string) {
+        const fn = (html: string) => { HelpPage.setHtml(html) };
+        const path = `${UrlConstants.helpFolder}/${page}.md`;
+        MarkdownUtil.readMarkdownPage(path, fn);
     }
 
     hasButtonBar(): boolean {
@@ -43,6 +53,10 @@ export class HelpPage extends AbstractPage {
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+    }
+
+    setHtml(html: string) {
+        this.htmlPanel.setHtml(html);
     }
 
 }
