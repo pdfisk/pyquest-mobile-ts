@@ -40,8 +40,8 @@ export class BrowserUtil {
         window.open(url, '_blank');
     }
 
-    static readInfoData(fn: Function) {
-        fetch(UrlConstants.infoData)
+    static readInfoIndex(fn: Function) {
+        fetch(UrlConstants.infoIndex)
             .then(response => response.json())
             .then(data => fn(data));
     }

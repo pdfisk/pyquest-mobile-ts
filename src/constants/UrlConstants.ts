@@ -1,9 +1,10 @@
 export class UrlConstants {
     // services
+    static helpIndex: string = 'resource/data/help/index.md';
     static heroku: string = 'vistapython-7ee93adc9411.herokuapp.com';
     static http: string = 'http';
     static https: string = 'https';
-    static infoData: string = 'resource/data/info.json';
+    static infoIndex: string = 'resource/data/info.json';
     static ipify: string = 'https://api.ipify.org?format=json';
     static local9080: string = 'localhost:9080';
     static local9081: string = 'localhost:9081';
