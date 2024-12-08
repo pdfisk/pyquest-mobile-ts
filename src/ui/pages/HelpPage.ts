@@ -4,10 +4,8 @@ import { QxIframe } from "../../qx/ui/embed/QxIframe";
 import { QxComposite } from "../../qx/ui/mobile/container/QxComposite";
 import { MarkdownUtil } from "../../util/MarkdownUtil";
 import { AbstractPage } from "./abstract/AbstractPage";
-import { QxTextArea } from "../../qx/ui/mobile/form/QxTextArea";
 
 export class HelpPage extends AbstractPage {
-    textArea: QxTextArea;
     holder: QxComposite;
     iframe: QxIframe;
     static instance: HelpPage;
@@ -25,7 +23,6 @@ export class HelpPage extends AbstractPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageHelpMenu);
-        this.textArea = new QxTextArea;
         this.holder = new QxComposite;
         this.iframe = new QxIframe;
         (window as any).app.helpPageBack = this.onBack;
@@ -34,7 +31,7 @@ export class HelpPage extends AbstractPage {
     }
 
     addContent() {
-        this.addContentWidget(this.textArea);
+        this.addContentWidget(this.holder);
         this.displayPage(UrlConstants.helpIndex);
     }
 
@@ -59,17 +56,36 @@ export class HelpPage extends AbstractPage {
     isContentReady(): boolean {
         return true;
     }
+
+    onAppear() {
+        if (this.hasAppeared)
+            return;
+        super.onAppear();
+        const e1 = this.holder.getContentElement();
+        const e2 = this.iframe.widget.getDomElement();
+        e1.append(e2);
+        this.resizeIframe()
+        // this.iframe.widget.setSource('./');
+    }
+
+    resizeIframe() {
+        const elem = this.iframe.widget.getDomElement();
+        elem.height = this.holder.getBoundingHeight();
+        elem.width = this.holder.getBoundingWidth();
+    }
  
     resizeWidthAndHeight(adjustedWidth: number, adjustedHeight: number) {
-        this.setTextAreaHeight(adjustedHeight - SizeConstants.TextPanelHeightAdjust);
+        this.setHolderHeight(adjustedHeight - SizeConstants.TextPanelHeightAdjust);
+        this.setHolderWidth(adjustedWidth);
+        this.resizeIframe();
     }
 
-    setTextAreaHeight(adjustedHeight: number) {
-        this.textArea?.setHeightPx(adjustedHeight);
+    setHolderHeight(adjustedHeight: number) {
+        this.holder?.setHeightPx(adjustedHeight);
     }
 
-    setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
-        console.log('setAdjustedWidthAndHeight', adjustedWidth, adjustedHeight);
+    setHolderWidth(adjustedWidth: number) {
+        this.holder?.setWidthPx(adjustedWidth);
     }
 
     setHtml(html: string) {

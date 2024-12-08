@@ -53,7 +53,7 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         if (this.topMenuButton !== null)
             return;
         this.topMenuButton = new TopMenuButton(this.widget._getButton());
-     }
+    }
 
     addExtraButtons() {
     }
@@ -127,7 +127,8 @@ export abstract class AbstractPage extends AbstractRoutingPage {
             this.selectBox.setSelection(index);
     }
 
-    abstract setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void;
+    setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+    };
 
     setBackButtonText(text: string) {
         this.widget.setBackButtonText(text);

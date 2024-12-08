@@ -12,7 +12,7 @@ export class QxIframe extends QxWidget {
     }
 
     setHtml(html: string) {
-        console.log('setHtml', html.length);
+        this.widget.getDocument().write(html);
     }
 
 }
