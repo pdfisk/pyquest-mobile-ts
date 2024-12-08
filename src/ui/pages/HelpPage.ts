@@ -1,13 +1,15 @@
-import { UrlConstants } from "../../constants";
+import { SizeConstants, UrlConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
-import { QxScroll } from "../../qx/ui/mobile/container/QxScroll";
-import { QxHtml } from "../../qx/ui/mobile/embed/QxHtml";
+import { QxIframe } from "../../qx/ui/embed/QxIframe";
+import { QxComposite } from "../../qx/ui/mobile/container/QxComposite";
 import { MarkdownUtil } from "../../util/MarkdownUtil";
 import { AbstractPage } from "./abstract/AbstractPage";
+import { QxTextArea } from "../../qx/ui/mobile/form/QxTextArea";
 
 export class HelpPage extends AbstractPage {
-    htmlPanel: QxHtml;
-    scroll: QxScroll;
+    textArea: QxTextArea;
+    holder: QxComposite;
+    iframe: QxIframe;
     static instance: HelpPage;
 
     static getInstance(): HelpPage {
@@ -23,14 +25,16 @@ export class HelpPage extends AbstractPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageHelpMenu);
-        this.htmlPanel = new QxHtml;
-        this.scroll = new QxScroll();
-        (window as any).app.displayPage = this.displayPage;
+        this.textArea = new QxTextArea;
+        this.holder = new QxComposite;
+        this.iframe = new QxIframe;
+        (window as any).app.helpPageBack = this.onBack;
+        (window as any).app.helpPageDisplay = this.displayPage;
+        (window as any).X = this;
     }
 
     addContent() {
-        this.scroll.add(this.htmlPanel);
-        this.addContentWidget(this.scroll);
+        this.addContentWidget(this.textArea);
         this.displayPage(UrlConstants.helpIndex);
     }
 
@@ -38,6 +42,10 @@ export class HelpPage extends AbstractPage {
         const fn = (html: string) => { HelpPage.setHtml(html) };
         const path = `${UrlConstants.helpFolder}/${page}.md`;
         MarkdownUtil.readMarkdownPage(path, fn);
+    }
+
+    hasBackButton(): boolean {
+        return false;
     }
 
     hasButtonBar(): boolean {
@@ -51,12 +59,21 @@ export class HelpPage extends AbstractPage {
     isContentReady(): boolean {
         return true;
     }
+ 
+    resizeWidthAndHeight(adjustedWidth: number, adjustedHeight: number) {
+        this.setTextAreaHeight(adjustedHeight - SizeConstants.TextPanelHeightAdjust);
+    }
+
+    setTextAreaHeight(adjustedHeight: number) {
+        this.textArea?.setHeightPx(adjustedHeight);
+    }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+        console.log('setAdjustedWidthAndHeight', adjustedWidth, adjustedHeight);
     }
 
     setHtml(html: string) {
-        this.htmlPanel.setHtml(html);
+        this.iframe.setHtml(html);
     }
 
 }

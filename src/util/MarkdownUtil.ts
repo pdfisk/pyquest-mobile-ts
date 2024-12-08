@@ -1,5 +1,4 @@
 export class MarkdownUtil {
-    converter: any;
     static instance: MarkdownUtil;
 
     static convertMarkdown(markdown: string): string {
@@ -16,12 +15,8 @@ export class MarkdownUtil {
         return this.instance;
     }
 
-    private constructor() {
-        this.converter = new (window as any).showdown.Converter;
-    }
-
     convertMarkdown(markdown: string): string {
-        return this.converter.makeHtml(markdown);
+        return (window as any).marked.parse(markdown);
     }
 
     readMarkdownPage(path: string, fn: Function) {

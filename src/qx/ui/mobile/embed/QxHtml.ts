@@ -12,8 +12,8 @@ export class QxHtml extends QxWidget {
     }
 
     setHtml(html: string) {
+        (window as any).X = html;
         this.widget.setHtml(html);
     }
-
 
 }

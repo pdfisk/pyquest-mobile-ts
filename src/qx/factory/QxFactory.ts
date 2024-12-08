@@ -1,11 +1,19 @@
 export class QxFactory {
 
+    static htmlIframe(): any {
+        return new (window as any).qx.html.Iframe;
+    }
+
     static mobileAbstract(): any {
         return new (window as any).qx.ui.mobile.layout.Absract;
     }
 
     static mobileAtom(): any {
         return new (window as any).qx.ui.mobile.basic.Atom;
+    }
+
+    static mobileBlocker(): any {
+        return (window as any).qx.ui.mobile.core.Blocker.getInstance();
     }
 
     static mobileButton(label: string): any {
