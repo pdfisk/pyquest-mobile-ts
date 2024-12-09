@@ -15,20 +15,27 @@ export class QxIframe extends QxWidget {
         this.messageHandler = messageHandler;
         IframeManager.subscribe(this);
         this.iframeWindow = this.widget.getWindow();
+        console.log('iframeWindow 1', this.iframeWindow);
         (window as any).X = this;
-    }
-
-    handlesOnAppear(): boolean {
-        return true;
     }
 
     getHtml(): string {
         return 'HTML';
     }
 
+    handlesOnAppear(): boolean {
+        return false;
+    }
+
     onAppear() {
-        super.onAppear();
-        // this.iframeWindow.name = this.name;
+        console.log('ON APPEAR');
+        this.widget.getDomElement().onload = () => { this.onLoad(); };
+    }
+
+    onLoad() {
+        console.log('onLoad');
+        this.iframeWindow = this.widget.getWindow();
+        this.iframeWindow.name = this.name;
     }
 
     recieveMessage(message: any) {
