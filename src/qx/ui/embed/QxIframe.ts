@@ -18,8 +18,17 @@ export class QxIframe extends QxWidget {
         (window as any).X = this;
     }
 
+    handlesOnAppear(): boolean {
+        return true;
+    }
+
     getHtml(): string {
         return 'HTML';
+    }
+
+    onAppear() {
+        super.onAppear();
+        // this.iframeWindow.name = this.name;
     }
 
     recieveMessage(message: any) {
