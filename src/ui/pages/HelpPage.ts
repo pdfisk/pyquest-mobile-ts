@@ -1,11 +1,12 @@
 import { SizeConstants, UrlConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
+import { IHandleMessage } from "../../interfaces/IHandleMessage";
 import { QxIframe } from "../../qx/ui/embed/QxIframe";
 import { QxComposite } from "../../qx/ui/mobile/container/QxComposite";
 import { MarkdownUtil } from "../../util/MarkdownUtil";
 import { AbstractPage } from "./abstract/AbstractPage";
 
-export class HelpPage extends AbstractPage {
+export class HelpPage extends AbstractPage implements IHandleMessage {
     holder: QxComposite;
     iframe: QxIframe;
     static instance: HelpPage;
@@ -24,10 +25,9 @@ export class HelpPage extends AbstractPage {
         super();
         this.setTitle(LabelConstants.PageHelpMenu);
         this.holder = new QxComposite;
-        this.iframe = new QxIframe;
+        this.iframe = new QxIframe(this);
         (window as any).app.helpPageBack = this.onBack;
         (window as any).app.helpPageDisplay = this.displayPage;
-        (window as any).X = this;
     }
 
     addContent() {
@@ -39,6 +39,10 @@ export class HelpPage extends AbstractPage {
         const fn = (html: string) => { HelpPage.setHtml(html) };
         const path = `${UrlConstants.helpFolder}/${page}.md`;
         MarkdownUtil.readMarkdownPage(path, fn);
+    }
+
+    handleMessage(message: any): void {
+        console.log('HelpPage handleMessage', message);
     }
 
     hasBackButton(): boolean {
@@ -73,7 +77,7 @@ export class HelpPage extends AbstractPage {
         elem.height = this.holder.getBoundingHeight();
         elem.width = this.holder.getBoundingWidth();
     }
- 
+
     resizeWidthAndHeight(adjustedWidth: number, adjustedHeight: number) {
         this.setHolderHeight(adjustedHeight - SizeConstants.TextPanelHeightAdjust);
         this.setHolderWidth(adjustedWidth);
