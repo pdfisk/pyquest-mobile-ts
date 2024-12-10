@@ -4,18 +4,17 @@ import { QxFactory } from "../../factory";
 import { QxWidget } from "../mobile/core/QxWidget";
 
 export class QxIframe extends QxWidget {
+    iframeDocument: any;
     iframeWindow: any;
     messageHandler: IHandleMessage;
-    name: string;
     static counter: number = 0;
 
     constructor(messageHandler: IHandleMessage) {
         super(QxFactory.htmlIframe());
-        this.name = `iframe-${QxIframe.counter++}`;
+        this.widget.addListenerOnce('load', this.onLoad, this);
+        this.setName(`iframe-${QxIframe.counter++}`);
         this.messageHandler = messageHandler;
         IframeManager.subscribe(this);
-        this.iframeWindow = this.widget.getWindow();
-        console.log('iframeWindow 1', this.iframeWindow);
         (window as any).X = this;
     }
 
@@ -23,19 +22,14 @@ export class QxIframe extends QxWidget {
         return 'HTML';
     }
 
-    handlesOnAppear(): boolean {
-        return false;
-    }
-
-    onAppear() {
-        console.log('ON APPEAR');
-        this.widget.getDomElement().onload = () => { this.onLoad(); };
+    getName() {
+        return this.widget.getName();
     }
 
     onLoad() {
-        console.log('onLoad');
         this.iframeWindow = this.widget.getWindow();
-        this.iframeWindow.name = this.name;
+        this.iframeDocument = this.widget.getDocument();
+        this.iframeDocument.title = this.getName();
     }
 
     recieveMessage(message: any) {
@@ -43,12 +37,17 @@ export class QxIframe extends QxWidget {
     }
 
     sendMessage(message: any) {
-        const data = { name: this.name, message: message };
+        if (!this.iframeWindow) return;
+        const data = { name: this.getName(), message: message };
         this.iframeWindow.postMessage(data);
     }
 
     setHtml(html: string) {
         this.widget.getDocument().body.innerHTML = html;
+    }
+
+    setName(name: string) {
+        this.widget.setName(name);
     }
 
 }

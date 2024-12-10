@@ -19,14 +19,7 @@ export class IframeManager {
     }
 
     private constructor() {
-        console.log('IframeManager constructor');
         window.onmessage = messageEvent => { this.onMessage(messageEvent) };
-        // (window as any).qx.event.Registration.addListener(
-        //     window,
-        //     EventConstants.QxEventResize,
-        //     this.onResize,
-        //     this
-        // );
     }
 
     onMessage(messageEvent: any) {
@@ -38,18 +31,17 @@ export class IframeManager {
             if (iframe instanceof QxIframe)
                 iframe.recieveMessage(data.message);
         }
-        console.log('IframeManager onMessage', messageEvent);
     }
 
     subscribe(subscriber: QxIframe) {
-        if (this.subscribers.has(subscriber.name))
+        if (this.subscribers.has(subscriber.getName()))
             return;
-        this.subscribers.set(subscriber.name, subscriber);
+        this.subscribers.set(subscriber.getName(), subscriber);
     }
 
     unsubscribe(subscriber: QxIframe) {
-        if (this.subscribers.has(subscriber.name))
-            this.subscribers.delete(subscriber.name);
+        if (this.subscribers.has(subscriber.getName()))
+            this.subscribers.delete(subscriber.getName());
     }
 
 }
