@@ -5,8 +5,9 @@ import { QxFactory } from "../../factory";
 import { QxWidget } from "../mobile/core/QxWidget";
 
 export class QxIframe extends QxWidget {
-    iframeDocument: any;
-    iframeWindow: any;
+    deferredMessage: any = null;
+    iframeDocument: any = null;
+    iframeWindow: any = null;
     messageHandler: IHandleMessage;
     static counter: number = 0;
 
@@ -32,10 +33,14 @@ export class QxIframe extends QxWidget {
         this.iframeDocument = this.widget.getDocument();
         this.iframeDocument.title = this.getName();
         this.readIndexHtml();
+        if (this.deferredMessage) {
+            this.sendMessage(this.deferredMessage.action, this.deferredMessage.args);
+            this.deferredMessage = null;
+        }
     }
 
     readIndexHtml() {
-        const fn = (text:string) => {this.setHtml(text);};
+        const fn = (text: string) => { this.setHtml(text); };
         BrowserUtil.readTextFile('./iframe/index.html', fn);
     }
 
@@ -43,9 +48,13 @@ export class QxIframe extends QxWidget {
         this.messageHandler.handleMessage(message);
     }
 
-    sendMessage(message: any) {
-        if (!this.iframeWindow) return;
-        const data = { name: this.getName(), message: message };
+    sendMessage(action: string, args: any) {
+        console.log('sendMessage', action, args, this.deferredMessage === null);
+        if (!this.iframeWindow) {
+            this.deferredMessage = { action: action, args: args };
+            return;
+        }
+        const data = { name: this.getName(), action: action, args: args };
         this.iframeWindow.postMessage(data);
     }
 
@@ -55,10 +64,6 @@ export class QxIframe extends QxWidget {
 
     setName(name: string) {
         this.widget.setName(name);
-    }
-
-    setSource(url: string) {
-        this.widget.setSource(url);
     }
 
 }

@@ -27,7 +27,7 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
         this.holder = new QxComposite;
         this.iframe = new QxIframe(this);
         (window as any).app.helpPageBack = this.onBack;
-        (window as any).app.helpPageDisplay = this.displayPage;
+        (window as any).app.helpPageDisplay = (page: string) => { this.displayPage(page); };
     }
 
     addContent() {
@@ -36,9 +36,9 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
     }
 
     displayPage(page: string) {
-        // const fn = (html: string) => { HelpPage.setHtml(html) };
-        // const path = `${UrlConstants.helpFolder}/${page}.md`;
-        // MarkdownUtil.readMarkdownPage(path, fn);
+        const fn = (html: string) => { this.setPageContent(html); };
+        const path = `${UrlConstants.helpFolder}/${page}.md`;
+        MarkdownUtil.readMarkdownPage(path, fn);
     }
 
     handleMessage(message: any): void {
@@ -68,8 +68,7 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
         const e1 = this.holder.getContentElement();
         const e2 = this.iframe.widget.getDomElement();
         e1.append(e2);
-        this.resizeIframe()
-        // this.iframe.widget.setSource('./');
+        this.resizeIframe();
     }
 
     resizeIframe() {
@@ -90,6 +89,10 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
 
     setHolderWidth(adjustedWidth: number) {
         this.holder?.setWidthPx(adjustedWidth);
+    }
+
+    setPageContent(html: string) {
+        this.iframe.sendMessage('set_body', html);
     }
 
     setHtml(html: string) {
