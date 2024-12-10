@@ -36,9 +36,9 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
     }
 
     displayPage(page: string) {
-        const fn = (html: string) => { HelpPage.setHtml(html) };
-        const path = `${UrlConstants.helpFolder}/${page}.md`;
-        MarkdownUtil.readMarkdownPage(path, fn);
+        // const fn = (html: string) => { HelpPage.setHtml(html) };
+        // const path = `${UrlConstants.helpFolder}/${page}.md`;
+        // MarkdownUtil.readMarkdownPage(path, fn);
     }
 
     handleMessage(message: any): void {

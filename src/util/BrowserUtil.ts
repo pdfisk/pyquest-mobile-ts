@@ -46,4 +46,10 @@ export class BrowserUtil {
             .then(data => fn(data));
     }
 
+    static readTextFile(path: string, fn: Function) {
+        fetch(path)
+            .then(response => response.text())
+            .then(text => fn(text));
+    }
+
 }
