@@ -31,8 +31,8 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
         this.showPage(UrlConstants.helpIndex);
     }
 
-    handleMessage(message: any): void {
-        console.log('HelpPage handleMessage', message);
+    handleMessage(page: string): void {
+        this.showPage(page);
     }
 
     hasBackButton(): boolean {

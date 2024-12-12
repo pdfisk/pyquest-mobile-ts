@@ -27,10 +27,14 @@ export class QxIframe extends QxWidget {
     }
 
     onLoad() {
-         this.iframeWindow = this.widget.getWindow();
+        this.iframeWindow = this.widget.getWindow();
         this.iframeDocument = this.widget.getDocument();
         this.iframeDocument.title = this.name;
-        this.iframeWindow.showPage = function (args: any) { parent.postMessage({ name: document.title, action: 'showPage', args: args }); };
+        const data = { name: this.name, action: 'showPage', args: null };
+        this.iframeWindow.showPage = function (args: any) {
+            data.args = args;
+            parent.postMessage(data);
+        };
         // this.readIndexHtml();
     }
 
