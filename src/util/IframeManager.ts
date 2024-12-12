@@ -29,19 +29,19 @@ export class IframeManager {
         if (this.subscribers.has(name)) {
             const iframe = this.subscribers.get(name);
             if (iframe instanceof QxIframe)
-                iframe.recieveMessage(data.message);
+                iframe.recieveMessage(data.args);
         }
     }
 
     subscribe(subscriber: QxIframe) {
-        if (this.subscribers.has(subscriber.getName()))
+        if (this.subscribers.has(subscriber.name))
             return;
-        this.subscribers.set(subscriber.getName(), subscriber);
+        this.subscribers.set(subscriber.name, subscriber);
     }
 
     unsubscribe(subscriber: QxIframe) {
-        if (this.subscribers.has(subscriber.getName()))
-            this.subscribers.delete(subscriber.getName());
+        if (this.subscribers.has(subscriber.name))
+            this.subscribers.delete(subscriber.name);
     }
 
 }

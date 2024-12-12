@@ -64,6 +64,7 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
     onAppear() {
         if (this.hasAppeared)
             return;
+        console.log('HelpPage onAppear');
         super.onAppear();
         const e1 = this.holder.getContentElement();
         const e2 = this.iframe.widget.getDomElement();
@@ -92,11 +93,11 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
     }
 
     setPageContent(html: string) {
-        this.iframe.sendMessage('set_body', html);
+        // this.iframe.sendMessage('set_body', html);
     }
 
     setHtml(html: string) {
-        this.iframe.setHtml(html);
+        // this.iframe.setHtml(html);
     }
 
 }

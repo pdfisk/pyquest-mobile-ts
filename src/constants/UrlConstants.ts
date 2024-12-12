@@ -2,6 +2,7 @@ export class UrlConstants {
     // services
     static helpFolder: string = 'resource/data/help';
     static helpIndex: string = 'index';
+    static helpIndexUrl:string = './iframe/index.html';
     static heroku: string = 'vistapython-7ee93adc9411.herokuapp.com';
     static http: string = 'http';
     static https: string = 'https';
