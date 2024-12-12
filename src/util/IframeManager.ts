@@ -24,6 +24,7 @@ export class IframeManager {
 
     onMessage(messageEvent: any) {
         const data = messageEvent.data;
+        console.log('IframeManager', data);
         const name = data.name;
         if (!name) return;
         if (this.subscribers.has(name)) {

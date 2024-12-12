@@ -9,7 +9,7 @@ export class QxIframe extends QxWidget {
     deferredMessage: any = null;
     iframeDocument: any = null;
     iframeWindow: any = null;
-    // messageHandler: IHandleMessage;
+    messageHandler: IHandleMessage;
     name: string;
     static counter: number = 0;
 
@@ -17,9 +17,8 @@ export class QxIframe extends QxWidget {
         super(QxFactory.htmlIframe());
         this.name = `iframe-${QxIframe.counter++}`;
         this.widget.addListenerOnce('load', this.onLoad, this);
-        // this.messageHandler = messageHandler;
-        // IframeManager.subscribe(this);
-        // this.widget.setSource('./iframe/index.html');
+        this.messageHandler = messageHandler;
+        IframeManager.subscribe(this);
         (window as any).X = this;
     }
 
@@ -27,20 +26,13 @@ export class QxIframe extends QxWidget {
         return 'HTML';
     }
 
-    // handlesOnAppear(): boolean {
-    //     return true;
-    // }
-
-    // onAppear() {
-    //     super.onAppear();
-    //     console.log('QxIframe onAppear', this.iframeWindow.onmessage);
-    // }
-
     onLoad() {
         console.log('QxIframe onLoad', `[${this.name}]`);
         this.iframeWindow = this.widget.getWindow();
         this.iframeDocument = this.widget.getDocument();
         this.iframeDocument.title = this.name;
+        // this.iframeWindow.sendMessage = (x: any) => { parent.postMessage({ name: document.title, args: x }); };
+        this.iframeWindow.sendMessage = function (x: any) { console.log(x) }
         // this.readIndexHtml();
         // if (this.deferredMessage) {
         //     this.sendMessage(this.deferredMessage.action, this.deferredMessage.args);
@@ -57,7 +49,7 @@ export class QxIframe extends QxWidget {
     }
 
     recieveMessage(message: any) {
-        // this.messageHandler.handleMessage(message);
+        this.messageHandler.handleMessage(message);
     }
 
     sendMessage(action: string, args: any) {
@@ -68,6 +60,10 @@ export class QxIframe extends QxWidget {
         // }
         // const data = { action: action, args: args };
         // this.iframeWindow.postMessage(data);
+    }
+
+    setBodyHtml(html: string) {
+        this.iframeDocument.body.innerHTML = html;
     }
 
     setHtml(html: string) {
