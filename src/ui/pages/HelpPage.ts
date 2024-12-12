@@ -17,28 +17,18 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
         return this.instance;
     }
 
-    static setHtml(html: string) {
-        this.getInstance().setHtml(html);
-    }
-
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageHelpMenu);
         this.holder = new QxComposite;
         this.iframe = new QxIframe(this);
         (window as any).app.helpPageBack = this.onBack;
-        (window as any).app.helpPageDisplay = (page: string) => { this.displayPage(page); };
+        (window as any).app.helpPageDisplay = (page: string) => { this.showPage(page); };
     }
 
     addContent() {
         this.addContentWidget(this.holder);
-        this.displayPage(UrlConstants.helpIndex);
-    }
-
-    displayPage(page: string) {
-        const fn = (html: string) => { this.setPageContent(html); };
-        const path = `${UrlConstants.helpFolder}/${page}.md`;
-        MarkdownUtil.readMarkdownPage(path, fn);
+        this.showPage(UrlConstants.helpIndex);
     }
 
     handleMessage(message: any): void {
@@ -64,7 +54,6 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
     onAppear() {
         if (this.hasAppeared)
             return;
-        console.log('HelpPage onAppear');
         super.onAppear();
         const e1 = this.holder.getContentElement();
         const e2 = this.iframe.widget.getDomElement();
@@ -93,11 +82,13 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
     }
 
     setPageContent(html: string) {
-        // this.iframe.sendMessage('set_body', html);
+        this.iframe.setBodyHtml(html);
     }
 
-    setHtml(html: string) {
-        // this.iframe.setHtml(html);
+    showPage(page: string) {
+        const fn = (html: string) => { this.setPageContent(html); };
+        const path = `${UrlConstants.helpFolder}/${page}.md`;
+        MarkdownUtil.readMarkdownPage(path, fn);
     }
 
 }

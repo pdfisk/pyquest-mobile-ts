@@ -27,17 +27,11 @@ export class QxIframe extends QxWidget {
     }
 
     onLoad() {
-        console.log('QxIframe onLoad', `[${this.name}]`);
-        this.iframeWindow = this.widget.getWindow();
+         this.iframeWindow = this.widget.getWindow();
         this.iframeDocument = this.widget.getDocument();
         this.iframeDocument.title = this.name;
-        // this.iframeWindow.sendMessage = (x: any) => { parent.postMessage({ name: document.title, args: x }); };
-        this.iframeWindow.sendMessage = function (x: any) { console.log(x) }
+        this.iframeWindow.showPage = function (args: any) { parent.postMessage({ name: document.title, action: 'showPage', args: args }); };
         // this.readIndexHtml();
-        // if (this.deferredMessage) {
-        //     this.sendMessage(this.deferredMessage.action, this.deferredMessage.args);
-        //     this.deferredMessage = null;
-        // }
     }
 
     readIndexHtml() {
@@ -64,10 +58,6 @@ export class QxIframe extends QxWidget {
 
     setBodyHtml(html: string) {
         this.iframeDocument.body.innerHTML = html;
-    }
-
-    setHtml(html: string) {
-        // this.iframeDocument.write(html);
     }
 
 }
