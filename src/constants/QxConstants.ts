@@ -8,6 +8,7 @@ export class QxConstants {
     static DrawerOrientionLeft: string = 'left';
     static DrawerOrientionRight: string = 'right';
     static DrawerOrientionTop: string = 'top';
+    static IframeName:string = 'iframe';
     static QxObjectName: string = 'QxObject';
     static PopupDelay:number = 5000;
     static ToastDelay: number = 3000;

@@ -33,6 +33,7 @@ export class ActionConstants {
     static ActionSetSize: string = 'set_size';
     static ActionSetTileImage: string = 'set_tile_image';
     static ActionSetTileText: string = 'set_tile_text';
+    static ActionShowPage: string = 'showPage';
     static ActionSound: string = 'sound';
     static ActionStatus: string = 'status';
     static ActionStop: string = 'stop';

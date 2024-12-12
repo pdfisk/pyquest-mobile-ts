@@ -9,6 +9,7 @@ export class EventConstants {
     static QxEventAppear: string = 'appear';
     static QxEventChangeSelection: string = 'changeSelection';
     static QxEventClick: string = 'click';
+    static QxEventLoad: string = 'load';
     static QxEventLoaded: string = 'loaded';
     static QxEventOrientationChange: string = 'orientationchange';
     static QxEventResize: string = 'resize';

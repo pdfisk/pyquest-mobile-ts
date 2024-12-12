@@ -1,6 +1,5 @@
-import { UrlConstants } from "../../../constants";
+import { ActionConstants, EventConstants, QxConstants, UrlConstants } from "../../../constants";
 import { IHandleMessage } from "../../../interfaces/IHandleMessage";
-import { BrowserUtil } from "../../../util";
 import { IframeManager } from "../../../util/IframeManager";
 import { QxFactory } from "../../factory";
 import { QxWidget } from "../mobile/core/QxWidget";
@@ -15,11 +14,10 @@ export class QxIframe extends QxWidget {
 
     constructor(messageHandler: IHandleMessage) {
         super(QxFactory.htmlIframe());
-        this.name = `iframe-${QxIframe.counter++}`;
-        this.widget.addListenerOnce('load', this.onLoad, this);
+        this.name = `${QxConstants.IframeName}-${QxIframe.counter++}`;
+        this.widget.addListenerOnce(EventConstants.QxEventLoad, this.onLoad, this);
         this.messageHandler = messageHandler;
         IframeManager.subscribe(this);
-        (window as any).X = this;
     }
 
     getHtml(): string {
@@ -30,34 +28,15 @@ export class QxIframe extends QxWidget {
         this.iframeWindow = this.widget.getWindow();
         this.iframeDocument = this.widget.getDocument();
         this.iframeDocument.title = this.name;
-        const data = { name: this.name, action: 'showPage', args: null };
+        const data = { name: this.name, action: ActionConstants.ActionShowPage, args: null };
         this.iframeWindow.showPage = function (args: any) {
             data.args = args;
             parent.postMessage(data);
         };
-        // this.readIndexHtml();
-    }
-
-    readIndexHtml() {
-        // const fn = (text: string) => {
-        //      this.setHtml(text);
-        //      console.log('readIndexHtml', this.iframeWindow.onmessage);
-        //      };
-        // BrowserUtil.readTextFile(UrlConstants.helpIndexUrl, fn);
     }
 
     recieveMessage(message: any) {
         this.messageHandler.handleMessage(message);
-    }
-
-    sendMessage(action: string, args: any) {
-        // if (!this.iframeWindow || !this.iframeWindow.onmessage) {
-        //     this.deferredMessage = { action: action, args: args };
-        //     console.log('deferredMessage', action);
-        //     return;
-        // }
-        // const data = { action: action, args: args };
-        // this.iframeWindow.postMessage(data);
     }
 
     setBodyHtml(html: string) {
