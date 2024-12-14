@@ -25,6 +25,7 @@ export class QxIframe extends QxWidget {
     }
 
     onLoad() {
+        (window as any).X = this;
         this.iframeWindow = this.widget.getWindow();
         this.iframeDocument = this.widget.getDocument();
         this.iframeDocument.title = this.name;
@@ -33,6 +34,11 @@ export class QxIframe extends QxWidget {
             data.args = args;
             parent.postMessage(data);
         };
+        const link = this.iframeDocument.createElement('link');
+        link.type = 'text/css';
+        link.rel = 'stylesheet';
+        this.iframeDocument.head.appendChild(link);
+        link.href = 'iframe/swiss.css'
     }
 
     recieveMessage(message: any) {
