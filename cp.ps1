@@ -1,1 +1,1 @@
-Copy-Item ./dist/mobile.js ../../heroku/public/js
+Copy-Item ./dist/mobile.js ../../xampp/htdocs/public/js
