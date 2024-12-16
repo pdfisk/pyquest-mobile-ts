@@ -6,6 +6,7 @@ import { QxWidget } from "../mobile/core/QxWidget";
 
 export class QxIframe extends QxWidget {
     deferredMessage: any = null;
+    hasLoaded:boolean = false;
     iframeDocument: any = null;
     iframeWindow: any = null;
     messageHandler: IHandleMessage;
@@ -26,19 +27,23 @@ export class QxIframe extends QxWidget {
 
     onLoad() {
         (window as any).X = this;
+        if (this.hasLoaded)
+            return;
+        this.hasLoaded = true;
         this.iframeWindow = this.widget.getWindow();
         this.iframeDocument = this.widget.getDocument();
         this.iframeDocument.title = this.name;
-        const data = { name: this.name, action: ActionConstants.ActionShowPage, args: null };
-        this.iframeWindow.showPage = function (args: any) {
-            data.args = args;
-            parent.postMessage(data);
-        };
-        const link = this.iframeDocument.createElement('link');
-        link.type = 'text/css';
-        link.rel = 'stylesheet';
-        this.iframeDocument.head.appendChild(link);
-        link.href = 'iframe/swiss.css'
+        this.iframeWindow.location.href='http://localhost/public/iframe/index.html'
+        // const data = { name: this.name, action: ActionConstants.ActionShowPage, args: null };
+        // this.iframeWindow.showPage = function (args: any) {
+        //     data.args = args;
+        //     parent.postMessage(data);
+        // };
+        // const link = this.iframeDocument.createElement('link');
+        // link.type = 'text/css';
+        // link.rel = 'stylesheet';
+        // this.iframeDocument.head.appendChild(link);
+        // link.href = 'iframe/swiss.css'
     }
 
     recieveMessage(message: any) {
@@ -46,7 +51,7 @@ export class QxIframe extends QxWidget {
     }
 
     setBodyHtml(html: string) {
-        this.iframeDocument.body.innerHTML = html;
+        // this.iframeDocument.body.innerHTML = html;
     }
 
 }
