@@ -61,6 +61,8 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
         this.resizeIframe();
         this.iframe.addStylesheet('bootstrap');
         this.iframe.addStylesheet('bootstrap-grid');
+        this.iframe.addJavascript('jquery-3.7.1');
+        this.iframe.addJavascript('bootstrap.bundle');
     }
 
     resizeIframe() {
