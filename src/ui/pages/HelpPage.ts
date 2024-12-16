@@ -3,6 +3,7 @@ import { LabelConstants } from "../../constants/LabelConstants";
 import { IHandleMessage } from "../../interfaces/IHandleMessage";
 import { QxIframe } from "../../qx/ui/embed/QxIframe";
 import { QxComposite } from "../../qx/ui/mobile/container/QxComposite";
+import { BrowserUtil } from "../../util";
 import { MarkdownUtil } from "../../util/MarkdownUtil";
 import { AbstractPage } from "./abstract/AbstractPage";
 
@@ -87,8 +88,8 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
 
     showPage(page: string) {
         const fn = (html: string) => { this.setPageContent(html); };
-        const path = `${UrlConstants.helpFolder}/${page}.md`;
-        MarkdownUtil.readMarkdownPage(path, fn);
+        const path = `${UrlConstants.helpIndexUrl}/${page}.html`;
+        BrowserUtil.readTextFile(path, fn);
     }
 
 }
