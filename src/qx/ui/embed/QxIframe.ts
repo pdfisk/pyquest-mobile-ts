@@ -21,6 +21,21 @@ export class QxIframe extends QxWidget {
         IframeManager.subscribe(this);
     }
 
+    addJavascript(name:string) {
+        const script = this.iframeDocument.createElement('script');
+        script.type = 'text/javascript';
+        this.iframeDocument.head.appendChild(script);
+        script.src = `./iframe/js/${name}.min.js`;
+    }
+
+    addStylesheet(name:string) {
+        const link = this.iframeDocument.createElement('link');
+        link.type = 'text/css';
+        link.rel = 'stylesheet';
+        this.iframeDocument.head.appendChild(link);
+        link.href = `./iframe/css/${name}.min.css`;
+    }
+
     getHtml(): string {
         return 'HTML';
     }
@@ -33,17 +48,11 @@ export class QxIframe extends QxWidget {
         this.iframeWindow = this.widget.getWindow();
         this.iframeDocument = this.widget.getDocument();
         this.iframeDocument.title = this.name;
-        // this.iframeWindow.location.href='http://localhost/public/iframe/index.html'
         const data = { name: this.name, action: ActionConstants.ActionShowPage, args: null };
         this.iframeWindow.showPage = function (args: any) {
             data.args = args;
             parent.postMessage(data);
         };
-        const link = this.iframeDocument.createElement('link');
-        link.type = 'text/css';
-        link.rel = 'stylesheet';
-        this.iframeDocument.head.appendChild(link);
-        // link.href = 'iframe/swiss.css'
     }
 
     recieveMessage(message: any) {

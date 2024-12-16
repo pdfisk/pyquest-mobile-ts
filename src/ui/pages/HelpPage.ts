@@ -4,7 +4,6 @@ import { IHandleMessage } from "../../interfaces/IHandleMessage";
 import { QxIframe } from "../../qx/ui/embed/QxIframe";
 import { QxComposite } from "../../qx/ui/mobile/container/QxComposite";
 import { BrowserUtil } from "../../util";
-import { MarkdownUtil } from "../../util/MarkdownUtil";
 import { AbstractPage } from "./abstract/AbstractPage";
 
 export class HelpPage extends AbstractPage implements IHandleMessage {
@@ -60,6 +59,8 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
         const e2 = this.iframe.widget.getDomElement();
         e1.append(e2);
         this.resizeIframe();
+        this.iframe.addStylesheet('bootstrap');
+        this.iframe.addStylesheet('bootstrap-grid');
     }
 
     resizeIframe() {
