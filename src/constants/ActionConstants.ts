@@ -44,6 +44,8 @@ export class ActionConstants {
     static FunctionGetTranscriptPanel: string = 'getTranscriptPanel';
     static FunctionSetActiveTab: string = 'setActiveTab';
 
+    static IframeShowPage:string = 'showPage';
+
     static MoveDirectionDown: string = 'down';
     static MoveDirectionLeft: string = 'left';
     static MoveDirectionRight: string = 'right';

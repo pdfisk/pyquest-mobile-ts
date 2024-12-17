@@ -21,12 +21,16 @@ export class QxIframe extends QxWidget {
         IframeManager.subscribe(this);
     }
 
-    addFunction(fnName:string, action:string) {
+    addFunction(fnName: string, action: string) {
         const data = { name: this.name, action: action, args: null };
         this.iframeWindow[fnName] = function (args: any) {
             data.args = args;
             parent.postMessage(data);
         };
+    }
+
+    addFunctions() {
+        this.addFunction(ActionConstants.IframeShowPage, ActionConstants.ActionShowPage);
     }
 
     addJavascript(name: string) {
@@ -52,7 +56,7 @@ export class QxIframe extends QxWidget {
         this.iframeWindow = this.widget.getWindow();
         this.iframeDocument = this.widget.getDocument();
         this.iframeDocument.title = this.name;
-        this.addFunction('showPage', ActionConstants.ActionShowPage);
+        this.addFunctions();
     }
 
     recieveMessage(message: any) {
