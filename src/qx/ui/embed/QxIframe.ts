@@ -64,6 +64,8 @@ export class QxIframe extends QxWidget {
     }
 
     setBodyHtml(html: string) {
+        const msg = html ? html.length : 'NULL';
+        console.log('setBodyHtml [', msg, ']');
         this.iframeDocument.body.innerHTML = html;
     }
 
