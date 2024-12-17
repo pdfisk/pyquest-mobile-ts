@@ -30,7 +30,8 @@ export class QxIframe extends QxWidget {
     }
 
     addFunctions() {
-        this.addFunction(ActionConstants.IframeShowPage, ActionConstants.ActionShowPage);
+        this.addFunction(ActionConstants.IframeFunctionGotoPage, ActionConstants.IframeActionGotoPage);
+        this.addFunction(ActionConstants.IframeFunctionShowPage, ActionConstants.IframeActionShowPage);
     }
 
     addJavascript(name: string) {
@@ -65,7 +66,6 @@ export class QxIframe extends QxWidget {
 
     setBodyHtml(html: string) {
         const msg = html ? html.length : 'NULL';
-        console.log('setBodyHtml [', msg, ']');
         this.iframeDocument.body.innerHTML = html;
     }
 

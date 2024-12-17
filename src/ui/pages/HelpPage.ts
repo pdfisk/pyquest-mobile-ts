@@ -32,6 +32,7 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
     }
 
     handleMessage(page: string): void {
+        console.log('handleMessage', page);
         this.showPage(page);
     }
 

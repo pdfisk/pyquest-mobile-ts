@@ -33,7 +33,6 @@ export class ActionConstants {
     static ActionSetSize: string = 'set_size';
     static ActionSetTileImage: string = 'set_tile_image';
     static ActionSetTileText: string = 'set_tile_text';
-    static ActionShowPage: string = 'showPage';
     static ActionSound: string = 'sound';
     static ActionStatus: string = 'status';
     static ActionStop: string = 'stop';
@@ -44,7 +43,10 @@ export class ActionConstants {
     static FunctionGetTranscriptPanel: string = 'getTranscriptPanel';
     static FunctionSetActiveTab: string = 'setActiveTab';
 
-    static IframeShowPage:string = 'showPage';
+    static IframeActionGotoPage: string = 'gotoPage';
+    static IframeActionShowPage: string = 'showPage';
+    static IframeFunctionGotoPage: string = 'gotoPage';
+    static IframeFunctionShowPage: string = 'showPage';
 
     static MoveDirectionDown: string = 'down';
     static MoveDirectionLeft: string = 'left';
