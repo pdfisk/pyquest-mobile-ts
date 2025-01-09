@@ -20,7 +20,7 @@ export class Server {
         const fn = (reply: any) => {
             //  console.log(reply);
         };
-        this.getInstance().sendPostRequest(ServerConstants.ServiceLog, data, fn);
+        // this.getInstance().sendPostRequest(ServerConstants.ServiceLog, data, fn);
     }
 
     static login(name: string, password: string, fn: Function) {
