@@ -20,7 +20,7 @@ export class DetailsPanel extends QxVBox {
         this.name.setFontWeight(FontConstants.FontWeightBold);
         this.name.setReadOnly(true);
         this.name.setActivatable(false);
-        this.addRow(LabelConstants.FieldLabelName, this.name);
+        this.addRow(LabelConstants.FieldLabelUserName, this.name);
         this.category.setFontWeight(FontConstants.FontWeightBold);
         this.category.setReadOnly(true);
         this.category.setActivatable(false);

@@ -8,7 +8,7 @@ import { Server } from "../../server/Server";
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 
 export class LoginPage extends AbstractFormPage {
-    nameField: QxTextField;
+    usernameField: QxTextField;
     passwordField: QxPasswordField;
     static instance: LoginPage;
 
@@ -21,7 +21,7 @@ export class LoginPage extends AbstractFormPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageLogin);
-        this.nameField = new QxTextField;
+        this.usernameField = new QxTextField;
         this.passwordField = new QxPasswordField;
         MessageBus.subscribe(EventConstants.EventSessionStatusChanged, this.onSessionStatusChanged, this);
     }
@@ -29,9 +29,9 @@ export class LoginPage extends AbstractFormPage {
     addPageContent() {
         const items: QxWidget[] = [];
         const names: string[] = [];
-        items.push(this.nameField);
+        items.push(this.usernameField);
         items.push(this.passwordField);
-        names.push(LabelConstants.FieldLabelName);
+        names.push(LabelConstants.FieldLabelUserName);
         names.push(LabelConstants.FieldLabelPassword);
         this.addItems(items, names);
     }
@@ -44,8 +44,8 @@ export class LoginPage extends AbstractFormPage {
         ];
     }
 
-    getName(): string {
-        return this.nameField.getValue();
+    getUserName(): string {
+        return this.usernameField.getValue();
     }
 
     getPassword(): string {
@@ -60,7 +60,7 @@ export class LoginPage extends AbstractFormPage {
     }
 
     onClear() {
-        this.nameField.clear();
+        this.usernameField.clear();
         this.passwordField.clear();
     }
 
@@ -70,7 +70,7 @@ export class LoginPage extends AbstractFormPage {
             MessageBus.dispatch(EventConstants.EventSessionStatusChanged, { status: SessionConstants.SessionLoggedOut });
             return;
         }
-        const name: string = this.getName();
+        const username: string = this.getUserName();
         const password: string = this.getPassword();
         const fn: Function = (reply: any) => {
             const response = reply.getResponse();
@@ -87,7 +87,7 @@ export class LoginPage extends AbstractFormPage {
                     break;
             };
         }
-        Server.login(name, password, fn);
+        Server.login(username, password, fn);
     }
 
     onSessionLoggedInAsAdmin() {

@@ -6,7 +6,7 @@ import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 
 export class RegisterPage extends AbstractFormPage {
-    nameField: QxTextField;
+    usernameField: QxTextField;
     passwordField: QxPasswordField;
     static instance: RegisterPage;
 
@@ -19,16 +19,16 @@ export class RegisterPage extends AbstractFormPage {
     private constructor() {
         super();
         this.setTitle(LabelConstants.PageRegister);
-        this.nameField = new QxTextField;
+        this.usernameField = new QxTextField;
         this.passwordField = new QxPasswordField;
    }
 
     addPageContent() {
         const items: QxWidget[] = [];
         const names: string[] = [];
-        items.push(this.nameField);
+        items.push(this.usernameField);
         items.push(this.passwordField);
-        names.push(LabelConstants.FieldLabelName);
+        names.push(LabelConstants.FieldLabelUserName);
         names.push(LabelConstants.FieldLabelPassword);
         this.addItems(items, names);
     }
@@ -41,8 +41,8 @@ export class RegisterPage extends AbstractFormPage {
         ];
     }
 
-    getName(): string {
-        return this.nameField.getValue();
+    getUserName(): string {
+        return this.usernameField.getValue();
     }
 
     getPassword(): string {
@@ -57,9 +57,9 @@ export class RegisterPage extends AbstractFormPage {
     }
 
     onSave() {
-        const name: string = this.getName();
+        const username: string = this.getUserName();
         const password: string = this.getPassword();
-        console.log('RegisterPage onSave', name, password);
+        console.log('RegisterPage onSave', username, password);
     }
 
     onTap(action: string) {

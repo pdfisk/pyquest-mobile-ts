@@ -1,4 +1,5 @@
 import { ServerConstants } from "../constants/ServerConstants";
+import { StringUtil } from "../util";
 import { ServerUtil } from "./ServerUtil";
 
 export class Server {
@@ -23,16 +24,16 @@ export class Server {
         // this.getInstance().sendPostRequest(ServerConstants.ServiceLog, data, fn);
     }
 
-    static login(name: string, password: string, fn: Function) {
-        this.getInstance().login(name, password, fn);
+    static login(username: string, password: string, fn: Function) {
+        this.getInstance().login(username, password, fn);
     }
 
     static newProject() {
         this.getInstance().newProject();
     }
 
-    static register(name: string, password: string, fn: Function) {
-        this.getInstance().register(name, password, fn);
+    static register(username: string, password: string, fn: Function) {
+        this.getInstance().register(username, password, fn);
     }
 
     static sendDeleteRequest(service: string, id: number, data: any, fn: Function) {
@@ -59,8 +60,8 @@ export class Server {
         console.log('deleteProject', data);
     }
 
-    login(name: string, passwd: string, fn: Function) {
-        const data = { name: name, passwd: passwd };
+    login(username: string, password: string, fn: Function) {
+        const data = { username: username, password: StringUtil.toEncodedPassword(password) };
         this.sendGetRequest(ServerConstants.ServiceLogin, data, fn);
     }
 
@@ -68,8 +69,8 @@ export class Server {
         console.log('newProject');
     }
 
-    register(name: string, passwd: string, fn: Function) {
-        const data = { name: name, passwd: passwd };
+    register(username: string, password: string, fn: Function) {
+        const data = { username: username, password: password };
         this.sendGetRequest(ServerConstants.ServiceRegister, data, fn);
     }
 

@@ -19,12 +19,20 @@ export class StringUtil {
         return `${value}px`;
     }
 
+    static asString(x: any): string {
+        return `${x}`;
+    }
+
     static asTag(text: string): string {
         return (text.toLowerCase() as any).replaceAll(' ', '_')
     }
 
     static format(template: string, ...args: any[]): string {
         return (window as any).qx.lang.String.format(template, args);
+    }
+
+    static fromEncodedPassword(encodedPassword: string): string {
+        return atob(this.reverseString(encodedPassword));
     }
 
     static inDoubleQuotes(text: string) {
@@ -43,6 +51,10 @@ export class StringUtil {
         while (value.length < len)
             value = '0' + value;
         return value;
+    }
+
+    static reverseString(aString: string): string {
+        return aString.split('').reverse().join('');
     }
 
     static space(len: number = 1): string {
@@ -75,6 +87,10 @@ export class StringUtil {
 
     static tileMapKey(row: number, column: number): string {
         return `tile-${row}-${column}`;
+    }
+
+    static toEncodedPassword(unencodedPassword: string): string {
+        return this.reverseString(btoa(unencodedPassword));
     }
 
 }

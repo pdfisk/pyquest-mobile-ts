@@ -48,7 +48,7 @@ export class LabelConstants {
     static FieldLabelDescription: string = 'Description';
     static FieldLabelId: string = 'id';
     static FieldLabelIpAddress: string = 'IP Address';
-    static FieldLabelName: string = 'Name';
+    static FieldLabelUserName: string = 'Name';
     static FieldLabelOldName: string = 'Old name';
     static FieldLabelNewName: string = 'New name';
     static FieldLabelPassword: string = 'Password';
