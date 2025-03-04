@@ -1,5 +1,5 @@
 import { IStdOut } from '../interfaces/IStdOut';
-import { StringUtil } from "./StringUtil";
+import { StringUtil } from '../shared/util/StringUtil';
 
 export class StringWriter implements IStdOut {
     buffer: string[] = [];
