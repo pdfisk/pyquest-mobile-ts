@@ -1,5 +1,5 @@
 import { QxConstants, SizeConstants } from "../../../../constants";
-import { TimerManager } from "../../../../util";
+import { TimerManager } from '../../../../util/TimerManager';
 import { QxFactory } from "../../../factory";
 import { QxButton } from "../form/QxButton";
 import { QxComposite } from "./QxComposite";

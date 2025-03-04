@@ -1,5 +1,5 @@
 import { QxConstants } from "../../constants";
-import { QxWidgetUtil } from "../../util";
+import { QxWidgetUtil } from '../../util/QxWidgetUtil';
 import { QxWidget } from "../ui/mobile/core/QxWidget";
 
 export abstract class QxObject {
