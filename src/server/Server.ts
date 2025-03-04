@@ -1,5 +1,5 @@
 import { ServerConstants } from "../constants/ServerConstants";
-import { StringUtil2 } from '../util/StringUtil2';
+import { StringUtil } from '../shared/util/StringUtil';
 import { ServerUtil } from "./ServerUtil";
 
 export class Server {
@@ -61,7 +61,7 @@ export class Server {
     }
 
     login(username: string, password: string, fn: Function) {
-        const data = { username: username, password: StringUtil2.toEncodedPassword(password) };
+        const data = { username: username, password: StringUtil.toEncodedPassword(password) };
         this.sendGetRequest(ServerConstants.ServiceLogin, data, fn);
     }
 
