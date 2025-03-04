@@ -1,4 +1,4 @@
-import { StringConstants } from '../constants/StringConstants';
+import { StringConstants } from '../shared/constants/StringConstants';
 
 export class StringUtil {
 
