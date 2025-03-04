@@ -5,7 +5,6 @@ export * from './NavigationUtil';
 export * from './ObjectRegistry';
 export * from './QxWidgetUtil';
 export * from './ResizeManager';
-export * from './StringUtil';
-export * from './StringWriter';
+export * from './HtmlStringWriter';
 export * from './StyleUtil';
 export * from './TimerManager';

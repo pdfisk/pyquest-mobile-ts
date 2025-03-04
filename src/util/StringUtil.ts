@@ -1,96 +1,89 @@
-import { StyleConstants, TextConstants } from "../constants";
-import { ImageConstants } from "../constants/ImageConstants";
+import { StringConstants } from '../constants/StringConstants';
 
 export class StringUtil {
 
-    static adjustHrefValue(value: string): string {
-        if (value.startsWith(StyleConstants.Http) || value.startsWith(StyleConstants.Https))
-            return value;
-        return `${StyleConstants.Https}${TextConstants.COLON}${TextConstants.DOUBLE_SLASH}${value}`;
+    static asInt ( x: any ): number {
+        return parseInt( this.asString( x ) );
     }
 
-    static asImagePath(imageFileName: string): string {
-        if (!imageFileName.includes('.'))
-            imageFileName += '.png';
-        return `${ImageConstants.ImagePath}/${imageFileName}`;
+    static asString ( x: any ): string {
+        return `${ x }`;
     }
 
-    static asPixels(value: number) {
-        return `${value}px`;
+    static className ( instance: any | undefined ) {
+        if ( instance === undefined || instance.constructor === undefined )
+            return 'undefined';
+        return instance.constructor.name;
     }
 
-    static asString(x: any): string {
-        return `${x}`;
+    static format ( template: string, ...args: any[] ): string {
+        return ( window as any ).qx.lang.String.format( template, args );
     }
 
-    static asTag(text: string): string {
-        return (text.toLowerCase() as any).replaceAll(' ', '_')
+    static fromEncodedPassword ( encodedPassword: string ): string {
+        return atob( this.reverseString( encodedPassword ) );
     }
 
-    static format(template: string, ...args: any[]): string {
-        return (window as any).qx.lang.String.format(template, args);
+    static isQuotedString ( str: string ): boolean {
+        return this.isQuotedString_1( str ) || this.isQuotedString_3( str );
     }
 
-    static fromEncodedPassword(encodedPassword: string): string {
-        return atob(this.reverseString(encodedPassword));
+    static isQuotedString_1 ( str: string ): boolean {
+        return str.startsWith( StringConstants.SINGLE_QUOTE_1 ) || str.startsWith( StringConstants.DOUBLE_QUOTE_1 );
     }
 
-    static inDoubleQuotes(text: string) {
-        return `${TextConstants.DOUBLE_QUOTE}${text}${TextConstants.DOUBLE_QUOTE}`;
+    static isQuotedString_3 ( str: string ): boolean {
+        return str.startsWith( StringConstants.SINGLE_QUOTE_3 ) || str.startsWith( StringConstants.DOUBLE_QUOTE_3 );
     }
 
-    static padSpace(text: string, len: number = 1): string {
-        let value: string = text.toString();
-        while (value.length < len)
-            value = ' ' + value;
+    static padLeftChar ( text: string, len: number, char: string ): string {
+        let value: string = text.toString();;
+        while ( value.length < len )
+            value = char + value;
         return value;
     }
 
-    static padZero(text: string, len: number): string {
-        let value: string = text.toString();
-        while (value.length < len)
-            value = '0' + value;
-        return value;
+    static padLeftSpace ( text: string, len: number ): string {
+        let padding = '';
+        while ( padding.length < len )
+            padding += ' ';
+        return `${ padding }${ text }`;
     }
 
-    static reverseString(aString: string): string {
-        return aString.split('').reverse().join('');
+    static padLeftZero ( text: string, len: number ): string {
+        return this.padLeftChar( text, len, '0' );
     }
 
-    static space(len: number = 1): string {
-        return this.padSpace('', len);
+    static reverseString ( aString: string ): string {
+        return aString.split( '' ).reverse().join( '' );
     }
 
-    static tagClose(tag: string): string {
-        return `</${tag}>`;
+    static trimString ( str: string ): string {
+        if ( this.isQuotedString( str ) )
+            return this.trimQuotedString( str );
+        else
+            return str;
     }
 
-    static tagOpen(tag: string, attributes: string[] = []): string {
-        let result: string = `<${tag}`;
-        if (attributes.length > 0 && attributes[0].startsWith(StyleConstants.AttributeHref))
-            attributes.push(`${StyleConstants.AttributeTarget}${TextConstants.COLON}${StyleConstants.Blank}`);
-        attributes.forEach((attribute) => {
-            const parts = attribute.split(TextConstants.EQUAL);
-            if (parts.length == 2) {
-                const name = parts[0];
-                let value = parts[1];
-                if (name == StyleConstants.AttributeHref)
-                    value = this.adjustHrefValue(value);
-                result += this.space();
-                result += name;
-                result += TextConstants.EQUAL;
-                result += this.inDoubleQuotes(value);
-            }
-        });
-        return `${result}>`;
+    static trimQuotedString ( quotedString: string ): string {
+        let n = 0;
+        if ( this.isQuotedString_1( quotedString ) )
+            n = 1;
+        else if ( this.isQuotedString_3( quotedString ) )
+            n = 3;
+        return quotedString.slice( n, quotedString.length - 2 * n + 1 );
     }
 
-    static tileMapKey(row: number, column: number): string {
-        return `tile-${row}-${column}`;
+    static truncate ( str: string, max: number = -1 ): string {
+        if ( max < 4 || str.length <= max )
+            return str;
+        if ( str.startsWith( "'" ) && str.endsWith( "'" ) )
+            str = str.substring( 1, str.length - 2 );
+        return `'${ str.substring( 0, max - 3 ) }...'`;
     }
 
-    static toEncodedPassword(unencodedPassword: string): string {
-        return this.reverseString(btoa(unencodedPassword));
+    static toEncodedPassword ( unencodedPassword: string ): string {
+        return this.reverseString( btoa( unencodedPassword ) );
     }
 
 }

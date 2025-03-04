@@ -1,72 +1,60 @@
-import { StyleConstants, TextConstants } from "../constants";
+import { IStdOut } from '../interfaces/IStdOut';
 import { StringUtil } from "./StringUtil";
 
-export class StringWriter {
-    buffer: string[];
+export class StringWriter implements IStdOut {
+    buffer: string[] = [];
+    offset: number = 0;
 
-    constructor() {
+    asString (): string {
+        return this.buffer.join( '' );
+    }
+
+    clear (): StringWriter {
         this.buffer = [];
+        return this;
     }
 
-    append(text: string) {
-        this.buffer.push(text);
+    comma (): StringWriter {
+        this.pr( ',' );
+        return this;
     }
 
-    asString(): string {
-        return this.buffer.join('');
+    dedent () {
+        if ( this.offset >= 4 )
+            this.offset -= 4;
     }
 
-    closeTag(tag: string) {
-        this.append(StringUtil.tagClose(tag));
+    getId (): number {
+        return 0;
     }
 
-    closeTagA() {
-        this.closeTag(StyleConstants.TagA);
+    indent () {
+        this.offset += 4;
     }
 
-    equal() {
-        this.append(TextConstants.EQUAL);
+    newline (): StringWriter {
+        this.buffer.push( `\n` );
+        return this;
     }
 
-    newline() {
-        this.append(TextConstants.NEWLINE);
+    pr ( obj: any, indent: number = 0 ): StringWriter {
+        let text = `${ obj }`;
+        const totalIndent = this.offset + indent;
+        if ( totalIndent > 0 )
+            text = StringUtil.padLeftSpace( text, totalIndent );
+        this.buffer.push( text );
+        return this;
     }
 
-    openTag(tag: string, attributes: string[] = []) {
-        this.append(StringUtil.tagOpen(tag, attributes));
-    }
-
-    openTagA(attributes: string[] = []) {
-        this.openTag(StyleConstants.TagA, attributes);
-    }
-
-    pr(text: string, tag: string | null = null, attributes: string[] = []) {
-        if (tag)
-            this.openTag(tag, attributes);
-        this.append(text);
-        if (tag)
-            this.closeTag(tag);
-    }
-
-    pr_h5(text: string, attributes: string[] = []) {
-        this.pr(text, StyleConstants.TagH5, attributes);
-    }
-
-    prn(text: string, tag: string | null = null, attributes: string[] = []) {
-        this.pr(text, tag, attributes);
+    prn ( obj: any, indent: number = 0 ): StringWriter {
+        this.pr( obj, indent );
         this.newline();
+        return this;
     }
 
-    prn_h5(text: string, attributes: string[] = []) {
-        this.prn(text, StyleConstants.TagH5, attributes);
-    }
-
-    prn_p(text: string) {
-        this.prn(text, StyleConstants.TagP);
-    }
-
-    space() {
-        this.append(TextConstants.SPACE);
+    space (): StringWriter {
+        this.pr( ' ' );
+        return this;
     }
 
 }

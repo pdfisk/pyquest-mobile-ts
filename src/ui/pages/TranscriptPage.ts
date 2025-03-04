@@ -1,42 +1,45 @@
+import { VmApi } from '../../api/VmApi';
 import { ActionConstants, EventConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
+import { IStdOut } from '../../interfaces/IStdOut';
 import { MessageBus } from "../../messages";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { AbstractTextPage } from "./abstract/AbstractTextPage";
 
-export class TranscriptPage extends AbstractTextPage {
+export class TranscriptPage extends AbstractTextPage implements IStdOut {
     stopButton: QxButton | null = null;
     static instance: TranscriptPage;
 
-    static getInstance(): TranscriptPage {
-        if (!this.instance)
+    static getInstance (): TranscriptPage {
+        if ( !this.instance )
             this.instance = new TranscriptPage();
         return this.instance;
     }
 
-    static clear() {
+    static clear () {
         this.getInstance().clear();
     }
 
-    static getValue(): string {
+    static getValue (): string {
         return this.getInstance().getValue();
     }
 
-    static prn(text: string) {
-        this.getInstance().prn(text);
+    static prn ( text: string ) {
+        this.getInstance().prn( text );
     }
 
-    static setValue(text: string) {
-        this.getInstance().setValue(text);
+    static setValue ( text: string ) {
+        this.getInstance().setValue( text );
     }
 
-    private constructor() {
+    private constructor () {
         super();
-        this.setTitle(LabelConstants.PageTranscript);
-        MessageBus.subscribe(EventConstants.TranscriptClear, this.clear, this);
+        this.setTitle( LabelConstants.PageTranscript );
+        MessageBus.subscribe( EventConstants.TranscriptClear, this.clear, this );
+        VmApi.setStdOut( this );
     }
 
-    defaultButtons(): string[] {
+    defaultButtons (): string[] {
         return [
             LabelConstants.ButtonLabelClear,
             LabelConstants.ButtonLabelDetails,
@@ -44,43 +47,43 @@ export class TranscriptPage extends AbstractTextPage {
         ];
     }
 
-    onAppear() {
-        if (this.hasAppeared)
+    onAppear () {
+        if ( this.hasAppeared )
             return;
         super.onAppear();
-        this.stopButton = this.buttonbar.getButtonFromLabel(LabelConstants.ButtonLabelStop);
+        this.stopButton = this.buttonbar.getButtonFromLabel( LabelConstants.ButtonLabelStop );
     }
 
-    onClear() {
+    onClear () {
         this.clear();
     }
 
-    onDetails() {
+    onDetails () {
         this.showDetails();
     }
 
-    onStop() {
-        console.log('TranscriptPage onStop');
+    onStop () {
+        console.log( 'TranscriptPage onStop' );
     }
 
-    onTap(action: string) {
-        switch (action) {
-            case ActionConstants.ActionClear:
-                this.onClear();
-                break;
-            case ActionConstants.ActionDetails:
-                this.onDetails();
-                break;
-            case ActionConstants.ActionStop:
-                this.onStop();
-                break;
-            default:
-                console.log('TranscriptPage onTap', action);
-                break;
+    onTap ( action: string ) {
+        switch ( action ) {
+        case ActionConstants.ActionClear:
+            this.onClear();
+            break;
+        case ActionConstants.ActionDetails:
+            this.onDetails();
+            break;
+        case ActionConstants.ActionStop:
+            this.onStop();
+            break;
+        default:
+            console.log( 'TranscriptPage onTap', action );
+            break;
         }
     }
 
-    setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
+    setAdjustedWidthAndHeight ( adjustedWidth: number, adjustedHeight: number ): void {
     }
 
 }

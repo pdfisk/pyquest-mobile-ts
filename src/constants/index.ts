@@ -17,5 +17,5 @@ export * from './SizeConstants';
 export * from './StyleConstants';
 export * from './TextConstants';
 export * from './UrlConstants';
-export * from './Version';
+export * from './MobileVersion';
 export * from './VmApiConstants';

@@ -2,8 +2,8 @@ import { ActionConstants, ColorConstants, SizeConstants } from "../../constants"
 import { ActionRec } from "../../handlers";
 import { QxVBox } from "../../qx/ui/mobile/container/QxVBox";
 import { QxTooltip } from "../../qx/ui/mobile/dialog/QxTooltip";
+import { HtmlStrUtil } from '../../util/HtmlStrUtil';
 import { ResizeManager } from "../../util/ResizeManager";
-import { StringUtil } from "../../util/StringUtil";
 import { BoardRow } from "./BoardRow";
 import { BoardTile } from "./BoardTile";
 
@@ -75,7 +75,7 @@ export class BoardPanel extends QxVBox {
     }
 
     getTile(row: number, column: number): BoardTile | undefined {
-        return this.tileMap.get(StringUtil.tileMapKey(row, column));
+        return this.tileMap.get(HtmlStrUtil.tileMapKey(row, column));
     }
 
     handlesOnAppear(): boolean {
@@ -152,7 +152,7 @@ export class BoardPanel extends QxVBox {
     performActionSetTileImage(args: any[]) {
         const row = args[0];
         const column = args[1];
-        const path = StringUtil.asImagePath(args[2]);
+        const path = HtmlStrUtil.asImagePath(args[2]);
         const tile = this.getTile(row, column);
         if (!tile) return;
         tile.setImage(path);

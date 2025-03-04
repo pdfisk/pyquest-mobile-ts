@@ -1,10 +1,9 @@
-import { VmApi } from "../../api";
 import { ActionConstants, ColorConstants, EventConstants, FontConstants, QxConstants, StyleConstants } from "../../constants";
 import { DeferredConstants } from "../../constants/DeferredConstants";
 import { MessageBus } from "../../messages";
 import { QxAtom } from "../../qx/ui/mobile/basic/QxAtom";
 import { DeferredCommand } from "../../util/DeferredCommand";
-import { StringUtil } from "../../util/StringUtil";
+import { HtmlStrUtil } from '../../util/HtmlStrUtil';
 import { BoardPanel } from "./BoardPanel";
 
 export class BoardTile extends QxAtom {
@@ -127,7 +126,7 @@ export class BoardTile extends QxAtom {
     }
 
     mapKey(): string {
-        return StringUtil.tileMapKey(this.rowIndex, this.columnIndex);
+        return HtmlStrUtil.tileMapKey(this.rowIndex, this.columnIndex);
     }
 
     onAppear() {
@@ -150,7 +149,7 @@ export class BoardTile extends QxAtom {
         const eventName = EventConstants.BoardTileClicked;
         const args = [this.rowIndex, this.columnIndex, this.getLabel()];
         MessageBus.dispatch(eventName, args);
-        VmApi.postEvent(eventName, args);
+        // VmApi.postEvent(eventName, args);
     }
 
     pushDeferredCommand(cmd: string, ...args: any[]) {
@@ -181,21 +180,21 @@ export class BoardTile extends QxAtom {
 
     setIconStyles() {
         this.setIconStyle(StyleConstants.ObjectFit, StyleConstants.ObjectFitContain);
-        this.setIconStyle(StyleConstants.Height, StringUtil.asPixels(this.tileHeight));
-        this.setIconStyle(StyleConstants.MaxHeight, StringUtil.asPixels(this.tileHeight));
-        this.setIconStyle(StyleConstants.Width, StringUtil.asPixels(this.tileWidth));
-        this.setIconStyle(StyleConstants.MaxWidth, StringUtil.asPixels(this.tileWidth));
+        this.setIconStyle(StyleConstants.Height, HtmlStrUtil.asPixels(this.tileHeight));
+        this.setIconStyle(StyleConstants.MaxHeight, HtmlStrUtil.asPixels(this.tileHeight));
+        this.setIconStyle(StyleConstants.Width, HtmlStrUtil.asPixels(this.tileWidth));
+        this.setIconStyle(StyleConstants.MaxWidth, HtmlStrUtil.asPixels(this.tileWidth));
     }
 
     setLabelStyles() {
         this.setLabelStyle(FontConstants.FONT_FAMILY, FontConstants.FontFamilyMonospace);
         this.setLabelStyle(FontConstants.FONT_WEIGHT, FontConstants.FontWeightBold);
         this.setLabelStyle(FontConstants.FONT_SIZE, FontConstants.FontSize2_5Em);
-        this.setLabelStyle(StyleConstants.Height, StringUtil.asPixels(this.tileHeight));
-        this.setLabelStyle(StyleConstants.MaxHeight, StringUtil.asPixels(this.tileHeight));
-        this.setLabelStyle(StyleConstants.MaxWidth, StringUtil.asPixels(this.tileWidth));
+        this.setLabelStyle(StyleConstants.Height, HtmlStrUtil.asPixels(this.tileHeight));
+        this.setLabelStyle(StyleConstants.MaxHeight, HtmlStrUtil.asPixels(this.tileHeight));
+        this.setLabelStyle(StyleConstants.MaxWidth, HtmlStrUtil.asPixels(this.tileWidth));
         this.setLabelStyle(StyleConstants.TextAlign, StyleConstants.TextAlignCenter);
-        this.setLabelStyle(StyleConstants.Width, StringUtil.asPixels(this.tileWidth));
+        this.setLabelStyle(StyleConstants.Width, HtmlStrUtil.asPixels(this.tileWidth));
     }
 
     setImage(path: string) {

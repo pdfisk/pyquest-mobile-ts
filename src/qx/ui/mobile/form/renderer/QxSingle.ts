@@ -1,5 +1,5 @@
 import { ColorConstants, SizeConstants, StyleConstants } from "../../../../../constants";
-import { StringUtil } from "../../../../../util/StringUtil";
+import { HtmlStrUtil } from '../../../../../util/HtmlStrUtil';
 import { QxFactory } from "../../../../factory/QxFactory";
 import { QxWidget } from "../../core/QxWidget";
 import { QxForm } from "../QxForm";
@@ -30,7 +30,7 @@ export class QxSingle extends QxAbstractRenderer {
             const row = rows[i];
             const rowChildren = row.getChildren();
             if (rowChildren.length == 0) {
-                row._setStyle(StyleConstants.Height, StringUtil.asPixels(SizeConstants.LoginPanelSpacingY));
+                row._setStyle(StyleConstants.Height, HtmlStrUtil.asPixels(SizeConstants.LoginPanelSpacingY));
                 row._setStyle(StyleConstants.BackgroundColor, ColorConstants.ColorWhite);
                 row._setStyle(StyleConstants.BorderLeft, StyleConstants.BorderFormRow);
                 row._setStyle(StyleConstants.BorderRight, StyleConstants.BorderFormRow);

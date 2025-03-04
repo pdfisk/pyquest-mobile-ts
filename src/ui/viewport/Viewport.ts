@@ -1,3 +1,4 @@
+import { VmApi } from '../../api/VmApi';
 import { PageConstants } from '../../constants/PageConstants';
 import { QxMobileApplication } from '../../qx/application/QxMobileApplication';
 import { QxMobileRouting } from '../../qx/application/QxMobileRouting';
@@ -107,6 +108,7 @@ export class Viewport extends QxComposite {
 
     initialize() {
         super.initialize();
+        VmApi.setStdOut(TranscriptPage.getInstance());
     }
 
     onAppear() {

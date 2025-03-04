@@ -1,5 +1,5 @@
 import { UrlConstants } from '../constants';
-import { Version } from '../constants/Version';
+import { MobileVersion } from '../constants/MobileVersion';
 import { MessageBus } from '../messages';
 import { Server } from '../server/Server';
 import { SessionStatus } from '../session';
@@ -24,11 +24,11 @@ export class MobileApi {
     }
 
     static timestamp(): string {
-        return Version.timestamp;
+        return MobileVersion.timestamp;
     }
 
     static version(): string {
-        return Version.version;
+        return MobileVersion.version;
     }
 
     dispatch(name: string, ...args: any[]) {

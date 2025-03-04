@@ -1,6 +1,6 @@
 import { SizeConstants, StyleConstants, TextConstants } from "../../../../constants";
 import { QxHtml } from "../../../../qx/ui/mobile/embed/QxHtml";
-import { StringWriter } from "../../../../util/StringWriter";
+import { HtmlStringWriter } from "../../../../util/HtmlStringWriter";
 
 export class InfoScrollItem extends QxHtml {
 
@@ -17,18 +17,18 @@ export class InfoScrollItem extends QxHtml {
     createHtml(itemData: string[]): string {
         if (itemData.length == 0)
             itemData.push('-- no data --');
-        const sw = new StringWriter;
+        const sw = new HtmlStringWriter;
         this.createHtmlTitle(sw, `${itemData.shift()}`);
         while (itemData.length > 0)
             this.createHtmlParagraph(sw, `${itemData.shift()}`);
         return sw.asString();
     }
 
-    createHtmlParagraph(sw: StringWriter, paragraph: string) {
+    createHtmlParagraph(sw: HtmlStringWriter, paragraph: string) {
         sw.prn_p(paragraph);
     }
 
-    createHtmlTitle(sw: StringWriter, titleAndAttributes: string) {
+    createHtmlTitle(sw: HtmlStringWriter, titleAndAttributes: string) {
         const parts = titleAndAttributes.split(TextConstants.DOUBLE_COLON);
         const title = parts[0];
         const attributes: string[] = parts.length > 1 ? parts[1].split(',') : [];

@@ -1,5 +1,5 @@
 import { QxConstants, StyleConstants } from "../../../../constants";
-import { StringUtil } from "../../../../util/StringUtil";
+import { HtmlStrUtil } from '../../../../util/HtmlStrUtil';
 import { QxFactory } from "../../../factory";
 import { QxWidget } from "../core/QxWidget";
 
@@ -50,7 +50,7 @@ export class QxAtom extends QxWidget {
     }
 
     setIconHeightPx(height: number) {
-        this.setIconHeight(StringUtil.asPixels(height));
+        this.setIconHeight(HtmlStrUtil.asPixels(height));
     }
 
     setIconMaxHeight(height: string) {
@@ -58,7 +58,7 @@ export class QxAtom extends QxWidget {
     }
 
     setIconMaxHeightPx(height: number) {
-        this.setIconMaxHeight(StringUtil.asPixels(height));
+        this.setIconMaxHeight(HtmlStrUtil.asPixels(height));
     }
 
     setIconMaxWidth(width: string) {
@@ -66,7 +66,7 @@ export class QxAtom extends QxWidget {
     }
 
     setIconMaxWidthPx(width: number) {
-        this.setIconMaxWidth(StringUtil.asPixels(width));
+        this.setIconMaxWidth(HtmlStrUtil.asPixels(width));
     }
 
     setIconStyle(key: string, value: string) {
@@ -80,7 +80,7 @@ export class QxAtom extends QxWidget {
     }
 
     setIconWidthPx(width: number) {
-        this.setIconWidth(StringUtil.asPixels(width));
+        this.setIconWidth(HtmlStrUtil.asPixels(width));
     }
 
     setLabel(label: string) {
@@ -92,11 +92,11 @@ export class QxAtom extends QxWidget {
     }
 
     setLabelHeightPx(height: number) {
-        this.setLabelHeight(StringUtil.asPixels(height));
+        this.setLabelHeight(HtmlStrUtil.asPixels(height));
     }
 
     setLabelLineHeightPx(value: number) {
-        this.setLabelLineHeightStyle(StringUtil.asPixels(value));
+        this.setLabelLineHeightStyle(HtmlStrUtil.asPixels(value));
     }
 
     setLabelLineHeightStyle(value: string) {
@@ -108,7 +108,7 @@ export class QxAtom extends QxWidget {
     }
 
     setLabelMaxHeightPx(height: number) {
-        this.setLabelMaxHeight(StringUtil.asPixels(height));
+        this.setLabelMaxHeight(HtmlStrUtil.asPixels(height));
     }
 
     setLabelMaxWidth(width: string) {
@@ -116,7 +116,7 @@ export class QxAtom extends QxWidget {
     }
 
     setLabelMaxWidthPx(width: number) {
-        this.setLabelMaxWidth(StringUtil.asPixels(width));
+        this.setLabelMaxWidth(HtmlStrUtil.asPixels(width));
     }
 
     setLabelStyle(key: string, value: string) {
@@ -130,7 +130,7 @@ export class QxAtom extends QxWidget {
     }
 
     setLabelWidthPx(width: number) {
-        this.setLabelWidth(StringUtil.asPixels(width));
+        this.setLabelWidth(HtmlStrUtil.asPixels(width));
     }
 
     setShow(show: string) {

@@ -2,7 +2,7 @@ import { ActionConstants, SessionConstants } from "../../constants";
 import { CategoryConstants } from "../../constants/CategoryConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { AbstractStore, ProjectsStore } from "../../data";
-import { StringUtil } from "../../util";
+import { HtmlStrUtil } from '../../util/HtmlStrUtil';
 import { AbstractDataListPage } from "./abstract/AbstractDataListPage";
 import { DeletePage } from "./DeletePage";
 import { DetailsPage } from "./DetailsPage";
@@ -311,7 +311,7 @@ export class ProjectsPage extends AbstractDataListPage {
 
     selectCategory(label: string) {
         this.categoryLabel = label;
-        const tag = StringUtil.asTag(label);
+        const tag = HtmlStrUtil.asTag(label);
         this.dataStore.setCategoryFilter(tag);
     }
 

@@ -1,8 +1,8 @@
 import { ColorConstants, LabelConstants, SizeConstants } from "../../../constants";
 import { QxMobileApplication } from "../../../qx/application/QxMobileApplication";
 import { QxComposite } from "../../../qx/ui/mobile/container/QxComposite";
-import { QxSelectBox } from "../../../qx/ui/mobile/form/QxSelectBox";
-import { StringUtil } from "../../../util/StringUtil";
+import { QxSelectBox } from '../../../qx/ui/mobile/form/QxSelectBox';
+import { HtmlStrUtil } from '../../../util/HtmlStrUtil';
 import { ButtonBar } from "../../widgets/ButtonBar";
 import { NavigationBar } from "../../widgets/NavigationBar";
 import { TopMenuButton } from "../../widgets/TopMenuButton";
@@ -38,7 +38,7 @@ export abstract class AbstractPage extends AbstractRoutingPage {
         this.buttonbar.removeAll();
         const buttons: string[] = this.defaultButtons();
         buttons.forEach((label: string) => {
-            const fn: Function = () => { this.onTap(StringUtil.asTag(label)); }
+            const fn: Function = () => { this.onTap(HtmlStrUtil.asTag(label)); }
             this.addButton(label, fn);
         });
     }

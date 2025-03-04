@@ -1,5 +1,5 @@
 import { CategoryConstants } from "../constants/CategoryConstants";
-import { StringUtil } from "./StringUtil";
+import { HtmlStrUtil } from './HtmlStrUtil';
 
 export class CategoryUtil {
 
@@ -13,7 +13,7 @@ export class CategoryUtil {
     }
 
     static getCategoryTag(index: number): string {
-        return StringUtil.asTag(this.getCategories()[index]);
+        return HtmlStrUtil.asTag(this.getCategories()[index]);
     }
 
 }

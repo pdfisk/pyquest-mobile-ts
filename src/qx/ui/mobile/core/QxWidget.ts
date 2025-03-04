@@ -1,286 +1,298 @@
-import { ColorConstants, EventConstants, SizeConstants, StyleConstants } from "../../../../constants";
+import { ColorConstants, EventConstants, FontConstants, SizeConstants, StyleConstants } from "../../../../constants";
 import { QxWidgetUtil } from "../../../../util";
-import { StringUtil } from "../../../../util/StringUtil";
+import { HtmlStrUtil } from '../../../../util/HtmlStrUtil';
 import { QxObject } from "../../../core";
 import { QxFactory } from "../../../factory";
 
 export class QxWidget extends QxObject {
     hasAppeared: boolean = false;
 
-    constructor(widget?: any) {
-        super(widget ? widget : QxFactory.mobileComposite());
+    constructor ( widget?: any ) {
+        super( widget ? widget : QxFactory.mobileComposite() );
         this.setHeight100Pct();
     }
 
-    addCssClass(cssClass: string) {
-        this.widget.addCssClass(cssClass);
+    addCssClass ( cssClass: string ) {
+        this.widget.addCssClass( cssClass );
     }
 
-    addListener(eventName: string, fn: Function, context: any = this) {
-        this.widget.addListener(eventName, fn, context);
+    addListener ( eventName: string, fn: Function, context: any = this ) {
+        this.widget.addListener( eventName, fn, context );
     }
 
-    addListenerOnce(eventName: string, fn?: Function, context: any = this) {
-        this.widget.addListenerOnce(eventName, fn, context);
+    addListenerOnce ( eventName: string, fn?: Function, context: any = this ) {
+        this.widget.addListenerOnce( eventName, fn, context );
     }
 
-    blur() {
+    blur () {
         this.getContentElement().blur();
     }
 
-    focus() {
+    focus () {
         this.getContentElement().focus();
     }
 
-    initialize() {
+    initialize () {
         super.initialize();
-        if (this.handlesOnAppear())
-            this.widget.addListener(EventConstants.QxEventAppear, this.onAppear, this);
-        if (this.handlesOnClick())
-            this.widget.addListener(EventConstants.QxEventClick, this.onClick, this);
-        if (this.handlesOnTap())
-            this.widget.addListener(EventConstants.QxEventTap, this.onTap, this);
+        if ( this.handlesOnAppear() )
+            this.widget.addListener( EventConstants.QxEventAppear, this.onAppear, this );
+        if ( this.handlesOnClick() )
+            this.widget.addListener( EventConstants.QxEventClick, this.onClick, this );
+        if ( this.handlesOnTap() )
+            this.widget.addListener( EventConstants.QxEventTap, this.onTap, this );
     }
 
-    getBoundingHeight(): number {
+    getBoundingHeight (): number {
         return this.getBoundingRect().height;
     }
 
-    getBoundingRect(): any {
+    getBoundingRect (): any {
         return this.widget.getContentElement().getBoundingClientRect();
     }
 
-    getBoundingWidth(): number {
+    getBoundingWidth (): number {
         return this.getBoundingRect().width;
     }
 
-    getContentElement(): any {
+    getContentElement (): any {
         return this.widget.getContentElement();
     }
 
-    getEnabled(): boolean {
+    getEnabled (): boolean {
         return this.widget.getEnabled();
     }
 
-    getHeight(): string {
-        return this.getStyle(StyleConstants.Height);
+    getHeight (): string {
+        return this.getStyle( StyleConstants.Height );
     }
 
-    getLayoutParentWidget(): QxWidget | null {
+    getLayoutParentWidget (): QxWidget | null {
         const parentQxWidget = this.widget.getLayoutParent();
-        if (!parentQxWidget)
+        if ( !parentQxWidget )
             return null;
-        return QxWidgetUtil.getTypeScriptWidget(parentQxWidget);
+        return QxWidgetUtil.getTypeScriptWidget( parentQxWidget );
     }
 
-    getStyle(key: string): any {
-        if (this.widget._getStyle)
-            return this.widget._getStyle(key);
+    getStyle ( key: string ): any {
+        if ( this.widget._getStyle )
+            return this.widget._getStyle( key );
         return '---';
     }
 
-    getWidth(): string {
-        return this.getStyle(StyleConstants.Width);
+    getWidth (): string {
+        return this.getStyle( StyleConstants.Width );
     }
 
-    handlesOnAppear(): boolean {
+    handlesOnAppear (): boolean {
         return false;
     }
 
-    handlesOnClick(): boolean {
+    handlesOnClick (): boolean {
         return false;
     }
 
-    handlesOnTap(): boolean {
+    handlesOnTap (): boolean {
         return false;
     }
 
-    onAppear() {
+    onAppear () {
         this.hasAppeared = true;
     }
 
-    onClick() {
+    onClick () {
     }
 
-    onTap(arg?: string) {
+    onTap ( arg?: string ) {
     }
 
-    resetHeight() {
-        this.setHeight(undefined);
+    resetHeight () {
+        this.setHeight( undefined );
     }
 
-    setActivatable(value: boolean) {
-        this.widget.setActivatable(value);
+    setActivatable ( value: boolean ) {
+        this.widget.setActivatable( value );
     }
 
-    setBackgroundColor(color: string) {
-        this.setStyle(StyleConstants.BackgroundColor, color);
+    setBackgroundColor ( color: string ) {
+        this.setStyle( StyleConstants.BackgroundColor, color );
     }
 
-    setBorderBottomPx(color: string = ColorConstants.ColorGray, width: number = 1) {
-        const border = `${StringUtil.asPixels(width)} solid ${color}`;
-        this.setStyle(StyleConstants.BorderBottom, border);
+    setBorderBottomPx ( color: string = ColorConstants.ColorGray, width: number = 1 ) {
+        const border = `${ HtmlStrUtil.asPixels( width ) } solid ${ color }`;
+        this.setStyle( StyleConstants.BorderBottom, border );
     }
 
-    setBorderPx(color: string, borderRadius: number = -1, width: number = 1) {
-        const border = `${StringUtil.asPixels(width)} solid ${color}`;
-        this.setStyle(StyleConstants.Border, border);
-        if (borderRadius > 0)
-            this.setBorderRadiusPx(borderRadius);
+    setBorderPx ( color: string, borderRadius: number = -1, width: number = 1 ) {
+        const border = `${ HtmlStrUtil.asPixels( width ) } solid ${ color }`;
+        this.setStyle( StyleConstants.Border, border );
+        if ( borderRadius > 0 )
+            this.setBorderRadiusPx( borderRadius );
     }
 
-    setBorderRadiusPx(radius: number) {
-        this.setStyle(StyleConstants.BorderRadius, StringUtil.asPixels(radius));
+    setBorderRadiusPx ( radius: number ) {
+        this.setStyle( StyleConstants.BorderRadius, HtmlStrUtil.asPixels( radius ) );
     }
 
-    setBorderTopPx(color: string, width: number) {
-        const borderTop = `${StringUtil.asPixels(width)} solid ${color}`;
-        this.setStyle(StyleConstants.BorderTop, borderTop);
+    setBorderTopPx ( color: string, width: number ) {
+        const borderTop = `${ HtmlStrUtil.asPixels( width ) } solid ${ color }`;
+        this.setStyle( StyleConstants.BorderTop, borderTop );
     }
 
-    setEnabled(value: boolean) {
-        this.widget.setEnabled(value);
+    setEnabled ( value: boolean ) {
+        this.widget.setEnabled( value );
     }
 
-    setFontSize(size: string | undefined) {
-        this.setStyle(StyleConstants.FontSize, size);
+    setFontBold () {
+        this.setFontWeight( FontConstants.FontWeightBold );
     }
 
-    setFontSizePx(size: number) {
-        this.setFontSize(StringUtil.asPixels(size));
+    setFontFamily ( family: string ) {
+        this.setStyle( StyleConstants.FontFamily, family );
     }
 
-    setFontWeight(weight: string | undefined) {
-        this.setStyle(StyleConstants.FontWeight, weight);
+    setFontMonospace () {
+        this.setFontFamily( FontConstants.FontFamilyMonospace );
     }
 
-    setFontStyleItalic() {
-        this.setStyle(StyleConstants.FontStyle, StyleConstants.Italic);
+    setFontSize ( size: string | undefined ) {
+        this.setStyle( StyleConstants.FontSize, size );
     }
 
-    setFontWeightBold() {
-        this.setStyle(StyleConstants.FontWeight, StyleConstants.FontWeightBold);
+    setFontSizePx ( size: number ) {
+        this.setFontSize( HtmlStrUtil.asPixels( size ) );
     }
 
-    setHeight(height: string | undefined) {
-        this.setStyle(StyleConstants.Height, height);
+    setFontWeight ( weight: string | undefined ) {
+        this.setStyle( StyleConstants.FontWeight, weight );
     }
 
-    setHeightAuto() {
-        this.setHeight(StyleConstants.Auto);
+    setFontStyleItalic () {
+        this.setStyle( StyleConstants.FontStyle, StyleConstants.Italic );
     }
 
-    setHeightPx(height: number) {
-        this.setHeight(StringUtil.asPixels(height));
+    setFontWeightBold () {
+        this.setStyle( StyleConstants.FontWeight, StyleConstants.FontWeightBold );
     }
 
-    setHeight100Pct() {
-        this.setHeight(SizeConstants.Size100Pct);
+    setHeight ( height: string | undefined ) {
+        this.setStyle( StyleConstants.Height, height );
     }
 
-    setLineHeight(height: string) {
-        this.setStyle(StyleConstants.LineHeight, height);
+    setHeightAuto () {
+        this.setHeight( StyleConstants.Auto );
     }
 
-    setLineHeightPx(height: number) {
-        this.setLineHeight(StringUtil.asPixels(height));
+    setHeightPx ( height: number ) {
+        this.setHeight( HtmlStrUtil.asPixels( height ) );
     }
 
-    setMarginBottomPx(height: number) {
-        const marginBottom = StringUtil.asPixels(height);
-        this.setStyle(StyleConstants.MarginBottom, marginBottom);
+    setHeight100Pct () {
+        this.setHeight( SizeConstants.Size100Pct );
     }
 
-    setMarginLeftPx(width: number) {
-        const marginLeft = StringUtil.asPixels(width);
-        this.setStyle(StyleConstants.MarginLeft, marginLeft);
+    setLineHeight ( height: string ) {
+        this.setStyle( StyleConstants.LineHeight, height );
     }
 
-    setMarginLeftAndRightPx(width: number) {
-        this.setMarginLeftPx(width);
-        this.setMarginRightPx(width);
+    setLineHeightPx ( height: number ) {
+        this.setLineHeight( HtmlStrUtil.asPixels( height ) );
     }
 
-    setMarginRightPx(width: number) {
-        const marginRight = StringUtil.asPixels(width);
-        this.setStyle(StyleConstants.MarginRight, marginRight);
+    setMarginBottomPx ( height: number ) {
+        const marginBottom = HtmlStrUtil.asPixels( height );
+        this.setStyle( StyleConstants.MarginBottom, marginBottom );
     }
 
-    setMarginTopPx(height: number) {
-        const marginTop = StringUtil.asPixels(height);
-        this.setStyle(StyleConstants.MarginTop, marginTop);
+    setMarginLeftPx ( width: number ) {
+        const marginLeft = HtmlStrUtil.asPixels( width );
+        this.setStyle( StyleConstants.MarginLeft, marginLeft );
     }
 
-    setMarginTopAndBottomPx(height: number) {
-        this.setMarginTopPx(height);
-        this.setMarginBottomPx(height);
+    setMarginLeftAndRightPx ( width: number ) {
+        this.setMarginLeftPx( width );
+        this.setMarginRightPx( width );
     }
 
-    setMaxHeight(height: string | undefined) {
-        this.setStyle(StyleConstants.MaxHeight, height);
+    setMarginRightPx ( width: number ) {
+        const marginRight = HtmlStrUtil.asPixels( width );
+        this.setStyle( StyleConstants.MarginRight, marginRight );
     }
 
-    setMaxHeightPx(height: number) {
-        this.setMaxHeight(StringUtil.asPixels(height));
+    setMarginTopPx ( height: number ) {
+        const marginTop = HtmlStrUtil.asPixels( height );
+        this.setStyle( StyleConstants.MarginTop, marginTop );
     }
 
-    setMaxWidth(width: string | undefined) {
-        this.setStyle(StyleConstants.MaxWidth, width);
+    setMarginTopAndBottomPx ( height: number ) {
+        this.setMarginTopPx( height );
+        this.setMarginBottomPx( height );
     }
 
-    setMaxWidthPx(width: number) {
-        this.setMaxWidth(StringUtil.asPixels(width));
+    setMaxHeight ( height: string | undefined ) {
+        this.setStyle( StyleConstants.MaxHeight, height );
     }
 
-    setMinHeight(height: string | undefined) {
-        this.setStyle(StyleConstants.MinHeight, height);
+    setMaxHeightPx ( height: number ) {
+        this.setMaxHeight( HtmlStrUtil.asPixels( height ) );
     }
 
-    setMinWidth(width: string | undefined) {
-        this.setStyle(StyleConstants.MinWidth, width);
+    setMaxWidth ( width: string | undefined ) {
+        this.setStyle( StyleConstants.MaxWidth, width );
     }
 
-    setPaddingBottomPx(padding: number) {
-        const paddingBottom = StringUtil.asPixels(padding);
-        this.setStyle(StyleConstants.PaddingBottom, paddingBottom);
+    setMaxWidthPx ( width: number ) {
+        this.setMaxWidth( HtmlStrUtil.asPixels( width ) );
     }
 
-    setPaddingLeftPx(padding: number) {
-        const paddingLeft = StringUtil.asPixels(padding);
-        this.setStyle(StyleConstants.PaddingLeft, paddingLeft);
+    setMinHeight ( height: string | undefined ) {
+        this.setStyle( StyleConstants.MinHeight, height );
     }
 
-    setPaddingLeftAndRightPx(width: number) {
-        this.setPaddingLeftPx(width);
-        this.setPaddingRightPx(width);
+    setMinWidth ( width: string | undefined ) {
+        this.setStyle( StyleConstants.MinWidth, width );
     }
 
-    setPaddingRightPx(padding: number) {
-        const paddingRight = StringUtil.asPixels(padding);
-        this.setStyle(StyleConstants.PaddingRight, paddingRight);
+    setPaddingBottomPx ( padding: number ) {
+        const paddingBottom = HtmlStrUtil.asPixels( padding );
+        this.setStyle( StyleConstants.PaddingBottom, paddingBottom );
     }
 
-    setPaddingTopPx(padding: number) {
-        const paddingTop = StringUtil.asPixels(padding);
-        this.setStyle(StyleConstants.PaddingTop, paddingTop);
+    setPaddingLeftPx ( padding: number ) {
+        const paddingLeft = HtmlStrUtil.asPixels( padding );
+        this.setStyle( StyleConstants.PaddingLeft, paddingLeft );
     }
 
-    setPaddingTopAndBottomPx(width: number) {
-        this.setPaddingTopPx(width);
-        this.setPaddingBottomPx(width);
+    setPaddingLeftAndRightPx ( width: number ) {
+        this.setPaddingLeftPx( width );
+        this.setPaddingRightPx( width );
     }
 
-    setStyle(key: string, value: any) {
-        if (this.widget && this.widget._setStyle)
-            this.widget._setStyle(key, value);
+    setPaddingRightPx ( padding: number ) {
+        const paddingRight = HtmlStrUtil.asPixels( padding );
+        this.setStyle( StyleConstants.PaddingRight, paddingRight );
     }
 
-    setWidth(width: string | undefined) {
-        this.setStyle(StyleConstants.Width, width);
+    setPaddingTopPx ( padding: number ) {
+        const paddingTop = HtmlStrUtil.asPixels( padding );
+        this.setStyle( StyleConstants.PaddingTop, paddingTop );
     }
 
-    setWidthPx(width: number) {
-        this.setWidth(StringUtil.asPixels(width));
+    setPaddingTopAndBottomPx ( width: number ) {
+        this.setPaddingTopPx( width );
+        this.setPaddingBottomPx( width );
+    }
+
+    setStyle ( key: string, value: any ) {
+        if ( this.widget && this.widget._setStyle )
+            this.widget._setStyle( key, value );
+    }
+
+    setWidth ( width: string | undefined ) {
+        this.setStyle( StyleConstants.Width, width );
+    }
+
+    setWidthPx ( width: number ) {
+        this.setWidth( HtmlStrUtil.asPixels( width ) );
     }
 
 }

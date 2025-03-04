@@ -1,5 +1,5 @@
 import { ServerConstants } from "../constants/ServerConstants";
-import { StringUtil } from "../util";
+import { StringUtil } from '../util/StringUtil';
 import { ServerUtil } from "./ServerUtil";
 
 export class Server {
