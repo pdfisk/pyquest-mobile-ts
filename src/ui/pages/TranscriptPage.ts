@@ -1,9 +1,9 @@
-import { VmApi } from '../../api/VmApi';
 import { ActionConstants, EventConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { IStdOut } from '../../interfaces/IStdOut';
 import { MessageBus } from "../../messages";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
+import { VmApi } from '../../vm/api/VmApi';
 import { AbstractTextPage } from "./abstract/AbstractTextPage";
 
 export class TranscriptPage extends AbstractTextPage implements IStdOut {

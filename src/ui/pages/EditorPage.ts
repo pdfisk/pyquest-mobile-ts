@@ -1,4 +1,3 @@
-import { VmApi } from '../../api/VmApi';
 import { ActionConstants, EventConstants, SessionConstants } from "../../constants";
 import { EditorConstants } from "../../constants/EditorConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
@@ -6,6 +5,7 @@ import { MessageBus } from "../../messages";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { SessionStatus } from "../../session";
 import { HtmlStrUtil } from '../../util/HtmlStrUtil';
+import { VmApi } from '../../vm/api/VmApi';
 import { AbstractPage } from "./abstract/AbstractPage";
 import { BoardPage } from "./BoardPage";
 import { DetailsPage } from "./DetailsPage";
