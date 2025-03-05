@@ -1,6 +1,7 @@
 import { UrlConstants } from '../constants';
 import { MobileVersion } from '../constants/MobileVersion';
 import { MessageBus } from '../messages';
+import { MobileModule } from '../modules/mobile_module/MobileModule';
 import { Server } from '../server/Server';
 import { SessionStatus } from '../session';
 import { Viewport } from '../ui';
@@ -51,6 +52,7 @@ export class MobileApi {
         FunctionManager.init();
         NotificationManager.init();
         SessionStatus.getInstance();
+        MobileModule.getInstance();
         this.getIpAddress();
         Viewport.getInstance();
     }
