@@ -58,6 +58,7 @@ export class EditorPage extends AbstractPage {
     defaultButtons (): string[] {
         return [
             LabelConstants.ButtonLabelRun,
+            LabelConstants.ButtonLabelEval,
             LabelConstants.ButtonLabelClear,
             LabelConstants.ButtonLabelDetails,
             LabelConstants.ButtonLabelSave
@@ -114,10 +115,15 @@ export class EditorPage extends AbstractPage {
         this.showDetails();
     }
 
+    onEval () {
+        const src = this.getCode();
+        VmApi.run( src );
+    }
+
     onRun () {
         const src = this.getCode();
         VmApi.run( src );
-        this.showTranscript()
+        this.showTranscript();
     }
 
     onSave () {
@@ -149,6 +155,9 @@ export class EditorPage extends AbstractPage {
             break;
         case ActionConstants.ActionDetails:
             this.onDetails();
+            break;
+        case ActionConstants.ActionEval:
+            this.onEval();
             break;
         case ActionConstants.ActionRun:
             this.onRun();
