@@ -1,7 +1,7 @@
 import { MobileVersion, ServerConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { Server } from "../../server/Server";
-import { VmVersion } from '../../shared/constants/VmVersion';
+import { VmVersion } from '../../vm/shared/constants/VmVersion';
 import { AbstractTextPage } from "./abstract/AbstractTextPage";
 
 export class StatusPage extends AbstractTextPage {
