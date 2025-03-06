@@ -1,6 +1,7 @@
 import { ProjectsStore } from "../../data";
 import { SessionStatus } from "../../session";
 import { BrowserUtil } from "../../util/BrowserUtil";
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { QxObject } from "../core";
 import { QxInit } from "../core/QxInit";
 
@@ -31,7 +32,7 @@ export class QxMobileApplication extends QxObject {
         const appName = BrowserUtil.getAppNameOrNull();
         if (appName) {
             const fn = (records: any[]) => {
-                console.log('[', records, ']');
+                DebugUtil.log('[', records, ']');
             }
             ProjectsStore.addLoadHandlerFn(fn);
         }

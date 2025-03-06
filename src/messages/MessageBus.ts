@@ -1,4 +1,5 @@
 import { NotificationManager } from "../util/NotificationManager";
+import { DebugUtil } from '../vm/util/DebugUtil';
 
 export class MessageBus {
     messageBus: any = null;
@@ -36,7 +37,7 @@ export class MessageBus {
     }
 
     show(caption: string) {
-        console.log(caption, this.messageBus.getSubscriptions());
+        DebugUtil.log(caption, this.messageBus.getSubscriptions());
     }
 
     subscribe(name: string, fn: Function, context: any) {

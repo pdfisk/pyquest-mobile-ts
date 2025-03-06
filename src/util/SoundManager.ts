@@ -1,5 +1,6 @@
 import { ActionConstants } from "../constants";
 import { SoundConstants } from "../constants/SoundConstants";
+import { DebugUtil } from '../vm/util/DebugUtil';
 
 export class SoundManager {
     chickSound: any;
@@ -26,7 +27,7 @@ export class SoundManager {
                 this.playChickSound();
                 break;
             default:
-                console.log('SoundManager playSound', sound);
+                DebugUtil.log('SoundManager playSound', sound);
                 break;
         }
     }

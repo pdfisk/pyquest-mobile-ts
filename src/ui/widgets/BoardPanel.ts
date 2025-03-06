@@ -4,6 +4,7 @@ import { QxVBox } from "../../qx/ui/mobile/container/QxVBox";
 import { QxTooltip } from "../../qx/ui/mobile/dialog/QxTooltip";
 import { HtmlStrUtil } from '../../util/HtmlStrUtil';
 import { ResizeManager } from "../../util/ResizeManager";
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { BoardRow } from "./BoardRow";
 import { BoardTile } from "./BoardTile";
 
@@ -111,7 +112,7 @@ export class BoardPanel extends QxVBox {
                 this.performActionSetTileText(actionRec.args);
                 break;
             default:
-                console.log('performAction action not found', actionRec.action);
+                DebugUtil.log('performAction action not found', actionRec.action);
                 break;
         }
     }
@@ -191,7 +192,7 @@ export class BoardPanel extends QxVBox {
     }
 
     setHeightPx(height: number) {
-        console.log('BoardPanel setHeightPx', height);
+        DebugUtil.log('BoardPanel setHeightPx', height);
         const heightWithoutMargins = height - (this.boardSize - 1) * SizeConstants.BoardTileRowSeparatorWidth;
         const rowHeight = heightWithoutMargins / this.boardSize;
         for (let row = 0; row < this.boardSize; row++)
@@ -199,7 +200,7 @@ export class BoardPanel extends QxVBox {
     }
 
     setWidthPx(width: number) {
-        console.log('BoardPanel setWidthPx', width);
+        DebugUtil.log('BoardPanel setWidthPx', width);
         const widthWithoutMargins = width - (this.boardSize - 1);
         const rowWidth = widthWithoutMargins / this.boardSize;
         for (let row = 0; row < this.boardSize; row++)

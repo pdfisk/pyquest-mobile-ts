@@ -1,4 +1,5 @@
 import { QxNavigationBar } from "../../qx/ui/mobile/navigationBar/QxNavigationBar";
+import { DebugUtil } from '../../vm/util/DebugUtil';
 
 export class NavigationBar extends QxNavigationBar {
     // topMenuButton: TopMenuButton;
@@ -6,11 +7,11 @@ export class NavigationBar extends QxNavigationBar {
     constructor(widget: any) {
         super(widget);
         // this.topMenuButton = new TopMenuButton;
-        console.log('NavigationBar constructor');
+        DebugUtil.log('NavigationBar constructor');
     }
 
     showTopMenu(value: boolean) {
-        console.log('showTopMenu');
+        DebugUtil.log('showTopMenu');
         // if (value)
         //     this.topMenuButton.show();
         // else

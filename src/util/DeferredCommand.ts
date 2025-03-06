@@ -1,5 +1,6 @@
 import { DeferredConstants } from "../constants/DeferredConstants";
 import { BoardTile } from "../ui/widgets/BoardTile";
+import { DebugUtil } from '../vm/util/DebugUtil';
 
 export class DeferredCommand {
     args: any[];
@@ -28,7 +29,7 @@ export class DeferredCommand {
                 tile.setText(text);
                 break;
             default:
-                console.log('apply', this);
+                DebugUtil.log('apply', this);
                 break;
         }
     }

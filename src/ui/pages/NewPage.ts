@@ -4,6 +4,7 @@ import { ProjectsStore } from "../../data";
 import { MessageBus } from "../../messages";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 import { ProjectsPage } from "./ProjectsPage";
 
@@ -72,7 +73,7 @@ export class NewPage extends AbstractFormPage {
                 this.onNew();
                 break;
             default:
-                console.log('NewPage onTap', action);
+                DebugUtil.log('NewPage onTap', action);
                 break;
         }
     }

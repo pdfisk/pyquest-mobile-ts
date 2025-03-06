@@ -1,6 +1,7 @@
 import { GlobalDictionary } from '../../vm/core/GlobalDictionary';
 import { BaseFunction } from '../../vm/modules/abstract/base/BaseFunction';
 import { BaseType } from '../../vm/modules/abstract/base/BaseType';
+import { BuiltinSelectTab } from './builtins/builtin_functions/BuiltinSelectTab';
 import { PopupType } from './builtins/buitlin_types/PopupType';
 
 export class MobileModule {
@@ -20,6 +21,8 @@ export class MobileModule {
     }
 
     initializeBuiltins () {
+        // functions
+        this.install( BuiltinSelectTab.getInstance() );
        // types
         this.install( PopupType.getInstance() );
     }

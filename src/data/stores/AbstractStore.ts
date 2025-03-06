@@ -1,10 +1,10 @@
-import { SessionConstants } from "../../constants";
 import { CategoryConstants } from "../../constants/CategoryConstants";
 import { EventConstants } from "../../constants/EventConstants";
 import { MessageConstants } from "../../constants/MessageConstants";
 import { MessageBus } from "../../messages";
 import { Server } from "../../server/Server";
 import { ServerUtil } from "../../server/ServerUtil";
+import { DebugUtil } from '../../vm/util/DebugUtil';
 
 export abstract class AbstractStore {
     categoryFilter: string;
@@ -107,7 +107,7 @@ export abstract class AbstractStore {
     }
 
     setCategoryFilter(tag: string) {
-        console.log('setCategoryFilter', tag);
+        DebugUtil.log('setCategoryFilter', tag);
         this.categoryFilter = tag;
         this.reload();
     }

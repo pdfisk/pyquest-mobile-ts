@@ -1,4 +1,5 @@
 import { QxIframe } from "../qx/ui/embed/QxIframe";
+import { DebugUtil } from '../vm/util/DebugUtil';
 
 export class IframeManager {
     subscribers: Map<string, QxIframe> = new Map;
@@ -24,7 +25,7 @@ export class IframeManager {
 
     onMessage(messageEvent: any) {
         const data = messageEvent.data;
-        console.log('IframeManager', data);
+        DebugUtil.log('IframeManager', data);
         const name = data.name;
         if (!name) return;
         if (this.subscribers.has(name)) {

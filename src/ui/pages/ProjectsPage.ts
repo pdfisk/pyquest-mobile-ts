@@ -3,6 +3,7 @@ import { CategoryConstants } from "../../constants/CategoryConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { AbstractStore, ProjectsStore } from "../../data";
 import { HtmlStrUtil } from '../../util/HtmlStrUtil';
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractDataListPage } from "./abstract/AbstractDataListPage";
 import { DeletePage } from "./DeletePage";
 import { DetailsPage } from "./DetailsPage";
@@ -192,7 +193,7 @@ export class ProjectsPage extends AbstractDataListPage {
                 this.onRename();
                 break;
             default:
-                console.log('unknown selectbox selection');
+                DebugUtil.log('unknown selectbox selection');
                 break;
         }
     }
@@ -270,7 +271,7 @@ export class ProjectsPage extends AbstractDataListPage {
                 this.onRefresh();
                 break;
             default:
-                console.log('ProjectsPage onTap', action);
+                DebugUtil.log('ProjectsPage onTap', action);
                 break;
         }
     }

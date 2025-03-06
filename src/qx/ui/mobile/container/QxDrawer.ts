@@ -1,5 +1,6 @@
 import { QxConstants, SizeConstants } from "../../../../constants";
 import { TimerManager } from '../../../../util/TimerManager';
+import { DebugUtil } from '../../../../vm/util/DebugUtil';
 import { QxFactory } from "../../../factory";
 import { QxButton } from "../form/QxButton";
 import { QxComposite } from "./QxComposite";
@@ -36,7 +37,7 @@ export class QxDrawer extends QxComposite {
     }
 
     onAppear() {
-        console.log('QxDrawer onAppear');
+        DebugUtil.log('QxDrawer onAppear');
     }
 
     setFn(arg: Function | null) {

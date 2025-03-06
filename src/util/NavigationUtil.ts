@@ -1,5 +1,6 @@
 import { PageConstants } from "../constants/PageConstants";
 import { QxMobileApplication } from "../qx/application/QxMobileApplication";
+import { DebugUtil } from '../vm/util/DebugUtil';
 
 export class NavigationUtil {
 
@@ -27,7 +28,7 @@ export class NavigationUtil {
                 this.showTranscript();
                 break;
             default:
-                console.log('showPage', page);
+                DebugUtil.log('showPage', page);
                 break;
         }
     }

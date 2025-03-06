@@ -6,6 +6,7 @@ import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { SessionStatus } from "../../session/SessionStatus";
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 import { ProjectsPage } from "./ProjectsPage";
 
@@ -106,7 +107,7 @@ export class DeletePage extends AbstractFormPage {
                 this.onDelete();
                 break;
             default:
-                console.log('DeletePage onTap', action);
+                DebugUtil.log('DeletePage onTap', action);
                 break;
         }
     }

@@ -6,6 +6,7 @@ import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { SessionStatus } from "../../session";
 import { NotificationManager } from "../../util/NotificationManager";
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 import { ProjectsPage } from "./ProjectsPage";
 
@@ -123,7 +124,7 @@ export class RenamePage extends AbstractFormPage {
                 this.onRename();
                 break;
             default:
-                console.log('RenamePage onTap', action);
+                DebugUtil.log('RenamePage onTap', action);
                 break;
         }
     }

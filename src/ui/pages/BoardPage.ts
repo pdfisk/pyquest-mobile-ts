@@ -2,6 +2,7 @@ import { ActionConstants, EventConstants, SizeConstants } from "../../constants"
 import { LabelConstants } from "../../constants/LabelConstants";
 import { MessageBus } from "../../messages";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { BoardPanel } from "../widgets/BoardPanel";
 import { AbstractPage } from "./abstract/AbstractPage";
 
@@ -64,7 +65,7 @@ export class BoardPage extends AbstractPage {
     }
 
     onStop() {
-        console.log('BoardPage onStop');
+        DebugUtil.log('BoardPage onStop');
     }
 
     onTap(action: string) {
@@ -79,17 +80,17 @@ export class BoardPage extends AbstractPage {
                 this.onStop();
                 break;
             default:
-                console.log('BoardPage onTap', action);
+                DebugUtil.log('BoardPage onTap', action);
                 break;
         }
     }
 
     resizeHeight(height: number) {
-        console.log('BoardPanel resizeHeight', height);
+        DebugUtil.log('BoardPanel resizeHeight', height);
     }
 
     resizeWidth(width: number) {
-        console.log('BoardPanel resizeWidth', width);
+        DebugUtil.log('BoardPanel resizeWidth', width);
     }
 
     setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {

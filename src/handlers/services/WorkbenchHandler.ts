@@ -3,6 +3,7 @@ import { ActionConstants } from "../../constants/ActionConstants";
 import { ErrorConstants } from "../../constants/ErrorConstants";
 import { MessageBus } from "../../messages";
 import { NavigationUtil } from "../../util/NavigationUtil";
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { ErrorHandler } from "../ErrorHandler";
 import { HandlerBase } from "./HandlerBase";
 
@@ -48,7 +49,7 @@ export class WorkbenchHandler extends HandlerBase {
     }
 
     actionSync(ownerId: number, args: any[]) {
-        // console.log('actionSync', ownerId, args);
+         DebugUtil.log('actionSync', ownerId, args);
     }
 
 }

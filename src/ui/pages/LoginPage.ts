@@ -5,6 +5,7 @@ import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxPasswordField } from "../../qx/ui/mobile/form/QxPasswordField";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { Server } from "../../server/Server";
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 
 export class LoginPage extends AbstractFormPage {
@@ -137,7 +138,7 @@ export class LoginPage extends AbstractFormPage {
                 this.showRegister();
                 break;
             default:
-                console.log('LoginPage onTap', action);
+                DebugUtil.log('LoginPage onTap', action);
                 break;
         }
     }

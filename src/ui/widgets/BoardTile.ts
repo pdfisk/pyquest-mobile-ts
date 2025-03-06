@@ -4,6 +4,7 @@ import { MessageBus } from "../../messages";
 import { QxAtom } from "../../qx/ui/mobile/basic/QxAtom";
 import { DeferredCommand } from "../../util/DeferredCommand";
 import { HtmlStrUtil } from '../../util/HtmlStrUtil';
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { BoardPanel } from "./BoardPanel";
 
 export class BoardTile extends QxAtom {
@@ -72,7 +73,7 @@ export class BoardTile extends QxAtom {
                 this.clear();
                 break;
             default:
-                console.log('BoardTile copy', this.getShow());
+                DebugUtil.log('BoardTile copy', this.getShow());
                 break;
         }
     }
@@ -94,7 +95,7 @@ export class BoardTile extends QxAtom {
                 row--;
                 break;
             default:
-                console.log('BoardTile getOffset', direction);
+                DebugUtil.log('BoardTile getOffset', direction);
                 break;
         }
         return { row: row, column: column };

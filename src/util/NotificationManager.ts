@@ -4,6 +4,7 @@ import { MessageBus } from "../messages";
 import { QxDrawer } from "../qx/ui/mobile/container/QxDrawer";
 import { NotificationPopup } from "../ui/dialog/NotificationPopup";
 import { ServerPopup } from "../ui/dialog/ServerPopup";
+import { DebugUtil } from '../vm/util/DebugUtil';
 
 export class NotificationManager {
     static topDrawer: QxDrawer;
@@ -31,7 +32,7 @@ export class NotificationManager {
     }
 
     static onCategoryChanged() {
-        console.log('NotificationManager onCategoryChanged');
+        DebugUtil.log('NotificationManager onCategoryChanged');
         // NotificationPopup.open(MessageConstants.CategoryChanged, MessageConstants.CategoryChangedMessage);
         NotificationPopup.open(MessageConstants.LoggedIn, MessageConstants.LoggedInAdmin);
     }
@@ -41,7 +42,7 @@ export class NotificationManager {
     }
 
     static onError(message:string) {
-        console.log('onError', message);
+        DebugUtil.log('onError', message);
     }
 
     static onLoggedInAsAdmin() {

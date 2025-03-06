@@ -1,5 +1,6 @@
 import { ActionConstants } from "../../constants";
 import { SoundManager } from "../../util/SoundManager";
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { HandlerBase } from "./HandlerBase";
 
 export class SoundHandler extends HandlerBase {
@@ -23,7 +24,7 @@ export class SoundHandler extends HandlerBase {
                 this.handleActionPlay(args);
                 break;
             default:
-                console.log('SoundHandler handleAction', action, args);
+                DebugUtil.log('SoundHandler handleAction', action, args);
                 break;
         }
     }

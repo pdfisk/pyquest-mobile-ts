@@ -1,5 +1,6 @@
 import { ServerConstants } from "../constants/ServerConstants";
 import { StringUtil } from '../vm/shared/util/StringUtil';
+import { DebugUtil } from '../vm/util/DebugUtil';
 import { ServerUtil } from "./ServerUtil";
 
 export class Server {
@@ -19,7 +20,7 @@ export class Server {
     static logIpAddress(ipAddress: string) {
         const data = { ip_address: ipAddress };
         const fn = (reply: any) => {
-            //  console.log(reply);
+              DebugUtil.log(reply);
         };
         // this.getInstance().sendPostRequest(ServerConstants.ServiceLog, data, fn);
     }
@@ -57,7 +58,7 @@ export class Server {
     }
 
     deleteProject(data: any) {
-        console.log('deleteProject', data);
+        DebugUtil.log('deleteProject', data);
     }
 
     login(username: string, password: string, fn: Function) {
@@ -66,7 +67,7 @@ export class Server {
     }
 
     newProject() {
-        console.log('newProject');
+        DebugUtil.log('newProject');
     }
 
     register(username: string, password: string, fn: Function) {
@@ -105,7 +106,7 @@ export class Server {
                 fn(req);
         }, this);
         req.addListener('failure', (e: any) => {
-            console.log('failure', e);
+            DebugUtil.log('failure', e);
         }, this);
         req.send();
     }

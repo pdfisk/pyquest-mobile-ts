@@ -3,6 +3,7 @@ import { LabelConstants } from "../../constants/LabelConstants";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxPasswordField } from "../../qx/ui/mobile/form/QxPasswordField";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 
 export class RegisterPage extends AbstractFormPage {
@@ -59,7 +60,7 @@ export class RegisterPage extends AbstractFormPage {
     onSave() {
         const username: string = this.getUserName();
         const password: string = this.getPassword();
-        console.log('RegisterPage onSave', username, password);
+        DebugUtil.log('RegisterPage onSave', username, password);
     }
 
     onTap(action: string) {
@@ -71,7 +72,7 @@ export class RegisterPage extends AbstractFormPage {
                 this.onSave();
                 break;
             default:
-                console.log('RegisterPage onTap', action);
+                DebugUtil.log('RegisterPage onTap', action);
                 break;
         }
     }

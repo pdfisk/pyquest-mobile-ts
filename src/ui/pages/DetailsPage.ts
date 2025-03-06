@@ -3,6 +3,7 @@ import { LabelConstants } from "../../constants/LabelConstants";
 import { MessageBus } from "../../messages";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { SessionStatus } from "../../session";
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { DetailsPanel } from "../widgets/DetailsPanel";
 import { AbstractPage } from "./abstract/AbstractPage";
 import { EditorPage } from "./EditorPage";
@@ -14,44 +15,44 @@ export class DetailsPage extends AbstractPage {
     saveButton: QxButton | null = null;
     static instance: DetailsPage;
 
-    static getCategory(): string {
+    static getCategory (): string {
         return this.getInstance().getCategory();
     }
 
-    static getDescription(): string {
+    static getDescription (): string {
         return this.getInstance().getDescription();
     }
 
-    static getInstance(): DetailsPage {
-        if (!this.instance)
+    static getInstance (): DetailsPage {
+        if ( !this.instance )
             this.instance = new DetailsPage();
         return this.instance;
     }
 
-    static setCategory(category: string) {
-        this.getInstance().setCategory(category);
+    static setCategory ( category: string ) {
+        this.getInstance().setCategory( category );
     }
 
-    static setDescription(description: string) {
-        this.getInstance().setDescription(description);
+    static setDescription ( description: string ) {
+        this.getInstance().setDescription( description );
     }
 
-    static setName(name: string) {
-        this.getInstance().setName(name);
+    static setName ( name: string ) {
+        this.getInstance().setName( name );
     }
 
-    private constructor() {
+    private constructor () {
         super();
-        this.setTitle(LabelConstants.PageDetails);
-        MessageBus.subscribe(EventConstants.EventSessionStatusChanged, this.onSessionStatusChanged, this);
+        this.setTitle( LabelConstants.PageDetails );
+        MessageBus.subscribe( EventConstants.EventSessionStatusChanged, this.onSessionStatusChanged, this );
     }
 
-    addPageContent() {
-        this.addContentWidget(this.detailsPanel);
+    addPageContent () {
+        this.addContentWidget( this.detailsPanel );
     }
 
-    defaultButtons(): string[] {
-        if (SessionStatus.isLoggedInAsAdmin())
+    defaultButtons (): string[] {
+        if ( SessionStatus.isLoggedInAsAdmin() )
             return [
                 LabelConstants.ButtonLabelBack,
                 LabelConstants.ButtonLabelClear,
@@ -67,113 +68,113 @@ export class DetailsPage extends AbstractPage {
             ];
     }
 
-    disableSave() {
-        this.saveButton?.setEnabled(false);
+    disableSave () {
+        this.saveButton?.setEnabled( false );
         this.addButtons();
     }
 
-    enableSave() {
-        this.saveButton?.setEnabled(true);
+    enableSave () {
+        this.saveButton?.setEnabled( true );
         this.addButtons();
     }
 
-    getCategory(): string {
+    getCategory (): string {
         return this.detailsPanel.getCategory();
     }
 
-    getDescription(): string {
+    getDescription (): string {
         return this.detailsPanel.getDescription();
     }
 
-    isContentReady(): boolean {
+    isContentReady (): boolean {
         return true;
     }
 
-    onAppear() {
-        if (this.hasAppeared)
+    onAppear () {
+        if ( this.hasAppeared )
             return;
         super.onAppear();
         this.addPageContent();
         this.resize();
-        this.editorButton = this.buttonbar.getButtonFromLabel(LabelConstants.ButtonLabelEditor);
-        this.saveButton = this.buttonbar.getButtonFromLabel(LabelConstants.ButtonLabelSave);
-        if (!SessionStatus.isLoggedIn())
+        this.editorButton = this.buttonbar.getButtonFromLabel( LabelConstants.ButtonLabelEditor );
+        this.saveButton = this.buttonbar.getButtonFromLabel( LabelConstants.ButtonLabelSave );
+        if ( !SessionStatus.isLoggedIn() )
             this.disableSave();
     }
 
-    onClear() {
+    onClear () {
         this.detailsPanel.clear();
     }
 
-    onMarkdown() {
+    onMarkdown () {
         this.detailsPanel.showEditor();
-        this.editorButton?.setLabel(LabelConstants.ButtonLabelHtml)
+        this.editorButton?.setLabel( LabelConstants.ButtonLabelHtml );
     }
 
-    onHtml() {
+    onHtml () {
         this.detailsPanel.showHtml();
-        this.editorButton?.setLabel(LabelConstants.ButtonLabelMarkdown)
+        this.editorButton?.setLabel( LabelConstants.ButtonLabelMarkdown );
     }
 
-    onSave() {
+    onSave () {
         const category = this.getCategory();
         const description = this.getDescription();
         const code = EditorPage.getCode();
         const codeObject = EditorPage.getCodeObject();
-        ProjectsPage.save(category, description, code, codeObject);
+        ProjectsPage.save( category, description, code, codeObject );
     }
 
-    onSessionStatusChanged(message: any) {
+    onSessionStatusChanged ( message: any ) {
         const data: any = message.getData();
         const statusObj: any = data[0];
         const status: string = statusObj.status;
-        switch (status) {
-            case SessionConstants.SessionLoggedInAsAdmin:
-                this.enableSave();
-                break;
-            default:
-                this.disableSave();
-                break;
+        switch ( status ) {
+        case SessionConstants.SessionLoggedInAsAdmin:
+            this.enableSave();
+            break;
+        default:
+            this.disableSave();
+            break;
         }
     }
 
-    onTap(action: string) {
-        switch (action) {
-            case ActionConstants.ActionBack:
-                this.onBack();
-                break;
-            case ActionConstants.ActionClear:
-                this.onClear();
-                break;
-            case ActionConstants.ActionHtml:
-                this.onHtml();
-                break;
-            case ActionConstants.ActionMarkdown:
-                this.onMarkdown();
-                break;
-            case ActionConstants.ActionSave:
-                this.onSave();
-                break;
-            default:
-                console.log('DetailsPage onTap', action);
-                break;
+    onTap ( action: string ) {
+        switch ( action ) {
+        case ActionConstants.ActionBack:
+            this.onBack();
+            break;
+        case ActionConstants.ActionClear:
+            this.onClear();
+            break;
+        case ActionConstants.ActionHtml:
+            this.onHtml();
+            break;
+        case ActionConstants.ActionMarkdown:
+            this.onMarkdown();
+            break;
+        case ActionConstants.ActionSave:
+            this.onSave();
+            break;
+        default:
+            DebugUtil.log( 'DetailsPage onTap', action );
+            break;
         }
     }
 
-    setAdjustedWidthAndHeight(adjustedWidth: number, adjustedHeight: number): void {
-        this.detailsPanel.setHeightPx(adjustedHeight - SizeConstants.PageHeightOffset);
+    setAdjustedWidthAndHeight ( adjustedWidth: number, adjustedHeight: number ): void {
+        this.detailsPanel.setHeightPx( adjustedHeight - SizeConstants.PageHeightOffset );
     }
 
-    setCategory(category: string) {
-        this.detailsPanel.setCategory(category);
+    setCategory ( category: string ) {
+        this.detailsPanel.setCategory( category );
     }
 
-    setDescription(description: string) {
-        this.detailsPanel.setDescription(description);
+    setDescription ( description: string ) {
+        this.detailsPanel.setDescription( description );
     }
 
-    setName(name: string) {
-        this.detailsPanel.setName(name);
+    setName ( name: string ) {
+        this.detailsPanel.setName( name );
     }
 
 }

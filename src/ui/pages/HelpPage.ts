@@ -4,6 +4,7 @@ import { IHandleMessage } from "../../interfaces/IHandleMessage";
 import { QxIframe } from "../../qx/ui/embed/QxIframe";
 import { QxComposite } from "../../qx/ui/mobile/container/QxComposite";
 import { BrowserUtil } from '../../util/BrowserUtil';
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractPage } from "./abstract/AbstractPage";
 
 export class HelpPage extends AbstractPage implements IHandleMessage {
@@ -32,7 +33,7 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
     }
 
     handleMessage(page: string): void {
-        console.log('handleMessage', page);
+        DebugUtil.log('handleMessage', page);
         this.showPage(page);
     }
 

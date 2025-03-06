@@ -1,5 +1,6 @@
 import { SizeConstants } from "../../constants";
 import { QxHBox } from "../../qx/ui/mobile/container/QxHBox";
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { BoardPanel } from "./BoardPanel";
 import { BoardTile } from "./BoardTile";
 
@@ -37,7 +38,7 @@ export class BoardRow extends QxHBox {
     }
 
     cacheAndRelease() {
-        console.log('row cacheAndRelease');
+        DebugUtil.log('row cacheAndRelease');
         // for (let tile of this.tiles)
         //     tile.cacheAndRelease();
     }
@@ -59,7 +60,7 @@ export class BoardRow extends QxHBox {
         this.setWidthPx(rowWidth);
         this.setMaxWidthPx(rowWidth);
         const tileWidth = (rowWidth - (this.boardSize - 1)) / this.boardSize;
-        console.log('lockRowMaxValues', rowWidth, rowHeight, tileWidth);
+        DebugUtil.log('lockRowMaxValues', rowWidth, rowHeight, tileWidth);
         for (let tile of this.tiles)
             tile.lockTileMaxValues(tileWidth, rowHeight);
     }
@@ -88,7 +89,7 @@ export class BoardRow extends QxHBox {
         this.tiles.forEach((tile) => {
             tile.setTileWidthAndHeight(tileWidth, adjustedRowHeight);
         });
-        console.log('BoardRow setRowWidthAndHeight', rowHeight, rowWidth);
+        DebugUtil.log('BoardRow setRowWidthAndHeight', rowHeight, rowWidth);
     }
 
 }

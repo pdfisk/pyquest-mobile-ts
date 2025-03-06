@@ -6,6 +6,7 @@ import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { SessionStatus } from "../../session";
 import { HtmlStrUtil } from '../../util/HtmlStrUtil';
 import { VmApi } from '../../vm/api/VmApi';
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractPage } from "./abstract/AbstractPage";
 import { BoardPage } from "./BoardPage";
 import { DetailsPage } from "./DetailsPage";
@@ -166,7 +167,7 @@ export class EditorPage extends AbstractPage {
             this.onSave();
             break;
         default:
-            console.log( 'EditorPage onTap', action );
+            DebugUtil.log( 'EditorPage onTap', action );
             break;
         }
     }

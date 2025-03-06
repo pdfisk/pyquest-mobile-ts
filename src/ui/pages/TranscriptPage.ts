@@ -4,6 +4,7 @@ import { IStdOut } from '../../interfaces/IStdOut';
 import { MessageBus } from "../../messages";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { VmApi } from '../../vm/api/VmApi';
+import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractTextPage } from "./abstract/AbstractTextPage";
 
 export class TranscriptPage extends AbstractTextPage implements IStdOut {
@@ -63,7 +64,7 @@ export class TranscriptPage extends AbstractTextPage implements IStdOut {
     }
 
     onStop () {
-        console.log( 'TranscriptPage onStop' );
+        DebugUtil.log( 'TranscriptPage onStop' );
     }
 
     onTap ( action: string ) {
@@ -78,7 +79,7 @@ export class TranscriptPage extends AbstractTextPage implements IStdOut {
             this.onStop();
             break;
         default:
-            console.log( 'TranscriptPage onTap', action );
+            DebugUtil.log( 'TranscriptPage onTap', action );
             break;
         }
     }
