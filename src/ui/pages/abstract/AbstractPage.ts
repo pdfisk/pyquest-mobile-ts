@@ -1,4 +1,6 @@
-import { ColorConstants, LabelConstants, SizeConstants } from "../../../constants";
+import { ColorConstants } from '../../../constants/ColorConstants';
+import { LabelConstants } from '../../../constants/LabelConstants';
+import { SizeConstants } from '../../../constants/SizeConstants';
 import { QxMobileApplication } from "../../../qx/application/QxMobileApplication";
 import { QxComposite } from "../../../qx/ui/mobile/container/QxComposite";
 import { QxSelectBox } from '../../../qx/ui/mobile/form/QxSelectBox';

@@ -1,5 +1,7 @@
-import { FontConstants, LabelConstants, SizeConstants } from "../../constants";
 import { CategoryConstants } from "../../constants/CategoryConstants";
+import { FontConstants } from '../../constants/FontConstants';
+import { LabelConstants } from '../../constants/LabelConstants';
+import { SizeConstants } from '../../constants/SizeConstants';
 import { QxLabel } from "../../qx/ui/mobile/basic/QxLabel";
 import { QxHBox } from "../../qx/ui/mobile/container/QxHBox";
 import { QxVBox } from "../../qx/ui/mobile/container/QxVBox";

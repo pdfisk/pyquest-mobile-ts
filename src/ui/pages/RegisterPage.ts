@@ -1,4 +1,4 @@
-import { ActionConstants } from "../../constants";
+import { ActionConstants } from '../../constants/ActionConstants';
 import { LabelConstants } from "../../constants/LabelConstants";
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxPasswordField } from "../../qx/ui/mobile/form/QxPasswordField";

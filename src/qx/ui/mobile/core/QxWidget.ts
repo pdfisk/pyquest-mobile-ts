@@ -1,8 +1,12 @@
-import { ColorConstants, EventConstants, FontConstants, SizeConstants, StyleConstants } from "../../../../constants";
+import { ColorConstants } from '../../../../constants/ColorConstants';
+import { EventConstants } from '../../../../constants/EventConstants';
+import { FontConstants } from '../../../../constants/FontConstants';
+import { SizeConstants } from '../../../../constants/SizeConstants';
+import { StyleConstants } from '../../../../constants/StyleConstants';
 import { HtmlStrUtil } from '../../../../util/HtmlStrUtil';
 import { QxWidgetUtil } from '../../../../util/QxWidgetUtil';
-import { QxObject } from "../../../core";
-import { QxFactory } from "../../../factory";
+import { QxObject } from '../../../core/QxObject';
+import { QxFactory } from '../../../factory/QxFactory';
 
 export class QxWidget extends QxObject {
     hasAppeared: boolean = false;

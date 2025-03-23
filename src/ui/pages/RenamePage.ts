@@ -1,10 +1,13 @@
-import { ActionConstants, ErrorConstants, EventConstants, SessionConstants } from "../../constants";
+import { ActionConstants } from '../../constants/ActionConstants';
+import { ErrorConstants } from '../../constants/ErrorConstants';
+import { EventConstants } from '../../constants/EventConstants';
 import { LabelConstants } from "../../constants/LabelConstants";
-import { MessageBus } from "../../messages";
-import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
+import { SessionConstants } from '../../constants/SessionConstants';
+import { MessageBus } from '../../messages/MessageBus';
+import { QxWidget } from '../../qx/ui/mobile/core/QxWidget';
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
-import { SessionStatus } from "../../session";
+import { SessionStatus } from '../../session/SessionStatus';
 import { NotificationManager } from "../../util/NotificationManager";
 import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractFormPage } from "./abstract/AbstractFormPage";

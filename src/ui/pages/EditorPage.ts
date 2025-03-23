@@ -1,9 +1,11 @@
-import { ActionConstants, EventConstants, SessionConstants } from "../../constants";
+import { ActionConstants } from '../../constants/ActionConstants';
 import { EditorConstants } from "../../constants/EditorConstants";
+import { EventConstants } from '../../constants/EventConstants';
 import { LabelConstants } from "../../constants/LabelConstants";
-import { MessageBus } from "../../messages";
+import { SessionConstants } from '../../constants/SessionConstants';
+import { MessageBus } from '../../messages/MessageBus';
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
-import { SessionStatus } from "../../session";
+import { SessionStatus } from '../../session/SessionStatus';
 import { HtmlStrUtil } from '../../util/HtmlStrUtil';
 import { VmApi } from '../../vm/api/VmApi';
 import { DebugUtil } from '../../vm/util/DebugUtil';

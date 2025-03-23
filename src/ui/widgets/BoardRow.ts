@@ -1,4 +1,4 @@
-import { SizeConstants } from "../../constants";
+import { SizeConstants } from '../../constants/SizeConstants';
 import { QxHBox } from "../../qx/ui/mobile/container/QxHBox";
 import { DebugUtil } from '../../vm/util/DebugUtil';
 import { BoardPanel } from "./BoardPanel";

@@ -20,5 +20,8 @@
     "typedoc": "^0.26.6",
     "typedoc-plugin-markdown": "^4.2.6",
     "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "openai": "^4.89.0"
   }
 }

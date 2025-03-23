@@ -1,8 +1,9 @@
-import { ActionConstants, SessionConstants } from "../../constants";
+import { ActionConstants } from '../../constants/ActionConstants';
 import { CategoryConstants } from "../../constants/CategoryConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
-import { AbstractStore, ProjectsStore } from "../../data";
 import { HtmlStrUtil } from '../../util/HtmlStrUtil';
+import { AbstractStore } from '../../vm/data/stores/abstract/AbstractStore';
+import { PyModulesLocalStore } from '../../vm/data/stores/modules/PyModulesLocalStore';
 import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractDataListPage } from "./abstract/AbstractDataListPage";
 import { DeletePage } from "./DeletePage";
@@ -173,7 +174,7 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     getStore(): AbstractStore {
-        return ProjectsStore.getInstance();
+        return PyModulesLocalStore.getInstance();
     }
 
     onChangeListSelection(index: number) {
@@ -313,7 +314,7 @@ export class ProjectsPage extends AbstractDataListPage {
     selectCategory(label: string) {
         this.categoryLabel = label;
         const tag = HtmlStrUtil.asTag(label);
-        this.dataStore.setCategoryFilter(tag);
+        // this.dataStore.setCategoryFilter(tag);
     }
 
 }

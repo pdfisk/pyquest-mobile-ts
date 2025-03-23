@@ -1,9 +1,10 @@
-import { ActionConstants, EventConstants } from "../../constants";
+import { ActionConstants } from '../../constants/ActionConstants';
+import { EventConstants } from '../../constants/EventConstants';
 import { LabelConstants } from "../../constants/LabelConstants";
-import { IStdOut } from '../../interfaces/IStdOut';
-import { MessageBus } from "../../messages";
+import { MessageBus } from '../../messages/MessageBus';
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { VmApi } from '../../vm/api/VmApi';
+import { IStdOut } from '../../vm/interfaces/IStdOut';
 import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractTextPage } from "./abstract/AbstractTextPage";
 
@@ -46,6 +47,10 @@ export class TranscriptPage extends AbstractTextPage implements IStdOut {
             LabelConstants.ButtonLabelDetails,
             LabelConstants.ButtonLabelStop
         ];
+    }
+
+    getId (): number {
+        return 0;
     }
 
     onAppear () {

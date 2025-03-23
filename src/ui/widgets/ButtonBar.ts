@@ -1,5 +1,6 @@
-import { ColorConstants, SizeConstants } from "../../constants";
+import { ColorConstants } from '../../constants/ColorConstants';
 import { MessageConstants } from "../../constants/MessageConstants";
+import { SizeConstants } from '../../constants/SizeConstants';
 import { QxHBox } from "../../qx/ui/mobile/container/QxHBox";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { HtmlStrUtil } from '../../util/HtmlStrUtil';

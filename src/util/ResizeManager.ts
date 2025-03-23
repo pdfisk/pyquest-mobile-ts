@@ -1,4 +1,4 @@
-import { EventConstants } from "../constants";
+import { EventConstants } from '../constants/EventConstants';
 import { QxNavigationPage } from "../qx/ui/mobile/page/QxNavigationPage";
 
 export class ResizeManager {

@@ -1,9 +1,9 @@
-import { ProjectsStore } from "../../data";
-import { SessionStatus } from "../../session";
+import { SessionStatus } from '../../session/SessionStatus';
 import { BrowserUtil } from "../../util/BrowserUtil";
+import { PyModulesLocalStore } from '../../vm/data/stores/modules/PyModulesLocalStore';
 import { DebugUtil } from '../../vm/util/DebugUtil';
-import { QxObject } from "../core";
 import { QxInit } from "../core/QxInit";
+import { QxObject } from '../core/QxObject';
 
 export class QxMobileApplication extends QxObject {
 
@@ -34,7 +34,7 @@ export class QxMobileApplication extends QxObject {
             const fn = (records: any[]) => {
                 DebugUtil.log('[', records, ']');
             }
-            ProjectsStore.addLoadHandlerFn(fn);
+            PyModulesLocalStore.getInstance().addLoaderHandlerFn(fn);
         }
     }
 

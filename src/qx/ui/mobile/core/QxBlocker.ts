@@ -1,4 +1,4 @@
-import { QxFactory } from "../../../factory";
+import { QxFactory } from '../../../factory/QxFactory';
 import { QxWidget } from "./QxWidget";
 
 export class QxBlocker extends QxWidget {

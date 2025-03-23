@@ -1,4 +1,4 @@
-import { QxObject } from "../core";
+import { QxObject } from '../core/QxObject';
 import { QxNavigationPage } from "../ui/mobile/page/QxNavigationPage";
 import { QxMobileApplication } from "./QxMobileApplication";
 

@@ -1,4 +1,4 @@
-import { QxConstants } from "../../constants";
+import { QxConstants } from '../../constants/QxConstants';
 import { QxWidgetUtil } from '../../util/QxWidgetUtil';
 import { QxWidget } from "../ui/mobile/core/QxWidget";
 

@@ -19,7 +19,7 @@ export class InfoItemsPanel extends QxVBox {
                 this.add(new InfoScrollItem(itemsData[i]));
             this.addFlex(new InfoScrollFiller);
         };
-        BrowserUtil.readInfoIndex(fn);
+        // BrowserUtil.readInfoIndex(fn);
     }
 
 }

@@ -1,7 +1,8 @@
-import { EventConstants, PageConstants } from "../../constants";
 import { ActionConstants } from "../../constants/ActionConstants";
 import { ErrorConstants } from "../../constants/ErrorConstants";
-import { MessageBus } from "../../messages";
+import { EventConstants } from '../../constants/EventConstants';
+import { PageConstants } from '../../constants/PageConstants';
+import { MessageBus } from '../../messages/MessageBus';
 import { NavigationUtil } from "../../util/NavigationUtil";
 import { DebugUtil } from '../../vm/util/DebugUtil';
 import { ErrorHandler } from "../ErrorHandler";

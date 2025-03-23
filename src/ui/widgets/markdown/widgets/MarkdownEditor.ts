@@ -1,4 +1,4 @@
-import { EditorConstants } from "../../../../constants";
+import { EditorConstants } from '../../../../constants/EditorConstants';
 import { QxComposite } from "../../../../qx/ui/mobile/container/QxComposite";
 
 export class MarkdownEditor extends QxComposite {

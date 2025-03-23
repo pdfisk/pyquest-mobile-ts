@@ -1,4 +1,4 @@
-import { ActionConstants } from "../../constants";
+import { ActionConstants } from '../../constants/ActionConstants';
 import { SoundManager } from "../../util/SoundManager";
 import { DebugUtil } from '../../vm/util/DebugUtil';
 import { HandlerBase } from "./HandlerBase";

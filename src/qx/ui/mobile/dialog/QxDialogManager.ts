@@ -1,4 +1,4 @@
-import { QxObject } from "../../../core";
+import { QxObject } from '../../../core/QxObject';
 
 export class QxDialogManager extends QxObject {
 

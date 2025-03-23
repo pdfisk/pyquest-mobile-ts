@@ -1,4 +1,6 @@
-import { SizeConstants, StyleConstants, TextConstants } from "../../../../constants";
+import { SizeConstants } from '../../../../constants/SizeConstants';
+import { StyleConstants } from '../../../../constants/StyleConstants';
+import { TextConstants } from '../../../../constants/TextConstants';
 import { QxHtml } from "../../../../qx/ui/mobile/embed/QxHtml";
 import { HtmlStringWriter } from "../../../../util/HtmlStringWriter";
 

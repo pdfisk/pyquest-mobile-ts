@@ -1,7 +1,8 @@
-import { MobileVersion, ServerConstants } from "../../constants";
+import { Server } from 'http';
 import { LabelConstants } from "../../constants/LabelConstants";
-import { Server } from "../../server/Server";
-import { VmVersion } from '../../vm/shared/constants/VmVersion';
+import { MobileVersion } from '../../constants/MobileVersion';
+import { ServerConstants } from '../../vm/constants/ServerConstants';
+import { VmVersion } from '../../vm/constants/VmVersion';
 import { AbstractTextPage } from "./abstract/AbstractTextPage";
 
 export class StatusPage extends AbstractTextPage {
@@ -45,7 +46,7 @@ export class StatusPage extends AbstractTextPage {
             const timestamp = response.updated;
             this.showServerStatus( version, timestamp );
         };
-        Server.sendGetRequest( ServerConstants.ServerStatus, {}, fn );
+        // Server.sendGetRequest( ServerConstants.ServerStatus, {}, fn );
     }
 
     setAdjustedWidthAndHeight ( adjustedWidth: number, adjustedHeight: number ): void {

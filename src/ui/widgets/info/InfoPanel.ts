@@ -1,4 +1,5 @@
-import { FontConstants, SizeConstants } from "../../../constants";
+import { FontConstants } from '../../../constants/FontConstants';
+import { SizeConstants } from '../../../constants/SizeConstants';
 import { QxLabel } from "../../../qx/ui/mobile/basic/QxLabel";
 import { QxScroll } from "../../../qx/ui/mobile/container/QxScroll";
 import { QxVBox } from "../../../qx/ui/mobile/container/QxVBox";

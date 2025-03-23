@@ -1,4 +1,4 @@
-import { SizeConstants } from "../../../constants";
+import { SizeConstants } from '../../../constants/SizeConstants';
 import { QxTextArea } from "../../../qx/ui/mobile/form/QxTextArea";
 import { HtmlStrUtil } from '../../../util/HtmlStrUtil';
 import { AbstractPage } from "./AbstractPage";

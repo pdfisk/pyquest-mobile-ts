@@ -1,11 +1,12 @@
-import { GlobalDictionary } from '../../vm/core/GlobalDictionary';
-import { BaseFunction } from '../../vm/modules/abstract/base/BaseFunction';
-import { BaseType } from '../../vm/modules/abstract/base/BaseType';
+import { AbstractFunction } from '../../vm/modules/core/abstract/AbstractFunction';
+import { AbstractType } from '../../vm/modules/core/abstract/AbstractType';
+import { DictClass } from '../../vm/modules/main_module/builtins/builtin_classes/DictClass';
+import { MainModule } from '../../vm/modules/main_module/MainModule';
 import { BuiltinSelectTab } from './builtins/builtin_functions/BuiltinSelectTab';
 import { PopupType } from './builtins/buitlin_types/PopupType';
 
 export class MobileModule {
-    globals: GlobalDictionary;
+    globals: DictClass;
     static instance: MobileModule;
 
     static getInstance (): MobileModule {
@@ -15,7 +16,7 @@ export class MobileModule {
     }
 
     constructor () {
-        this.globals = GlobalDictionary.getInstance();
+        this.globals = MainModule.getGlobalNameSpace();
         this.initializeBuiltins();
         this.initializeGlobals();
     }
@@ -30,7 +31,7 @@ export class MobileModule {
     initializeGlobals () {
     }
 
-    install ( builtin: BaseFunction | BaseType ) {
+    install ( builtin: AbstractFunction | AbstractType ) {
         builtin.install( this.globals );
     }
 

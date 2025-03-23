@@ -1,9 +1,10 @@
-import { SizeConstants, UrlConstants } from "../../constants";
 import { LabelConstants } from "../../constants/LabelConstants";
-import { IHandleMessage } from "../../interfaces/IHandleMessage";
+import { SizeConstants } from '../../constants/SizeConstants';
 import { QxIframe } from "../../qx/ui/embed/QxIframe";
 import { QxComposite } from "../../qx/ui/mobile/container/QxComposite";
 import { BrowserUtil } from '../../util/BrowserUtil';
+import { UrlConstants } from '../../vm/constants/UrlConstants';
+import { IHandleMessage } from '../../vm/interfaces/IHandleMessage';
 import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractPage } from "./abstract/AbstractPage";
 
@@ -29,7 +30,7 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
 
     addContent() {
         this.addContentWidget(this.holder);
-        this.showPage(UrlConstants.helpIndex);
+        // this.showPage(UrlConstants.helpIndex);
     }
 
     handleMessage(page: string): void {
@@ -92,9 +93,9 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
     }
 
     showPage(page: string) {
-        const fn = (html: string) => { this.setPageContent(html); };
-        const path = `${UrlConstants.helpIndexUrl}/${page}.html`;
-        BrowserUtil.readTextFile(path, fn);
+        // const fn = (html: string) => { this.setPageContent(html); };
+        // const path = `${UrlConstants.helpIndexUrl}/${page}.html`;
+        // BrowserUtil.readTextFile(path, fn);
     }
 
 }

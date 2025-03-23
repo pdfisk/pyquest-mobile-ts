@@ -1,4 +1,4 @@
-import { SizeConstants } from "../../../constants";
+import { SizeConstants } from '../../../constants/SizeConstants';
 import { QxLabel } from "../../../qx/ui/mobile/basic/QxLabel";
 import { QxWidget } from "../../../qx/ui/mobile/core/QxWidget";
 import { QxButton } from "../../../qx/ui/mobile/form/QxButton";

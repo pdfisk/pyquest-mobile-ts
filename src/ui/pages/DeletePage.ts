@@ -1,11 +1,13 @@
-import { ActionConstants, EventConstants, SessionConstants } from "../../constants";
+import { ActionConstants } from '../../constants/ActionConstants';
+import { EventConstants } from '../../constants/EventConstants';
 import { LabelConstants } from "../../constants/LabelConstants";
-import { ProjectsStore } from "../../data";
-import { MessageBus } from "../../messages";
+import { SessionConstants } from '../../constants/SessionConstants';
+import { MessageBus } from '../../messages/MessageBus';
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { SessionStatus } from "../../session/SessionStatus";
+import { PyModulesLocalStore } from '../../vm/data/stores/modules/PyModulesLocalStore';
 import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 import { ProjectsPage } from "./ProjectsPage";
@@ -79,7 +81,7 @@ export class DeletePage extends AbstractFormPage {
     }
 
     onDelete() {
-        ProjectsStore.deleteRecord(this.id);
+        PyModulesLocalStore.getInstance().deleteRecord(this.id);
         this.showProjects();
         ProjectsPage.refresh();
     }

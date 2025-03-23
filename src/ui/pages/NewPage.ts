@@ -1,7 +1,7 @@
-import { ActionConstants, EventConstants } from "../../constants";
+import { ActionConstants } from '../../constants/ActionConstants';
+import { EventConstants } from '../../constants/EventConstants';
 import { LabelConstants } from "../../constants/LabelConstants";
-import { ProjectsStore } from "../../data";
-import { MessageBus } from "../../messages";
+import { MessageBus } from '../../messages/MessageBus';
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { DebugUtil } from '../../vm/util/DebugUtil';
@@ -56,7 +56,7 @@ export class NewPage extends AbstractFormPage {
     }
 
     onNew() {
-        ProjectsStore.newRecord(this.getNewName());
+        // ProjectsStore.newRecord(this.getNewName());
         this.showProjects();
         ProjectsPage.refresh();
     }

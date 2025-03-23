@@ -1,4 +1,5 @@
-import { StyleConstants, TextConstants } from "../constants";
+import { StyleConstants } from '../constants/StyleConstants';
+import { TextConstants } from '../constants/TextConstants';
 import { HtmlStrUtil } from './HtmlStrUtil';
 
 export class HtmlStringWriter {

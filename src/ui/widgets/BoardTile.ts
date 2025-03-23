@@ -1,6 +1,11 @@
-import { ActionConstants, ColorConstants, EventConstants, FontConstants, QxConstants, StyleConstants } from "../../constants";
+import { ActionConstants } from '../../constants/ActionConstants';
+import { ColorConstants } from '../../constants/ColorConstants';
 import { DeferredConstants } from "../../constants/DeferredConstants";
-import { MessageBus } from "../../messages";
+import { EventConstants } from '../../constants/EventConstants';
+import { FontConstants } from '../../constants/FontConstants';
+import { QxConstants } from '../../constants/QxConstants';
+import { StyleConstants } from '../../constants/StyleConstants';
+import { MessageBus } from '../../messages/MessageBus';
 import { QxAtom } from "../../qx/ui/mobile/basic/QxAtom";
 import { DeferredCommand } from "../../util/DeferredCommand";
 import { HtmlStrUtil } from '../../util/HtmlStrUtil';

@@ -1,10 +1,13 @@
-import { ActionConstants, EventConstants, ServerConstants, SessionConstants } from "../../constants";
+import { Server } from 'http';
+import { ActionConstants } from '../../constants/ActionConstants';
+import { EventConstants } from '../../constants/EventConstants';
 import { LabelConstants } from "../../constants/LabelConstants";
-import { MessageBus } from "../../messages";
+import { SessionConstants } from '../../constants/SessionConstants';
+import { MessageBus } from '../../messages/MessageBus';
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxPasswordField } from "../../qx/ui/mobile/form/QxPasswordField";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
-import { Server } from "../../server/Server";
+import { ServerConstants } from '../../vm/constants/ServerConstants';
 import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 
@@ -88,7 +91,7 @@ export class LoginPage extends AbstractFormPage {
                     break;
             };
         }
-        Server.login(username, password, fn);
+        // Server.login(username, password, fn);
     }
 
     onSessionLoggedInAsAdmin() {

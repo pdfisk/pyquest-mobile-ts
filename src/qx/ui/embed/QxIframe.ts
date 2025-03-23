@@ -1,7 +1,9 @@
-import { ActionConstants, EventConstants, QxConstants } from "../../../constants";
-import { IHandleMessage } from "../../../interfaces/IHandleMessage";
+import { ActionConstants } from '../../../constants/ActionConstants';
+import { EventConstants } from '../../../constants/EventConstants';
+import { QxConstants } from '../../../constants/QxConstants';
 import { IframeManager } from "../../../util/IframeManager";
-import { QxFactory } from "../../factory";
+import { IHandleMessage } from '../../../vm/interfaces/IHandleMessage';
+import { QxFactory } from '../../factory/QxFactory';
 import { QxWidget } from "../mobile/core/QxWidget";
 
 export class QxIframe extends QxWidget {

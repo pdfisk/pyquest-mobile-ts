@@ -1,4 +1,4 @@
-import { ActionConstants } from "../constants";
+import { ActionConstants } from '../constants/ActionConstants';
 import { SoundConstants } from "../constants/SoundConstants";
 import { DebugUtil } from '../vm/util/DebugUtil';
 

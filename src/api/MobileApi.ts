@@ -1,10 +1,8 @@
-import { UrlConstants } from '../constants';
 import { MobileVersion } from '../constants/MobileVersion';
-import { MessageBus } from '../messages';
+import { MessageBus } from '../messages/MessageBus';
 import { MobileModule } from '../modules/mobile_module/MobileModule';
-import { Server } from '../server/Server';
-import { SessionStatus } from '../session';
-import { Viewport } from '../ui';
+import { SessionStatus } from '../session/SessionStatus';
+import { Viewport } from '../ui/viewport/Viewport';
 import { FunctionManager } from '../util/FunctionManager';
 import { NotificationManager } from '../util/NotificationManager';
 
@@ -36,24 +34,11 @@ export class MobileApi {
         MessageBus.dispatch(name, ...args);
     }
 
-    getIpAddress() {
-        fetch(UrlConstants.ipify)
-            .then(response => response.json())
-            .then(data => {
-                const ip_address: string = data.ip;
-                if (ip_address !== UrlConstants.myip)
-                    Server.logIpAddress(ip_address);
-            })
-            .catch(error => {
-            });
-    }
-
     start() {
         FunctionManager.init();
         NotificationManager.init();
         SessionStatus.getInstance();
         MobileModule.getInstance();
-        this.getIpAddress();
         Viewport.getInstance();
     }
 

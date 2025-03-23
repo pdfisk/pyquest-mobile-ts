@@ -1,4 +1,5 @@
-import { QxFactory, QxObject } from "../qx";
+import { QxObject } from '../qx/core/QxObject';
+import { QxFactory } from '../qx/factory/QxFactory';
 
 export class TimerManager extends QxObject {
     static instance: TimerManager;

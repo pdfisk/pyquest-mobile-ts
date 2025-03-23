@@ -1,6 +1,8 @@
-import { ActionConstants, EventConstants, SizeConstants } from "../../constants";
+import { ActionConstants } from '../../constants/ActionConstants';
+import { EventConstants } from '../../constants/EventConstants';
 import { LabelConstants } from "../../constants/LabelConstants";
-import { MessageBus } from "../../messages";
+import { SizeConstants } from '../../constants/SizeConstants';
+import { MessageBus } from '../../messages/MessageBus';
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { DebugUtil } from '../../vm/util/DebugUtil';
 import { BoardPanel } from "../widgets/BoardPanel";

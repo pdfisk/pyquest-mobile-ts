@@ -1,4 +1,4 @@
-import { QxFactory } from "../../../factory";
+import { QxFactory } from '../../../factory/QxFactory';
 import { QxAbstractForm } from "../../form/QxAbstractForm";
 
 export class QxForm extends QxAbstractForm {

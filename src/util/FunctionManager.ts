@@ -1,5 +1,5 @@
-import { EventConstants } from "../constants";
-import { MessageBus } from "../messages";
+import { EventConstants } from '../constants/EventConstants';
+import { MessageBus } from '../messages/MessageBus';
 
 export class FunctionManager {
 

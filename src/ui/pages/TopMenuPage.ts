@@ -1,11 +1,13 @@
-import { EventConstants, SessionConstants, UrlConstants } from "../../constants";
+import { EventConstants } from '../../constants/EventConstants';
 import { LabelConstants } from "../../constants/LabelConstants";
 import { PageConstants } from "../../constants/PageConstants";
-import { MessageBus } from "../../messages";
+import { SessionConstants } from '../../constants/SessionConstants';
+import { MessageBus } from '../../messages/MessageBus';
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { QxScroll } from "../../qx/ui/mobile/container/QxScroll";
 import { QxList } from "../../qx/ui/mobile/list/QxList";
 import { BrowserUtil } from "../../util/BrowserUtil";
+import { UrlConstants } from '../../vm/constants/UrlConstants';
 import { AbstractPage } from "./abstract/AbstractPage";
 
 export class TopMenuPage extends AbstractPage {
@@ -71,7 +73,7 @@ export class TopMenuPage extends AbstractPage {
             { title: PageConstants.titleStatus, subtitle: PageConstants.subtitleStatus, path: PageConstants.pathStatus },
             { title: this.loginTitle, subtitle: this.loginSubtitle, path: PageConstants.pathLogin },
             { title: PageConstants.titleHelp, subtitle: PageConstants.subtitleHelp, path: PageConstants.pathHelp },
-            { title: PageConstants.titleSupport, subtitle: PageConstants.subtitleForum, path: UrlConstants.pyquest_forum },
+            // { title: PageConstants.titleSupport, subtitle: PageConstants.subtitleForum, path: UrlConstants.pyquest_forum },
         ];
     }
 

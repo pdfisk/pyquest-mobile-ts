@@ -1,5 +1,7 @@
-import { ActionConstants, ColorConstants, SizeConstants } from "../../constants";
-import { ActionRec } from "../../handlers";
+import { ActionConstants } from '../../constants/ActionConstants';
+import { ColorConstants } from '../../constants/ColorConstants';
+import { SizeConstants } from '../../constants/SizeConstants';
+import { ActionRec } from '../../handlers/services/ActionRec';
 import { QxVBox } from "../../qx/ui/mobile/container/QxVBox";
 import { QxTooltip } from "../../qx/ui/mobile/dialog/QxTooltip";
 import { HtmlStrUtil } from '../../util/HtmlStrUtil';

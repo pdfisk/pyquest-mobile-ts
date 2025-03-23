@@ -1,6 +1,7 @@
-import { QxConstants, StyleConstants } from "../../../../constants";
+import { QxConstants } from '../../../../constants/QxConstants';
+import { StyleConstants } from '../../../../constants/StyleConstants';
 import { HtmlStrUtil } from '../../../../util/HtmlStrUtil';
-import { QxFactory } from "../../../factory";
+import { QxFactory } from '../../../factory/QxFactory';
 import { QxWidget } from "../core/QxWidget";
 
 export class QxAtom extends QxWidget {

@@ -1,4 +1,4 @@
-import { UrlConstants } from "../constants";
+import { UrlConstants } from '../vm/constants/UrlConstants';
 
 export class BrowserUtil {
 
@@ -38,12 +38,6 @@ export class BrowserUtil {
 
     static openNewTab(url: string) {
         window.open(url, '_blank');
-    }
-
-    static readInfoIndex(fn: Function) {
-        fetch(UrlConstants.infoIndex)
-            .then(response => response.json())
-            .then(data => fn(data));
     }
 
     static readTextFile(path: string, fn: Function) {

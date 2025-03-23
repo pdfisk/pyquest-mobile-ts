@@ -1,8 +1,11 @@
-import { ActionConstants, EventConstants, SessionConstants, SizeConstants } from "../../constants";
+import { ActionConstants } from '../../constants/ActionConstants';
+import { EventConstants } from '../../constants/EventConstants';
 import { LabelConstants } from "../../constants/LabelConstants";
-import { MessageBus } from "../../messages";
+import { SessionConstants } from '../../constants/SessionConstants';
+import { SizeConstants } from '../../constants/SizeConstants';
+import { MessageBus } from '../../messages/MessageBus';
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
-import { SessionStatus } from "../../session";
+import { SessionStatus } from '../../session/SessionStatus';
 import { DebugUtil } from '../../vm/util/DebugUtil';
 import { DetailsPanel } from "../widgets/DetailsPanel";
 import { AbstractPage } from "./abstract/AbstractPage";

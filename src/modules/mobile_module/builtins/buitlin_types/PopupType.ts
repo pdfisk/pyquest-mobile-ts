@@ -1,9 +1,9 @@
 import { NotificationPopup } from '../../../../ui/dialog/NotificationPopup';
 import { Interpreter } from '../../../../vm/Interpreter';
-import { BaseType } from '../../../../vm/modules/abstract/base/BaseType';
-import { StringUtil } from '../../../../vm/shared/util/StringUtil';
+import { AbstractType } from '../../../../vm/modules/core/abstract/AbstractType';
+import { StringUtil } from '../../../../vm/util/StringUtil';
 
-export class PopupType extends BaseType {
+export class PopupType extends AbstractType {
     static instance: PopupType;
 
     static getInstance (): PopupType {

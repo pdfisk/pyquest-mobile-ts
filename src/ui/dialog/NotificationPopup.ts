@@ -1,4 +1,4 @@
-import { QxConstants } from "../../constants";
+import { QxConstants } from '../../constants/QxConstants';
 import { QxPopup } from "../../qx/ui/mobile/dialog/QxPopup";
 
 export class NotificationPopup extends QxPopup {

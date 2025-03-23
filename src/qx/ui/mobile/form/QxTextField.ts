@@ -1,4 +1,4 @@
-import { QxFactory } from "../../../factory";
+import { QxFactory } from '../../../factory/QxFactory';
 import { QxInput } from "./QxInput";
 
 export class QxTextField extends QxInput {

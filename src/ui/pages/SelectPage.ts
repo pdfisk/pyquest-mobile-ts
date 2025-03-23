@@ -1,7 +1,9 @@
-import { ActionConstants, EventConstants, FontConstants } from "../../constants";
+import { ActionConstants } from '../../constants/ActionConstants';
 import { CategoryConstants } from "../../constants/CategoryConstants";
+import { EventConstants } from '../../constants/EventConstants';
+import { FontConstants } from '../../constants/FontConstants';
 import { LabelConstants } from "../../constants/LabelConstants";
-import { MessageBus } from "../../messages";
+import { MessageBus } from '../../messages/MessageBus';
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxSelectBox } from "../../qx/ui/mobile/form/QxSelectBox";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";

@@ -1,4 +1,5 @@
-import { ColorConstants, StyleConstants } from "../../../../constants";
+import { ColorConstants } from '../../../../constants/ColorConstants';
+import { StyleConstants } from '../../../../constants/StyleConstants';
 import { QxScroll } from "../../../../qx/ui/mobile/container/QxScroll";
 import { InfoItemsPanel } from "./InfoItemsPanel";
 

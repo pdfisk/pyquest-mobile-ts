@@ -1,4 +1,4 @@
-import { QxFactory } from "../../../factory";
+import { QxFactory } from '../../../factory/QxFactory';
 import { QxAbstractBox } from "./QxAbstractBox";
 
 export class QxVBoxLayout extends QxAbstractBox {

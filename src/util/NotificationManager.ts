@@ -1,6 +1,7 @@
-import { EventConstants, QxConstants } from "../constants";
+import { EventConstants } from '../constants/EventConstants';
 import { MessageConstants } from "../constants/MessageConstants";
-import { MessageBus } from "../messages";
+import { QxConstants } from '../constants/QxConstants';
+import { MessageBus } from '../messages/MessageBus';
 import { QxDrawer } from "../qx/ui/mobile/container/QxDrawer";
 import { NotificationPopup } from "../ui/dialog/NotificationPopup";
 import { ServerPopup } from "../ui/dialog/ServerPopup";

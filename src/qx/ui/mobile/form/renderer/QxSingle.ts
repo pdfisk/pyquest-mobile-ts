@@ -1,4 +1,6 @@
-import { ColorConstants, SizeConstants, StyleConstants } from "../../../../../constants";
+import { ColorConstants } from '../../../../../constants/ColorConstants';
+import { SizeConstants } from '../../../../../constants/SizeConstants';
+import { StyleConstants } from '../../../../../constants/StyleConstants';
 import { HtmlStrUtil } from '../../../../../util/HtmlStrUtil';
 import { QxFactory } from "../../../../factory/QxFactory";
 import { QxWidget } from "../../core/QxWidget";

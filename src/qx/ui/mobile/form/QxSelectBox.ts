@@ -1,5 +1,5 @@
-import { EventConstants } from "../../../../constants";
-import { QxFactory } from "../../../factory";
+import { EventConstants } from '../../../../constants/EventConstants';
+import { QxFactory } from '../../../factory/QxFactory';
 import { QxWidget } from "../core/QxWidget";
 
 export class QxSelectBox extends QxWidget {

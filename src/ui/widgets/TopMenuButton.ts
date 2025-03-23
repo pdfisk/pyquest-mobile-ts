@@ -1,4 +1,4 @@
-import { LabelConstants } from "../../constants";
+import { LabelConstants } from '../../constants/LabelConstants';
 import { PageConstants } from "../../constants/PageConstants";
 import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
 import { QxNavigationBarButton } from "../../qx/ui/mobile/navigationBar/QxNavigationBarButton";
