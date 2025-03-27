@@ -4,7 +4,7 @@ import { LabelConstants } from "../../constants/LabelConstants";
 import { MessageBus } from '../../messages/MessageBus';
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { VmApi } from '../../vm/api/VmApi';
-import { IStdOut } from '../../vm/interfaces/IStdOut';
+import { IStdOut } from '../../vm/core/interfaces/IStdOut';
 import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractTextPage } from "./abstract/AbstractTextPage";
 

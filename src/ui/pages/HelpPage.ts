@@ -2,9 +2,7 @@ import { LabelConstants } from "../../constants/LabelConstants";
 import { SizeConstants } from '../../constants/SizeConstants';
 import { QxIframe } from "../../qx/ui/embed/QxIframe";
 import { QxComposite } from "../../qx/ui/mobile/container/QxComposite";
-import { BrowserUtil } from '../../util/BrowserUtil';
-import { UrlConstants } from '../../vm/constants/UrlConstants';
-import { IHandleMessage } from '../../vm/interfaces/IHandleMessage';
+import { IHandleMessage } from '../../vm/core/interfaces/IHandleMessage';
 import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractPage } from "./abstract/AbstractPage";
 

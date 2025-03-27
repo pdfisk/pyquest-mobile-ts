@@ -2,7 +2,7 @@ import { ActionConstants } from '../../../constants/ActionConstants';
 import { EventConstants } from '../../../constants/EventConstants';
 import { QxConstants } from '../../../constants/QxConstants';
 import { IframeManager } from "../../../util/IframeManager";
-import { IHandleMessage } from '../../../vm/interfaces/IHandleMessage';
+import { IHandleMessage } from '../../../vm/core/interfaces/IHandleMessage';
 import { QxFactory } from '../../factory/QxFactory';
 import { QxWidget } from "../mobile/core/QxWidget";
 
