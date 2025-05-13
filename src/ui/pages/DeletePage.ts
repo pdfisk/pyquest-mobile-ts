@@ -7,7 +7,7 @@ import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { SessionStatus } from "../../session/SessionStatus";
-import { PyModulesLocalStore } from '../../vm/data/stores/modules/PyModulesLocalStore';
+import { ScriptsRemoteStore } from '../../vm/data/stores/scripts/ScriptsRemoteStore';
 import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 import { ProjectsPage } from "./ProjectsPage";
@@ -69,7 +69,7 @@ export class DeletePage extends AbstractFormPage {
     onAppear() {
         if (this.hasAppeared)
             return;
-       super.onAppear();
+        super.onAppear();
         this.addPageContent();
         this.deleteButton = this.buttonbar.getButtonFromLabel(LabelConstants.ActionDeleteLabel);
         if (!SessionStatus.isLoggedIn())
@@ -81,7 +81,7 @@ export class DeletePage extends AbstractFormPage {
     }
 
     onDelete() {
-        PyModulesLocalStore.getInstance().deleteRecord(this.id);
+        ScriptsRemoteStore.getInstance().deleteRecord(this.id);
         this.showProjects();
         ProjectsPage.refresh();
     }

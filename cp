@@ -1,1 +1,1 @@
-cp ./dist/desktop.js /var/www/mychatdb/public_html/js/desktop.js
+cp ./dist/mobile.js /var/www/pyquest/public_html/js/mobile.js

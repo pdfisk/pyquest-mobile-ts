@@ -1,6 +1,5 @@
 import { SessionStatus } from '../../session/SessionStatus';
 import { BrowserUtil } from "../../util/BrowserUtil";
-import { PyModulesLocalStore } from '../../vm/data/stores/modules/PyModulesLocalStore';
 import { DebugUtil } from '../../vm/util/DebugUtil';
 import { QxInit } from "../core/QxInit";
 import { QxObject } from '../core/QxObject';
@@ -30,12 +29,6 @@ export class QxMobileApplication extends QxObject {
     private constructor() {
         super(QxInit.getApplication());
         const appName = BrowserUtil.getAppNameOrNull();
-        if (appName) {
-            const fn = (records: any[]) => {
-                DebugUtil.log('[', records, ']');
-            }
-            PyModulesLocalStore.getInstance().addLoaderHandlerFn(fn);
-        }
     }
 
     initialize() {

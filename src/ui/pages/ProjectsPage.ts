@@ -3,7 +3,7 @@ import { CategoryConstants } from "../../constants/CategoryConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { HtmlStrUtil } from '../../util/HtmlStrUtil';
 import { AbstractStore } from '../../vm/data/stores/abstract/AbstractStore';
-import { PyModulesLocalStore } from '../../vm/data/stores/modules/PyModulesLocalStore';
+import { ScriptsRemoteStore } from '../../vm/data/stores/scripts/ScriptsRemoteStore';
 import { DebugUtil } from '../../vm/util/DebugUtil';
 import { AbstractDataListPage } from "./abstract/AbstractDataListPage";
 import { DeletePage } from "./DeletePage";
@@ -174,7 +174,7 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     getStore(): AbstractStore {
-        return PyModulesLocalStore.getInstance();
+        return ScriptsRemoteStore.getInstance();
     }
 
     onChangeListSelection(index: number) {
