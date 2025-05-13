@@ -19,6 +19,7 @@ import { SelectPage } from '../pages/SelectPage';
 import { StatusPage } from '../pages/StatusPage';
 import { TopMenuPage } from '../pages/TopMenuPage';
 import { TranscriptPage } from '../pages/TranscriptPage';
+import { StdIO } from '../../vm/util/StdIO';
 
 export class Viewport extends QxComposite {
     application: QxMobileApplication;
@@ -70,6 +71,7 @@ export class Viewport extends QxComposite {
         this.addMasterPage();
         this.addDetailPages();
         this.buildRouting();
+        StdIO.setStdOut(this.pageTranscript);
     }
 
     addDetailPages() {
