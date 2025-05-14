@@ -34,6 +34,7 @@ export class LabelConstants {
     static ButtonLabelRunSingleStep: string = 'Run Single Step';
     static ButtonLabelRunStepping: string = 'Run Stepping';
     static ButtonLabelSave: string = 'Save';
+    static ButtonLabelSend: string = 'Send';
     static ButtonLabelStatus: string = 'Status';
     static ButtonLabelStop: string = 'Stop';
     static ButtonLabelTopMenu: string = 'Top Menu';
@@ -62,6 +63,7 @@ export class LabelConstants {
     static PageDetails: string = 'Details';
     static PageEditor: string = 'Editor';
     static PageHelpMenu: string = 'Help';
+    static PageLlm: string = 'Llm';
     static PageLogin: string = 'Login';
     static PageNew: string = 'New';
     static PageProjects: string = 'Projects';

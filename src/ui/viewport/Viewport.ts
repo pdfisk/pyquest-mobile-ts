@@ -1,15 +1,17 @@
-import { VmApi } from '../../vm/api/VmApi';
 import { PageConstants } from '../../constants/PageConstants';
 import { QxMobileApplication } from '../../qx/application/QxMobileApplication';
 import { QxMobileRouting } from '../../qx/application/QxMobileRouting';
 import { QxComposite } from '../../qx/ui/mobile/container/QxComposite';
 import { QxRoot } from '../../qx/ui/mobile/core/QxRoot';
 import { QxPageManager } from '../../qx/ui/mobile/page/QxPageManager';
+import { VmApi } from '../../vm/api/VmApi';
+import { StdIO } from '../../vm/util/StdIO';
 import { BoardPage } from '../pages/BoardPage';
 import { DeletePage } from '../pages/DeletePage';
 import { DetailsPage } from '../pages/DetailsPage';
 import { EditorPage } from '../pages/EditorPage';
 import { HelpPage } from '../pages/HelpPage';
+import { LlmPage } from '../pages/LlmPage';
 import { LoginPage } from '../pages/LoginPage';
 import { NewPage } from '../pages/NewPage';
 import { ProjectsPage } from '../pages/ProjectsPage';
@@ -19,7 +21,6 @@ import { SelectPage } from '../pages/SelectPage';
 import { StatusPage } from '../pages/StatusPage';
 import { TopMenuPage } from '../pages/TopMenuPage';
 import { TranscriptPage } from '../pages/TranscriptPage';
-import { StdIO } from '../../vm/util/StdIO';
 
 export class Viewport extends QxComposite {
     application: QxMobileApplication;
@@ -29,6 +30,7 @@ export class Viewport extends QxComposite {
     pageDetails: DetailsPage;
     pageEditor: EditorPage;
     pageHelp: HelpPage;
+    pageLlm: LlmPage;
     pageLogin: LoginPage;
     pageNew: NewPage;
     pageProjects: ProjectsPage;
@@ -59,6 +61,7 @@ export class Viewport extends QxComposite {
         this.pageDetails = DetailsPage.getInstance();
         this.pageEditor = EditorPage.getInstance();
         this.pageHelp = HelpPage.getInstance();
+        this.pageLlm = LlmPage.getInstance();
         this.pageLogin = LoginPage.getInstance();
         this.pageNew = NewPage.getInstance();
         this.pageProjects = ProjectsPage.getInstance();
@@ -77,8 +80,9 @@ export class Viewport extends QxComposite {
     addDetailPages() {
         this.manager.addDetailPages([
             this.pageBoard, this.pageDelete, this.pageDetails, this.pageEditor,
-            this.pageHelp, this.pageLogin, this.pageNew, this.pageProjects, this.pageRegister,
-            this.pageRename, this.pageSelect, this.pageStatus, this.pageTranscript
+            this.pageHelp, this.pageLlm, this.pageLogin, this.pageNew, this.pageProjects,
+            this.pageRegister, this.pageRename, this.pageSelect, this.pageStatus,
+            this.pageTranscript
         ]);
     }
 
@@ -92,6 +96,7 @@ export class Viewport extends QxComposite {
         this.routing.onGet(PageConstants.routeDetails, this.pageDetails);
         this.routing.onGet(PageConstants.routeEditor, this.pageEditor);
         this.routing.onGet(PageConstants.routeHelp, this.pageHelp);
+        this.routing.onGet(PageConstants.routeLlm, this.pageLlm);
         this.routing.onGet(PageConstants.routeLogin, this.pageLogin);
         this.routing.onGet(PageConstants.routeNew, this.pageNew);
         this.routing.onGet(PageConstants.routeProjects, this.pageProjects);

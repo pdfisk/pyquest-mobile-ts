@@ -5,6 +5,7 @@ export class PageConstants {
     static pathDetails = 'details';
     static pathEditor = 'editor';
     static pathHelp = 'help';
+    static pathLlm = 'llm';
     static pathLogin = 'login';
     static pathNew = 'new';
     static pathProjects = 'projects';
@@ -22,6 +23,7 @@ export class PageConstants {
     static routeDetails = '/' + this.pathDetails;
     static routeEditor = '/' + this.pathEditor;
     static routeHelp = '/' + this.pathHelp;
+    static routeLlm = '/' + this.pathLlm;
     static routeLogin = '/' + this.pathLogin;
     static routeNew = '/' + this.pathNew;
     static routeProjects = '/' + this.pathProjects;
@@ -40,6 +42,7 @@ export class PageConstants {
     static subtitleEditor = 'Python editor';
     static subtitleForum = 'Support forum';
     static subtitleHelp = 'Help pages';
+    static subtitleLlm = 'Llm console';
     static subtitleLogin = 'Login or register';
     static subtitleLogout = 'Logout';
     static subtitleNew = 'Create new project';
@@ -57,6 +60,7 @@ export class PageConstants {
     static titleDetails = 'Details';
     static titleEditor = 'Editor';
     static titleHelp = 'Help';
+    static titleLlm = 'Llm';
     static titleLogin = 'Login';
     static titleLogout = 'Logout';
     static titleNew = 'New';

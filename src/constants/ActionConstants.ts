@@ -31,6 +31,7 @@ export class ActionConstants {
     static ActionRunStepping: string = 'run_stepping';
     static ActionSave: string = 'save';
     static ActionSelect: string = 'select';
+    static ActionSend: string = 'send';
     static ActionSetSize: string = 'set_size';
     static ActionSetTileImage: string = 'set_tile_image';
     static ActionSetTileText: string = 'set_tile_text';

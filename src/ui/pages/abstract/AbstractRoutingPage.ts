@@ -24,6 +24,10 @@ export abstract class AbstractRoutingPage extends QxNavigationPage {
         QxMobileApplication.executeGet(PageConstants.routeHelp);
     }
 
+    showLlm() {
+        QxMobileApplication.executeGet(PageConstants.routeLlm);
+    }
+
     showLogin() {
         QxMobileApplication.executeGet(PageConstants.routeLogin);
     }
