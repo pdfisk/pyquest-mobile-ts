@@ -3,8 +3,10 @@ import { CategoryConstants } from "../../constants/CategoryConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { HtmlStrUtil } from '../../util/HtmlStrUtil';
 import { AbstractStore } from '../../vm/data/stores/abstract/AbstractStore';
+import { ScriptsLocalStore } from '../../vm/data/stores/scripts/ScriptsLocalStore';
 import { ScriptsRemoteStore } from '../../vm/data/stores/scripts/ScriptsRemoteStore';
 import { DebugUtil } from '../../vm/util/DebugUtil';
+import { UrlUtil } from '../../vm/util/UrlUtil';
 import { AbstractDataListPage } from "./abstract/AbstractDataListPage";
 import { DeletePage } from "./DeletePage";
 import { DetailsPage } from "./DetailsPage";
@@ -174,6 +176,8 @@ export class ProjectsPage extends AbstractDataListPage {
     }
 
     getStore(): AbstractStore {
+        if (UrlUtil.isLocalhost())
+            return ScriptsLocalStore.getInstance()
         return ScriptsRemoteStore.getInstance();
     }
 
@@ -281,6 +285,8 @@ export class ProjectsPage extends AbstractDataListPage {
         this.selectedIndex = LabelConstants.SelectionUnselectedIndex;
         this.setSelectionBoxSelection(LabelConstants.ActionOpenIndex);
         this.getStore().reload();
+        DebugUtil.log('ProjectsPage refresh');
+        DebugUtil.setX(this.getStore());
     }
 
     removeSelectionCss(index: number) {
