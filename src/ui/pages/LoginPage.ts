@@ -7,9 +7,9 @@ import { MessageBus } from '../../messages/MessageBus';
 import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxPasswordField } from "../../qx/ui/mobile/form/QxPasswordField";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
-import { ServerConstants } from '../../vm/constants/ServerConstants';
-import { DebugUtil } from '../../vm/util/DebugUtil';
+import { DebugUtil } from '../../util/DebugUtil';
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
+import {ServerConstants} from "../../constants/ServerConstants";
 
 export class LoginPage extends AbstractFormPage {
     usernameField: QxTextField;

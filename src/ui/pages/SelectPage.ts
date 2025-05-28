@@ -8,7 +8,7 @@ import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
 import { QxSelectBox } from "../../qx/ui/mobile/form/QxSelectBox";
 import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
 import { CategoryUtil } from "../../util/CategoryUtil";
-import { DebugUtil } from '../../vm/util/DebugUtil';
+import { DebugUtil } from '../../util/DebugUtil';
 import { AbstractFormPage } from "./abstract/AbstractFormPage";
 import { ProjectsPage } from "./ProjectsPage";
 

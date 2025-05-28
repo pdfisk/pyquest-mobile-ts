@@ -1,5 +1,3 @@
-import { UrlConstants } from '../vm/constants/UrlConstants';
-
 export class BrowserUtil {
 
     static detectDesktopBrowser(): boolean {

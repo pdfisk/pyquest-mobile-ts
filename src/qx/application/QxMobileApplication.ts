@@ -1,6 +1,6 @@
 import { SessionStatus } from '../../session/SessionStatus';
 import { BrowserUtil } from "../../util/BrowserUtil";
-import { DebugUtil } from '../../vm/util/DebugUtil';
+import { DebugUtil } from '../../util/DebugUtil';
 import { QxInit } from "../core/QxInit";
 import { QxObject } from '../core/QxObject';
 

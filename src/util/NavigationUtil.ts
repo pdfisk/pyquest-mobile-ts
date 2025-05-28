@@ -1,6 +1,6 @@
 import { PageConstants } from "../constants/PageConstants";
 import { QxMobileApplication } from "../qx/application/QxMobileApplication";
-import { DebugUtil } from '../vm/util/DebugUtil';
+import { DebugUtil } from '../util/DebugUtil';
 
 export class NavigationUtil {
 

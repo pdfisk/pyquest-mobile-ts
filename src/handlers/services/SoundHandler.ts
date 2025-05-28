@@ -1,6 +1,6 @@
 import { ActionConstants } from '../../constants/ActionConstants';
 import { SoundManager } from "../../util/SoundManager";
-import { DebugUtil } from '../../vm/util/DebugUtil';
+import { DebugUtil } from '../../util/DebugUtil';
 import { HandlerBase } from "./HandlerBase";
 
 export class SoundHandler extends HandlerBase {

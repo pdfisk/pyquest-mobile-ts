@@ -1,6 +1,6 @@
 import { ActionConstants } from '../constants/ActionConstants';
 import { SoundConstants } from "../constants/SoundConstants";
-import { DebugUtil } from '../vm/util/DebugUtil';
+import { DebugUtil } from '../util/DebugUtil';
 
 export class SoundManager {
     chickSound: any;

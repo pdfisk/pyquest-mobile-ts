@@ -3,10 +3,10 @@ import { EventConstants } from '../../constants/EventConstants';
 import { LabelConstants } from "../../constants/LabelConstants";
 import { MessageBus } from '../../messages/MessageBus';
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
-import { VmApi } from '../../vm/api/VmApi';
-import { IStdOut } from '../../vm/core/interfaces/IStdOut';
-import { DebugUtil } from '../../vm/util/DebugUtil';
+import { DebugUtil } from '../../util/DebugUtil';
 import { AbstractTextPage } from "./abstract/AbstractTextPage";
+import {IStdOut} from "../../interfaces/IStdOut";
+import {VmApi} from "../../api/VmApi";
 
 export class TranscriptPage extends AbstractTextPage implements IStdOut {
     stopButton: QxButton | null = null;

@@ -6,7 +6,7 @@ import { QxVBox } from "../../qx/ui/mobile/container/QxVBox";
 import { QxTooltip } from "../../qx/ui/mobile/dialog/QxTooltip";
 import { HtmlStrUtil } from '../../util/HtmlStrUtil';
 import { ResizeManager } from "../../util/ResizeManager";
-import { DebugUtil } from '../../vm/util/DebugUtil';
+import { DebugUtil } from '../../util/DebugUtil';
 import { BoardRow } from "./BoardRow";
 import { BoardTile } from "./BoardTile";
 

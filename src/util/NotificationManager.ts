@@ -5,7 +5,7 @@ import { MessageBus } from '../messages/MessageBus';
 import { QxDrawer } from "../qx/ui/mobile/container/QxDrawer";
 import { NotificationPopup } from "../ui/dialog/NotificationPopup";
 import { ServerPopup } from "../ui/dialog/ServerPopup";
-import { DebugUtil } from '../vm/util/DebugUtil';
+import { DebugUtil } from '../util/DebugUtil';
 
 export class NotificationManager {
     static topDrawer: QxDrawer;

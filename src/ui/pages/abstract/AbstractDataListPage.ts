@@ -1,8 +1,8 @@
-import { EventConstants } from '../../../constants/EventConstants';
-import { QxScroll } from "../../../qx/ui/mobile/container/QxScroll";
-import { QxList } from "../../../qx/ui/mobile/list/QxList";
-import { AbstractStore } from '../../../vm/data/stores/abstract/AbstractStore';
-import { AbstractPage } from "./AbstractPage";
+import {EventConstants} from '../../../constants/EventConstants';
+import {QxScroll} from "../../../qx/ui/mobile/container/QxScroll";
+import {QxList} from "../../../qx/ui/mobile/list/QxList";
+import {AbstractPage} from "./AbstractPage";
+import {AbstractStore} from "../../../stores/abstract/AbstractStore";
 
 export abstract class AbstractDataListPage extends AbstractPage {
     dataMap: Map<string, any> = new Map();
@@ -37,7 +37,7 @@ export abstract class AbstractDataListPage extends AbstractPage {
         const handlerFn = (dataRecords: any[]) => {
             this.updateMapData(dataRecords);
         }
-        this.dataStore.addLoaderHandlerFn(handlerFn);
+        // this.dataStore.addLoaderHandlerFn(handlerFn);
     }
 
     abstract getListConfig(): any;
@@ -54,7 +54,7 @@ export abstract class AbstractDataListPage extends AbstractPage {
 
     onAppear() {
         super.onAppear();
-        this.dataStore.loadData();
+        // this.dataStore.loadData();
     }
 
     setAdjustedHeight(adjustedHeight: number): void {
@@ -64,7 +64,7 @@ export abstract class AbstractDataListPage extends AbstractPage {
     setAdjustedWidth(adjustedWidth: number): void {
     }
 
-    setListHeight(height:number) {
+    setListHeight(height: number) {
         this.list.setHeightPx(height);
     }
 

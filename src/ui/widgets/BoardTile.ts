@@ -9,8 +9,9 @@ import { MessageBus } from '../../messages/MessageBus';
 import { QxAtom } from "../../qx/ui/mobile/basic/QxAtom";
 import { DeferredCommand } from "../../util/DeferredCommand";
 import { HtmlStrUtil } from '../../util/HtmlStrUtil';
-import { DebugUtil } from '../../vm/util/DebugUtil';
+import { DebugUtil } from '../../util/DebugUtil';
 import { BoardPanel } from "./BoardPanel";
+import {VmApi} from "../../api/VmApi";
 
 export class BoardTile extends QxAtom {
     boardPanel: BoardPanel;
@@ -155,7 +156,7 @@ export class BoardTile extends QxAtom {
         const eventName = EventConstants.BoardTileClicked;
         const args = [this.rowIndex, this.columnIndex, this.getLabel()];
         MessageBus.dispatch(eventName, args);
-        // VmApi.postEvent(eventName, args);
+        VmApi.postEvent(eventName, args);
     }
 
     pushDeferredCommand(cmd: string, ...args: any[]) {

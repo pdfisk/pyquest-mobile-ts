@@ -1,7 +1,7 @@
 import { QxConstants } from '../../../../constants/QxConstants';
 import { SizeConstants } from '../../../../constants/SizeConstants';
 import { TimerManager } from '../../../../util/TimerManager';
-import { DebugUtil } from '../../../../vm/util/DebugUtil';
+import { DebugUtil } from '../../../../util/DebugUtil';
 import { QxFactory } from '../../../factory/QxFactory';
 import { QxButton } from "../form/QxButton";
 import { QxComposite } from "./QxComposite";

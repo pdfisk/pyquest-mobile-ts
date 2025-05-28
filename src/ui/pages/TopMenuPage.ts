@@ -1,14 +1,14 @@
-import { EventConstants } from '../../constants/EventConstants';
-import { LabelConstants } from "../../constants/LabelConstants";
-import { PageConstants } from "../../constants/PageConstants";
-import { SessionConstants } from '../../constants/SessionConstants';
-import { MessageBus } from '../../messages/MessageBus';
-import { QxMobileApplication } from "../../qx/application/QxMobileApplication";
-import { QxScroll } from "../../qx/ui/mobile/container/QxScroll";
-import { QxList } from "../../qx/ui/mobile/list/QxList";
-import { BrowserUtil } from "../../util/BrowserUtil";
-import { UrlConstants } from '../../vm/constants/UrlConstants';
-import { AbstractPage } from "./abstract/AbstractPage";
+import {EventConstants} from '../../constants/EventConstants';
+import {LabelConstants} from "../../constants/LabelConstants";
+import {PageConstants} from "../../constants/PageConstants";
+import {SessionConstants} from '../../constants/SessionConstants';
+import {MessageBus} from '../../messages/MessageBus';
+import {QxMobileApplication} from "../../qx/application/QxMobileApplication";
+import {QxScroll} from "../../qx/ui/mobile/container/QxScroll";
+import {QxList} from "../../qx/ui/mobile/list/QxList";
+import {BrowserUtil} from "../../util/BrowserUtil";
+import {AbstractPage} from "./abstract/AbstractPage";
+import {UrlConstants} from "../../constants/UrlConstants";
 
 export class TopMenuPage extends AbstractPage {
     list: QxList;
@@ -66,14 +66,22 @@ export class TopMenuPage extends AbstractPage {
 
     getData(): any[] {
         return [
-            { title: PageConstants.titleProjects, subtitle: PageConstants.subtitleProjects, path: PageConstants.pathProjects, },
-            { title: PageConstants.titleEditor, subtitle: PageConstants.subtitleEditor, path: PageConstants.pathEditor, },
-            { title: PageConstants.titleLlm, subtitle: PageConstants.subtitleLlm, path: PageConstants.pathLlm, },
-            { title: PageConstants.titleTranscript, subtitle: PageConstants.subtitleTranscript, path: PageConstants.pathTranscript, },
-            { title: PageConstants.titleBoard, subtitle: PageConstants.subtitleBoard, path: PageConstants.pathBoard, },
-            { title: PageConstants.titleStatus, subtitle: PageConstants.subtitleStatus, path: PageConstants.pathStatus },
-            { title: this.loginTitle, subtitle: this.loginSubtitle, path: PageConstants.pathLogin },
-            { title: PageConstants.titleHelp, subtitle: PageConstants.subtitleHelp, path: PageConstants.pathHelp },
+            {
+                title: PageConstants.titleProjects,
+                subtitle: PageConstants.subtitleProjects,
+                path: PageConstants.pathProjects,
+            },
+            {title: PageConstants.titleEditor, subtitle: PageConstants.subtitleEditor, path: PageConstants.pathEditor,},
+            {title: PageConstants.titleLlm, subtitle: PageConstants.subtitleLlm, path: PageConstants.pathLlm,},
+            {
+                title: PageConstants.titleTranscript,
+                subtitle: PageConstants.subtitleTranscript,
+                path: PageConstants.pathTranscript,
+            },
+            {title: PageConstants.titleBoard, subtitle: PageConstants.subtitleBoard, path: PageConstants.pathBoard,},
+            {title: PageConstants.titleStatus, subtitle: PageConstants.subtitleStatus, path: PageConstants.pathStatus},
+            {title: this.loginTitle, subtitle: this.loginSubtitle, path: PageConstants.pathLogin},
+            {title: PageConstants.titleHelp, subtitle: PageConstants.subtitleHelp, path: PageConstants.pathHelp},
             // { title: PageConstants.titleSupport, subtitle: PageConstants.subtitleForum, path: UrlConstants.pyquest_forum },
         ];
     }

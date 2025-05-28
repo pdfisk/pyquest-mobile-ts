@@ -1,4 +1,4 @@
-import { DebugUtil } from '../vm/util/DebugUtil';
+import { DebugUtil } from '../util/DebugUtil';
 
 export class ErrorHandler {
 

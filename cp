@@ -1,1 +1,1 @@
-cp ./dist/mobile.js /var/www/pyquest/public_html/pyquest/mobile.js
+cp ./dist/mobile.js /var/www/pyquest/public_html/js/mobile.js

@@ -1,5 +1,5 @@
 import { QxNavigationBar } from "../../qx/ui/mobile/navigationBar/QxNavigationBar";
-import { DebugUtil } from '../../vm/util/DebugUtil';
+import { DebugUtil } from '../../util/DebugUtil';
 
 export class NavigationBar extends QxNavigationBar {
     // topMenuButton: TopMenuButton;

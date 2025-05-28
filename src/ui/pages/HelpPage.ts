@@ -1,10 +1,10 @@
-import { LabelConstants } from "../../constants/LabelConstants";
-import { SizeConstants } from '../../constants/SizeConstants';
-import { QxIframe } from "../../qx/ui/embed/QxIframe";
-import { QxComposite } from "../../qx/ui/mobile/container/QxComposite";
-import { IHandleMessage } from '../../vm/core/interfaces/IHandleMessage';
-import { DebugUtil } from '../../vm/util/DebugUtil';
-import { AbstractPage } from "./abstract/AbstractPage";
+import {LabelConstants} from "../../constants/LabelConstants";
+import {SizeConstants} from '../../constants/SizeConstants';
+import {QxIframe} from "../../qx/ui/embed/QxIframe";
+import {QxComposite} from "../../qx/ui/mobile/container/QxComposite";
+import {DebugUtil} from '../../util/DebugUtil';
+import {AbstractPage} from "./abstract/AbstractPage";
+import {IHandleMessage} from "../../interfaces/IHandleMessage";
 
 export class HelpPage extends AbstractPage implements IHandleMessage {
     holder: QxComposite;
@@ -23,7 +23,9 @@ export class HelpPage extends AbstractPage implements IHandleMessage {
         this.holder = new QxComposite;
         this.iframe = new QxIframe(this);
         (window as any).app.helpPageBack = this.onBack;
-        (window as any).app.helpPageDisplay = (page: string) => { this.showPage(page); };
+        (window as any).app.helpPageDisplay = (page: string) => {
+            this.showPage(page);
+        };
     }
 
     addContent() {

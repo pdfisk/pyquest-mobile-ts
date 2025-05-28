@@ -1,6 +1,5 @@
 import { MobileVersion } from '../constants/MobileVersion';
 import { MessageBus } from '../messages/MessageBus';
-import { MobileModule } from '../modules/mobile_module/MobileModule';
 import { SessionStatus } from '../session/SessionStatus';
 import { Viewport } from '../ui/viewport/Viewport';
 import { FunctionManager } from '../util/FunctionManager';
@@ -38,7 +37,6 @@ export class MobileApi {
         FunctionManager.init();
         NotificationManager.init();
         SessionStatus.getInstance();
-        MobileModule.getInstance();
         Viewport.getInstance();
     }
 

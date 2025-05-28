@@ -1,11 +1,11 @@
 import { ActionConstants } from '../../constants/ActionConstants';
 import { LabelConstants } from "../../constants/LabelConstants";
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
-import { IStdOut } from '../../vm/core/interfaces/IStdOut';
-import { GeminiServer } from '../../vm/server/GeminiServer';
-import { DebugUtil } from '../../vm/util/DebugUtil';
-import { TranscriptPage } from '../pages/TranscriptPage';
+import { DebugUtil } from '../../util/DebugUtil';
+import { TranscriptPage } from './TranscriptPage';
 import { AbstractTextPage } from "./abstract/AbstractTextPage";
+import {IStdOut} from "../../interfaces/IStdOut";
+import {GeminiServer} from "../../server/GeminiServer";
 
 export class LlmPage extends AbstractTextPage implements IStdOut {
     stopButton: QxButton | null = null;

@@ -2,16 +2,16 @@ import { ActionConstants } from '../../constants/ActionConstants';
 import { CategoryConstants } from "../../constants/CategoryConstants";
 import { LabelConstants } from "../../constants/LabelConstants";
 import { HtmlStrUtil } from '../../util/HtmlStrUtil';
-import { AbstractStore } from '../../vm/data/stores/abstract/AbstractStore';
-import { ScriptsLocalStore } from '../../vm/data/stores/scripts/ScriptsLocalStore';
-import { ScriptsRemoteStore } from '../../vm/data/stores/scripts/ScriptsRemoteStore';
-import { DebugUtil } from '../../vm/util/DebugUtil';
-import { UrlUtil } from '../../vm/util/UrlUtil';
+import { DebugUtil } from '../../util/DebugUtil';
 import { AbstractDataListPage } from "./abstract/AbstractDataListPage";
 import { DeletePage } from "./DeletePage";
 import { DetailsPage } from "./DetailsPage";
 import { EditorPage } from "./EditorPage";
 import { RenamePage } from "./RenamePage";
+import {AbstractStore} from "../../stores/abstract/AbstractStore";
+import {UrlUtil} from "../../util/UrlUtil";
+import {ScriptsLocalStore} from "../../stores/ScriptsLocalStore";
+import {ScriptsRemoteStore} from "../../stores/ScriptsRemoteStore"
 
 export class ProjectsPage extends AbstractDataListPage {
     categoryLabel: string = CategoryConstants.CategoryTagAll;

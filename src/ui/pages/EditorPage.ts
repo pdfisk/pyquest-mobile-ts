@@ -7,12 +7,12 @@ import { MessageBus } from '../../messages/MessageBus';
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
 import { SessionStatus } from '../../session/SessionStatus';
 import { HtmlStrUtil } from '../../util/HtmlStrUtil';
-import { VmApi } from '../../vm/api/VmApi';
-import { DebugUtil } from '../../vm/util/DebugUtil';
+import { DebugUtil } from '../../util/DebugUtil';
 import { AbstractPage } from "./abstract/AbstractPage";
 import { BoardPage } from "./BoardPage";
 import { DetailsPage } from "./DetailsPage";
 import { ProjectsPage } from "./ProjectsPage";
+import {VmApi} from "../../api/VmApi";
 
 export class EditorPage extends AbstractPage {
     ace: any;

@@ -1,16 +1,15 @@
-import { ActionConstants } from '../../constants/ActionConstants';
-import { EventConstants } from '../../constants/EventConstants';
-import { LabelConstants } from "../../constants/LabelConstants";
-import { SessionConstants } from '../../constants/SessionConstants';
-import { MessageBus } from '../../messages/MessageBus';
-import { QxWidget } from "../../qx/ui/mobile/core/QxWidget";
-import { QxButton } from "../../qx/ui/mobile/form/QxButton";
-import { QxTextField } from "../../qx/ui/mobile/form/QxTextField";
-import { SessionStatus } from "../../session/SessionStatus";
-import { ScriptsRemoteStore } from '../../vm/data/stores/scripts/ScriptsRemoteStore';
-import { DebugUtil } from '../../vm/util/DebugUtil';
-import { AbstractFormPage } from "./abstract/AbstractFormPage";
-import { ProjectsPage } from "./ProjectsPage";
+import {ActionConstants} from '../../constants/ActionConstants';
+import {EventConstants} from '../../constants/EventConstants';
+import {LabelConstants} from "../../constants/LabelConstants";
+import {SessionConstants} from '../../constants/SessionConstants';
+import {MessageBus} from '../../messages/MessageBus';
+import {QxWidget} from "../../qx/ui/mobile/core/QxWidget";
+import {QxButton} from "../../qx/ui/mobile/form/QxButton";
+import {QxTextField} from "../../qx/ui/mobile/form/QxTextField";
+import {SessionStatus} from "../../session/SessionStatus";
+import {DebugUtil} from '../../util/DebugUtil';
+import {AbstractFormPage} from "./abstract/AbstractFormPage";
+import {ProjectsPage} from "./ProjectsPage";
 
 export class DeletePage extends AbstractFormPage {
     deleteButton: QxButton | null = null;
@@ -81,7 +80,6 @@ export class DeletePage extends AbstractFormPage {
     }
 
     onDelete() {
-        ScriptsRemoteStore.getInstance().deleteRecord(this.id);
         this.showProjects();
         ProjectsPage.refresh();
     }

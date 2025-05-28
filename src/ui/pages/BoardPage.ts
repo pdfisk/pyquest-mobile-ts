@@ -4,7 +4,7 @@ import { LabelConstants } from "../../constants/LabelConstants";
 import { SizeConstants } from '../../constants/SizeConstants';
 import { MessageBus } from '../../messages/MessageBus';
 import { QxButton } from "../../qx/ui/mobile/form/QxButton";
-import { DebugUtil } from '../../vm/util/DebugUtil';
+import { DebugUtil } from '../../util/DebugUtil';
 import { BoardPanel } from "../widgets/BoardPanel";
 import { AbstractPage } from "./abstract/AbstractPage";
 

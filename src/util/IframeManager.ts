@@ -1,5 +1,5 @@
 import { QxIframe } from "../qx/ui/embed/QxIframe";
-import { DebugUtil } from '../vm/util/DebugUtil';
+import { DebugUtil } from '../util/DebugUtil';
 
 export class IframeManager {
     subscribers: Map<string, QxIframe> = new Map;

@@ -1,26 +1,24 @@
-import { PageConstants } from '../../constants/PageConstants';
-import { QxMobileApplication } from '../../qx/application/QxMobileApplication';
-import { QxMobileRouting } from '../../qx/application/QxMobileRouting';
-import { QxComposite } from '../../qx/ui/mobile/container/QxComposite';
-import { QxRoot } from '../../qx/ui/mobile/core/QxRoot';
-import { QxPageManager } from '../../qx/ui/mobile/page/QxPageManager';
-import { VmApi } from '../../vm/api/VmApi';
-import { StdIO } from '../../vm/util/StdIO';
-import { BoardPage } from '../pages/BoardPage';
-import { DeletePage } from '../pages/DeletePage';
-import { DetailsPage } from '../pages/DetailsPage';
-import { EditorPage } from '../pages/EditorPage';
-import { HelpPage } from '../pages/HelpPage';
-import { LlmPage } from '../pages/LlmPage';
-import { LoginPage } from '../pages/LoginPage';
-import { NewPage } from '../pages/NewPage';
-import { ProjectsPage } from '../pages/ProjectsPage';
-import { RegisterPage } from '../pages/RegisterPage';
-import { RenamePage } from '../pages/RenamePage';
-import { SelectPage } from '../pages/SelectPage';
-import { StatusPage } from '../pages/StatusPage';
-import { TopMenuPage } from '../pages/TopMenuPage';
-import { TranscriptPage } from '../pages/TranscriptPage';
+import {PageConstants} from '../../constants/PageConstants';
+import {QxMobileApplication} from '../../qx/application/QxMobileApplication';
+import {QxMobileRouting} from '../../qx/application/QxMobileRouting';
+import {QxComposite} from '../../qx/ui/mobile/container/QxComposite';
+import {QxRoot} from '../../qx/ui/mobile/core/QxRoot';
+import {QxPageManager} from '../../qx/ui/mobile/page/QxPageManager';
+import {BoardPage} from '../pages/BoardPage';
+import {DeletePage} from '../pages/DeletePage';
+import {DetailsPage} from '../pages/DetailsPage';
+import {EditorPage} from '../pages/EditorPage';
+import {HelpPage} from '../pages/HelpPage';
+import {LlmPage} from '../pages/LlmPage';
+import {LoginPage} from '../pages/LoginPage';
+import {NewPage} from '../pages/NewPage';
+import {ProjectsPage} from '../pages/ProjectsPage';
+import {RegisterPage} from '../pages/RegisterPage';
+import {RenamePage} from '../pages/RenamePage';
+import {SelectPage} from '../pages/SelectPage';
+import {StatusPage} from '../pages/StatusPage';
+import {TopMenuPage} from '../pages/TopMenuPage';
+import {TranscriptPage} from '../pages/TranscriptPage';
 
 export class Viewport extends QxComposite {
     application: QxMobileApplication;
@@ -74,7 +72,6 @@ export class Viewport extends QxComposite {
         this.addMasterPage();
         this.addDetailPages();
         this.buildRouting();
-        StdIO.setStdOut(this.pageTranscript);
     }
 
     addDetailPages() {
@@ -115,7 +112,6 @@ export class Viewport extends QxComposite {
 
     initialize() {
         super.initialize();
-        VmApi.setStdOut(TranscriptPage.getInstance());
     }
 
     onAppear() {

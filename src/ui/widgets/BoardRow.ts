@@ -1,6 +1,6 @@
 import { SizeConstants } from '../../constants/SizeConstants';
 import { QxHBox } from "../../qx/ui/mobile/container/QxHBox";
-import { DebugUtil } from '../../vm/util/DebugUtil';
+import { DebugUtil } from '../../util/DebugUtil';
 import { BoardPanel } from "./BoardPanel";
 import { BoardTile } from "./BoardTile";
 

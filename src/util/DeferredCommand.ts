@@ -1,6 +1,6 @@
 import { DeferredConstants } from "../constants/DeferredConstants";
 import { BoardTile } from "../ui/widgets/BoardTile";
-import { DebugUtil } from '../vm/util/DebugUtil';
+import { DebugUtil } from '../util/DebugUtil';
 
 export class DeferredCommand {
     args: any[];

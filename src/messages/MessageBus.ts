@@ -1,5 +1,5 @@
 import { NotificationManager } from "../util/NotificationManager";
-import { DebugUtil } from '../vm/util/DebugUtil';
+import { DebugUtil } from '../util/DebugUtil';
 
 export class MessageBus {
     messageBus: any = null;

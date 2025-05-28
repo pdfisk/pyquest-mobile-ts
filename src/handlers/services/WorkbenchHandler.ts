@@ -4,7 +4,7 @@ import { EventConstants } from '../../constants/EventConstants';
 import { PageConstants } from '../../constants/PageConstants';
 import { MessageBus } from '../../messages/MessageBus';
 import { NavigationUtil } from "../../util/NavigationUtil";
-import { DebugUtil } from '../../vm/util/DebugUtil';
+import { DebugUtil } from '../../util/DebugUtil';
 import { ErrorHandler } from "../ErrorHandler";
 import { HandlerBase } from "./HandlerBase";
 
