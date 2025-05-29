@@ -27,11 +27,11 @@ export class StatusPage extends AbstractTextPage {
     }
 
     getVmTimestamp(): string {
-        return `       Updated: ${VmApi.timestamp}`;
+        return `       Updated: ${VmApi.timestamp()}`;
     }
 
     getVmVersion(): string {
-        return `    Vm Version: ${VmApi.version}`;
+        return `    Vm Version: ${VmApi.version()}`;
     }
 
     onAppear() {
